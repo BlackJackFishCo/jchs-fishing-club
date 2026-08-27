@@ -49,6 +49,29 @@
   white-space: nowrap;
 }
 
+.species-rules {
+  padding: 1.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.species-rules h2 {
+  color: var(--color-gold);
+  font-size: 1.4rem;
+}
+
+.species-rules ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--color-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.species-rules li::marker {
+  color: var(--color-gold);
+}
+
 .species-category {
   margin-bottom: 2.5rem;
 }

@@ -2,6 +2,18 @@ import { useState } from 'react'
 import { TOTAL_SPECIES, CATEGORIES, useSpeciesBoard, saveEntry } from '../data/species.js'
 import './Species.css'
 
+const CHALLENGE_RULES = [
+  'All submitted fish must have been caught by a student angler enrolled in the fishing club.',
+  'Students must practice proper handling techniques by holding the fish horizontal and broadside.',
+  'Photos should be taken promptly after being caught.',
+  'All fish submitted must be clearly identifiable to be an approved catch.',
+  'After documenting the catch all fish submitted must be immediately released alive in the same water system where they were caught.',
+  'Length and width measurements are not required.',
+  'All submitted fish must be caught during the school year. Fish caught before the start of the school year will not be accepted.',
+  'Fish must be caught in Florida state waters, in federal waters extending directly outward of Florida state line boundaries or landed in Florida.',
+  'Any club who submits fish caught by a student not enrolled in the club, uses photos from the internet or generative AI platforms to submit catches as their own will be disqualified.',
+]
+
 function resizeImage(file, maxSize = 640) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader()
@@ -177,6 +189,15 @@ function Species() {
         </div>
         <div className="ticker__pct">{pct}% complete</div>
       </div>
+
+      <section className="species-rules card">
+        <h2>Fishing Challenge Rules</h2>
+        <ul>
+          {CHALLENGE_RULES.map((rule) => (
+            <li key={rule}>{rule}</li>
+          ))}
+        </ul>
+      </section>
 
       {CATEGORIES.map((category) => (
         <CategorySection
