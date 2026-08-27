@@ -1,51 +1,14 @@
-.tournament-page__intro {
-  color: var(--color-muted);
-  max-width: 720px;
-  margin: 0.75rem 0 1.75rem;
-}
-
-.tournament-next {
-  padding: 2rem;
+.tournament-tbd {
+  padding: 3rem 2rem;
+  margin-top: 1rem;
   text-align: center;
   background: linear-gradient(180deg, var(--color-royal-dim), var(--color-black-soft));
-  margin-bottom: 1.5rem;
 }
 
-.tournament-next h2 {
+.tournament-tbd__text {
+  font-family: var(--font-brand);
+  font-size: 2.4rem;
   color: var(--color-gold);
-  margin: 0.4rem 0;
-}
-
-.tournament-next p {
-  color: var(--color-muted);
-  margin: 0;
-}
-
-.tournament-rules,
-.tournament-results {
-  padding: 1.75rem;
-  margin-bottom: 1.5rem;
-}
-
-.tournament-rules h3,
-.tournament-results h3 {
-  color: var(--color-gold);
-}
-
-.tournament-rules ul {
-  margin: 0;
-  padding-left: 1.2rem;
-  color: var(--color-muted);
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.tournament-rules li::marker {
-  color: var(--color-gold);
-}
-
-.tournament-results p {
-  color: var(--color-muted);
+  letter-spacing: 0.3em;
   margin: 0;
 }
