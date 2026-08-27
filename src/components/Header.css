@@ -29,37 +29,20 @@
 }
 
 .site-header__badge {
-  width: 44px;
-  height: 44px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: Georgia, serif;
-  font-weight: 700;
-  font-size: 1.15rem;
-  color: var(--color-gold);
-  background: radial-gradient(circle at 35% 30%, var(--color-royal-light), var(--color-royal-dim));
-  border: 2px solid var(--color-gold);
+  object-fit: contain;
   flex-shrink: 0;
 }
 
 .site-header__title {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.15;
-}
-
-.site-header__title strong {
-  font-family: Georgia, serif;
-  font-size: 1.1rem;
-  letter-spacing: 0.02em;
-}
-
-.site-header__title small {
-  color: var(--color-muted);
-  font-size: 0.72rem;
-  letter-spacing: 0.04em;
+  font-family: var(--font-brand);
+  font-size: 1.05rem;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+  color: var(--color-white);
+  max-width: 380px;
 }
 
 .site-header__nav {
@@ -69,9 +52,12 @@
 }
 
 .site-header__nav a {
+  font-family: var(--font-eyebrow);
+  text-transform: uppercase;
   color: var(--color-white);
   font-weight: 600;
-  font-size: 0.92rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
   padding: 0.4rem 0.1rem;
   border-bottom: 2px solid transparent;
 }

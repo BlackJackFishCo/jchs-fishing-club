@@ -13,7 +13,7 @@ function Tournament() {
   return (
     <div className="page tournament-page">
       <p className="eyebrow">Compete</p>
-      <h1 className="section-title">Fishing Tournament Info</h1>
+      <h1 className="section-title">Fishing Tournament</h1>
       <p className="tournament-page__intro">
         Tournament details for the JCHS Fishing Club will be posted here as they&apos;re
         finalized. Check back for dates, locations, and results.

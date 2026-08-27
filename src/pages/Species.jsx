@@ -131,7 +131,7 @@ function Species() {
   return (
     <div className="page species-page">
       <p className="eyebrow">Required Species Challenge</p>
-      <h1 className="section-title">Species Board</h1>
+      <h1 className="section-title">Species Catch List</h1>
       <p className="species-page__intro">
         Click any card to log a catch — species, angler, date, and a photo. This board
         tracks progress toward all {TOTAL_SPECIES} required species for the club.

@@ -1,6 +1,59 @@
 import { Link } from 'react-router-dom'
 import { useCaughtCount } from '../data/species.js'
+import logo from '../assets/logo.png'
 import './Home.css'
+
+const tiles = [
+  {
+    to: '/species',
+    label: 'Species Catch List',
+    icon: (
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <path
+          d="M6 32c8-14 22-20 34-14 6 3 11 8 14 14-3 6-8 11-14 14-12 6-26 0-34-14Z"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+        />
+        <circle cx="20" cy="28" r="2.4" fill="currentColor" />
+        <path d="M46 24c4 2 8 5 12 8-4 3-8 6-12 8" fill="none" stroke="currentColor" strokeWidth="2.5" />
+        <path d="M12 38c3 3 6 5 10 6M12 26c3-3 6-5 10-6" fill="none" stroke="currentColor" strokeWidth="2" />
+      </svg>
+    ),
+  },
+  {
+    to: '/volunteer',
+    label: 'Volunteer Clean Ups',
+    icon: (
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <path
+          d="M32 10c8 8 12 16 12 22a12 12 0 1 1-24 0c0-6 4-14 12-22Z"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+        />
+        <path d="M24 36c1 4 4 7 8 8" fill="none" stroke="currentColor" strokeWidth="2" />
+        <path d="M14 48h36M20 54h24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    to: '/tournament',
+    label: 'Fishing Tournament',
+    icon: (
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <path
+          d="M20 12h24v12a12 12 0 0 1-24 0V12Z"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+        />
+        <path d="M20 16h-6a6 6 0 0 0 6 10M44 16h6a6 6 0 0 1-6 10" fill="none" stroke="currentColor" strokeWidth="2.2" />
+        <path d="M32 36v8M24 52h16M27 52c0-4 1.5-6 5-8 3.5 2 5 4 5 8" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+]
 
 function Home() {
   const { caught, total } = useCaughtCount()
@@ -8,21 +61,26 @@ function Home() {
   return (
     <div className="page home">
       <section className="hero">
-        <p className="eyebrow">John Carroll High School &middot; Fort Pierce, FL</p>
-        <h1>JCHS Fishing Club</h1>
-        <p className="hero__lede">
-          A student club for anglers of every skill level &mdash; chasing the required
-          species list, giving back through habitat &amp; conservation projects, and
-          competing together on the water.
+        <Link to="/species" className="hero__picture" aria-label="View the Species Catch List">
+          <img src={logo} alt="John Carroll High School Fishing Club crest" />
+        </Link>
+        <p className="hero__tagline">
+          Ethical angling &middot; conservation &middot; the waters of Fort Pierce, Florida
         </p>
-        <div className="hero__actions">
-          <Link className="btn btn-solid" to="/species">
-            See the Species Board
+      </section>
+
+      <section className="tile-grid">
+        {tiles.map((tile) => (
+          <Link key={tile.to} to={tile.to} className="tile card">
+            <span className="tile__icon">{tile.icon}</span>
+            <span className="tile__label">{tile.label}</span>
+            {tile.to === '/species' && (
+              <span className="tile__meta">
+                {caught} / {total} caught
+              </span>
+            )}
           </Link>
-          <Link className="btn" to="/tournament">
-            Tournament Info
-          </Link>
-        </div>
+        ))}
       </section>
 
       <section className="card mission">
@@ -35,33 +93,6 @@ function Home() {
           habitats, basic fishing gear, and general fishing concepts to help create
           confident and responsible anglers.
         </p>
-      </section>
-
-      <section className="stat-strip card">
-        <div>
-          <span className="stat-strip__number">
-            {caught} / {total}
-          </span>
-          <span className="stat-strip__label">Required species caught</span>
-        </div>
-        <Link className="btn" to="/species">
-          View the board &rarr;
-        </Link>
-      </section>
-
-      <section className="quick-links">
-        <Link to="/species" className="quick-links__card card">
-          <h3>Species Board</h3>
-          <p>Track all 40 required catches with angler, date, and species logged.</p>
-        </Link>
-        <Link to="/volunteer" className="quick-links__card card">
-          <h3>Volunteer Projects</h3>
-          <p>Habitat cleanups, mangrove restoration, and community service hours.</p>
-        </Link>
-        <Link to="/tournament" className="quick-links__card card">
-          <h3>Tournament Info</h3>
-          <p>Rules, dates, and results for JCHS Fishing Club tournaments.</p>
-        </Link>
       </section>
     </div>
   )

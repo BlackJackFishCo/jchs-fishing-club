@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import logo from '../assets/logo.png'
 import './Header.css'
 
 const links = [
   { to: '/', label: 'Home', end: true },
-  { to: '/species', label: 'Species Board' },
-  { to: '/volunteer', label: 'Volunteer Projects' },
-  { to: '/tournament', label: 'Tournament Info' },
+  { to: '/species', label: 'Species Catch List' },
+  { to: '/volunteer', label: 'Volunteer Clean Ups' },
+  { to: '/tournament', label: 'Fishing Tournament' },
 ]
 
 function Header() {
@@ -16,13 +17,8 @@ function Header() {
     <header className="site-header">
       <div className="site-header__bar">
         <NavLink to="/" className="site-header__brand" onClick={() => setOpen(false)}>
-          <span className="site-header__badge" aria-hidden="true">
-            JC
-          </span>
-          <span className="site-header__title">
-            <strong>JCHS Fishing Club</strong>
-            <small>John Carroll High School &middot; Fort Pierce, FL</small>
-          </span>
+          <img className="site-header__badge" src={logo} alt="JCHS Fishing Club crest" />
+          <span className="site-header__title">John Carroll High School Fishing Club</span>
         </NavLink>
 
         <button

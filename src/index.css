@@ -12,6 +12,8 @@
 
   --shadow-gold: 0 0 0 1px rgba(245, 197, 24, 0.35);
   --radius: 14px;
+  --font-brand: 'Alfa Slab One', Georgia, 'Times New Roman', serif;
+  --font-eyebrow: 'Oswald', 'Segoe UI', sans-serif;
 
   color-scheme: dark;
 }
@@ -32,10 +34,6 @@ body {
   font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.5;
   min-height: 100vh;
-  background-image:
-    radial-gradient(circle at 15% 0%, rgba(27, 58, 138, 0.35), transparent 45%),
-    radial-gradient(circle at 85% 10%, rgba(245, 197, 24, 0.08), transparent 40%);
-  background-attachment: fixed;
 }
 
 #root {
@@ -45,7 +43,8 @@ body {
 }
 
 h1, h2, h3, h4 {
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--font-brand);
+  font-weight: 400;
   letter-spacing: 0.02em;
   margin: 0 0 0.5em;
 }
@@ -73,6 +72,7 @@ button {
 }
 
 .eyebrow {
+  font-family: var(--font-eyebrow);
   text-transform: uppercase;
   letter-spacing: 0.18em;
   font-size: 0.78rem;
