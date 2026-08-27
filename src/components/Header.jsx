@@ -6,7 +6,7 @@ import './Header.css'
 const links = [
   { to: '/', label: 'Home', end: true },
   { to: '/species', label: 'Species Catch List' },
-  { to: '/volunteer', label: 'Volunteer Clean Ups' },
+  { to: '/volunteer', label: 'Volunteer Events' },
   { to: '/tournament', label: 'Fishing Tournament' },
 ]
 

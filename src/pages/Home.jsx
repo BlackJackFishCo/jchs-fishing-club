@@ -23,7 +23,7 @@ const tiles = [
   },
   {
     to: '/volunteer',
-    label: 'Volunteer Clean Ups',
+    label: 'Volunteer Events',
     icon: (
       <svg viewBox="0 0 64 64" aria-hidden="true">
         <path
