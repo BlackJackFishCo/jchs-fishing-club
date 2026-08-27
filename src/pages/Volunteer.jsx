@@ -16,24 +16,10 @@ const projects = [
     hours: 'Service hours available',
   },
   {
-    title: 'Monofilament Recycling Bins',
-    status: 'Ongoing',
-    description:
-      'Club members build, install, and maintain fishing line recycling stations at area piers and boat ramps to keep line out of the water and off wildlife.',
-    hours: 'Service hours available',
-  },
-  {
     title: 'Youth Fishing Clinic',
     status: 'Date TBD',
     description:
       'Club members mentor younger students and community kids on casting, knot-tying, and basic tackle at a hands-on fishing clinic.',
-    hours: 'Service hours available',
-  },
-  {
-    title: 'Tackle & Gear Donation Drive',
-    status: 'Date TBD',
-    description:
-      'Collecting gently used rods, reels, and tackle to refurbish and donate to students who want to fish but don’t have gear.',
     hours: 'Service hours available',
   },
 ]
