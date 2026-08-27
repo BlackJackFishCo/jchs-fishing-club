@@ -49,6 +49,35 @@
   white-space: nowrap;
 }
 
+.species-category {
+  margin-bottom: 2.5rem;
+}
+
+.species-category__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid rgba(245, 197, 24, 0.25);
+}
+
+.species-category__title {
+  font-size: 1.4rem;
+  color: var(--color-gold);
+  margin: 0;
+}
+
+.species-category__count {
+  font-family: var(--font-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
 .species-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -158,6 +187,23 @@
 .modal h3 {
   color: var(--color-gold);
   margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.modal__category {
+  font-family: var(--font-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  background: rgba(245, 197, 24, 0.12);
+  border: 1px solid rgba(245, 197, 24, 0.35);
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
 }
 
 .field {
@@ -168,16 +214,19 @@
   color: var(--color-muted);
 }
 
-.field input {
+.field input,
+.field select {
   background: var(--color-black-soft);
   border: 1px solid rgba(245, 197, 24, 0.3);
   border-radius: 8px;
   padding: 0.55rem 0.7rem;
   color: var(--color-white);
   font-size: 0.95rem;
+  font-family: inherit;
 }
 
-.field input:focus {
+.field input:focus,
+.field select:focus {
   outline: 2px solid var(--color-gold);
 }
 

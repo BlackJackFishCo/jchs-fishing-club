@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { TOTAL_SPECIES, useSpeciesBoard, saveEntry } from '../data/species.js'
+import { TOTAL_SPECIES, CATEGORIES, useSpeciesBoard, saveEntry } from '../data/species.js'
 import './Species.css'
 
 function resizeImage(file, maxSize = 640) {
@@ -51,11 +51,26 @@ function EditModal({ entry, onClose, onSave }) {
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <form className="modal card" onClick={(e) => e.stopPropagation()} onSubmit={submit}>
-        <h3>Catch #{entry.id}</h3>
+        <h3>
+          {form.species || `Catch #${entry.id}`}
+          {form.category && <span className="modal__category">{form.category}</span>}
+        </h3>
 
         <label className="field">
           <span>Species</span>
           <input value={form.species} onChange={update('species')} placeholder="e.g. Snook" />
+        </label>
+
+        <label className="field">
+          <span>Category</span>
+          <select value={form.category || ''} onChange={update('category')}>
+            <option value="">—</option>
+            {CATEGORIES.map((c) => (
+              <option key={c} value={c}>
+                {c}
+              </option>
+            ))}
+          </select>
         </label>
 
         <label className="field">
@@ -122,11 +137,27 @@ function SpeciesCard({ entry, onEdit }) {
   )
 }
 
+function CategorySection({ category, entries, onEdit }) {
+  return (
+    <section className="species-category">
+      <div className="species-category__head">
+        <h2 className="species-category__title">{category}</h2>
+      </div>
+      <div className="species-grid">
+        {entries.map((entry) => (
+          <SpeciesCard key={entry.id} entry={entry} onEdit={onEdit} />
+        ))}
+      </div>
+    </section>
+  )
+}
+
 function Species() {
   const board = useSpeciesBoard()
   const [editing, setEditing] = useState(null)
   const caughtCount = board.filter((r) => r.caught).length
   const pct = Math.round((caughtCount / TOTAL_SPECIES) * 100)
+  const uncategorized = board.filter((r) => !CATEGORIES.includes(r.category))
 
   return (
     <div className="page species-page">
@@ -147,11 +178,18 @@ function Species() {
         <div className="ticker__pct">{pct}% complete</div>
       </div>
 
-      <div className="species-grid">
-        {board.map((entry) => (
-          <SpeciesCard key={entry.id} entry={entry} onEdit={setEditing} />
-        ))}
-      </div>
+      {CATEGORIES.map((category) => (
+        <CategorySection
+          key={category}
+          category={category}
+          entries={board.filter((r) => r.category === category)}
+          onEdit={setEditing}
+        />
+      ))}
+
+      {uncategorized.length > 0 && (
+        <CategorySection category="Other" entries={uncategorized} onEdit={setEditing} />
+      )}
 
       {editing && (
         <EditModal
