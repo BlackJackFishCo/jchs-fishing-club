@@ -57,12 +57,50 @@
   color: var(--color-white);
   background: radial-gradient(circle at 50% 20%, var(--color-royal-light), var(--color-royal-dim) 70%);
   transition: transform 0.15s ease, border-color 0.15s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .tile:hover {
   text-decoration: none;
   transform: translateY(-4px);
   border-color: var(--color-gold);
+}
+
+.tile--photo {
+  min-height: 220px;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 1.5rem;
+  background: var(--color-black-soft);
+}
+
+.tile__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transition: transform 0.25s ease;
+}
+
+.tile--photo:hover .tile__photo {
+  transform: scale(1.04);
+}
+
+.tile--photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(5, 6, 7, 0.15) 0%, rgba(5, 6, 7, 0.85) 100%);
+  z-index: 1;
+}
+
+.tile--photo .tile__label,
+.tile--photo .tile__meta {
+  position: relative;
+  z-index: 2;
 }
 
 .tile__icon {

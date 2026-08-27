@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom'
 import { useCaughtCount } from '../data/species.js'
 import logo from '../assets/logo.png'
+import snookCatch from '../assets/snook-catch.jpg'
+import volunteerCleanup from '../assets/volunteer-cleanup.jpg'
 import './Home.css'
 
 const tiles = [
   {
     to: '/species',
     label: 'Species Catch List',
+    photo: snookCatch,
     icon: (
       <svg viewBox="0 0 64 64" aria-hidden="true">
         <path
@@ -24,6 +27,7 @@ const tiles = [
   {
     to: '/volunteer',
     label: 'Volunteer Events',
+    photo: volunteerCleanup,
     icon: (
       <svg viewBox="0 0 64 64" aria-hidden="true">
         <path
@@ -71,8 +75,15 @@ function Home() {
 
       <section className="tile-grid">
         {tiles.map((tile) => (
-          <Link key={tile.to} to={tile.to} className="tile card">
-            <span className="tile__icon">{tile.icon}</span>
+          <Link
+            key={tile.to}
+            to={tile.to}
+            className={`tile card ${tile.photo ? 'tile--photo' : ''}`}
+          >
+            {tile.photo && (
+              <img className="tile__photo" src={tile.photo} alt="" aria-hidden="true" />
+            )}
+            {!tile.photo && <span className="tile__icon">{tile.icon}</span>}
             <span className="tile__label">{tile.label}</span>
             {tile.to === '/species' && (
               <span className="tile__meta">
