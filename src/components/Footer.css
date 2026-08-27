@@ -1,0 +1,31 @@
+.site-footer {
+  border-top: 1px solid rgba(245, 197, 24, 0.2);
+  background: var(--color-black-soft);
+  margin-top: 3rem;
+}
+
+.site-footer__inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
+
+.site-footer strong {
+  color: var(--color-gold);
+  font-family: Georgia, serif;
+}
+
+.site-footer p {
+  margin: 0.15rem 0 0;
+}
+
+.site-footer__note {
+  color: var(--color-muted);
+}

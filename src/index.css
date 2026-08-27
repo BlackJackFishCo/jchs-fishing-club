@@ -1,0 +1,120 @@
+:root {
+  --color-black: #050607;
+  --color-black-soft: #0d1117;
+  --color-panel: #12161f;
+  --color-royal: #1b3a8a;
+  --color-royal-light: #2c52c4;
+  --color-royal-dim: #14265c;
+  --color-gold: #f5c518;
+  --color-gold-soft: #ffdf6b;
+  --color-white: #f5f6f8;
+  --color-muted: #9aa3b2;
+
+  --shadow-gold: 0 0 0 1px rgba(245, 197, 24, 0.35);
+  --radius: 14px;
+
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-black);
+  color: var(--color-white);
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+  background-image:
+    radial-gradient(circle at 15% 0%, rgba(27, 58, 138, 0.35), transparent 45%),
+    radial-gradient(circle at 85% 10%, rgba(245, 197, 24, 0.08), transparent 40%);
+  background-attachment: fixed;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4 {
+  font-family: Georgia, 'Times New Roman', serif;
+  letter-spacing: 0.02em;
+  margin: 0 0 0.5em;
+}
+
+a {
+  color: var(--color-gold-soft);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.page {
+  flex: 1;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-gold);
+}
+
+.section-title {
+  font-size: 2rem;
+  color: var(--color-white);
+  border-left: 5px solid var(--color-gold);
+  padding-left: 0.6rem;
+}
+
+.card {
+  background: linear-gradient(180deg, var(--color-panel), var(--color-black-soft));
+  border: 1px solid rgba(245, 197, 24, 0.18);
+  border-radius: var(--radius);
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.65rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 700;
+  border: 2px solid var(--color-gold);
+  background: transparent;
+  color: var(--color-gold);
+  transition: all 0.15s ease;
+}
+
+.btn:hover {
+  background: var(--color-gold);
+  color: var(--color-black);
+  text-decoration: none;
+}
+
+.btn-solid {
+  background: var(--color-gold);
+  color: var(--color-black);
+}
+
+.btn-solid:hover {
+  background: var(--color-gold-soft);
+}
