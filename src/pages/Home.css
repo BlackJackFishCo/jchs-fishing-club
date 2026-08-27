@@ -99,10 +99,6 @@
   background: linear-gradient(180deg, var(--color-royal-dim), var(--color-black-soft));
 }
 
-.mission h2 {
-  color: var(--color-white);
-}
-
 .mission__text {
   max-width: 640px;
   margin: 0.75rem auto 0;
