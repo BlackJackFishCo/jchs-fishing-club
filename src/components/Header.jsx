@@ -5,10 +5,10 @@ import './Header.css'
 const links = [
   { to: '/', label: 'Home', end: true },
   { to: '/species', label: 'Species Catch List' },
+  { to: '/leaderboard', label: 'Leaderboard' },
   { to: '/volunteer', label: 'Volunteer Events' },
   { to: '/calendar', label: 'Calendar' },
   { to: '/tournament', label: 'JCHS Fishing Tournament' },
-  { to: '/leaderboard', label: 'Leaderboard' },
 ]
 
 function Header() {
