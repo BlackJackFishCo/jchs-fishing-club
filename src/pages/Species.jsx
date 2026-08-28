@@ -250,7 +250,37 @@ function Species() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span className="fish-id-box__icon">🔍</span>
+              <svg className="fish-id-box__icon" viewBox="0 0 64 64" aria-hidden="true">
+                <line
+                  x1="41"
+                  y1="41"
+                  x2="57"
+                  y2="57"
+                  stroke="#0d0d0d"
+                  strokeWidth="8"
+                  strokeLinecap="round"
+                />
+                <line
+                  x1="41"
+                  y1="41"
+                  x2="57"
+                  y2="57"
+                  stroke="#3a3a3a"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                />
+                <circle cx="26" cy="26" r="18" fill="rgba(173, 216, 230, 0.25)" />
+                <circle cx="26" cy="26" r="18" fill="none" stroke="#e8e8e8" strokeWidth="4.5" />
+                <circle cx="26" cy="26" r="18" fill="none" stroke="#8a8a8a" strokeWidth="1.5" />
+                <ellipse
+                  cx="19"
+                  cy="18"
+                  rx="6"
+                  ry="3"
+                  fill="rgba(255,255,255,0.65)"
+                  transform="rotate(-35 19 18)"
+                />
+              </svg>
               <span className="fish-id-box__label">FISH ID</span>
             </a>
             <a href="https://myfwc.com/" target="_blank" rel="noopener noreferrer">
