@@ -1,7 +1,16 @@
 import { useState } from 'react'
 import { addRegistration, MAX_ANGLERS, SHIRT_SIZES } from '../data/registration.js'
 import logo from '../assets/logo.png'
+import snookFish from '../assets/sponsor-tier-snook.png'
+import redfishFish from '../assets/sponsor-tier-redfish.png'
+import troutFish from '../assets/sponsor-tier-trout.png'
 import './Tournament.css'
+
+const TIER_FISH = {
+  Snook: snookFish,
+  Redfish: redfishFish,
+  Trout: troutFish,
+}
 
 const SECTIONS = ['Home', 'Registration', 'Rules', 'Sponsorship']
 
@@ -189,23 +198,32 @@ function SponsorshipSection() {
       <div className="sponsor-grid">
         {SPONSOR_TIERS.map((tier) => (
           <div key={tier.name} className="sponsor-card card">
-            <div className="sponsor-card__head">
-              <h3>{tier.name}</h3>
-              <span className="sponsor-card__price">{tier.price}</span>
+            {TIER_FISH[tier.name] && (
+              <img
+                className="sponsor-card__fish"
+                src={TIER_FISH[tier.name]}
+                alt={`${tier.name} illustration`}
+              />
+            )}
+            <div className="sponsor-card__body">
+              <div className="sponsor-card__head">
+                <h3>{tier.name}</h3>
+                <span className="sponsor-card__price">{tier.price}</span>
+              </div>
+              <ul className="sponsor-card__perks">
+                {tier.perks.map((perk) => (
+                  <li key={perk}>{perk}</li>
+                ))}
+              </ul>
+              <a
+                className="sponsor-card__cta"
+                href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+                  `John Carroll High School Inshore Summer Slam Sponsorship — ${tier.name}`,
+                )}`}
+              >
+                Get in Touch
+              </a>
             </div>
-            <ul className="sponsor-card__perks">
-              {tier.perks.map((perk) => (
-                <li key={perk}>{perk}</li>
-              ))}
-            </ul>
-            <a
-              className="sponsor-card__cta"
-              href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-                `John Carroll High School Inshore Summer Slam Sponsorship — ${tier.name}`,
-              )}`}
-            >
-              Get in Touch
-            </a>
           </div>
         ))}
       </div>
