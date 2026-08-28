@@ -4,6 +4,7 @@ import Footer from './components/Footer.jsx'
 import Home from './pages/Home.jsx'
 import Species from './pages/Species.jsx'
 import Volunteer from './pages/Volunteer.jsx'
+import Calendar from './pages/Calendar.jsx'
 import Tournament from './pages/Tournament.jsx'
 import Admin from './pages/Admin.jsx'
 
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/species" element={<Species />} />
         <Route path="/volunteer" element={<Volunteer />} />
+        <Route path="/calendar" element={<Calendar />} />
         <Route path="/tournament" element={<Tournament />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>

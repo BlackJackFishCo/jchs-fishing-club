@@ -7,6 +7,7 @@ const links = [
   { to: '/', label: 'Home', end: true },
   { to: '/species', label: 'Species Catch List' },
   { to: '/volunteer', label: 'Volunteer Events' },
+  { to: '/calendar', label: 'Calendar' },
   { to: '/tournament', label: 'JCHS Fishing Tournament' },
 ]
 
