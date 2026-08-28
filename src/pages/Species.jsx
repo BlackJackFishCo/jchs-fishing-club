@@ -248,7 +248,7 @@ function Species() {
       <div className="species-page__head">
         <div>
           <p className="eyebrow">Species Challenge</p>
-          <h1 className="section-title">Species Catch List 2026-2027</h1>
+          <h1 className="section-title">Club Species List 2026 - 2027</h1>
           <p className="species-page__intro">
             Click any card to log a catch — species, angler, date, and a photo. This board
             tracks progress toward all {TOTAL_SPECIES} species for the club.

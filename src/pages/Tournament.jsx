@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { addRegistration, MAX_ANGLERS, SHIRT_SIZES } from '../data/registration.js'
+import logo from '../assets/logo.png'
 import './Tournament.css'
 
 const SECTIONS = ['Home', 'Registration', 'Rules', 'Sponsorship']
@@ -9,7 +10,7 @@ const CONTACT_EMAIL = 'Jstelmacki@gmail.com'
 const SPONSOR_TIERS = [
   {
     name: 'Title',
-    price: '$15,000',
+    price: '$5,000',
     perks: [
       'Company Name in Official Event Logo',
       '4 Boat Entries - Up to 12 Anglers',
@@ -21,21 +22,8 @@ const SPONSOR_TIERS = [
     ],
   },
   {
-    name: 'Slam',
-    price: '$10,000',
-    perks: [
-      '1 Captain with Boat/Bait/Gear, 3 Anglers',
-      'Company Logo on Event Banner',
-      '12 JCHS Fishing Club Tickets',
-      'Company Logo and Website Link on JCHS Fishing Club Website',
-      'Company Logo on Ribbon Board during the John Carroll High School Inshore Summer Slam',
-      '1 Social Media Mention on JCHS Fishing Club Accounts',
-      '10x10 Activation Space at the Inshore Summer Slam',
-    ],
-  },
-  {
     name: 'Snook',
-    price: '$7,500',
+    price: '$2,500',
     perks: [
       '1 Captain with Boat/Bait/Gear, 3 Anglers',
       'Company Logo on Event Banner',
@@ -46,7 +34,7 @@ const SPONSOR_TIERS = [
   },
   {
     name: 'Redfish',
-    price: '$5,000',
+    price: '$1,000',
     perks: [
       '1 Captain with Boat/Bait/Gear, 3 Anglers',
       'Company Logo on Event Banner',
@@ -56,13 +44,8 @@ const SPONSOR_TIERS = [
   },
   {
     name: 'Trout',
-    price: '$2,500',
+    price: '$500',
     perks: ['1 Captain with Boat/Bait/Gear, 3 Anglers', '6 JCHS Fishing Club Tickets'],
-  },
-  {
-    name: 'Angler',
-    price: '$1,500',
-    perks: ['1 Captain w/ Boat/Bait/Gear, 3 Anglers'],
   },
 ]
 
@@ -110,7 +93,9 @@ function RegistrationSection() {
   }
 
   return (
-    <form className="registration card" onSubmit={submit}>
+    <div className="registration-wrap">
+      <img className="registration__logo" src={logo} alt="JCHS Fishing Club crest" />
+      <form className="registration card" onSubmit={submit}>
       <p className="registration__intro">
         Please register your boat&apos;s anglers below. You can register up to {MAX_ANGLERS}{' '}
         anglers.
@@ -185,7 +170,8 @@ function RegistrationSection() {
       <button type="submit" className="btn btn-solid" disabled={busy}>
         {busy ? 'Submitting…' : 'Submit Registration'}
       </button>
-    </form>
+      </form>
+    </div>
   )
 }
 
@@ -193,7 +179,8 @@ function SponsorshipSection() {
   return (
     <div className="sponsorship">
       <p className="sponsorship__intro">
-        All participants will receive a gift bag, including an event shirt and other goodies. We
+        All participants will receive a team bucket, including an event shirt and other goodies.
+        We
         have many different sponsorship opportunities and can customize to fit your budget. For
         inquiries and to register for the event, please contact{' '}
         <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
