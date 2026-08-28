@@ -28,7 +28,7 @@ function Leaderboard() {
       <div className="page-head">
         <div>
           <p className="eyebrow">Top Anglers</p>
-          <h1 className="section-title">Leaderboard</h1>
+          <h1 className="section-title">Club Leaderboard</h1>
           <p className="volunteer-page__intro">
             Rostered anglers ranked by how many of the {TOTAL_SPECIES} species they&apos;ve
             logged on the Species Catch List.

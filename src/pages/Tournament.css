@@ -73,14 +73,8 @@
 
 .sponsor-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.25rem;
-}
-
-@media (max-width: 900px) {
-  .sponsor-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 @media (max-width: 620px) {
@@ -170,8 +164,30 @@
   text-decoration: none;
 }
 
-.registration {
+.registration-wrap {
+  position: relative;
   margin-top: 1.25rem;
+}
+
+.registration__logo {
+  position: absolute;
+  top: 0;
+  right: 2.5rem;
+  transform: translateY(-50%);
+  width: 150px;
+  height: auto;
+  z-index: 2;
+  filter: drop-shadow(0 0 20px rgba(27, 58, 138, 0.6));
+}
+
+@media (max-width: 700px) {
+  .registration__logo {
+    width: 100px;
+    right: 1.5rem;
+  }
+}
+
+.registration {
   padding: 1.75rem;
   display: flex;
   flex-direction: column;
