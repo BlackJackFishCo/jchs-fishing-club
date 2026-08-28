@@ -255,6 +255,27 @@ function HomeSection() {
   )
 }
 
+const EVENT_INFO = [
+  { label: 'Registration Ends', value: '00/2027' },
+  { label: 'Captains Meeting', value: '00/2027' },
+  { label: 'Lines In', value: '0:00am 00/2027' },
+  { label: 'Lines Out', value: '0:00pm 00/2027' },
+  { label: 'Awards', value: '00/27' },
+]
+
+function EventInfoRow() {
+  return (
+    <div className="tournament-info-grid">
+      {EVENT_INFO.map((item) => (
+        <div key={item.label} className="tournament-info-card">
+          <span className="tournament-info-card__label">{item.label}</span>
+          <span className="tournament-info-card__value">{item.value}</span>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 function HeroLogos() {
   return (
     <div className="hero-logos">
@@ -325,6 +346,7 @@ function Tournament() {
       {active === 'Home' && (
         <>
           <HomeSection />
+          <EventInfoRow />
           <HeroLogos />
         </>
       )}
