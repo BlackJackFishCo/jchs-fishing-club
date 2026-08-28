@@ -102,7 +102,7 @@
   }
 
   .site-header__title {
-    font-size: clamp(0.55rem, 2.75vw, 1.05rem);
+    font-size: min(0.85rem, calc(5.7vw - 9.4px));
     max-width: none;
     white-space: nowrap;
     overflow: hidden;
