@@ -220,16 +220,7 @@ function Species() {
             tracks progress toward all {TOTAL_SPECIES} species for the club.
           </p>
         </div>
-        <div className="species-page__logos">
-          <img className="species-page__logo" src={logo} alt="JCHS Fishing Club crest" />
-          <a href="https://myfwc.com/" target="_blank" rel="noopener noreferrer">
-            <img
-              className="species-page__logo"
-              src={fwcLogo}
-              alt="Florida Fish and Wildlife Conservation Commission logo"
-            />
-          </a>
-        </div>
+        <img className="species-page__logo" src={logo} alt="JCHS Fishing Club crest" />
       </div>
 
       <div className="ticker card">
@@ -245,22 +236,31 @@ function Species() {
       <section className="species-rules card">
         <div className="species-rules__layout">
           <div className="species-rules__content">
-            <h2>Fishing Challenge Rules</h2>
+            <h2>FWC - Fishing Challenge Rules</h2>
             <ul>
               {CHALLENGE_RULES.map((rule) => (
                 <li key={rule}>{rule}</li>
               ))}
             </ul>
           </div>
-          <a
-            className="fish-id-box"
-            href="https://myfwc.com/wildlifehabitats/profiles/#!categoryid=1306&subcategoryid=&status="
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className="fish-id-box__icon">🔍</span>
-            <span className="fish-id-box__label">FISH ID</span>
-          </a>
+          <div className="species-rules__side">
+            <a
+              className="fish-id-box"
+              href="https://myfwc.com/wildlifehabitats/profiles/#!categoryid=1306&subcategoryid=&status="
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="fish-id-box__icon">🔍</span>
+              <span className="fish-id-box__label">FISH ID</span>
+            </a>
+            <a href="https://myfwc.com/" target="_blank" rel="noopener noreferrer">
+              <img
+                className="species-rules__fwc-logo"
+                src={fwcLogo}
+                alt="Florida Fish and Wildlife Conservation Commission logo"
+              />
+            </a>
+          </div>
         </div>
       </section>
 
