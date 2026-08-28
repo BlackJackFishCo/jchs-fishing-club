@@ -6,6 +6,7 @@ import Species from './pages/Species.jsx'
 import Volunteer from './pages/Volunteer.jsx'
 import Calendar from './pages/Calendar.jsx'
 import Tournament from './pages/Tournament.jsx'
+import Leaderboard from './pages/Leaderboard.jsx'
 import Admin from './pages/Admin.jsx'
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/volunteer" element={<Volunteer />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/tournament" element={<Tournament />} />
+        <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
       <Footer />
