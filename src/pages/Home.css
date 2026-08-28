@@ -123,20 +123,20 @@
 
 .mission {
   width: 100%;
-  padding: 2rem;
+  padding: 1rem;
   background: linear-gradient(180deg, var(--color-royal-dim), var(--color-black-soft));
 }
 
 .mission .eyebrow {
-  font-size: 0.95rem;
+  font-size: 0.8rem;
 }
 
 .mission__text {
   max-width: 680px;
-  margin: 0.75rem auto 0;
+  margin: 0.4rem auto 0;
   color: var(--color-white);
-  font-size: 1.3rem;
-  line-height: 1.7;
+  font-size: 0.85rem;
+  line-height: 1.4;
 }
 
 @media (max-width: 780px) {
