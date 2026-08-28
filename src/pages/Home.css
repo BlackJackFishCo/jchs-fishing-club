@@ -174,7 +174,7 @@
 .admin-quiet-link {
   display: block;
   width: fit-content;
-  margin: 0 auto;
+  margin: 1.5rem auto 0;
   padding: 0.35rem 1rem;
   background: #0d0d0d;
   border: 1px solid rgba(255, 255, 255, 0.08);
