@@ -131,6 +131,14 @@
   filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.35));
 }
 
+.sponsor-card__fish--redfish {
+  width: 280px;
+}
+
+.sponsor-card__fish--snook {
+  width: 340px;
+}
+
 .sponsor-card__body {
   flex: 1;
   min-width: 0;
@@ -147,6 +155,14 @@
   .sponsor-card__fish {
     width: 160px;
     order: 0;
+  }
+
+  .sponsor-card__fish--redfish {
+    width: 200px;
+  }
+
+  .sponsor-card__fish--snook {
+    width: 240px;
   }
 }
 
