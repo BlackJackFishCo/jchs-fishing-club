@@ -41,23 +41,24 @@ const tiles = [
       </svg>
     ),
   },
-  {
-    to: '/tournament',
-    label: 'JCHS Fishing Tournament',
-    icon: (
-      <svg viewBox="0 0 64 64" aria-hidden="true">
-        <path
-          d="M20 12h24v12a12 12 0 0 1-24 0V12Z"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-        />
-        <path d="M20 16h-6a6 6 0 0 0 6 10M44 16h6a6 6 0 0 1-6 10" fill="none" stroke="currentColor" strokeWidth="2.2" />
-        <path d="M32 36v8M24 52h16M27 52c0-4 1.5-6 5-8 3.5 2 5 4 5 8" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-      </svg>
-    ),
-  },
 ]
+
+const tournamentTile = {
+  to: '/tournament',
+  label: 'JCHS Fishing Tournament',
+  icon: (
+    <svg viewBox="0 0 64 64" aria-hidden="true">
+      <path
+        d="M20 12h24v12a12 12 0 0 1-24 0V12Z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+      />
+      <path d="M20 16h-6a6 6 0 0 0 6 10M44 16h6a6 6 0 0 1-6 10" fill="none" stroke="currentColor" strokeWidth="2.2" />
+      <path d="M32 36v8M24 52h16M27 52c0-4 1.5-6 5-8 3.5 2 5 4 5 8" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+    </svg>
+  ),
+}
 
 function Home() {
   const { caught, total } = useCaughtCount()
@@ -91,15 +92,22 @@ function Home() {
         </Link>
       </section>
 
-      <section className="card mission">
-        <p className="eyebrow">Club Mission</p>
-        <p className="mission__text">
-          The John Carroll Fishing Club was created for students who are interested in
-          learning how to become effective, conservation-minded anglers. The goal is to
-          teach students about ethical angling, conservation, Florida&apos;s aquatic
-          habitats, basic fishing gear, and general fishing concepts to help create
-          confident and responsible anglers. Let&apos;s go fishing!
-        </p>
+      <section className="mission-row">
+        <Link to={tournamentTile.to} className="tile card mission-row__tile">
+          <span className="tile__icon">{tournamentTile.icon}</span>
+          <span className="tile__label">{tournamentTile.label}</span>
+        </Link>
+
+        <div className="card mission mission-row__mission">
+          <p className="eyebrow">Club Mission</p>
+          <p className="mission__text">
+            The John Carroll Fishing Club was created for students who are interested in
+            learning how to become effective, conservation-minded anglers. The goal is to
+            teach students about ethical angling, conservation, Florida&apos;s aquatic
+            habitats, basic fishing gear, and general fishing concepts to help create
+            confident and responsible anglers. Let&apos;s go fishing!
+          </p>
+        </div>
       </section>
     </div>
   )

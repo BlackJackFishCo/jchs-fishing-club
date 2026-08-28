@@ -126,10 +126,30 @@
   border-radius: 999px;
 }
 
-.mission {
+.mission-row {
   width: 100%;
-  padding: 2rem;
+  display: flex;
+  align-items: stretch;
+  gap: 1.5rem;
+}
+
+.mission-row__tile {
+  width: min(360px, 60vw);
+  flex-shrink: 0;
+}
+
+.mission {
   background: linear-gradient(180deg, var(--color-royal-dim), var(--color-black-soft));
+}
+
+.mission-row__mission {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.25rem 1.75rem;
+  text-align: left;
 }
 
 .mission .eyebrow {
@@ -138,10 +158,10 @@
 
 .mission__text {
   max-width: 680px;
-  margin: 0.75rem auto 0;
+  margin: 0.6rem 0 0;
   color: var(--color-white);
-  font-size: 1.3rem;
-  line-height: 1.7;
+  font-size: 1.05rem;
+  line-height: 1.55;
 }
 
 @media (max-width: 780px) {
@@ -157,5 +177,13 @@
 
   .hero__picture {
     width: min(280px, 60vw);
+  }
+
+  .mission-row {
+    flex-direction: column;
+  }
+
+  .mission-row__tile {
+    width: 100%;
   }
 }
