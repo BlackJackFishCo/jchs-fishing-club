@@ -213,6 +213,29 @@ function SponsorshipSection() {
   )
 }
 
+function HomeSection() {
+  return (
+    <section className="card tournament-home">
+      <h2 className="tournament-home__heading">JCHS Summer Slam Inshore Fishing Tournament</h2>
+      <p>
+        Think you&apos;ve got what it takes to boat the biggest inshore fish on the Treasure Coast?
+      </p>
+      <p className="tournament-home__prove">Prove it.</p>
+      <p>
+        Join us for the John Carroll High School Summer Slam, a charity inshore fishing tournament
+        battling it out for the biggest Snook, Redfish, and Trout. Every entry fee goes straight to
+        supporting the JCHS fishing club — helping the next generation of anglers learn the water,
+        the regulations, and the sport we love.
+      </p>
+      <p>
+        Grab your rods, load the boat, and see if you&apos;ve got what it takes to take home the
+        title.
+      </p>
+      <p className="tournament-home__proceeds">All proceeds benefit the JCHS Fishing Club.</p>
+    </section>
+  )
+}
+
 function Tournament() {
   const [active, setActive] = useState(SECTIONS[0])
 
@@ -234,11 +257,13 @@ function Tournament() {
         ))}
       </div>
 
+      {active === 'Home' && <HomeSection />}
+
       {active === 'Registration' && <RegistrationSection />}
 
       {active === 'Sponsorship' && <SponsorshipSection />}
 
-      {active !== 'Registration' && active !== 'Sponsorship' && (
+      {active !== 'Home' && active !== 'Registration' && active !== 'Sponsorship' && (
         <section className="card tournament-tbd">
           <p className="tournament-tbd__label">{active}</p>
           <p className="tournament-tbd__text">Coming Soon</p>
