@@ -164,6 +164,10 @@
   .species-rules__side {
     align-items: center;
   }
+
+  .species-rules ul {
+    text-align: left;
+  }
 }
 
 .species-category {
