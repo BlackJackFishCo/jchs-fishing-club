@@ -6,27 +6,22 @@
   text-align: center;
 }
 
-.hero-row {
+.tiles-row {
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4rem;
-  padding-top: 1rem;
+  align-items: stretch;
+  gap: 1.5rem;
+  text-align: left;
 }
 
-.tile-stack {
-  width: min(360px, 60vw);
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  text-align: left;
+.tiles-row .tile {
+  flex: 1;
+  min-width: 0;
 }
 
 .hero__picture {
   display: block;
-  width: min(480px, 44vw);
+  width: min(320px, 50vw);
   flex-shrink: 0;
   transition: transform 0.2s ease, filter 0.2s ease;
   filter: drop-shadow(0 0 30px rgba(27, 58, 138, 0.55));
@@ -126,30 +121,10 @@
   border-radius: 999px;
 }
 
-.mission-row {
-  width: 100%;
-  display: flex;
-  align-items: stretch;
-  gap: 1.5rem;
-}
-
-.mission-row__tile {
-  width: min(360px, 60vw);
-  flex-shrink: 0;
-}
-
 .mission {
+  width: 100%;
+  padding: 2rem;
   background: linear-gradient(180deg, var(--color-royal-dim), var(--color-black-soft));
-}
-
-.mission-row__mission {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 1.25rem 1.75rem;
-  text-align: left;
 }
 
 .mission .eyebrow {
@@ -158,32 +133,18 @@
 
 .mission__text {
   max-width: 680px;
-  margin: 0.6rem 0 0;
+  margin: 0.75rem auto 0;
   color: var(--color-white);
-  font-size: 1.05rem;
-  line-height: 1.55;
+  font-size: 1.3rem;
+  line-height: 1.7;
 }
 
 @media (max-width: 780px) {
-  .hero-row {
-    flex-direction: column-reverse;
-    align-items: center;
-    gap: 1.5rem;
-  }
-
-  .tile-stack {
-    width: 100%;
+  .tiles-row {
+    flex-direction: column;
   }
 
   .hero__picture {
     width: min(280px, 60vw);
-  }
-
-  .mission-row {
-    flex-direction: column;
-  }
-
-  .mission-row__tile {
-    width: 100%;
   }
 }

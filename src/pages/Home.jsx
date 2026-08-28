@@ -65,49 +65,40 @@ function Home() {
 
   return (
     <div className="page home">
-      <section className="hero-row">
-        <div className="tile-stack">
-          {tiles.map((tile) => (
-            <Link
-              key={tile.to}
-              to={tile.to}
-              className={`tile card ${tile.photo ? 'tile--photo' : ''}`}
-            >
-              {tile.photo && (
-                <img className="tile__photo" src={tile.photo} alt="" aria-hidden="true" />
-              )}
-              {!tile.photo && <span className="tile__icon">{tile.icon}</span>}
-              <span className="tile__label">{tile.label}</span>
-              {tile.to === '/species' && (
-                <span className="tile__meta">
-                  {caught} / {total} caught
-                </span>
-              )}
-            </Link>
-          ))}
-        </div>
+      <Link to="/species" className="hero__picture" aria-label="View the Species Catch List">
+        <img src={logo} alt="John Carroll High School Fishing Club crest" />
+      </Link>
 
-        <Link to="/species" className="hero__picture" aria-label="View the Species Catch List">
-          <img src={logo} alt="John Carroll High School Fishing Club crest" />
-        </Link>
+      <section className="tiles-row">
+        {[...tiles, tournamentTile].map((tile) => (
+          <Link
+            key={tile.to}
+            to={tile.to}
+            className={`tile card ${tile.photo ? 'tile--photo' : ''}`}
+          >
+            {tile.photo && (
+              <img className="tile__photo" src={tile.photo} alt="" aria-hidden="true" />
+            )}
+            {!tile.photo && <span className="tile__icon">{tile.icon}</span>}
+            <span className="tile__label">{tile.label}</span>
+            {tile.to === '/species' && (
+              <span className="tile__meta">
+                {caught} / {total} caught
+              </span>
+            )}
+          </Link>
+        ))}
       </section>
 
-      <section className="mission-row">
-        <Link to={tournamentTile.to} className="tile card mission-row__tile">
-          <span className="tile__icon">{tournamentTile.icon}</span>
-          <span className="tile__label">{tournamentTile.label}</span>
-        </Link>
-
-        <div className="card mission mission-row__mission">
-          <p className="eyebrow">Club Mission</p>
-          <p className="mission__text">
-            The John Carroll Fishing Club was created for students who are interested in
-            learning how to become effective, conservation-minded anglers. The goal is to
-            teach students about ethical angling, conservation, Florida&apos;s aquatic
-            habitats, basic fishing gear, and general fishing concepts to help create
-            confident and responsible anglers. Let&apos;s go fishing!
-          </p>
-        </div>
+      <section className="card mission">
+        <p className="eyebrow">Club Mission</p>
+        <p className="mission__text">
+          The John Carroll Fishing Club was created for students who are interested in
+          learning how to become effective, conservation-minded anglers. The goal is to
+          teach students about ethical angling, conservation, Florida&apos;s aquatic
+          habitats, basic fishing gear, and general fishing concepts to help create
+          confident and responsible anglers. Let&apos;s go fishing!
+        </p>
       </section>
     </div>
   )
