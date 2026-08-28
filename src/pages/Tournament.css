@@ -69,6 +69,53 @@
   letter-spacing: 0.02em;
 }
 
+.hero-logos {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.5rem, 3vw, 2rem);
+  margin-top: 2rem;
+}
+
+.hero-logos > a,
+.hero-logos > .hero__picture {
+  display: block;
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+.hero-logos > a {
+  width: min(120px, 18vw);
+}
+
+.hero-logos__sponsor {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hero-logos > .hero__picture {
+  width: min(270px, 40vw);
+  filter: drop-shadow(0 0 30px rgba(27, 58, 138, 0.55));
+}
+
+.hero-logos > .hero__picture img {
+  width: 100%;
+  display: block;
+}
+
+@media (max-width: 780px) {
+  .hero-logos > a {
+    width: min(100px, 22vw);
+  }
+
+  .hero-logos > .hero__picture {
+    width: min(225px, 46vw);
+  }
+}
+
 .tournament-tbd {
   padding: 3rem 2rem;
   margin-top: 1rem;
@@ -239,30 +286,8 @@
   text-decoration: none;
 }
 
-.registration-wrap {
-  position: relative;
-  margin-top: 1.25rem;
-}
-
-.registration__logo {
-  position: absolute;
-  top: 0;
-  right: 2.5rem;
-  transform: translateY(-50%);
-  width: 150px;
-  height: auto;
-  z-index: 2;
-  filter: drop-shadow(0 0 20px rgba(27, 58, 138, 0.6));
-}
-
-@media (max-width: 700px) {
-  .registration__logo {
-    width: 100px;
-    right: 1.5rem;
-  }
-}
-
 .registration {
+  margin-top: 1.25rem;
   padding: 1.75rem;
   display: flex;
   flex-direction: column;

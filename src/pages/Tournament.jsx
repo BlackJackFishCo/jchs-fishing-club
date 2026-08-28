@@ -4,6 +4,10 @@ import logo from '../assets/logo.png'
 import snookFish from '../assets/sponsor-tier-snook.png'
 import redfishFish from '../assets/sponsor-tier-redfish.png'
 import troutFish from '../assets/sponsor-tier-trout.png'
+import offTheGridLogo from '../assets/sponsor-off-the-grid.png'
+import dancoLogo from '../assets/sponsor-danco.png'
+import nlbnLogo from '../assets/sponsor-nlbn.png'
+import bajioLogo from '../assets/sponsor-bajio.png'
 import './Tournament.css'
 
 const TIER_FISH = {
@@ -102,9 +106,7 @@ function RegistrationSection() {
   }
 
   return (
-    <div className="registration-wrap">
-      <img className="registration__logo" src={logo} alt="JCHS Fishing Club crest" />
-      <form className="registration card" onSubmit={submit}>
+    <form className="registration card" onSubmit={submit}>
       <p className="registration__intro">
         Please register your boat&apos;s anglers below. You can register up to {MAX_ANGLERS}{' '}
         anglers.
@@ -179,8 +181,7 @@ function RegistrationSection() {
       <button type="submit" className="btn btn-solid" disabled={busy}>
         {busy ? 'Submitting…' : 'Submit Registration'}
       </button>
-      </form>
-    </div>
+    </form>
   )
 }
 
@@ -236,21 +237,67 @@ function HomeSection() {
     <section className="card tournament-home">
       <h2 className="tournament-home__heading">JCHS Summer Slam Inshore Fishing Tournament</h2>
       <p>
-        Think you&apos;ve got what it takes to boat the biggest inshore fish on the Treasure Coast?
+        Think you&apos;ve got what it takes to boat the biggest inshore SLAM on the Treasure Coast?
       </p>
       <p className="tournament-home__prove">Prove it.</p>
       <p>
         Join us for the John Carroll High School Summer Slam, a charity inshore fishing tournament
-        battling it out for the biggest Snook, Redfish, and Trout. Every entry fee goes straight to
+        battling it out for the biggest Snook, Redfish, and Trout. 100% of proceeds go to
         supporting the JCHS fishing club — helping the next generation of anglers learn the water,
         the regulations, and the sport we love.
       </p>
       <p>
         Grab your rods, load the boat, and see if you&apos;ve got what it takes to take home the
-        title.
+        title this year.
       </p>
-      <p className="tournament-home__proceeds">All proceeds benefit the JCHS Fishing Club.</p>
+      <p className="tournament-home__proceeds">Let&apos;s go fishing!</p>
     </section>
+  )
+}
+
+function HeroLogos() {
+  return (
+    <div className="hero-logos">
+      <a
+        href="https://www.instagram.com/offthegridjohn/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="John Off The Grid on Instagram"
+      >
+        <img className="hero-logos__sponsor" src={offTheGridLogo} alt='John "Off The Grid" logo' />
+      </a>
+
+      <a
+        href="https://nlbn.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="NLBN - No Live Bait Needed website"
+      >
+        <img className="hero-logos__sponsor" src={nlbnLogo} alt="NLBN - No Live Bait Needed logo" />
+      </a>
+
+      <span className="hero__picture">
+        <img src={logo} alt="John Carroll High School Fishing Club crest" />
+      </span>
+
+      <a
+        href="https://www.dancopliers.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Danco Pliers website"
+      >
+        <img className="hero-logos__sponsor" src={dancoLogo} alt="Danco Pliers logo" />
+      </a>
+
+      <a
+        href="https://bajiosunglasses.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Bajío Sunglasses website"
+      >
+        <img className="hero-logos__sponsor" src={bajioLogo} alt="Bajío Sunglasses logo" />
+      </a>
+    </div>
   )
 }
 
@@ -275,7 +322,12 @@ function Tournament() {
         ))}
       </div>
 
-      {active === 'Home' && <HomeSection />}
+      {active === 'Home' && (
+        <>
+          <HomeSection />
+          <HeroLogos />
+        </>
+      )}
 
       {active === 'Registration' && <RegistrationSection />}
 
