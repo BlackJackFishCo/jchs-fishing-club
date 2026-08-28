@@ -73,7 +73,7 @@ const calendarTile = {
 
 const tournamentTile = {
   to: '/tournament',
-  label: 'John Carroll High School Inshore Summer Slam',
+  label: 'John Carroll High School Inshore Slam',
   icon: (
     <svg viewBox="0 0 64 64" aria-hidden="true">
       <path

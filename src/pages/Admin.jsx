@@ -319,7 +319,7 @@ function RegistrationReport() {
         <div>
           <h2>Tournament Registrations</h2>
           <p className="admin-roster__note">
-            Every boat registered for the John Carroll High School Inshore Summer Slam, with
+            Every boat registered for the John Carroll High School Inshore Slam, with
             each angler&apos;s
             contact info and shirt size.
           </p>

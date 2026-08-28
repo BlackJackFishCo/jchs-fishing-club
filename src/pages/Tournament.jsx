@@ -29,9 +29,9 @@ const SPONSOR_TIERS = [
       '4 Tournament Entries (4 Boats)',
       '25 Raffle Tickets',
       'Company Logo and Website Link on JCHS Fishing Club Website',
-      'Company Logo on Leader Board during the John Carroll High School Inshore Summer Slam',
+      'Company Logo on Leader Board during the John Carroll High School Inshore Slam',
       '2 Social Media Mentions on JCHS Fishing Club Accounts',
-      'In Person Activation Space at the Inshore Summer Slam',
+      'In Person Activation Space at the Inshore Slam',
     ],
   },
   {
@@ -42,7 +42,7 @@ const SPONSOR_TIERS = [
       'Company Logo on Event Banner',
       '15 JCHS Fishing Club Tickets',
       'Company Logo and Website Link on JCHS Fishing Club Website',
-      'Company Logo on Ribbon Board during the John Carroll High School Inshore Summer Slam',
+      'Company Logo on Ribbon Board during the John Carroll High School Inshore Slam',
     ],
   },
   {
@@ -219,7 +219,7 @@ function SponsorshipSection() {
               <a
                 className="sponsor-card__cta"
                 href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-                  `John Carroll High School Inshore Summer Slam Sponsorship — ${tier.name}`,
+                  `John Carroll High School Inshore Slam Sponsorship — ${tier.name}`,
                 )}`}
               >
                 Get in Touch
@@ -235,13 +235,13 @@ function SponsorshipSection() {
 function HomeSection() {
   return (
     <section className="card tournament-home">
-      <h2 className="tournament-home__heading">JCHS Summer Slam Inshore Fishing Tournament</h2>
+      <h2 className="tournament-home__heading">JCHS Inshore Slam Fishing Tournament</h2>
       <p>
         Think you&apos;ve got what it takes to boat the biggest inshore SLAM on the Treasure Coast?
       </p>
       <p className="tournament-home__prove">Prove it.</p>
       <p>
-        Join us for the John Carroll High School Summer Slam, a charity inshore fishing tournament
+        Join us for the John Carroll High School Inshore Slam, a charity inshore fishing tournament
         battling it out for the biggest Snook, Redfish, and Trout. 100% of proceeds go to
         supporting the JCHS fishing club — helping the next generation of anglers learn the water,
         the regulations, and the sport we love.
@@ -307,7 +307,7 @@ function Tournament() {
   return (
     <div className="page tournament-page">
       <p className="eyebrow">Compete</p>
-      <h1 className="section-title">John Carroll High School Inshore Summer Slam</h1>
+      <h1 className="section-title">John Carroll High School Inshore Slam</h1>
 
       <div className="tournament-tabs">
         {SECTIONS.map((section) => (

@@ -10,7 +10,7 @@ const links = [
   { to: '/calendar', label: 'Calendar' },
   {
     to: '/tournament',
-    label: 'John Carroll High School Inshore Summer Slam',
+    label: 'John Carroll High School Inshore Slam',
     highlight: true,
   },
 ]
