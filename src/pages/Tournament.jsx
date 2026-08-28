@@ -200,7 +200,7 @@ function SponsorshipSection() {
           <div key={tier.name} className="sponsor-card card">
             {TIER_FISH[tier.name] && (
               <img
-                className="sponsor-card__fish"
+                className={`sponsor-card__fish sponsor-card__fish--${tier.name.toLowerCase()}`}
                 src={TIER_FISH[tier.name]}
                 alt={`${tier.name} illustration`}
               />
