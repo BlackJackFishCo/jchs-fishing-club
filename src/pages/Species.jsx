@@ -3,6 +3,7 @@ import { TOTAL_SPECIES, CATEGORIES, useSpeciesBoard, addSubmission, removeSubmis
 import { useRoster } from '../data/roster.js'
 import { useAdminAuth } from '../data/auth.js'
 import logo from '../assets/logo.png'
+import fwcLogo from '../assets/fwc-logo.jpg'
 import './Species.css'
 
 const CHALLENGE_RULES = [
@@ -219,7 +220,14 @@ function Species() {
             tracks progress toward all {TOTAL_SPECIES} species for the club.
           </p>
         </div>
-        <img className="species-page__logo" src={logo} alt="JCHS Fishing Club crest" />
+        <div className="species-page__logos">
+          <img className="species-page__logo" src={logo} alt="JCHS Fishing Club crest" />
+          <img
+            className="species-page__logo"
+            src={fwcLogo}
+            alt="Florida Fish and Wildlife Conservation Commission logo"
+          />
+        </div>
       </div>
 
       <div className="ticker card">

@@ -68,9 +68,6 @@ function Home() {
         <Link to="/species" className="hero__picture" aria-label="View the Species Catch List">
           <img src={logo} alt="John Carroll High School Fishing Club crest" />
         </Link>
-        <p className="hero__tagline">
-          Ethical angling &middot; conservation &middot; the waters of Fort Pierce, Florida
-        </p>
       </section>
 
       <section className="tile-grid">

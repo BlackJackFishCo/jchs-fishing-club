@@ -31,15 +31,6 @@
   display: block;
 }
 
-.hero__tagline {
-  font-family: var(--font-eyebrow);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.85rem;
-  color: var(--color-muted);
-  max-width: 560px;
-}
-
 .tile-grid {
   width: 100%;
   display: grid;
@@ -137,11 +128,15 @@
   background: linear-gradient(180deg, var(--color-royal-dim), var(--color-black-soft));
 }
 
+.mission .eyebrow {
+  font-size: 0.95rem;
+}
+
 .mission__text {
-  max-width: 640px;
+  max-width: 680px;
   margin: 0.75rem auto 0;
   color: var(--color-white);
-  font-size: 1.05rem;
+  font-size: 1.3rem;
   line-height: 1.7;
 }
 
