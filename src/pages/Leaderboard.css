@@ -9,11 +9,17 @@
 
 .leaderboard-row {
   display: flex;
-  align-items: center;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 0.75rem;
   padding: 0.9rem 1.25rem;
   background: linear-gradient(180deg, var(--color-royal-dim), var(--color-black-soft));
   border-radius: var(--radius);
+}
+
+.leaderboard-row__top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .leaderboard-row__rank {
@@ -63,6 +69,35 @@
   letter-spacing: 0.04em;
   color: var(--color-gold-soft);
   white-space: nowrap;
+}
+
+.leaderboard-row__species {
+  list-style: none;
+  margin: 0;
+  padding: 0.75rem 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  text-align: left;
+}
+
+.leaderboard-row__species li {
+  background: rgba(245, 197, 24, 0.1);
+  color: var(--color-gold-soft);
+  border: 1px solid rgba(245, 197, 24, 0.25);
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.78rem;
+}
+
+.leaderboard-row__empty {
+  margin: 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--color-muted);
+  font-size: 0.82rem;
+  text-align: left;
 }
 
 @media (max-width: 480px) {

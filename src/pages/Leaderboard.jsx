@@ -8,15 +8,18 @@ function Leaderboard() {
   const { board, loading: boardLoading } = useSpeciesBoard()
   const loading = rosterLoading || boardLoading
 
-  const allCatches = board.flatMap((entry) => entry.submissions)
+  const allCatches = board.flatMap((entry) =>
+    entry.submissions.map((sub) => ({ ...sub, species: entry.species })),
+  )
 
   const rows = roster
     .filter((r) => r.active)
     .map((r) => {
-      const distinctSpecies = new Set(
-        allCatches.filter((c) => c.anglerId === r.id).map((c) => c.speciesId),
-      ).size
-      return { id: r.id, name: r.name, distinctSpecies }
+      const caught = allCatches.filter((c) => c.anglerId === r.id)
+      const speciesCaught = [...new Map(caught.map((c) => [c.speciesId, c.species])).values()].sort(
+        (a, b) => a.localeCompare(b),
+      )
+      return { id: r.id, name: r.name, distinctSpecies: speciesCaught.length, speciesCaught }
     })
     .sort((a, b) => b.distinctSpecies - a.distinctSpecies || a.name.localeCompare(b.name))
 
@@ -44,14 +47,26 @@ function Leaderboard() {
             const pct = Math.round((r.distinctSpecies / TOTAL_SPECIES) * 100)
             return (
               <li key={r.id} className="leaderboard-row">
-                <span className="leaderboard-row__rank">{i + 1}</span>
-                <span className="leaderboard-row__name">{r.name}</span>
-                <span className="leaderboard-row__bar">
-                  <span className="leaderboard-row__fill" style={{ width: `${pct}%` }} />
-                </span>
-                <span className="leaderboard-row__count">
-                  {r.distinctSpecies} / {TOTAL_SPECIES}
-                </span>
+                <div className="leaderboard-row__top">
+                  <span className="leaderboard-row__rank">{i + 1}</span>
+                  <span className="leaderboard-row__name">{r.name}</span>
+                  <span className="leaderboard-row__bar">
+                    <span className="leaderboard-row__fill" style={{ width: `${pct}%` }} />
+                  </span>
+                  <span className="leaderboard-row__count">
+                    {r.distinctSpecies} / {TOTAL_SPECIES}
+                  </span>
+                </div>
+
+                {r.speciesCaught.length > 0 ? (
+                  <ul className="leaderboard-row__species">
+                    {r.speciesCaught.map((species) => (
+                      <li key={species}>{species}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="leaderboard-row__empty">No catches logged yet.</p>
+                )}
               </li>
             )
           })}
