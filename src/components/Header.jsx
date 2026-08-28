@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import logo from '../assets/logo.png'
 import './Header.css'
 
 const links = [
@@ -17,11 +16,6 @@ function Header() {
   return (
     <header className="site-header">
       <div className="site-header__bar">
-        <NavLink to="/" className="site-header__brand" onClick={() => setOpen(false)}>
-          <img className="site-header__badge" src={logo} alt="JCHS Fishing Club crest" />
-          <span className="site-header__title">John Carroll High School Fishing Club</span>
-        </NavLink>
-
         <button
           className="site-header__toggle"
           aria-label="Toggle navigation"

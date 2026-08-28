@@ -69,6 +69,8 @@ function Home() {
 
   return (
     <div className="page home">
+      <h1 className="home__title">John Carroll High School Fishing Club</h1>
+
       <div className="hero-logos">
         <a
           href="https://www.instagram.com/offthegridjohn/"
