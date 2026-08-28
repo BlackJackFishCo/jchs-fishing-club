@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useAdminAuth, signIn, signOutAdmin } from '../data/auth.js'
 import { useRoster, addRosterName, removeRosterName } from '../data/roster.js'
+import { useSpeciesBoard, TOTAL_SPECIES } from '../data/species.js'
 import './Admin.css'
 
 function LoginForm() {
@@ -114,6 +115,105 @@ function RosterManager() {
   )
 }
 
+function CatchReport() {
+  const { board, loading } = useSpeciesBoard()
+  const { roster } = useRoster()
+
+  const allCatches = board.flatMap((entry) =>
+    entry.submissions.map((sub) => ({ ...sub, species: entry.species, category: entry.category })),
+  )
+
+  const rows = roster
+    .map((r) => {
+      const catches = allCatches
+        .filter((c) => c.anglerId === r.id)
+        .sort((a, b) => (a.date || '').localeCompare(b.date || ''))
+        .reverse()
+      const distinctSpecies = new Set(catches.map((c) => c.speciesId)).size
+      return { ...r, catches, distinctSpecies }
+    })
+    .sort((a, b) => a.name.localeCompare(b.name))
+
+  const orphanCatches = allCatches.filter((c) => !roster.some((r) => r.id === c.anglerId))
+
+  return (
+    <section className="admin-report card">
+      <h2>Catch Report</h2>
+      <p className="admin-roster__note">
+        Every rostered angler and the species they&apos;ve logged, for tracking progress toward
+        the {TOTAL_SPECIES}-species challenge.
+      </p>
+
+      {loading ? (
+        <p className="species-page__loading">Loading catch data…</p>
+      ) : rows.length === 0 ? (
+        <p className="admin-roster__empty">No anglers on the roster yet.</p>
+      ) : (
+        <div className="admin-report__list">
+          {rows.map((r) => (
+            <div key={r.id} className="admin-report__angler">
+              <div className="admin-report__angler-head">
+                <strong>{r.name}</strong>
+                <span>
+                  {r.distinctSpecies} / {TOTAL_SPECIES} species
+                </span>
+              </div>
+              {r.catches.length === 0 ? (
+                <p className="admin-report__empty">No catches logged yet.</p>
+              ) : (
+                <table className="admin-report__table">
+                  <thead>
+                    <tr>
+                      <th>Species</th>
+                      <th>Category</th>
+                      <th>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {r.catches.map((c) => (
+                      <tr key={c.id}>
+                        <td>{c.species}</td>
+                        <td>{c.category}</td>
+                        <td>{c.date || '—'}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+
+      {orphanCatches.length > 0 && (
+        <div className="admin-report__angler">
+          <div className="admin-report__angler-head">
+            <strong>Other (no longer on roster)</strong>
+          </div>
+          <table className="admin-report__table">
+            <thead>
+              <tr>
+                <th>Angler</th>
+                <th>Species</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orphanCatches.map((c) => (
+                <tr key={c.id}>
+                  <td>{c.angler}</td>
+                  <td>{c.species}</td>
+                  <td>{c.date || '—'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </section>
+  )
+}
+
 function Admin() {
   const { user, isAdmin, loading } = useAdminAuth()
 
@@ -148,6 +248,7 @@ function Admin() {
             </button>
           </div>
           <RosterManager />
+          <CatchReport />
         </>
       )}
     </div>
