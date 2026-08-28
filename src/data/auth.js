@@ -1,10 +1,19 @@
 import { useEffect, useState } from 'react'
-import { onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth'
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+} from 'firebase/auth'
 import { doc, onSnapshot } from 'firebase/firestore'
 import { auth, db } from '../firebase.js'
 
 export function signIn(email, password) {
   return signInWithEmailAndPassword(auth, email, password)
+}
+
+export function createAccount(email, password) {
+  return createUserWithEmailAndPassword(auth, email, password)
 }
 
 export function signOutAdmin() {

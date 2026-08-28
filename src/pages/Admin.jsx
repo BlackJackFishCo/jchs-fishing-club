@@ -1,10 +1,12 @@
 import { useState } from 'react'
-import { useAdminAuth, signIn, signOutAdmin } from '../data/auth.js'
+import { useAdminAuth, signIn, createAccount, signOutAdmin } from '../data/auth.js'
 import { useRoster, addRosterName, removeRosterName } from '../data/roster.js'
+import { useAdmins, addAdmin, removeAdmin } from '../data/admins.js'
 import { useSpeciesBoard, TOTAL_SPECIES } from '../data/species.js'
 import './Admin.css'
 
 function LoginForm() {
+  const [mode, setMode] = useState('signin')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [busy, setBusy] = useState(false)
@@ -15,9 +17,17 @@ function LoginForm() {
     setBusy(true)
     setError('')
     try {
-      await signIn(email, password)
+      if (mode === 'signin') {
+        await signIn(email, password)
+      } else {
+        await createAccount(email, password)
+      }
     } catch {
-      setError('Could not sign in. Check the email and password.')
+      setError(
+        mode === 'signin'
+          ? 'Could not sign in. Check the email and password.'
+          : 'Could not create that account. Password must be at least 6 characters.',
+      )
     } finally {
       setBusy(false)
     }
@@ -25,7 +35,7 @@ function LoginForm() {
 
   return (
     <form className="admin-login card" onSubmit={submit}>
-      <h2>Admin Sign In</h2>
+      <h2>{mode === 'signin' ? 'Admin Sign In' : 'Create Account'}</h2>
       <label className="field">
         <span>Email</span>
         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
@@ -41,9 +51,94 @@ function LoginForm() {
       </label>
       {error && <p className="modal__error">{error}</p>}
       <button type="submit" className="btn btn-solid" disabled={busy}>
-        {busy ? 'Signing in…' : 'Sign In'}
+        {busy ? 'Please wait…' : mode === 'signin' ? 'Sign In' : 'Create Account'}
+      </button>
+      <button
+        type="button"
+        className="admin-login__switch"
+        onClick={() => {
+          setMode(mode === 'signin' ? 'signup' : 'signin')
+          setError('')
+        }}
+      >
+        {mode === 'signin'
+          ? "Don't have an account? Create one"
+          : 'Already have an account? Sign in'}
       </button>
     </form>
+  )
+}
+
+function AdminsManager({ currentUid }) {
+  const { admins } = useAdmins()
+  const [label, setLabel] = useState('')
+  const [uid, setUid] = useState('')
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState('')
+
+  const submit = async (e) => {
+    e.preventDefault()
+    if (!uid.trim()) return
+    setBusy(true)
+    setError('')
+    try {
+      await addAdmin(uid, label)
+      setLabel('')
+      setUid('')
+    } catch (err) {
+      setError(err.message || 'Could not add that admin.')
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  const remove = async (adminUid) => {
+    try {
+      await removeAdmin(adminUid)
+    } catch {
+      setError('Could not remove that admin.')
+    }
+  }
+
+  return (
+    <section className="admin-roster card">
+      <h2>Admins ({admins.length})</h2>
+      <p className="admin-roster__note">
+        Anyone who wants access first creates an account above, then sends you their User ID
+        (shown on their screen once signed in). Paste it here to grant them admin.
+      </p>
+
+      <form className="admin-roster__add" onSubmit={submit}>
+        <input value={label} onChange={(e) => setLabel(e.target.value)} placeholder="Name (e.g. Coach Smith)" />
+        <input value={uid} onChange={(e) => setUid(e.target.value)} placeholder="User ID" />
+        <button type="submit" className="btn btn-solid" disabled={busy || !uid.trim()}>
+          Add
+        </button>
+      </form>
+
+      {error && <p className="modal__error">{error}</p>}
+
+      {admins.length === 0 ? (
+        <p className="admin-roster__empty">No admins on record yet.</p>
+      ) : (
+        <ul className="admin-roster__list">
+          {admins.map((a) => (
+            <li key={a.uid}>
+              <span>{a.label || a.uid}</span>
+              <button
+                type="button"
+                className="admin-roster__remove"
+                onClick={() => remove(a.uid)}
+                disabled={a.uid === currentUid}
+                title={a.uid === currentUid ? "You can't remove yourself" : 'Remove admin'}
+              >
+                Remove
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
   )
 }
 
@@ -229,7 +324,12 @@ function Admin() {
       {user && !loading && !isAdmin && (
         <div className="card admin-denied">
           <p>
-            Signed in as <strong>{user.email}</strong>, but this account isn&apos;t an admin.
+            Signed in as <strong>{user.email}</strong>, but this account isn&apos;t an admin yet.
+          </p>
+          <p>
+            Send this User ID to an existing admin so they can grant you access:
+            <br />
+            <code className="admin-denied__uid">{user.uid}</code>
           </p>
           <button type="button" className="btn" onClick={signOutAdmin}>
             Sign Out
@@ -248,6 +348,7 @@ function Admin() {
             </button>
           </div>
           <RosterManager />
+          <AdminsManager currentUid={user.uid} />
           <CatchReport />
         </>
       )}

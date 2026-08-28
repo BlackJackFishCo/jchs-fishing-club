@@ -6,6 +6,8 @@ import logo from '../assets/logo.png'
 import fwcLogo from '../assets/fwc-logo.png'
 import './Species.css'
 
+const UPLOAD_PASSCODE = '2026'
+
 const CHALLENGE_RULES = [
   'All submitted fish must have been caught by a student angler enrolled in the fishing club.',
   'Students must practice proper handling techniques by holding the fish horizontal and broadside.',
@@ -23,6 +25,7 @@ function CatchModal({ entry, isAdmin, roster, onClose }) {
   const [date, setDate] = useState('')
   const [file, setFile] = useState(null)
   const [previewUrl, setPreviewUrl] = useState('')
+  const [passcode, setPasscode] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
 
@@ -36,6 +39,10 @@ function CatchModal({ entry, isAdmin, roster, onClose }) {
   const addCatch = async (e) => {
     e.preventDefault()
     if (!file || !anglerId) return
+    if (passcode !== UPLOAD_PASSCODE) {
+      setError('Incorrect passcode.')
+      return
+    }
     setBusy(true)
     setError('')
     try {
@@ -45,6 +52,7 @@ function CatchModal({ entry, isAdmin, roster, onClose }) {
       setDate('')
       setFile(null)
       setPreviewUrl('')
+      setPasscode('')
     } catch (err) {
       setError(err.message || 'Could not add catch. Try again.')
     } finally {
@@ -129,13 +137,27 @@ function CatchModal({ entry, isAdmin, roster, onClose }) {
 
           {previewUrl && <img className="modal__preview" src={previewUrl} alt="New catch preview" />}
 
+          <label className="field">
+            <span>Passcode</span>
+            <input
+              type="password"
+              value={passcode}
+              onChange={(e) => setPasscode(e.target.value)}
+              required
+            />
+          </label>
+
           {error && <p className="modal__error">{error}</p>}
 
           <div className="modal__actions">
             <button type="button" className="btn" onClick={onClose}>
               Done
             </button>
-            <button type="submit" className="btn btn-solid" disabled={busy || !file || !anglerId}>
+            <button
+              type="submit"
+              className="btn btn-solid"
+              disabled={busy || !file || !anglerId || !passcode}
+            >
               {busy ? 'Uploading…' : 'Add Catch'}
             </button>
           </div>

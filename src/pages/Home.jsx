@@ -142,6 +142,10 @@ function Home() {
           confident and responsible anglers. Let&apos;s go fishing!
         </p>
       </section>
+
+      <Link to="/admin" className="admin-quiet-link" aria-label="Admin access">
+        Admin
+      </Link>
     </div>
   )
 }
