@@ -25,9 +25,9 @@ const SPONSOR_TIERS = [
     name: 'Snook',
     price: '$2,500',
     perks: [
-      '1 Captain with Boat/Bait/Gear, 3 Anglers',
+      '2 Tournament Entries',
       'Company Logo on Event Banner',
-      '12 JCHS Fishing Club Tickets',
+      '15 JCHS Fishing Club Tickets',
       'Company Logo and Website Link on JCHS Fishing Club Website',
       'Company Logo on Ribbon Board during the John Carroll High School Inshore Summer Slam',
     ],
