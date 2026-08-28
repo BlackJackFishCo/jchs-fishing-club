@@ -22,20 +22,21 @@
 .hero-logos {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 2.5rem;
+  gap: 2rem;
 }
 
 .hero-logos__sponsor {
-  width: min(170px, 26vw);
+  width: min(120px, 18vw);
   height: auto;
   flex-shrink: 0;
 }
 
 .hero__picture {
   display: block;
-  width: min(320px, 50vw);
+  width: min(240px, 38vw);
   flex-shrink: 0;
   transition: transform 0.2s ease, filter 0.2s ease;
   filter: drop-shadow(0 0 30px rgba(27, 58, 138, 0.55));
@@ -159,14 +160,14 @@
   }
 
   .hero-logos {
-    gap: 1.25rem;
+    gap: 1.25rem 1.5rem;
   }
 
   .hero-logos__sponsor {
-    width: min(150px, 30vw);
+    width: min(100px, 26vw);
   }
 
   .hero__picture {
-    width: min(280px, 60vw);
+    width: min(200px, 50vw);
   }
 }

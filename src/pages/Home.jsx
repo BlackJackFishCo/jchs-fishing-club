@@ -3,6 +3,8 @@ import { useCaughtCount } from '../data/species.js'
 import logo from '../assets/logo.png'
 import offTheGridLogo from '../assets/sponsor-off-the-grid.png'
 import dancoLogo from '../assets/sponsor-danco.png'
+import nlbnLogo from '../assets/sponsor-nlbn.png'
+import bajioLogo from '../assets/sponsor-bajio.png'
 import snookCatch from '../assets/snook-catch.jpg'
 import volunteerCleanup from '../assets/volunteer-cleanup.jpg'
 import './Home.css'
@@ -77,6 +79,15 @@ function Home() {
           <img className="hero-logos__sponsor" src={offTheGridLogo} alt='John "Off The Grid" logo' />
         </a>
 
+        <a
+          href="https://nlbn.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="NLBN - No Live Bait Needed website"
+        >
+          <img className="hero-logos__sponsor" src={nlbnLogo} alt="NLBN - No Live Bait Needed logo" />
+        </a>
+
         <Link to="/species" className="hero__picture" aria-label="View the Species Catch List">
           <img src={logo} alt="John Carroll High School Fishing Club crest" />
         </Link>
@@ -88,6 +99,15 @@ function Home() {
           aria-label="Danco Pliers website"
         >
           <img className="hero-logos__sponsor" src={dancoLogo} alt="Danco Pliers logo" />
+        </a>
+
+        <a
+          href="https://bajiosunglasses.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Bajío Sunglasses website"
+        >
+          <img className="hero-logos__sponsor" src={bajioLogo} alt="Bajío Sunglasses logo" />
         </a>
       </div>
 
