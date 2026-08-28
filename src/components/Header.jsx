@@ -8,6 +8,7 @@ const links = [
   { to: '/volunteer', label: 'Volunteer Events' },
   { to: '/calendar', label: 'Calendar' },
   { to: '/tournament', label: 'JCHS Fishing Tournament' },
+  { to: '/leaderboard', label: 'Leaderboard' },
 ]
 
 function Header() {
