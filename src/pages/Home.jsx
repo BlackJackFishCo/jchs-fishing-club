@@ -47,6 +47,30 @@ const tiles = [
   },
 ]
 
+const leaderboardTile = {
+  to: '/leaderboard',
+  label: 'Leaderboard',
+  icon: (
+    <svg viewBox="0 0 64 64" aria-hidden="true">
+      <rect x="8" y="34" width="14" height="20" fill="none" stroke="currentColor" strokeWidth="2.5" />
+      <rect x="25" y="20" width="14" height="34" fill="none" stroke="currentColor" strokeWidth="2.5" />
+      <rect x="42" y="28" width="14" height="26" fill="none" stroke="currentColor" strokeWidth="2.5" />
+    </svg>
+  ),
+}
+
+const calendarTile = {
+  to: '/calendar',
+  label: 'Calendar',
+  icon: (
+    <svg viewBox="0 0 64 64" aria-hidden="true">
+      <rect x="10" y="14" width="44" height="40" rx="4" fill="none" stroke="currentColor" strokeWidth="2.5" />
+      <path d="M10 24h44" fill="none" stroke="currentColor" strokeWidth="2.5" />
+      <path d="M20 10v8M44 10v8" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+    </svg>
+  ),
+}
+
 const tournamentTile = {
   to: '/tournament',
   label: 'JCHS Fishing Tournament',
@@ -62,6 +86,21 @@ const tournamentTile = {
       <path d="M32 36v8M24 52h16M27 52c0-4 1.5-6 5-8 3.5 2 5 4 5 8" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
     </svg>
   ),
+}
+
+function renderTile(tile, caught, total) {
+  return (
+    <Link key={tile.to} to={tile.to} className={`tile card ${tile.photo ? 'tile--photo' : ''}`}>
+      {tile.photo && <img className="tile__photo" src={tile.photo} alt="" aria-hidden="true" />}
+      {!tile.photo && <span className="tile__icon">{tile.icon}</span>}
+      <span className="tile__label">{tile.label}</span>
+      {tile.to === '/species' && (
+        <span className="tile__meta">
+          {caught} / {total} caught
+        </span>
+      )}
+    </Link>
+  )
 }
 
 function Home() {
@@ -114,24 +153,11 @@ function Home() {
       </div>
 
       <section className="tiles-row">
-        {[...tiles, tournamentTile].map((tile) => (
-          <Link
-            key={tile.to}
-            to={tile.to}
-            className={`tile card ${tile.photo ? 'tile--photo' : ''}`}
-          >
-            {tile.photo && (
-              <img className="tile__photo" src={tile.photo} alt="" aria-hidden="true" />
-            )}
-            {!tile.photo && <span className="tile__icon">{tile.icon}</span>}
-            <span className="tile__label">{tile.label}</span>
-            {tile.to === '/species' && (
-              <span className="tile__meta">
-                {caught} / {total} caught
-              </span>
-            )}
-          </Link>
-        ))}
+        {[tiles[0], leaderboardTile, tiles[1]].map((tile) => renderTile(tile, caught, total))}
+      </section>
+
+      <section className="tiles-row">
+        {[calendarTile, tournamentTile].map((tile) => renderTile(tile, caught, total))}
       </section>
 
       <section className="card mission">
