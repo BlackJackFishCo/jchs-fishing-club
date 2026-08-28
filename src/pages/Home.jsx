@@ -64,31 +64,31 @@ function Home() {
 
   return (
     <div className="page home">
-      <section className="hero">
+      <section className="hero-row">
+        <div className="tile-stack">
+          {tiles.map((tile) => (
+            <Link
+              key={tile.to}
+              to={tile.to}
+              className={`tile card ${tile.photo ? 'tile--photo' : ''}`}
+            >
+              {tile.photo && (
+                <img className="tile__photo" src={tile.photo} alt="" aria-hidden="true" />
+              )}
+              {!tile.photo && <span className="tile__icon">{tile.icon}</span>}
+              <span className="tile__label">{tile.label}</span>
+              {tile.to === '/species' && (
+                <span className="tile__meta">
+                  {caught} / {total} caught
+                </span>
+              )}
+            </Link>
+          ))}
+        </div>
+
         <Link to="/species" className="hero__picture" aria-label="View the Species Catch List">
           <img src={logo} alt="John Carroll High School Fishing Club crest" />
         </Link>
-      </section>
-
-      <section className="tile-grid">
-        {tiles.map((tile) => (
-          <Link
-            key={tile.to}
-            to={tile.to}
-            className={`tile card ${tile.photo ? 'tile--photo' : ''}`}
-          >
-            {tile.photo && (
-              <img className="tile__photo" src={tile.photo} alt="" aria-hidden="true" />
-            )}
-            {!tile.photo && <span className="tile__icon">{tile.icon}</span>}
-            <span className="tile__label">{tile.label}</span>
-            {tile.to === '/species' && (
-              <span className="tile__meta">
-                {caught} / {total} caught
-              </span>
-            )}
-          </Link>
-        ))}
       </section>
 
       <section className="card mission">
