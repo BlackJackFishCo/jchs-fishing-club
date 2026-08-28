@@ -6,6 +6,12 @@
   text-align: center;
 }
 
+.home__title {
+  color: var(--color-white);
+  font-size: clamp(1.4rem, 4.5vw, 2.4rem);
+  margin: 0;
+}
+
 .tiles-row {
   width: 100%;
   display: flex;
