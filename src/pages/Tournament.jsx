@@ -11,6 +11,7 @@ import bajioLogo from '../assets/sponsor-bajio.png'
 import './Tournament.css'
 
 const TIER_FISH = {
+  Title: logo,
   Snook: snookFish,
   Redfish: redfishFish,
   Trout: troutFish,
@@ -203,7 +204,7 @@ function SponsorshipSection() {
               <img
                 className={`sponsor-card__fish sponsor-card__fish--${tier.name.toLowerCase()}`}
                 src={TIER_FISH[tier.name]}
-                alt={`${tier.name} illustration`}
+                alt={tier.name === 'Title' ? 'JCHS Fishing Club crest' : `${tier.name} illustration`}
               />
             )}
             <div className="sponsor-card__body">
