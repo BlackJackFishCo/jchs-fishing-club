@@ -33,5 +33,17 @@ service cloud.firestore {
       allow update: if false;
       allow delete: if isAdmin();
     }
+
+    match /tournamentRegistrations/{id} {
+      allow read: if isAdmin();
+
+      allow create: if
+        request.resource.data.anglers is list &&
+        request.resource.data.anglers.size() >= 1 &&
+        request.resource.data.anglers.size() <= 4;
+
+      allow update: if false;
+      allow delete: if isAdmin();
+    }
   }
 }

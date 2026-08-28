@@ -3,6 +3,7 @@ import { useAdminAuth, signIn, createAccount, signOutAdmin } from '../data/auth.
 import { useRoster, addRosterName, removeRosterName } from '../data/roster.js'
 import { useAdmins, addAdmin, removeAdmin } from '../data/admins.js'
 import { useSpeciesBoard, TOTAL_SPECIES } from '../data/species.js'
+import { useRegistrations } from '../data/registration.js'
 import './Admin.css'
 
 function LoginForm() {
@@ -309,6 +310,72 @@ function CatchReport() {
   )
 }
 
+function RegistrationReport() {
+  const { registrations, loading } = useRegistrations()
+
+  return (
+    <section className="admin-report registration-report card">
+      <div className="registration-report__head">
+        <div>
+          <h2>Tournament Registrations</h2>
+          <p className="admin-roster__note">
+            Every boat registered for the JCHS Fishing Tournament, with each angler&apos;s
+            contact info and shirt size.
+          </p>
+        </div>
+        <button
+          type="button"
+          className="btn registration-report__print"
+          onClick={() => window.print()}
+        >
+          Print
+        </button>
+      </div>
+
+      {loading ? (
+        <p className="species-page__loading">Loading registrations…</p>
+      ) : registrations.length === 0 ? (
+        <p className="admin-roster__empty">No teams registered yet.</p>
+      ) : (
+        <div className="admin-report__list">
+          {registrations.map((reg, i) => (
+            <div key={reg.id} className="admin-report__angler">
+              <div className="admin-report__angler-head">
+                <strong>Team {i + 1}</strong>
+                <span>
+                  {reg.anglers.length} angler{reg.anglers.length === 1 ? '' : 's'}
+                </span>
+              </div>
+              <table className="admin-report__table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Shirt Size</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {reg.anglers.map((a, j) => (
+                    <tr key={j}>
+                      <td>
+                        {a.firstName} {a.lastName}
+                      </td>
+                      <td>{a.email}</td>
+                      <td>{a.phone}</td>
+                      <td>{a.shirtSize || '—'}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ))}
+        </div>
+      )}
+    </section>
+  )
+}
+
 function Admin() {
   const { user, isAdmin, loading } = useAdminAuth()
 
@@ -349,6 +416,7 @@ function Admin() {
           </div>
           <RosterManager />
           <AdminsManager currentUid={user.uid} />
+          <RegistrationReport />
           <CatchReport />
         </>
       )}
