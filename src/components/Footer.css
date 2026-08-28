@@ -9,23 +9,13 @@
   margin: 0 auto;
   padding: 1.75rem 1.5rem;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
+  justify-content: center;
+  text-align: center;
   color: var(--color-muted);
   font-size: 0.85rem;
 }
 
-.site-footer strong {
-  color: var(--color-gold);
-  font-family: Georgia, serif;
-}
-
-.site-footer p {
-  margin: 0.15rem 0 0;
-}
-
 .site-footer__note {
+  margin: 0;
   color: var(--color-muted);
 }
