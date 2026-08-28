@@ -1,5 +1,6 @@
 import logo from '../assets/logo.png'
 import './Volunteer.css'
+import './Calendar.css'
 
 const months = [
   {
@@ -40,7 +41,7 @@ function Calendar() {
         <img className="page-head__logo" src={logo} alt="JCHS Fishing Club crest" />
       </div>
 
-      <div className="volunteer-grid">
+      <div className="volunteer-grid calendar-grid">
         {months.map((month) => {
           const isDetailed = typeof month !== 'string'
           const name = isDetailed ? month.name : month
