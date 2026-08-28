@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 export const TOTAL_SPECIES = 40
 export const CATEGORIES = ['Saltwater', 'Freshwater']
-const STORAGE_KEY = 'jchs-fishing-club:species-board:v2'
+const STORAGE_KEY = 'jchs-fishing-club:species-board:v3'
 const UPDATE_EVENT = 'jchs-species-updated'
 
 const SALTWATER_SPECIES = [
@@ -56,10 +56,7 @@ function defaultEntry(id, species = '', category = '') {
     id,
     species,
     category,
-    angler: '',
-    date: '',
-    photo: '',
-    caught: false,
+    submissions: [],
   }
 }
 
@@ -96,6 +93,28 @@ export function saveEntry(entry) {
   return next
 }
 
+export function addSubmission(entryId, submission) {
+  const board = loadBoard()
+  const next = board.map((row) =>
+    row.id === entryId
+      ? { ...row, submissions: [...row.submissions, { id: `${Date.now()}-${Math.random()}`, ...submission }] }
+      : row,
+  )
+  saveBoard(next)
+  return next
+}
+
+export function removeSubmission(entryId, submissionId) {
+  const board = loadBoard()
+  const next = board.map((row) =>
+    row.id === entryId
+      ? { ...row, submissions: row.submissions.filter((s) => s.id !== submissionId) }
+      : row,
+  )
+  saveBoard(next)
+  return next
+}
+
 export function useSpeciesBoard() {
   const [board, setBoard] = useState(loadBoard)
 
@@ -117,6 +136,6 @@ export function useSpeciesBoard() {
 
 export function useCaughtCount() {
   const board = useSpeciesBoard()
-  const caught = board.filter((row) => row.caught).length
+  const caught = board.filter((row) => row.submissions.length > 0).length
   return { caught, total: TOTAL_SPECIES }
 }

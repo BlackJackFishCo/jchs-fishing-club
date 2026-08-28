@@ -1,5 +1,12 @@
 import { useState } from 'react'
-import { TOTAL_SPECIES, CATEGORIES, useSpeciesBoard, saveEntry } from '../data/species.js'
+import {
+  TOTAL_SPECIES,
+  CATEGORIES,
+  useSpeciesBoard,
+  saveEntry,
+  addSubmission,
+  removeSubmission,
+} from '../data/species.js'
 import './Species.css'
 
 const CHALLENGE_RULES = [
@@ -36,46 +43,67 @@ function resizeImage(file, maxSize = 640) {
   })
 }
 
-function EditModal({ entry, onClose, onSave }) {
-  const [form, setForm] = useState(entry)
+function CatchModal({ entry, onClose }) {
+  const [current, setCurrent] = useState(entry)
+  const [species, setSpecies] = useState(entry.species)
+  const [angler, setAngler] = useState('')
+  const [date, setDate] = useState('')
+  const [photo, setPhoto] = useState('')
   const [busy, setBusy] = useState(false)
 
-  const update = (field) => (e) => setForm({ ...form, [field]: e.target.value })
+  const commit = (patch) => {
+    const updated = { ...current, species, ...patch }
+    saveEntry(updated)
+    setCurrent(updated)
+  }
 
   const handlePhoto = async (e) => {
     const file = e.target.files?.[0]
     if (!file) return
     setBusy(true)
     try {
-      const dataUrl = await resizeImage(file)
-      setForm((f) => ({ ...f, photo: dataUrl }))
+      setPhoto(await resizeImage(file))
     } finally {
       setBusy(false)
     }
   }
 
-  const submit = (e) => {
+  const addCatch = (e) => {
     e.preventDefault()
-    const caught = Boolean(form.species && form.angler && form.date) || form.caught
-    onSave({ ...form, caught })
+    if (!photo) return
+    const board = addSubmission(current.id, { angler, date, photo })
+    setCurrent(board.find((r) => r.id === current.id))
+    setAngler('')
+    setDate('')
+    setPhoto('')
+  }
+
+  const deleteCatch = (submissionId) => {
+    const board = removeSubmission(current.id, submissionId)
+    setCurrent(board.find((r) => r.id === current.id))
   }
 
   return (
     <div className="modal-backdrop" onClick={onClose}>
-      <form className="modal card" onClick={(e) => e.stopPropagation()} onSubmit={submit}>
+      <div className="modal card" onClick={(e) => e.stopPropagation()}>
         <h3>
-          {form.species || `Catch #${entry.id}`}
-          {form.category && <span className="modal__category">{form.category}</span>}
+          {current.species || `Species #${current.id}`}
+          {current.category && <span className="modal__category">{current.category}</span>}
         </h3>
 
         <label className="field">
           <span>Species</span>
-          <input value={form.species} onChange={update('species')} placeholder="e.g. Snook" />
+          <input
+            value={species}
+            onChange={(e) => setSpecies(e.target.value)}
+            onBlur={() => commit({})}
+            placeholder="e.g. Snook"
+          />
         </label>
 
         <label className="field">
           <span>Category</span>
-          <select value={form.category || ''} onChange={update('category')}>
+          <select value={current.category || ''} onChange={(e) => commit({ category: e.target.value })}>
             <option value="">—</option>
             {CATEGORIES.map((c) => (
               <option key={c} value={c}>
@@ -85,65 +113,100 @@ function EditModal({ entry, onClose, onSave }) {
           </select>
         </label>
 
-        <label className="field">
-          <span>Angler</span>
-          <input value={form.angler} onChange={update('angler')} placeholder="Angler name" />
-        </label>
+        <div className="modal__divider">
+          Catches Logged ({current.submissions.length})
+        </div>
 
-        <label className="field">
-          <span>Date caught</span>
-          <input type="date" value={form.date} onChange={update('date')} />
-        </label>
-
-        <label className="field">
-          <span>Photo</span>
-          <input type="file" accept="image/*" onChange={handlePhoto} />
-        </label>
-
-        {form.photo && (
-          <img className="modal__preview" src={form.photo} alt={form.species || 'Catch preview'} />
+        {current.submissions.length > 0 && (
+          <ul className="modal__catch-list">
+            {current.submissions.map((sub) => (
+              <li key={sub.id} className="modal__catch-row">
+                <img src={sub.photo} alt={current.species || 'Catch'} />
+                <div className="modal__catch-info">
+                  <strong>{sub.angler || 'Angler not logged'}</strong>
+                  <span>{sub.date || 'No date logged'}</span>
+                </div>
+                <button
+                  type="button"
+                  className="modal__catch-remove"
+                  aria-label="Remove this catch"
+                  onClick={() => deleteCatch(sub.id)}
+                >
+                  ×
+                </button>
+              </li>
+            ))}
+          </ul>
         )}
 
-        <label className="field field--checkbox">
-          <input
-            type="checkbox"
-            checked={form.caught}
-            onChange={(e) => setForm({ ...form, caught: e.target.checked })}
-          />
-          <span>Mark as caught</span>
-        </label>
+        <form className="modal__add-form" onSubmit={addCatch}>
+          <div className="modal__divider">Add a Catch</div>
 
-        <div className="modal__actions">
-          <button type="button" className="btn" onClick={onClose}>
-            Cancel
-          </button>
-          <button type="submit" className="btn btn-solid" disabled={busy}>
-            {busy ? 'Processing…' : 'Save'}
-          </button>
-        </div>
-      </form>
+          <label className="field">
+            <span>Angler</span>
+            <input value={angler} onChange={(e) => setAngler(e.target.value)} placeholder="Angler name" />
+          </label>
+
+          <label className="field">
+            <span>Date caught</span>
+            <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+          </label>
+
+          <label className="field">
+            <span>Photo</span>
+            <input type="file" accept="image/*" onChange={handlePhoto} />
+          </label>
+
+          {photo && <img className="modal__preview" src={photo} alt="New catch preview" />}
+
+          <div className="modal__actions">
+            <button type="button" className="btn" onClick={onClose}>
+              Done
+            </button>
+            <button type="submit" className="btn btn-solid" disabled={busy || !photo}>
+              {busy ? 'Processing…' : 'Add Catch'}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }
 
 function SpeciesCard({ entry, onEdit }) {
+  const submissions = entry.submissions
+  const latest = submissions[submissions.length - 1]
+
   return (
     <button
-      className={`species-card card ${entry.caught ? 'is-caught' : ''}`}
+      className={`species-card card ${submissions.length > 0 ? 'is-caught' : ''}`}
       onClick={() => onEdit(entry)}
     >
       <div className="species-card__thumb">
-        {entry.photo ? (
-          <img src={entry.photo} alt={entry.species || `Catch #${entry.id}`} />
+        {submissions.length > 0 ? (
+          <div className="species-card__scroll">
+            {submissions.map((sub) => (
+              <img key={sub.id} src={sub.photo} alt={entry.species || `Catch #${entry.id}`} />
+            ))}
+          </div>
         ) : (
           <span className="species-card__placeholder">#{entry.id}</span>
         )}
-        {entry.caught && <span className="species-card__badge">Caught</span>}
+        {submissions.length > 0 && <span className="species-card__badge">Caught</span>}
+        {submissions.length > 1 && (
+          <span className="species-card__count">{submissions.length} photos</span>
+        )}
       </div>
       <div className="species-card__body">
         <strong>{entry.species || `Species #${entry.id} — TBD`}</strong>
-        <span>{entry.angler || 'No angler logged'}</span>
-        <span className="species-card__date">{entry.date || 'No date logged'}</span>
+        {latest ? (
+          <>
+            <span>{latest.angler || 'Angler not logged'}</span>
+            <span className="species-card__date">{latest.date || 'No date logged'}</span>
+          </>
+        ) : (
+          <span>No catches logged yet</span>
+        )}
       </div>
     </button>
   )
@@ -166,10 +229,11 @@ function CategorySection({ category, entries, onEdit }) {
 
 function Species() {
   const board = useSpeciesBoard()
-  const [editing, setEditing] = useState(null)
-  const caughtCount = board.filter((r) => r.caught).length
+  const [editingId, setEditingId] = useState(null)
+  const caughtCount = board.filter((r) => r.submissions.length > 0).length
   const pct = Math.round((caughtCount / TOTAL_SPECIES) * 100)
   const uncategorized = board.filter((r) => !CATEGORIES.includes(r.category))
+  const editing = editingId ? board.find((r) => r.id === editingId) : null
 
   return (
     <div className="page species-page">
@@ -204,24 +268,19 @@ function Species() {
           key={category}
           category={category}
           entries={board.filter((r) => r.category === category)}
-          onEdit={setEditing}
+          onEdit={(entry) => setEditingId(entry.id)}
         />
       ))}
 
       {uncategorized.length > 0 && (
-        <CategorySection category="Other" entries={uncategorized} onEdit={setEditing} />
-      )}
-
-      {editing && (
-        <EditModal
-          entry={editing}
-          onClose={() => setEditing(null)}
-          onSave={(updated) => {
-            saveEntry(updated)
-            setEditing(null)
-          }}
+        <CategorySection
+          category="Other"
+          entries={uncategorized}
+          onEdit={(entry) => setEditingId(entry.id)}
         />
       )}
+
+      {editing && <CatchModal entry={editing} onClose={() => setEditingId(null)} />}
     </div>
   )
 }
