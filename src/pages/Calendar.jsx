@@ -1,3 +1,4 @@
+import logo from '../assets/logo.png'
 import './Volunteer.css'
 
 const months = [
@@ -18,12 +19,17 @@ const months = [
 function Calendar() {
   return (
     <div className="page volunteer-page">
-      <p className="eyebrow">Plan Ahead</p>
-      <h1 className="section-title">Calendar 2026-2027</h1>
-      <p className="volunteer-page__intro">
-        Club activities for the school year, month by month. Dates and times will be
-        posted here as they&apos;re confirmed.
-      </p>
+      <div className="page-head">
+        <div>
+          <p className="eyebrow">Plan Ahead</p>
+          <h1 className="section-title">Calendar 2026-2027</h1>
+          <p className="volunteer-page__intro">
+            Club activities for the school year, month by month. Dates and times will be
+            posted here as they&apos;re confirmed.
+          </p>
+        </div>
+        <img className="page-head__logo" src={logo} alt="JCHS Fishing Club crest" />
+      </div>
 
       <div className="volunteer-grid">
         {months.map((month) => (

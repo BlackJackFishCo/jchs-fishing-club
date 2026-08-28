@@ -1,3 +1,4 @@
+import logo from '../assets/logo.png'
 import './Volunteer.css'
 
 const projects = [
@@ -27,13 +28,18 @@ const projects = [
 function Volunteer() {
   return (
     <div className="page volunteer-page">
-      <p className="eyebrow">Give Back</p>
-      <h1 className="section-title">Volunteer Events 2026-2027</h1>
-      <p className="volunteer-page__intro">
-        The JCHS Fishing Club is committed to protecting the waters we fish. Below are
-        our ongoing and upcoming volunteer projects &mdash; details and sign-ups will be
-        posted here as dates are confirmed.
-      </p>
+      <div className="page-head">
+        <div>
+          <p className="eyebrow">Give Back</p>
+          <h1 className="section-title">Volunteer Events 2026-2027</h1>
+          <p className="volunteer-page__intro">
+            The JCHS Fishing Club is committed to protecting the waters we fish. Below are
+            our ongoing and upcoming volunteer projects &mdash; details and sign-ups will be
+            posted here as dates are confirmed.
+          </p>
+        </div>
+        <img className="page-head__logo" src={logo} alt="JCHS Fishing Club crest" />
+      </div>
 
       <div className="volunteer-grid">
         {projects.map((p) => (

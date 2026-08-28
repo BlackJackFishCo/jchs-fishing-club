@@ -24,6 +24,7 @@
   align-items: center;
   gap: 0.75rem;
   color: var(--color-white);
+  min-width: 0;
 }
 
 .site-header__brand:hover {
@@ -95,7 +96,26 @@
 }
 
 @media (max-width: 780px) {
+  .site-header__brand {
+    justify-self: stretch;
+    overflow: hidden;
+  }
+
+  .site-header__title {
+    font-size: clamp(0.55rem, 2.75vw, 1.05rem);
+    max-width: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+  }
+
+  .site-header__bar {
+    grid-template-columns: 1fr auto;
+  }
+
   .site-header__toggle {
+    grid-column: 2;
     display: flex;
   }
 
