@@ -36,9 +36,9 @@ const SPONSOR_TIERS = [
     name: 'Redfish',
     price: '$1,000',
     perks: [
-      '1 Captain with Boat/Bait/Gear, 3 Anglers',
-      'Company Logo on Event Banner',
-      '6 JCHS Fishing Club Tickets',
+      '1 Tournament Entry',
+      'Company Logo on Event Banners and Leader Board',
+      '10 JCHS Fishing Club Raffle Tickets',
       'Company Logo and Website Link on JCHS Fishing Club Website',
     ],
   },
