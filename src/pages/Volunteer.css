@@ -27,6 +27,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  background: linear-gradient(180deg, var(--color-royal-dim), var(--color-black-soft));
 }
 
 .volunteer-card__status {
