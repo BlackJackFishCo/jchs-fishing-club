@@ -102,18 +102,6 @@ function CatchModal({ entry, onClose }) {
           />
         </label>
 
-        <label className="field">
-          <span>Category</span>
-          <select value={current.category || ''} onChange={(e) => commit({ category: e.target.value })}>
-            <option value="">—</option>
-            {CATEGORIES.map((c) => (
-              <option key={c} value={c}>
-                {c}
-              </option>
-            ))}
-          </select>
-        </label>
-
         <div className="modal__divider">
           Catches Logged ({current.submissions.length})
         </div>
