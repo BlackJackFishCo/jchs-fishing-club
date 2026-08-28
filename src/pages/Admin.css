@@ -222,3 +222,39 @@
 .admin-report__table tr:last-child td {
   border-bottom: none;
 }
+
+.registration-report__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.registration-report__head h2 {
+  margin: 0;
+}
+
+@media (max-width: 560px) {
+  .registration-report__head {
+    flex-direction: column;
+  }
+}
+
+@media print {
+  .site-header,
+  .site-footer,
+  .admin-status,
+  .admin-login,
+  .admin-denied,
+  .admin-roster,
+  .admin-report:not(.registration-report),
+  .registration-report__print {
+    display: none !important;
+  }
+
+  .admin-page {
+    max-width: none;
+    padding: 0;
+  }
+}

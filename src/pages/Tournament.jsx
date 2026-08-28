@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { addRegistration, MAX_ANGLERS, SHIRT_SIZES } from '../data/registration.js'
 import './Tournament.css'
 
 const SECTIONS = ['Registration', 'Rules', 'Sponsorship']
@@ -66,6 +67,129 @@ const SPONSOR_TIERS = [
   },
 ]
 
+const EMPTY_ANGLER = { firstName: '', lastName: '', email: '', phone: '', shirtSize: '' }
+
+function RegistrationSection() {
+  const [anglers, setAnglers] = useState(
+    Array.from({ length: MAX_ANGLERS }, () => ({ ...EMPTY_ANGLER })),
+  )
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState('')
+  const [success, setSuccess] = useState(false)
+
+  const updateAngler = (index, field, value) => {
+    setAnglers((prev) => prev.map((a, i) => (i === index ? { ...a, [field]: value } : a)))
+  }
+
+  const submit = async (e) => {
+    e.preventDefault()
+    setBusy(true)
+    setError('')
+    try {
+      const filled = anglers.filter((a) => a.firstName.trim())
+      await addRegistration(filled)
+      setAnglers(Array.from({ length: MAX_ANGLERS }, () => ({ ...EMPTY_ANGLER })))
+      setSuccess(true)
+    } catch (err) {
+      setError(err.message || 'Could not submit registration. Try again.')
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  if (success) {
+    return (
+      <section className="card registration-success">
+        <p className="registration-success__text">
+          Registration submitted! We&apos;ll be in touch with next steps.
+        </p>
+        <button type="button" className="btn" onClick={() => setSuccess(false)}>
+          Register Another Boat
+        </button>
+      </section>
+    )
+  }
+
+  return (
+    <form className="registration card" onSubmit={submit}>
+      <p className="registration__intro">
+        Please register your boat&apos;s anglers below. You can register up to {MAX_ANGLERS}{' '}
+        anglers.
+      </p>
+
+      {anglers.map((angler, index) => (
+        <fieldset key={index} className="registration__angler">
+          <legend>Angler {index + 1}</legend>
+
+          <div className="registration__row">
+            <label className="field">
+              <span>First Name{index === 0 ? '*' : ''}</span>
+              <input
+                value={angler.firstName}
+                onChange={(e) => updateAngler(index, 'firstName', e.target.value)}
+                required={index === 0}
+              />
+            </label>
+            <label className="field">
+              <span>Last Name{index === 0 ? '*' : ''}</span>
+              <input
+                value={angler.lastName}
+                onChange={(e) => updateAngler(index, 'lastName', e.target.value)}
+                required={index === 0}
+              />
+            </label>
+          </div>
+
+          <div className="registration__row">
+            <label className="field">
+              <span>Email{index === 0 ? '*' : ''}</span>
+              <input
+                type="email"
+                value={angler.email}
+                onChange={(e) => updateAngler(index, 'email', e.target.value)}
+                required={index === 0}
+              />
+            </label>
+            <label className="field">
+              <span>Phone Number{index === 0 ? '*' : ''}</span>
+              <input
+                type="tel"
+                value={angler.phone}
+                onChange={(e) => updateAngler(index, 'phone', e.target.value)}
+                required={index === 0}
+              />
+            </label>
+          </div>
+
+          <label className="field registration__shirt">
+            <span>Shirt Size{index === 0 ? '*' : ''}</span>
+            <select
+              value={angler.shirtSize}
+              onChange={(e) => updateAngler(index, 'shirtSize', e.target.value)}
+              required={index === 0}
+            >
+              <option value="" disabled>
+                Select size
+              </option>
+              {SHIRT_SIZES.map((size) => (
+                <option key={size} value={size}>
+                  {size}
+                </option>
+              ))}
+            </select>
+          </label>
+        </fieldset>
+      ))}
+
+      {error && <p className="modal__error">{error}</p>}
+
+      <button type="submit" className="btn btn-solid" disabled={busy}>
+        {busy ? 'Submitting…' : 'Submit Registration'}
+      </button>
+    </form>
+  )
+}
+
 function SponsorshipSection() {
   return (
     <div className="sponsorship">
@@ -124,9 +248,11 @@ function Tournament() {
         ))}
       </div>
 
-      {active === 'Sponsorship' ? (
-        <SponsorshipSection />
-      ) : (
+      {active === 'Registration' && <RegistrationSection />}
+
+      {active === 'Sponsorship' && <SponsorshipSection />}
+
+      {active === 'Rules' && (
         <section className="card tournament-tbd">
           <p className="tournament-tbd__label">{active}</p>
           <p className="tournament-tbd__text">Coming Soon</p>
