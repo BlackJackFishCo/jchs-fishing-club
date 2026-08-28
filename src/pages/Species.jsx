@@ -222,6 +222,16 @@ function Species() {
         <img className="species-page__logo" src={logo} alt="JCHS Fishing Club crest" />
       </div>
 
+      <a
+        className="fish-id-box"
+        href="https://myfwc.com/wildlifehabitats/profiles/#!categoryid=1306&subcategoryid=&status="
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span className="fish-id-box__icon">🔍</span>
+        <span className="fish-id-box__label">FISH ID</span>
+      </a>
+
       <div className="ticker card">
         <div className="ticker__count">
           {caughtCount} <span>/ {TOTAL_SPECIES}</span>
