@@ -77,6 +77,11 @@
   border-bottom-color: var(--color-gold);
 }
 
+.site-header__nav a.site-header__nav-highlight,
+.site-header__nav a.site-header__nav-highlight:hover {
+  color: var(--color-gold);
+}
+
 .site-header__toggle {
   grid-column: 3;
   justify-self: end;
