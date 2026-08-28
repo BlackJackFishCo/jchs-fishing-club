@@ -224,6 +224,11 @@
   filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.35));
 }
 
+.sponsor-card__fish--title {
+  width: 180px;
+  filter: drop-shadow(0 0 16px rgba(27, 58, 138, 0.6));
+}
+
 .sponsor-card__fish--redfish {
   width: 280px;
 }
@@ -248,6 +253,10 @@
   .sponsor-card__fish {
     width: 160px;
     order: 0;
+  }
+
+  .sponsor-card__fish--title {
+    width: 140px;
   }
 
   .sponsor-card__fish--redfish {
