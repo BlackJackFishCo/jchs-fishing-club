@@ -98,7 +98,7 @@ function Home() {
           learning how to become effective, conservation-minded anglers. The goal is to
           teach students about ethical angling, conservation, Florida&apos;s aquatic
           habitats, basic fishing gear, and general fishing concepts to help create
-          confident and responsible anglers.
+          confident and responsible anglers. Let&apos;s go fishing!
         </p>
       </section>
     </div>
