@@ -19,6 +19,20 @@
   min-width: 0;
 }
 
+.hero-logos {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.hero-logos__sponsor {
+  width: min(170px, 26vw);
+  height: auto;
+  flex-shrink: 0;
+}
+
 .hero__picture {
   display: block;
   width: min(320px, 50vw);
@@ -142,6 +156,14 @@
 @media (max-width: 780px) {
   .tiles-row {
     flex-direction: column;
+  }
+
+  .hero-logos {
+    gap: 1.25rem;
+  }
+
+  .hero-logos__sponsor {
+    width: min(150px, 30vw);
   }
 
   .hero__picture {

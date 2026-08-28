@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import { useCaughtCount } from '../data/species.js'
 import logo from '../assets/logo.png'
+import offTheGridLogo from '../assets/sponsor-off-the-grid.png'
+import dancoLogo from '../assets/sponsor-danco.png'
 import snookCatch from '../assets/snook-catch.jpg'
 import volunteerCleanup from '../assets/volunteer-cleanup.jpg'
 import './Home.css'
@@ -65,9 +67,29 @@ function Home() {
 
   return (
     <div className="page home">
-      <Link to="/species" className="hero__picture" aria-label="View the Species Catch List">
-        <img src={logo} alt="John Carroll High School Fishing Club crest" />
-      </Link>
+      <div className="hero-logos">
+        <a
+          href="https://www.instagram.com/offthegridjohn/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="John Off The Grid on Instagram"
+        >
+          <img className="hero-logos__sponsor" src={offTheGridLogo} alt='John "Off The Grid" logo' />
+        </a>
+
+        <Link to="/species" className="hero__picture" aria-label="View the Species Catch List">
+          <img src={logo} alt="John Carroll High School Fishing Club crest" />
+        </Link>
+
+        <a
+          href="https://www.dancopliers.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Danco Pliers website"
+        >
+          <img className="hero-logos__sponsor" src={dancoLogo} alt="Danco Pliers logo" />
+        </a>
+      </div>
 
       <section className="tiles-row">
         {[...tiles, tournamentTile].map((tile) => (
