@@ -391,3 +391,20 @@
   gap: 0.75rem;
   margin-top: 0.5rem;
 }
+
+.modal__note {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.modal__error {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #ff9a9a;
+}
+
+.species-page__loading {
+  color: var(--color-muted);
+  padding: 2rem 0;
+}

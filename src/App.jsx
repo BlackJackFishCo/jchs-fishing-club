@@ -5,6 +5,7 @@ import Home from './pages/Home.jsx'
 import Species from './pages/Species.jsx'
 import Volunteer from './pages/Volunteer.jsx'
 import Tournament from './pages/Tournament.jsx'
+import Admin from './pages/Admin.jsx'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/species" element={<Species />} />
         <Route path="/volunteer" element={<Volunteer />} />
         <Route path="/tournament" element={<Tournament />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
       <Footer />
     </>

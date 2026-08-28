@@ -1,9 +1,19 @@
 import { useEffect, useState } from 'react'
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  orderBy,
+  query,
+  serverTimestamp,
+} from 'firebase/firestore'
+import { deleteObject, getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import { db, storage } from '../firebase.js'
 
 export const TOTAL_SPECIES = 40
 export const CATEGORIES = ['Saltwater', 'Freshwater']
-const STORAGE_KEY = 'jchs-fishing-club:species-board:v3'
-const UPDATE_EVENT = 'jchs-species-updated'
 
 const SALTWATER_SPECIES = [
   'Bluefish',
@@ -51,91 +61,99 @@ const FRESHWATER_SPECIES = [
   'Chain Pickerel',
 ]
 
-function defaultEntry(id, species = '', category = '') {
-  return {
-    id,
+export const SPECIES_LIST = [
+  ...SALTWATER_SPECIES.map((species, i) => ({ id: i + 1, species, category: 'Saltwater' })),
+  ...FRESHWATER_SPECIES.map((species, i) => ({
+    id: i + 1 + SALTWATER_SPECIES.length,
     species,
-    category,
-    submissions: [],
-  }
-}
+    category: 'Freshwater',
+  })),
+]
 
-function defaultBoard() {
-  const saltwater = SALTWATER_SPECIES.map((species, i) => defaultEntry(i + 1, species, 'Saltwater'))
-  const freshwater = FRESHWATER_SPECIES.map((species, i) =>
-    defaultEntry(i + 1 + SALTWATER_SPECIES.length, species, 'Freshwater'),
-  )
-  return [...saltwater, ...freshwater]
-}
-
-export function loadBoard() {
-  if (typeof window === 'undefined') return defaultBoard()
-  try {
-    const raw = window.localStorage.getItem(STORAGE_KEY)
-    if (!raw) return defaultBoard()
-    const parsed = JSON.parse(raw)
-    if (!Array.isArray(parsed) || parsed.length !== TOTAL_SPECIES) return defaultBoard()
-    return parsed
-  } catch {
-    return defaultBoard()
-  }
-}
-
-export function saveBoard(board) {
-  window.localStorage.setItem(STORAGE_KEY, JSON.stringify(board))
-  window.dispatchEvent(new CustomEvent(UPDATE_EVENT, { detail: board }))
-}
-
-export function saveEntry(entry) {
-  const board = loadBoard()
-  const next = board.map((row) => (row.id === entry.id ? entry : row))
-  saveBoard(next)
-  return next
-}
-
-export function addSubmission(entryId, submission) {
-  const board = loadBoard()
-  const next = board.map((row) =>
-    row.id === entryId
-      ? { ...row, submissions: [...row.submissions, { id: `${Date.now()}-${Math.random()}`, ...submission }] }
-      : row,
-  )
-  saveBoard(next)
-  return next
-}
-
-export function removeSubmission(entryId, submissionId) {
-  const board = loadBoard()
-  const next = board.map((row) =>
-    row.id === entryId
-      ? { ...row, submissions: row.submissions.filter((s) => s.id !== submissionId) }
-      : row,
-  )
-  saveBoard(next)
-  return next
+function resizeToBlob(file, maxSize = 1000) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onerror = reject
+    reader.onload = () => {
+      const img = new Image()
+      img.onerror = reject
+      img.onload = () => {
+        const scale = Math.min(1, maxSize / Math.max(img.width, img.height))
+        const canvas = document.createElement('canvas')
+        canvas.width = Math.round(img.width * scale)
+        canvas.height = Math.round(img.height * scale)
+        const ctx = canvas.getContext('2d')
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+        canvas.toBlob((blob) => resolve(blob), 'image/jpeg', 0.85)
+      }
+      img.src = reader.result
+    }
+    reader.readAsDataURL(file)
+  })
 }
 
 export function useSpeciesBoard() {
-  const [board, setBoard] = useState(loadBoard)
+  const [submissionsBySpecies, setSubmissionsBySpecies] = useState({})
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const onUpdate = (e) => setBoard(e.detail ?? loadBoard())
-    const onStorage = (e) => {
-      if (e.key === STORAGE_KEY) setBoard(loadBoard())
-    }
-    window.addEventListener(UPDATE_EVENT, onUpdate)
-    window.addEventListener('storage', onStorage)
-    return () => {
-      window.removeEventListener(UPDATE_EVENT, onUpdate)
-      window.removeEventListener('storage', onStorage)
-    }
+    const q = query(collection(db, 'submissions'), orderBy('createdAt', 'asc'))
+    const unsub = onSnapshot(
+      q,
+      (snap) => {
+        const grouped = {}
+        snap.docs.forEach((d) => {
+          const data = { id: d.id, ...d.data() }
+          if (!grouped[data.speciesId]) grouped[data.speciesId] = []
+          grouped[data.speciesId].push(data)
+        })
+        setSubmissionsBySpecies(grouped)
+        setLoading(false)
+      },
+      () => setLoading(false),
+    )
+    return () => unsub()
   }, [])
 
-  return board
+  const board = SPECIES_LIST.map((entry) => ({
+    ...entry,
+    submissions: submissionsBySpecies[entry.id] || [],
+  }))
+
+  return { board, loading }
 }
 
 export function useCaughtCount() {
-  const board = useSpeciesBoard()
+  const { board } = useSpeciesBoard()
   const caught = board.filter((row) => row.submissions.length > 0).length
   return { caught, total: TOTAL_SPECIES }
+}
+
+export async function addSubmission(speciesId, { anglerId, angler, date, file }) {
+  const blob = await resizeToBlob(file)
+  const path = `catches/${speciesId}/${Date.now()}-${Math.random().toString(36).slice(2)}.jpg`
+  const storageRef = ref(storage, path)
+  await uploadBytes(storageRef, blob, { contentType: 'image/jpeg' })
+  const photo = await getDownloadURL(storageRef)
+
+  await addDoc(collection(db, 'submissions'), {
+    speciesId,
+    anglerId,
+    angler,
+    date: date || '',
+    photo,
+    photoPath: path,
+    createdAt: serverTimestamp(),
+  })
+}
+
+export async function removeSubmission(submissionId, photoPath) {
+  await deleteDoc(doc(db, 'submissions', submissionId))
+  if (photoPath) {
+    try {
+      await deleteObject(ref(storage, photoPath))
+    } catch {
+      // photo may already be gone; not fatal
+    }
+  }
 }

@@ -1,12 +1,7 @@
 import { useState } from 'react'
-import {
-  TOTAL_SPECIES,
-  CATEGORIES,
-  useSpeciesBoard,
-  saveEntry,
-  addSubmission,
-  removeSubmission,
-} from '../data/species.js'
+import { TOTAL_SPECIES, CATEGORIES, useSpeciesBoard, addSubmission, removeSubmission } from '../data/species.js'
+import { useRoster } from '../data/roster.js'
+import { useAdminAuth } from '../data/auth.js'
 import logo from '../assets/logo.png'
 import './Species.css'
 
@@ -22,107 +17,77 @@ const CHALLENGE_RULES = [
   'Any club who submits fish caught by a student not enrolled in the club, uses photos from the internet or generative AI platforms to submit catches as their own will be disqualified.',
 ]
 
-function resizeImage(file, maxSize = 640) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    reader.onerror = reject
-    reader.onload = () => {
-      const img = new Image()
-      img.onerror = reject
-      img.onload = () => {
-        const scale = Math.min(1, maxSize / Math.max(img.width, img.height))
-        const canvas = document.createElement('canvas')
-        canvas.width = Math.round(img.width * scale)
-        canvas.height = Math.round(img.height * scale)
-        const ctx = canvas.getContext('2d')
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
-        resolve(canvas.toDataURL('image/jpeg', 0.82))
-      }
-      img.src = reader.result
-    }
-    reader.readAsDataURL(file)
-  })
-}
-
-function CatchModal({ entry, onClose }) {
-  const [current, setCurrent] = useState(entry)
-  const [species, setSpecies] = useState(entry.species)
-  const [angler, setAngler] = useState('')
+function CatchModal({ entry, isAdmin, roster, onClose }) {
+  const [anglerId, setAnglerId] = useState('')
   const [date, setDate] = useState('')
-  const [photo, setPhoto] = useState('')
+  const [file, setFile] = useState(null)
+  const [previewUrl, setPreviewUrl] = useState('')
   const [busy, setBusy] = useState(false)
+  const [error, setError] = useState('')
 
-  const commit = (patch) => {
-    const updated = { ...current, species, ...patch }
-    saveEntry(updated)
-    setCurrent(updated)
+  const handlePhoto = (e) => {
+    const f = e.target.files?.[0]
+    if (!f) return
+    setFile(f)
+    setPreviewUrl(URL.createObjectURL(f))
   }
 
-  const handlePhoto = async (e) => {
-    const file = e.target.files?.[0]
-    if (!file) return
+  const addCatch = async (e) => {
+    e.preventDefault()
+    if (!file || !anglerId) return
     setBusy(true)
+    setError('')
     try {
-      setPhoto(await resizeImage(file))
+      const anglerName = roster.find((r) => r.id === anglerId)?.name || anglerId
+      await addSubmission(entry.id, { anglerId, angler: anglerName, date, file })
+      setAnglerId('')
+      setDate('')
+      setFile(null)
+      setPreviewUrl('')
+    } catch (err) {
+      setError(err.message || 'Could not add catch. Try again.')
     } finally {
       setBusy(false)
     }
   }
 
-  const addCatch = (e) => {
-    e.preventDefault()
-    if (!photo) return
-    const board = addSubmission(current.id, { angler, date, photo })
-    setCurrent(board.find((r) => r.id === current.id))
-    setAngler('')
-    setDate('')
-    setPhoto('')
-  }
-
-  const deleteCatch = (submissionId) => {
-    const board = removeSubmission(current.id, submissionId)
-    setCurrent(board.find((r) => r.id === current.id))
+  const deleteCatch = async (submissionId, photoPath) => {
+    try {
+      await removeSubmission(submissionId, photoPath)
+    } catch {
+      setError('Could not remove that catch. Try again.')
+    }
   }
 
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal card" onClick={(e) => e.stopPropagation()}>
         <h3>
-          {current.species || `Species #${current.id}`}
-          {current.category && <span className="modal__category">{current.category}</span>}
+          {entry.species}
+          <span className="modal__category">{entry.category}</span>
         </h3>
 
-        <label className="field">
-          <span>Species</span>
-          <input
-            value={species}
-            onChange={(e) => setSpecies(e.target.value)}
-            onBlur={() => commit({})}
-            placeholder="e.g. Snook"
-          />
-        </label>
+        <div className="modal__divider">Catches Logged ({entry.submissions.length})</div>
 
-        <div className="modal__divider">
-          Catches Logged ({current.submissions.length})
-        </div>
-
-        {current.submissions.length > 0 && (
+        {entry.submissions.length > 0 && (
           <ul className="modal__catch-list">
-            {current.submissions.map((sub) => (
+            {entry.submissions.map((sub) => (
               <li key={sub.id} className="modal__catch-row">
-                <img src={sub.photo} alt={current.species || 'Catch'} />
+                <img src={sub.photo} alt={entry.species} />
                 <div className="modal__catch-info">
                   <strong>{sub.angler || 'Angler not logged'}</strong>
                   <span>{sub.date || 'No date logged'}</span>
                 </div>
-                <button
-                  type="button"
-                  className="modal__catch-remove"
-                  aria-label="Remove this catch"
-                  onClick={() => deleteCatch(sub.id)}
-                >
-                  ×
-                </button>
+                {isAdmin && (
+                  <button
+                    type="button"
+                    className="modal__catch-remove"
+                    aria-label="Remove this catch"
+                    onClick={() => deleteCatch(sub.id, sub.photoPath)}
+                  >
+                    ×
+                  </button>
+                )}
               </li>
             ))}
           </ul>
@@ -131,10 +96,25 @@ function CatchModal({ entry, onClose }) {
         <form className="modal__add-form" onSubmit={addCatch}>
           <div className="modal__divider">Add a Catch</div>
 
-          <label className="field">
-            <span>Angler</span>
-            <input value={angler} onChange={(e) => setAngler(e.target.value)} placeholder="Angler name" />
-          </label>
+          {roster.length === 0 ? (
+            <p className="modal__note">
+              No roster entries yet. Ask a club admin to add anglers before catches can be logged.
+            </p>
+          ) : (
+            <label className="field">
+              <span>Angler</span>
+              <select value={anglerId} onChange={(e) => setAnglerId(e.target.value)} required>
+                <option value="" disabled>
+                  Select your name
+                </option>
+                {roster.map((r) => (
+                  <option key={r.id} value={r.id}>
+                    {r.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
 
           <label className="field">
             <span>Date caught</span>
@@ -143,17 +123,19 @@ function CatchModal({ entry, onClose }) {
 
           <label className="field">
             <span>Photo</span>
-            <input type="file" accept="image/*" onChange={handlePhoto} />
+            <input type="file" accept="image/*" onChange={handlePhoto} required />
           </label>
 
-          {photo && <img className="modal__preview" src={photo} alt="New catch preview" />}
+          {previewUrl && <img className="modal__preview" src={previewUrl} alt="New catch preview" />}
+
+          {error && <p className="modal__error">{error}</p>}
 
           <div className="modal__actions">
             <button type="button" className="btn" onClick={onClose}>
               Done
             </button>
-            <button type="submit" className="btn btn-solid" disabled={busy || !photo}>
-              {busy ? 'Processing…' : 'Add Catch'}
+            <button type="submit" className="btn btn-solid" disabled={busy || !file || !anglerId}>
+              {busy ? 'Uploading…' : 'Add Catch'}
             </button>
           </div>
         </form>
@@ -175,7 +157,7 @@ function SpeciesCard({ entry, onEdit }) {
         {submissions.length > 0 ? (
           <div className="species-card__scroll">
             {submissions.map((sub) => (
-              <img key={sub.id} src={sub.photo} alt={entry.species || `Catch #${entry.id}`} />
+              <img key={sub.id} src={sub.photo} alt={entry.species} />
             ))}
           </div>
         ) : (
@@ -187,7 +169,7 @@ function SpeciesCard({ entry, onEdit }) {
         )}
       </div>
       <div className="species-card__body">
-        <strong>{entry.species || `Species #${entry.id} — TBD`}</strong>
+        <strong>{entry.species}</strong>
         {latest ? (
           <>
             <span>{latest.angler || 'Angler not logged'}</span>
@@ -217,11 +199,13 @@ function CategorySection({ category, entries, onEdit }) {
 }
 
 function Species() {
-  const board = useSpeciesBoard()
+  const { board, loading } = useSpeciesBoard()
+  const { roster } = useRoster()
+  const { isAdmin } = useAdminAuth()
   const [editingId, setEditingId] = useState(null)
   const caughtCount = board.filter((r) => r.submissions.length > 0).length
   const pct = Math.round((caughtCount / TOTAL_SPECIES) * 100)
-  const uncategorized = board.filter((r) => !CATEGORIES.includes(r.category))
+  const activeRoster = roster.filter((r) => r.active)
   const editing = editingId ? board.find((r) => r.id === editingId) : null
 
   return (
@@ -257,24 +241,27 @@ function Species() {
         </ul>
       </section>
 
-      {CATEGORIES.map((category) => (
-        <CategorySection
-          key={category}
-          category={category}
-          entries={board.filter((r) => r.category === category)}
-          onEdit={(entry) => setEditingId(entry.id)}
-        />
-      ))}
-
-      {uncategorized.length > 0 && (
-        <CategorySection
-          category="Other"
-          entries={uncategorized}
-          onEdit={(entry) => setEditingId(entry.id)}
-        />
+      {loading ? (
+        <p className="species-page__loading">Loading catch board…</p>
+      ) : (
+        CATEGORIES.map((category) => (
+          <CategorySection
+            key={category}
+            category={category}
+            entries={board.filter((r) => r.category === category)}
+            onEdit={(entry) => setEditingId(entry.id)}
+          />
+        ))
       )}
 
-      {editing && <CatchModal entry={editing} onClose={() => setEditingId(null)} />}
+      {editing && (
+        <CatchModal
+          entry={editing}
+          isAdmin={isAdmin}
+          roster={activeRoster}
+          onClose={() => setEditingId(null)}
+        />
+      )}
     </div>
   )
 }
