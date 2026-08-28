@@ -222,16 +222,6 @@ function Species() {
         <img className="species-page__logo" src={logo} alt="JCHS Fishing Club crest" />
       </div>
 
-      <a
-        className="fish-id-box"
-        href="https://myfwc.com/wildlifehabitats/profiles/#!categoryid=1306&subcategoryid=&status="
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span className="fish-id-box__icon">🔍</span>
-        <span className="fish-id-box__label">FISH ID</span>
-      </a>
-
       <div className="ticker card">
         <div className="ticker__count">
           {caughtCount} <span>/ {TOTAL_SPECIES}</span>
@@ -243,12 +233,25 @@ function Species() {
       </div>
 
       <section className="species-rules card">
-        <h2>Fishing Challenge Rules</h2>
-        <ul>
-          {CHALLENGE_RULES.map((rule) => (
-            <li key={rule}>{rule}</li>
-          ))}
-        </ul>
+        <div className="species-rules__layout">
+          <div className="species-rules__content">
+            <h2>Fishing Challenge Rules</h2>
+            <ul>
+              {CHALLENGE_RULES.map((rule) => (
+                <li key={rule}>{rule}</li>
+              ))}
+            </ul>
+          </div>
+          <a
+            className="fish-id-box"
+            href="https://myfwc.com/wildlifehabitats/profiles/#!categoryid=1306&subcategoryid=&status="
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className="fish-id-box__icon">🔍</span>
+            <span className="fish-id-box__label">FISH ID</span>
+          </a>
+        </div>
       </section>
 
       {loading ? (
