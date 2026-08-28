@@ -8,7 +8,7 @@ const links = [
   { to: '/leaderboard', label: 'Leaderboard' },
   { to: '/volunteer', label: 'Volunteer Events' },
   { to: '/calendar', label: 'Calendar' },
-  { to: '/tournament', label: 'JCHS Fishing Tournament' },
+  { to: '/tournament', label: 'John Carroll High School Inshore Summer Slam' },
 ]
 
 function Header() {

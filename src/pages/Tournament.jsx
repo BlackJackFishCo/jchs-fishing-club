@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { addRegistration, MAX_ANGLERS, SHIRT_SIZES } from '../data/registration.js'
 import './Tournament.css'
 
-const SECTIONS = ['Registration', 'Rules', 'Sponsorship']
+const SECTIONS = ['Home', 'Registration', 'Rules', 'Sponsorship']
 
 const CONTACT_EMAIL = 'Jstelmacki@gmail.com'
 
@@ -12,13 +12,12 @@ const SPONSOR_TIERS = [
     price: '$15,000',
     perks: [
       'Company Name in Official Event Logo',
-      '4 Captains with Boats/Bait/Gear, 12 Anglers',
-      '48 JCHS Fishing Club Tickets',
+      '4 Boat Entries - Up to 12 Anglers',
+      '50 Raffle Tickets',
       'Company Logo and Website Link on JCHS Fishing Club Website',
-      'Company Logo on Ribbon Board during the JCHS Fishing Club Tournament',
+      'Company Logo on Leader Board during the John Carroll High School Inshore Summer Slam',
       '2 Social Media Mentions on JCHS Fishing Club Accounts',
-      '10x10 Activation Space at the Fishing Tournament',
-      '1 Feature in the JCHS Fishing Club Newsletter',
+      '10x10 Activation Space at the Inshore Summer Slam',
     ],
   },
   {
@@ -29,9 +28,9 @@ const SPONSOR_TIERS = [
       'Company Logo on Event Banner',
       '12 JCHS Fishing Club Tickets',
       'Company Logo and Website Link on JCHS Fishing Club Website',
-      'Company Logo on Ribbon Board during the JCHS Fishing Club Tournament',
+      'Company Logo on Ribbon Board during the John Carroll High School Inshore Summer Slam',
       '1 Social Media Mention on JCHS Fishing Club Accounts',
-      '10x10 Activation Space at the Fishing Tournament',
+      '10x10 Activation Space at the Inshore Summer Slam',
     ],
   },
   {
@@ -42,7 +41,7 @@ const SPONSOR_TIERS = [
       'Company Logo on Event Banner',
       '12 JCHS Fishing Club Tickets',
       'Company Logo and Website Link on JCHS Fishing Club Website',
-      'Company Logo on Ribbon Board during the JCHS Fishing Club Tournament',
+      'Company Logo on Ribbon Board during the John Carroll High School Inshore Summer Slam',
     ],
   },
   {
@@ -119,7 +118,7 @@ function RegistrationSection() {
 
       {anglers.map((angler, index) => (
         <fieldset key={index} className="registration__angler">
-          <legend>Angler {index + 1}</legend>
+          <legend>{index === 0 ? 'Angler 1 / Captain' : `Angler ${index + 1}`}</legend>
 
           <div className="registration__row">
             <label className="field">
@@ -215,7 +214,7 @@ function SponsorshipSection() {
             <a
               className="sponsor-card__cta"
               href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-                `JCHS Fishing Club Tournament Sponsorship — ${tier.name}`,
+                `John Carroll High School Inshore Summer Slam Sponsorship — ${tier.name}`,
               )}`}
             >
               Get in Touch
@@ -233,7 +232,7 @@ function Tournament() {
   return (
     <div className="page tournament-page">
       <p className="eyebrow">Compete</p>
-      <h1 className="section-title">JCHS Fishing Tournament</h1>
+      <h1 className="section-title">John Carroll High School Inshore Summer Slam</h1>
 
       <div className="tournament-tabs">
         {SECTIONS.map((section) => (
@@ -252,7 +251,7 @@ function Tournament() {
 
       {active === 'Sponsorship' && <SponsorshipSection />}
 
-      {active === 'Rules' && (
+      {active !== 'Registration' && active !== 'Sponsorship' && (
         <section className="card tournament-tbd">
           <p className="tournament-tbd__label">{active}</p>
           <p className="tournament-tbd__text">Coming Soon</p>
