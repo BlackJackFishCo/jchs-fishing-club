@@ -169,7 +169,15 @@ function CatchModal({ entry, isAdmin, roster, onClose }) {
 
 function SpeciesCard({ entry, onEdit }) {
   const submissions = entry.submissions
-  const latest = submissions[submissions.length - 1]
+  const [activeIndex, setActiveIndex] = useState(0)
+  const active = submissions[activeIndex] ?? submissions[submissions.length - 1]
+
+  const handleScroll = (e) => {
+    const { scrollLeft, clientWidth } = e.currentTarget
+    if (clientWidth === 0) return
+    const index = Math.round(scrollLeft / clientWidth)
+    setActiveIndex(index)
+  }
 
   return (
     <button
@@ -178,7 +186,7 @@ function SpeciesCard({ entry, onEdit }) {
     >
       <div className="species-card__thumb">
         {submissions.length > 0 ? (
-          <div className="species-card__scroll">
+          <div className="species-card__scroll" onScroll={handleScroll}>
             {submissions.map((sub) => (
               <img key={sub.id} src={sub.photo} alt={entry.species} />
             ))}
@@ -188,15 +196,17 @@ function SpeciesCard({ entry, onEdit }) {
         )}
         {submissions.length > 0 && <span className="species-card__badge">Caught</span>}
         {submissions.length > 1 && (
-          <span className="species-card__count">{submissions.length} photos</span>
+          <span className="species-card__count">
+            {activeIndex + 1} / {submissions.length}
+          </span>
         )}
       </div>
       <div className="species-card__body">
         <strong>{entry.species}</strong>
-        {latest ? (
+        {active ? (
           <>
-            <span>{latest.angler || 'Angler not logged'}</span>
-            <span className="species-card__date">{latest.date || 'No date logged'}</span>
+            <span>{active.angler || 'Angler not logged'}</span>
+            <span className="species-card__date">{active.date || 'No date logged'}</span>
           </>
         ) : (
           <span>No catches logged yet</span>
