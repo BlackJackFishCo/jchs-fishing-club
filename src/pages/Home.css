@@ -45,7 +45,7 @@
 }
 
 .hero__picture {
-  width: min(240px, 38vw);
+  width: min(270px, 40vw);
   transition: transform 0.2s ease, filter 0.2s ease;
   filter: drop-shadow(0 0 30px rgba(27, 58, 138, 0.55));
 }
@@ -194,6 +194,6 @@
   }
 
   .hero__picture {
-    width: min(200px, 42vw);
+    width: min(225px, 46vw);
   }
 }
