@@ -3,7 +3,7 @@ import { TOTAL_SPECIES, CATEGORIES, useSpeciesBoard, addSubmission, removeSubmis
 import { useRoster } from '../data/roster.js'
 import { useAdminAuth } from '../data/auth.js'
 import logo from '../assets/logo.png'
-import fwcLogo from '../assets/fwc-logo.jpg'
+import fwcLogo from '../assets/fwc-logo.png'
 import './Species.css'
 
 const CHALLENGE_RULES = [
