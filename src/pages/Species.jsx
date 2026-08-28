@@ -210,7 +210,9 @@ function CategorySection({ category, entries, onEdit }) {
   return (
     <section className="species-category">
       <div className="species-category__head">
-        <h2 className="species-category__title">{category}</h2>
+        <h2 className="species-category__title">
+          {category} - Log Your Catch Here - Click on Species Caught
+        </h2>
       </div>
       <div className="species-grid">
         {entries.map((entry) => (
