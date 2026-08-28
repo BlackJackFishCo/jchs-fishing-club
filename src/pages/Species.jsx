@@ -222,11 +222,13 @@ function Species() {
         </div>
         <div className="species-page__logos">
           <img className="species-page__logo" src={logo} alt="JCHS Fishing Club crest" />
-          <img
-            className="species-page__logo"
-            src={fwcLogo}
-            alt="Florida Fish and Wildlife Conservation Commission logo"
-          />
+          <a href="https://myfwc.com/" target="_blank" rel="noopener noreferrer">
+            <img
+              className="species-page__logo"
+              src={fwcLogo}
+              alt="Florida Fish and Wildlife Conservation Commission logo"
+            />
+          </a>
         </div>
       </div>
 
