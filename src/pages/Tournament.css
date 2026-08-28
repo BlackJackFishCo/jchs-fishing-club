@@ -73,14 +73,8 @@
 
 .sponsor-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 1.25rem;
-}
-
-@media (max-width: 620px) {
-  .sponsor-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 .sponsor-card {
