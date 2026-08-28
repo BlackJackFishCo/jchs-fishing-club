@@ -92,7 +92,7 @@ function Home() {
       </section>
 
       <section className="card mission">
-        <p className="eyebrow">Our Mission</p>
+        <p className="eyebrow">Club Mission</p>
         <p className="mission__text">
           The John Carroll Fishing Club was created for students who are interested in
           learning how to become effective, conservation-minded anglers. The goal is to
