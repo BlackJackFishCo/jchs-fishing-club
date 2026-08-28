@@ -7,8 +7,8 @@
 
 .tournament-tbd__text {
   font-family: var(--font-brand);
-  font-size: 2.4rem;
+  font-size: 2rem;
   color: var(--color-gold);
-  letter-spacing: 0.3em;
+  letter-spacing: 0.06em;
   margin: 0;
 }

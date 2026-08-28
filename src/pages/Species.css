@@ -6,8 +6,8 @@
 }
 
 .species-page__logo {
-  width: 90px;
-  height: 90px;
+  width: min(420px, 78vw);
+  height: auto;
   flex-shrink: 0;
 }
 

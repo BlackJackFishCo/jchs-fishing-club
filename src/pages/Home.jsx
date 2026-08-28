@@ -43,7 +43,7 @@ const tiles = [
   },
   {
     to: '/tournament',
-    label: 'Charity Fishing Tournament',
+    label: 'JCHS Fishing Tournament',
     icon: (
       <svg viewBox="0 0 64 64" aria-hidden="true">
         <path
