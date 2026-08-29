@@ -12,7 +12,7 @@ import './Home.css'
 const tiles = [
   {
     to: '/species',
-    label: 'Species Catch List',
+    label: 'Club Species Catch List',
     photo: snookCatch,
     icon: (
       <svg viewBox="0 0 64 64" aria-hidden="true">
@@ -30,7 +30,7 @@ const tiles = [
   },
   {
     to: '/volunteer',
-    label: 'Volunteer Events',
+    label: 'Club Volunteer Events',
     photo: volunteerCleanup,
     icon: (
       <svg viewBox="0 0 64 64" aria-hidden="true">
@@ -49,7 +49,7 @@ const tiles = [
 
 const leaderboardTile = {
   to: '/leaderboard',
-  label: 'Leaderboard',
+  label: 'Club Leaderboard',
   icon: (
     <svg viewBox="0 0 64 64" aria-hidden="true">
       <rect x="8" y="34" width="14" height="20" fill="none" stroke="currentColor" strokeWidth="2.5" />
@@ -61,7 +61,7 @@ const leaderboardTile = {
 
 const calendarTile = {
   to: '/calendar',
-  label: 'Calendar',
+  label: 'Club Calendar',
   icon: (
     <svg viewBox="0 0 64 64" aria-hidden="true">
       <rect x="10" y="14" width="44" height="40" rx="4" fill="none" stroke="currentColor" strokeWidth="2.5" />
