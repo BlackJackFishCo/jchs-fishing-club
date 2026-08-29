@@ -270,6 +270,61 @@ function HomeSection() {
   )
 }
 
+const SLAM_AWARDS = [
+  {
+    name: 'Top Team',
+    description:
+      "Highest combined inches across Snook, Redfish, and Trout — you don't need to catch all three species, just the biggest total.",
+  },
+  {
+    name: 'Top Junior Angler (Under 16)',
+    description: 'Highest total inches across Snook, Redfish, and Trout.',
+  },
+  {
+    name: 'Top JCHS Fishing Club Member',
+    description: 'Highest total inches across Snook, Redfish, and Trout.',
+  },
+  {
+    name: 'Top Lady Angler',
+    description: 'Highest total inches across Snook, Redfish, and Trout.',
+  },
+]
+
+const SPECIES_AWARDS = [
+  { name: 'Top Snook', description: 'Longest single Snook.' },
+  { name: 'Top Redfish', description: 'Longest single Redfish.' },
+  { name: 'Top Trout', description: 'Longest single Trout.' },
+]
+
+function AwardsSection() {
+  return (
+    <section className="card tournament-awards">
+      <h2 className="tournament-awards__heading">Awards</h2>
+      <p className="tournament-awards__rule">Anglers may only win one award category.</p>
+
+      <h3 className="tournament-awards__group-title">Slam Categories</h3>
+      <ul className="tournament-awards__list">
+        {SLAM_AWARDS.map((award) => (
+          <li key={award.name}>
+            <strong>{award.name}</strong>
+            <span>{award.description}</span>
+          </li>
+        ))}
+      </ul>
+
+      <h3 className="tournament-awards__group-title">Species Categories</h3>
+      <ul className="tournament-awards__list">
+        {SPECIES_AWARDS.map((award) => (
+          <li key={award.name}>
+            <strong>{award.name}</strong>
+            <span>{award.description}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
 const EVENT_INFO = [
   { label: 'Registration Ends', value: '00/2027' },
   { label: 'Captains Meeting', value: '0:00pm 00/2027' },
@@ -368,9 +423,14 @@ function Tournament() {
 
       {active === 'Registration' && <RegistrationSection />}
 
+      {active === 'Awards' && <AwardsSection />}
+
       {active === 'Sponsorship' && <SponsorshipSection />}
 
-      {active !== 'Home' && active !== 'Registration' && active !== 'Sponsorship' && (
+      {active !== 'Home' &&
+        active !== 'Registration' &&
+        active !== 'Awards' &&
+        active !== 'Sponsorship' && (
         <section className="card tournament-tbd">
           <p className="tournament-tbd__label">{active}</p>
           <p className="tournament-tbd__text">Coming Soon</p>
