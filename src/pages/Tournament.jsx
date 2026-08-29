@@ -17,7 +17,7 @@ const TIER_FISH = {
   Trout: troutFish,
 }
 
-const SECTIONS = ['Home', 'Registration', 'Rules', 'Sponsorship']
+const SECTIONS = ['Home', 'Registration', 'Rules', 'Awards', 'Photo Gallery', 'Sponsorship']
 
 const CONTACT_EMAIL = 'Jstelmacki@gmail.com'
 const REGISTRATION_OPEN = false
