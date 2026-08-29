@@ -355,6 +355,12 @@
   margin: 0;
 }
 
+.registration__notice {
+  color: var(--color-gold);
+  font-weight: 600;
+  margin: 0;
+}
+
 .registration__angler {
   border: 1px solid rgba(245, 197, 24, 0.25);
   border-radius: var(--radius);
