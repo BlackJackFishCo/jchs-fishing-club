@@ -69,6 +69,65 @@
   letter-spacing: 0.02em;
 }
 
+.tournament-awards {
+  margin-top: 1.25rem;
+  padding: 2rem;
+  background: linear-gradient(180deg, var(--color-royal-dim), var(--color-black-soft));
+}
+
+.tournament-awards__heading {
+  font-family: var(--font-brand);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 1.4rem;
+  color: var(--color-gold);
+  margin: 0 0 0.5rem;
+}
+
+.tournament-awards__rule {
+  color: var(--color-muted);
+  font-style: italic;
+  margin: 0 0 1.5rem;
+}
+
+.tournament-awards__group-title {
+  font-family: var(--font-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-gold-soft);
+  margin: 0 0 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(245, 197, 24, 0.25);
+}
+
+.tournament-awards__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.tournament-awards__list li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.tournament-awards__list strong {
+  color: var(--color-white);
+  font-family: var(--font-brand);
+  font-size: 1.05rem;
+}
+
+.tournament-awards__list span {
+  color: var(--color-muted);
+  font-size: 0.92rem;
+}
+
 .tournament-info-grid {
   margin-top: 1.25rem;
   display: grid;
