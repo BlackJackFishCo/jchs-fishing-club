@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { addRegistration, MAX_ANGLERS, SHIRT_SIZES } from '../data/registration.js'
 import logo from '../assets/logo.png'
 import snookFish from '../assets/sponsor-tier-snook.png'
@@ -279,15 +278,18 @@ const SLAM_AWARDS = [
   },
   {
     name: 'Top Junior Angler (Under 16)',
-    description: 'Highest total inches across Snook, Redfish, and Trout.',
+    description:
+      "Highest total inches across Snook, Redfish, and Trout — you don't need to catch all three species, just the biggest total.",
   },
   {
     name: 'Top JCHS Fishing Club Member',
-    description: 'Highest total inches across Snook, Redfish, and Trout.',
+    description:
+      "Highest total inches across Snook, Redfish, and Trout — you don't need to catch all three species, just the biggest total.",
   },
   {
     name: 'Top Lady Angler',
-    description: 'Highest total inches across Snook, Redfish, and Trout.',
+    description:
+      "Highest total inches across Snook, Redfish, and Trout — you don't need to catch all three species, just the biggest total.",
   },
 ]
 
@@ -328,6 +330,10 @@ function AwardsSection() {
       <h2 className="tournament-awards__heading">Awards</h2>
       <p className="tournament-awards__rule">
         Teams (including individual anglers) can only win one award category.
+      </p>
+      <p className="tournament-awards__example">
+        Example: If your team wins Top Team, no one on your team can also win Top Snook or Top
+        Lady Angler.
       </p>
 
       <h3 className="tournament-awards__group-title">Slam Categories</h3>
@@ -436,9 +442,13 @@ function Tournament() {
           ))}
         </div>
 
-        <Link to="/leaderboard" className="btn btn-solid tournament-live-leaderboard">
-          Live Leaderboard
-        </Link>
+        <button
+          type="button"
+          className="btn btn-solid tournament-live-leaderboard"
+          onClick={() => setActive('Inshore Slam Live Leaderboard')}
+        >
+          Inshore Slam Live Leaderboard
+        </button>
       </div>
 
       {active === 'Home' && (
