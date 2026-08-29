@@ -223,6 +223,39 @@
   border-bottom: none;
 }
 
+.team-roster {
+  max-width: 960px;
+}
+
+.team-roster__scroll {
+  overflow-x: auto;
+}
+
+.team-roster__table {
+  min-width: 720px;
+}
+
+.team-roster__input {
+  width: 100%;
+  background: var(--color-black-soft);
+  border: 1px solid rgba(245, 197, 24, 0.25);
+  border-radius: 6px;
+  padding: 0.35rem 0.5rem;
+  color: var(--color-white);
+  font-size: 0.85rem;
+}
+
+.team-roster__input:focus {
+  outline: 2px solid var(--color-gold);
+}
+
+.team-roster__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
 .registration-report__head {
   display: flex;
   align-items: flex-start;

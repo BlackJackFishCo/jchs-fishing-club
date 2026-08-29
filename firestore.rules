@@ -45,5 +45,41 @@ service cloud.firestore {
       allow update: if false;
       allow delete: if isAdmin();
     }
+
+    match /tournamentTeams/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /tournamentCatches/{id} {
+      allow read: if true;
+
+      allow create: if
+        request.resource.data.teamId is string &&
+        request.resource.data.species in ['Snook', 'Redfish', 'Trout'] &&
+        request.resource.data.angler is string &&
+        request.resource.data.inches is number &&
+        request.resource.data.inches > 0 &&
+        request.resource.data.photo is string &&
+        request.resource.data.photoPath is string &&
+        request.resource.data.verified == false &&
+        exists(/databases/$(database)/documents/tournamentTeams/$(request.resource.data.teamId));
+
+      allow update: if
+        isAdmin() ||
+        (
+          resource.data.verified == false &&
+          request.resource.data.teamId == resource.data.teamId &&
+          request.resource.data.species == resource.data.species &&
+          request.resource.data.verified == false &&
+          request.resource.data.angler is string &&
+          request.resource.data.inches is number &&
+          request.resource.data.inches > 0 &&
+          request.resource.data.photo is string &&
+          request.resource.data.photoPath is string
+        );
+
+      allow delete: if isAdmin();
+    }
   }
 }

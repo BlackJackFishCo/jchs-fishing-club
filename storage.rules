@@ -12,5 +12,16 @@ service firebase.storage {
       allow delete: if request.auth != null &&
         firestore.exists(/databases/(default)/documents/admins/$(request.auth.uid));
     }
+
+    match /tournament-catches/{teamId}/{fileName} {
+      allow read: if true;
+
+      allow write: if
+        request.resource.size < 8 * 1024 * 1024 &&
+        request.resource.contentType.matches('image/.*');
+
+      allow delete: if request.auth != null &&
+        firestore.exists(/databases/(default)/documents/admins/$(request.auth.uid));
+    }
   }
 }

@@ -180,6 +180,192 @@
   margin: 0;
 }
 
+.tournament-liveboard {
+  margin-top: 1.25rem;
+  padding: 2rem;
+  background: linear-gradient(180deg, var(--color-royal-dim), var(--color-black-soft));
+}
+
+.tournament-liveboard__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.tournament-liveboard__head .btn {
+  white-space: nowrap;
+}
+
+.liveboard-scroll {
+  overflow-x: auto;
+}
+
+.liveboard-table {
+  min-width: 760px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.liveboard-table__row {
+  display: grid;
+  grid-template-columns: 60px 1.4fr 1fr 1fr 1fr 90px;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.liveboard-table__row--head {
+  font-family: var(--font-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.72rem;
+  color: var(--color-gold-soft);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(245, 197, 24, 0.25);
+}
+
+.liveboard-table__row:not(.liveboard-table__row--head) {
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(245, 197, 24, 0.15);
+  border-radius: var(--radius);
+}
+
+.liveboard-table__rank {
+  font-family: var(--font-brand);
+  font-size: 1.2rem;
+  color: var(--color-gold);
+}
+
+.liveboard-table__team {
+  color: var(--color-white);
+  font-weight: 600;
+}
+
+.liveboard-table__total {
+  font-family: var(--font-brand);
+  font-size: 1.1rem;
+  color: var(--color-gold);
+  white-space: nowrap;
+}
+
+.catch-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+
+.catch-cell--empty {
+  color: var(--color-muted);
+  align-items: center;
+}
+
+.catch-cell__photo {
+  width: 100%;
+  max-width: 90px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid rgba(245, 197, 24, 0.25);
+}
+
+.catch-cell__inches {
+  color: var(--color-white);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.catch-cell__check {
+  color: #3ecf6e;
+  font-weight: 700;
+}
+
+.catch-cell__angler {
+  color: var(--color-muted);
+  font-size: 0.78rem;
+}
+
+.catch-cell__admin {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.2rem;
+}
+
+.catch-cell__admin button {
+  background: none;
+  border: 1px solid rgba(245, 197, 24, 0.35);
+  color: var(--color-gold-soft);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border-radius: 999px;
+  padding: 0.15rem 0.5rem;
+  cursor: pointer;
+}
+
+.catch-cell__admin button:hover {
+  color: var(--color-gold);
+  border-color: var(--color-gold);
+}
+
+.catch-species-toggle {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.catch-species-toggle__btn {
+  flex: 1;
+  background: var(--color-black-soft);
+  border: 1px solid rgba(245, 197, 24, 0.3);
+  color: var(--color-muted);
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+}
+
+.catch-species-toggle__btn.is-active {
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+  color: var(--color-black);
+}
+
+.catch-angler-picker {
+  border: 1px solid rgba(245, 197, 24, 0.25);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.catch-angler-picker legend {
+  padding: 0 0.4rem;
+  font-family: var(--font-brand);
+  font-size: 0.95rem;
+  color: var(--color-gold);
+}
+
+.catch-angler-picker__option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-white);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 700px) {
+  .tournament-liveboard {
+    padding: 1.25rem;
+  }
+}
+
 .tournament-info-grid {
   margin-top: 1.25rem;
   display: grid;

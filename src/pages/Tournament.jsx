@@ -1,5 +1,15 @@
 import { useState } from 'react'
 import { addRegistration, MAX_ANGLERS, SHIRT_SIZES } from '../data/registration.js'
+import { useAdminAuth } from '../data/auth.js'
+import {
+  CATCH_SPECIES,
+  useTournamentTeams,
+  useTournamentCatches,
+  submitCatch,
+  setCatchVerified,
+  removeCatch,
+  computeTeamTotal,
+} from '../data/tournamentLeaderboard.js'
 import logo from '../assets/logo.png'
 import snookFish from '../assets/sponsor-tier-snook.png'
 import redfishFish from '../assets/sponsor-tier-redfish.png'
@@ -420,6 +430,276 @@ function HeroLogos() {
   )
 }
 
+function LogCatchModal({ teams, catchesByTeam, onClose }) {
+  const [species, setSpecies] = useState(CATCH_SPECIES[0])
+  const [teamId, setTeamId] = useState('')
+  const [angler, setAngler] = useState('')
+  const [inches, setInches] = useState('')
+  const [file, setFile] = useState(null)
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState('')
+
+  const team = teams.find((t) => t.id === teamId)
+  const existing = teamId ? catchesByTeam[teamId]?.[species] : null
+
+  const submit = async (e) => {
+    e.preventDefault()
+    if (!teamId || !angler || !inches || !file || existing?.verified) return
+    setBusy(true)
+    setError('')
+    try {
+      await submitCatch({ teamId, species, angler, inches: Number(inches), file })
+      onClose()
+    } catch (err) {
+      setError(err.message || 'Could not submit catch. Try again.')
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  return (
+    <div className="modal-backdrop" onClick={onClose}>
+      <div className="modal card" onClick={(e) => e.stopPropagation()}>
+        <h3>Log a Catch</h3>
+
+        <form className="modal__add-form" onSubmit={submit}>
+          <div className="field">
+            <span>Species</span>
+            <div className="catch-species-toggle">
+              {CATCH_SPECIES.map((s) => (
+                <button
+                  key={s}
+                  type="button"
+                  className={`catch-species-toggle__btn ${species === s ? 'is-active' : ''}`}
+                  onClick={() => setSpecies(s)}
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <label className="field">
+            <span>Team</span>
+            <select
+              value={teamId}
+              onChange={(e) => {
+                setTeamId(e.target.value)
+                setAngler('')
+              }}
+              required
+            >
+              <option value="" disabled>
+                Select your team
+              </option>
+              {teams.map((t) => (
+                <option key={t.id} value={t.id}>
+                  {t.name}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          {team &&
+            (team.anglers.length === 0 ? (
+              <p className="modal__note">
+                This team has no anglers yet. Ask a club admin to add them.
+              </p>
+            ) : (
+              <fieldset className="catch-angler-picker">
+                <legend>Angler</legend>
+                {team.anglers.map((name) => (
+                  <label key={name} className="catch-angler-picker__option">
+                    <input
+                      type="radio"
+                      name="angler"
+                      value={name}
+                      checked={angler === name}
+                      onChange={() => setAngler(name)}
+                    />
+                    {name}
+                  </label>
+                ))}
+              </fieldset>
+            ))}
+
+          {existing && (
+            <p className="modal__note">
+              {existing.verified
+                ? `Already verified: ${existing.angler} — ${existing.inches}" — this can't be changed.`
+                : `Currently on file: ${existing.angler} — ${existing.inches}". Submitting will replace it.`}
+            </p>
+          )}
+
+          <label className="field">
+            <span>Length (inches)</span>
+            <input
+              type="number"
+              min="1"
+              step="0.1"
+              value={inches}
+              onChange={(e) => setInches(e.target.value)}
+              required
+            />
+          </label>
+
+          <label className="field">
+            <span>Photo</span>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => setFile(e.target.files?.[0] || null)}
+              required
+            />
+          </label>
+
+          {error && <p className="modal__error">{error}</p>}
+
+          <div className="modal__actions">
+            <button type="button" className="btn" onClick={onClose}>
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="btn btn-solid"
+              disabled={busy || !teamId || !angler || !inches || !file || existing?.verified}
+            >
+              {busy ? 'Submitting…' : 'Submit Catch'}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  )
+}
+
+function CatchCell({ catchData, isAdmin, onVerify, onRemove }) {
+  if (!catchData) {
+    return <div className="catch-cell catch-cell--empty">—</div>
+  }
+
+  return (
+    <div className="catch-cell">
+      <img className="catch-cell__photo" src={catchData.photo} alt={`${catchData.species} catch`} />
+      <span className="catch-cell__inches">
+        {catchData.inches}&quot;
+        {catchData.verified && (
+          <span className="catch-cell__check" title="Verified by admin">
+            ✓
+          </span>
+        )}
+      </span>
+      <span className="catch-cell__angler">{catchData.angler}</span>
+      {isAdmin && (
+        <div className="catch-cell__admin">
+          <button type="button" onClick={() => onVerify(catchData.id, !catchData.verified)}>
+            {catchData.verified ? 'Unverify' : 'Verify'}
+          </button>
+          <button type="button" onClick={() => onRemove(catchData.id, catchData.photoPath)}>
+            Remove
+          </button>
+        </div>
+      )}
+    </div>
+  )
+}
+
+function LiveLeaderboardSection() {
+  const { teams, loading: teamsLoading } = useTournamentTeams()
+  const { catchesByTeam, loading: catchesLoading } = useTournamentCatches()
+  const { isAdmin } = useAdminAuth()
+  const [showModal, setShowModal] = useState(false)
+
+  const loading = teamsLoading || catchesLoading
+
+  const ranked = teams
+    .map((team) => ({
+      ...team,
+      catches: catchesByTeam[team.id] || {},
+      total: computeTeamTotal(catchesByTeam[team.id]),
+    }))
+    .sort((a, b) => b.total - a.total)
+
+  const verify = (id, verified) => {
+    setCatchVerified(id, verified).catch(() => {})
+  }
+
+  const remove = (id, photoPath) => {
+    if (window.confirm('Remove this catch?')) {
+      removeCatch(id, photoPath).catch(() => {})
+    }
+  }
+
+  return (
+    <section className="card tournament-liveboard">
+      <div className="tournament-liveboard__head">
+        <div>
+          <h2 className="tournament-awards__heading">Inshore Slam Live Leaderboard</h2>
+          <p className="tournament-awards__rule">
+            Each team can log one Snook, one Redfish, and one Trout. A team&apos;s total is the
+            combined inches of all three.
+          </p>
+        </div>
+        <button type="button" className="btn btn-solid" onClick={() => setShowModal(true)}>
+          Log a Catch
+        </button>
+      </div>
+
+      {loading ? (
+        <p className="species-page__loading">Loading leaderboard…</p>
+      ) : teams.length === 0 ? (
+        <p className="admin-roster__empty">No teams yet. Check back soon.</p>
+      ) : (
+        <div className="liveboard-scroll">
+          <div className="liveboard-table">
+            <div className="liveboard-table__row liveboard-table__row--head">
+              <span>Rank</span>
+              <span>Team</span>
+              <span>Snook</span>
+              <span>Redfish</span>
+              <span>Trout</span>
+              <span>Total</span>
+            </div>
+            {ranked.map((team, i) => (
+              <div key={team.id} className="liveboard-table__row">
+                <span className="liveboard-table__rank">{i + 1}</span>
+                <span className="liveboard-table__team">{team.name}</span>
+                <CatchCell
+                  catchData={team.catches.Snook}
+                  isAdmin={isAdmin}
+                  onVerify={verify}
+                  onRemove={remove}
+                />
+                <CatchCell
+                  catchData={team.catches.Redfish}
+                  isAdmin={isAdmin}
+                  onVerify={verify}
+                  onRemove={remove}
+                />
+                <CatchCell
+                  catchData={team.catches.Trout}
+                  isAdmin={isAdmin}
+                  onVerify={verify}
+                  onRemove={remove}
+                />
+                <span className="liveboard-table__total">{team.total}&quot;</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {showModal && (
+        <LogCatchModal
+          teams={teams}
+          catchesByTeam={catchesByTeam}
+          onClose={() => setShowModal(false)}
+        />
+      )}
+    </section>
+  )
+}
+
 function Tournament() {
   const [active, setActive] = useState(SECTIONS[0])
 
@@ -463,11 +743,14 @@ function Tournament() {
 
       {active === 'Awards' && <AwardsSection />}
 
+      {active === 'Inshore Slam Live Leaderboard' && <LiveLeaderboardSection />}
+
       {active === 'Sponsorship' && <SponsorshipSection />}
 
       {active !== 'Home' &&
         active !== 'Registration' &&
         active !== 'Awards' &&
+        active !== 'Inshore Slam Live Leaderboard' &&
         active !== 'Sponsorship' && (
         <section className="card tournament-tbd">
           <p className="tournament-tbd__label">{active}</p>
