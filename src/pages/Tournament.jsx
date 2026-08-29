@@ -300,7 +300,9 @@ function AwardsSection() {
   return (
     <section className="card tournament-awards">
       <h2 className="tournament-awards__heading">Awards</h2>
-      <p className="tournament-awards__rule">Anglers may only win one award category.</p>
+      <p className="tournament-awards__rule">
+        Teams (including individual anglers) can only win one award category.
+      </p>
 
       <h3 className="tournament-awards__group-title">Slam Categories</h3>
       <ul className="tournament-awards__list">
