@@ -1,8 +1,21 @@
+.tournament-tabs-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
 .tournament-tabs {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-top: 1.25rem;
+}
+
+.tournament-live-leaderboard {
+  white-space: nowrap;
+  margin-left: auto;
 }
 
 .tournament-tabs__btn {
