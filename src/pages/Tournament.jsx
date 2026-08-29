@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { addRegistration, MAX_ANGLERS, SHIRT_SIZES } from '../data/registration.js'
 import logo from '../assets/logo.png'
 import snookFish from '../assets/sponsor-tier-snook.png'
@@ -402,17 +403,23 @@ function Tournament() {
       <p className="eyebrow">Compete</p>
       <h1 className="section-title">John Carroll High School Inshore Slam</h1>
 
-      <div className="tournament-tabs">
-        {SECTIONS.map((section) => (
-          <button
-            key={section}
-            type="button"
-            className={`tournament-tabs__btn ${active === section ? 'is-active' : ''}`}
-            onClick={() => setActive(section)}
-          >
-            {section}
-          </button>
-        ))}
+      <div className="tournament-tabs-row">
+        <div className="tournament-tabs">
+          {SECTIONS.map((section) => (
+            <button
+              key={section}
+              type="button"
+              className={`tournament-tabs__btn ${active === section ? 'is-active' : ''}`}
+              onClick={() => setActive(section)}
+            >
+              {section}
+            </button>
+          ))}
+        </div>
+
+        <Link to="/leaderboard" className="btn btn-solid tournament-live-leaderboard">
+          Live Leaderboard
+        </Link>
       </div>
 
       {active === 'Home' && (
