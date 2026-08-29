@@ -284,7 +284,7 @@ const SLAM_AWARDS = [
   {
     name: 'Top JCHS Fishing Club Member',
     description:
-      "Highest total inches across Snook, Redfish, and Trout — you don't need to catch all three species, just the biggest total.",
+      'Individual Award — Highest total inches caught across biggest Snook, Redfish, and Trout for one JCHS Club member.',
   },
   {
     name: 'Top Lady Angler',
