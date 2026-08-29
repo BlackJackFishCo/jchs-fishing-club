@@ -115,34 +115,63 @@
   border-top: 1px solid rgba(245, 197, 24, 0.25);
 }
 
-.tournament-awards__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.award-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.award-card {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(245, 197, 24, 0.2);
+  border-radius: var(--radius);
 }
 
-.tournament-awards__list li {
+.award-photo-placeholder {
+  aspect-ratio: 4 / 3;
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  background: rgba(0, 0, 0, 0.25);
+  border: 2px dashed rgba(245, 197, 24, 0.4);
+  border-radius: calc(var(--radius) - 4px);
+  color: var(--color-gold-soft);
 }
 
-.tournament-awards__list strong {
+.award-photo-placeholder svg {
+  width: 40px;
+  height: 40px;
+}
+
+.award-photo-placeholder span {
+  font-family: var(--font-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.68rem;
+}
+
+.award-card__title {
   color: var(--color-gold);
   font-family: var(--font-eyebrow);
   text-transform: uppercase;
   letter-spacing: 0.03em;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
+  margin: 0 0 0.35rem;
 }
 
-.tournament-awards__list span {
+.award-card__desc {
   color: var(--color-muted);
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   line-height: 1.4;
+  margin: 0;
 }
 
 .tournament-info-grid {

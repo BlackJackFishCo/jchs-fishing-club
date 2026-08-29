@@ -297,6 +297,31 @@ const SPECIES_AWARDS = [
   { name: 'Top Trout', description: 'Longest single Trout.' },
 ]
 
+function AwardPhotoPlaceholder() {
+  return (
+    <div className="award-photo-placeholder" aria-hidden="true">
+      <svg viewBox="0 0 64 64">
+        <rect x="8" y="18" width="48" height="34" rx="4" fill="none" stroke="currentColor" strokeWidth="2.5" />
+        <path d="M20 18l3.5-5h17l3.5 5" fill="none" stroke="currentColor" strokeWidth="2.5" />
+        <circle cx="32" cy="35" r="10" fill="none" stroke="currentColor" strokeWidth="2.5" />
+      </svg>
+      <span>Photo Coming Soon</span>
+    </div>
+  )
+}
+
+function AwardCard({ award }) {
+  return (
+    <div className="award-card">
+      <AwardPhotoPlaceholder />
+      <div className="award-card__body">
+        <h4 className="award-card__title">{award.name}</h4>
+        <p className="award-card__desc">{award.description}</p>
+      </div>
+    </div>
+  )
+}
+
 function AwardsSection() {
   return (
     <section className="card tournament-awards">
@@ -306,24 +331,18 @@ function AwardsSection() {
       </p>
 
       <h3 className="tournament-awards__group-title">Slam Categories</h3>
-      <ul className="tournament-awards__list">
+      <div className="award-grid">
         {SLAM_AWARDS.map((award) => (
-          <li key={award.name}>
-            <strong>{award.name}</strong>
-            <span>{award.description}</span>
-          </li>
+          <AwardCard key={award.name} award={award} />
         ))}
-      </ul>
+      </div>
 
       <h3 className="tournament-awards__group-title">Species Categories</h3>
-      <ul className="tournament-awards__list">
+      <div className="award-grid">
         {SPECIES_AWARDS.map((award) => (
-          <li key={award.name}>
-            <strong>{award.name}</strong>
-            <span>{award.description}</span>
-          </li>
+          <AwardCard key={award.name} award={award} />
         ))}
-      </ul>
+      </div>
     </section>
   )
 }
