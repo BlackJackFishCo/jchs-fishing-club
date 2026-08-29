@@ -214,7 +214,7 @@ function SponsorshipSection() {
             )}
             <div className="sponsor-card__body">
               <div className="sponsor-card__head">
-                <h3>{tier.name}</h3>
+                <h3>{tier.name} Sponsor</h3>
                 <span className="sponsor-card__price">{tier.price}</span>
               </div>
               <ul className="sponsor-card__perks">
