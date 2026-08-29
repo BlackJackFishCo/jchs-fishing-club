@@ -96,12 +96,12 @@ function renderTile(tile, caught, total) {
     <Link key={tile.to} to={tile.to} className={`tile card ${tile.photo ? 'tile--photo' : ''}`}>
       {tile.photo && <img className="tile__photo" src={tile.photo} alt="" aria-hidden="true" />}
       {!tile.photo && <span className="tile__icon">{tile.icon}</span>}
-      <span className="tile__label">{tile.label}</span>
       {tile.to === '/species' && (
         <span className="tile__meta">
           {caught} / {total} caught
         </span>
       )}
+      <span className="tile__label">{tile.label}</span>
     </Link>
   )
 }
