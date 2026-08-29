@@ -274,12 +274,12 @@ const SLAM_AWARDS = [
   {
     name: 'Top Team',
     description:
-      "Highest combined inches across Snook, Redfish, and Trout — you don't need to catch all three species, just the biggest total.",
+      "Highest combined inches for your team across Snook, Redfish, and Trout — you don't need to catch all three species, just the biggest total.",
   },
   {
     name: 'Top Junior Angler (Under 16)',
     description:
-      "Highest total inches across Snook, Redfish, and Trout — you don't need to catch all three species, just the biggest total.",
+      'Individual Award — Highest total inches across Snook, Redfish, and Trout for one junior angler.',
   },
   {
     name: 'Top JCHS Fishing Club Member',
