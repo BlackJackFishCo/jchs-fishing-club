@@ -100,6 +100,12 @@
 .tournament-awards__rule {
   color: var(--color-muted);
   font-style: italic;
+  margin: 0 0 0.5rem;
+}
+
+.tournament-awards__example {
+  color: var(--color-muted);
+  font-size: 0.88rem;
   margin: 0 0 1.5rem;
 }
 
