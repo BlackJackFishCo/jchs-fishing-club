@@ -34,6 +34,7 @@ const SPONSOR_TIERS = [
       'Company Logo on Leader Board during the John Carroll High School Inshore Slam',
       '2 Social Media Mentions on JCHS Fishing Club Accounts',
       'In Person Activation Space at the Inshore Slam',
+      'Ability to Distribute Marketing Materials or Samples in Tournament Team Buckets',
     ],
   },
   {
@@ -46,6 +47,7 @@ const SPONSOR_TIERS = [
       'Company Logo and Website Link on JCHS Fishing Club Website',
       'Company Logo on Ribbon Board during the John Carroll High School Inshore Slam',
       'In Person Activation Space at the Inshore Slam',
+      'Ability to Distribute Marketing Materials or Samples in Tournament Team Buckets',
     ],
   },
   {
@@ -56,6 +58,7 @@ const SPONSOR_TIERS = [
       'Company Logo on Event Banners and Leader Board',
       '10 JCHS Fishing Club Raffle Tickets',
       'Company Logo and Website Link on JCHS Fishing Club Website',
+      'Ability to Distribute Marketing Materials or Samples in Tournament Team Buckets',
     ],
   },
   {
@@ -65,6 +68,7 @@ const SPONSOR_TIERS = [
       '1 Tournament Entry',
       '5 JCHS Fishing Club Raffle Tickets',
       'Company Logo and Website Link on JCHS Fishing Club Website',
+      'Ability to Distribute Marketing Materials or Samples in Tournament Team Buckets',
     ],
   },
 ]
