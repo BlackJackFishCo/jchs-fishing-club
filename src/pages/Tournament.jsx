@@ -45,6 +45,7 @@ const SPONSOR_TIERS = [
       '15 JCHS Fishing Club Tickets',
       'Company Logo and Website Link on JCHS Fishing Club Website',
       'Company Logo on Ribbon Board during the John Carroll High School Inshore Slam',
+      'In Person Activation Space at the Inshore Slam',
     ],
   },
   {
