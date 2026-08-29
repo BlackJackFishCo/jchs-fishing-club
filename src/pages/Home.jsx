@@ -8,6 +8,7 @@ import nlbnLogo from '../assets/sponsor-nlbn.png'
 import bajioLogo from '../assets/sponsor-bajio.png'
 import snookCatch from '../assets/snook-catch.jpg'
 import volunteerCleanup from '../assets/volunteer-cleanup.jpg'
+import leaderboardPhoto from '../assets/leaderboard-photo.jpg'
 import './Home.css'
 
 const tiles = [
@@ -51,6 +52,7 @@ const tiles = [
 const leaderboardTile = {
   to: '/leaderboard',
   label: 'Club Leaderboard',
+  photo: leaderboardPhoto,
   icon: (
     <svg viewBox="0 0 64 64" aria-hidden="true">
       <rect x="8" y="34" width="14" height="20" fill="none" stroke="currentColor" strokeWidth="2.5" />
