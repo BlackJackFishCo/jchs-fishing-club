@@ -60,7 +60,11 @@ const SPONSOR_TIERS = [
   {
     name: 'Trout',
     price: '$500',
-    perks: ['1 Tournament Entry', '5 JCHS Fishing Club Raffle Tickets'],
+    perks: [
+      '1 Tournament Entry',
+      '5 JCHS Fishing Club Raffle Tickets',
+      'Company Logo and Website Link on JCHS Fishing Club Website',
+    ],
   },
 ]
 
