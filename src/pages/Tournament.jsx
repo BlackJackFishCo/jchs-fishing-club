@@ -20,6 +20,7 @@ const TIER_FISH = {
 const SECTIONS = ['Home', 'Registration', 'Rules', 'Sponsorship']
 
 const CONTACT_EMAIL = 'Jstelmacki@gmail.com'
+const REGISTRATION_OPEN = false
 
 const SPONSOR_TIERS = [
   {
@@ -113,6 +114,10 @@ function RegistrationSection() {
         anglers.
       </p>
 
+      {!REGISTRATION_OPEN && (
+        <p className="registration__notice">Registration is not open yet. Check back soon!</p>
+      )}
+
       {anglers.map((angler, index) => (
         <fieldset key={index} className="registration__angler">
           <legend>{index === 0 ? 'Angler 1 / Captain' : `Angler ${index + 1}`}</legend>
@@ -179,8 +184,8 @@ function RegistrationSection() {
 
       {error && <p className="modal__error">{error}</p>}
 
-      <button type="submit" className="btn btn-solid" disabled={busy}>
-        {busy ? 'Submitting…' : 'Submit Registration'}
+      <button type="submit" className="btn btn-solid" disabled={busy || !REGISTRATION_OPEN}>
+        {busy ? 'Submitting…' : REGISTRATION_OPEN ? 'Submit Registration' : 'Registration Not Open Yet'}
       </button>
     </form>
   )
