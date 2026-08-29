@@ -118,14 +118,18 @@
 }
 
 .tournament-awards__list strong {
-  color: var(--color-white);
-  font-family: var(--font-brand);
-  font-size: 1.05rem;
+  color: var(--color-gold);
+  font-family: var(--font-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .tournament-awards__list span {
   color: var(--color-muted);
   font-size: 0.92rem;
+  line-height: 1.4;
 }
 
 .tournament-info-grid {
