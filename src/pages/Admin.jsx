@@ -4,6 +4,14 @@ import { useRoster, addRosterName, removeRosterName } from '../data/roster.js'
 import { useAdmins, addAdmin, removeAdmin } from '../data/admins.js'
 import { useSpeciesBoard, TOTAL_SPECIES } from '../data/species.js'
 import { useRegistrations } from '../data/registration.js'
+import {
+  useTournamentTeams,
+  seedPlaceholderTeams,
+  addTeam,
+  updateTeam,
+  removeTeam,
+  MAX_TEAM_ANGLERS,
+} from '../data/tournamentLeaderboard.js'
 import './Admin.css'
 
 function LoginForm() {
@@ -206,6 +214,163 @@ function RosterManager() {
             </li>
           ))}
         </ul>
+      )}
+    </section>
+  )
+}
+
+function TeamRow({ team }) {
+  const [name, setName] = useState(team.name)
+  const [anglers, setAnglers] = useState([
+    team.anglers[0] || '',
+    team.anglers[1] || '',
+    team.anglers[2] || '',
+    team.anglers[3] || '',
+  ])
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState('')
+
+  const dirty = name !== team.name || anglers.some((a, i) => a !== (team.anglers[i] || ''))
+
+  const save = async () => {
+    setBusy(true)
+    setError('')
+    try {
+      await updateTeam(team.id, { name, anglers })
+    } catch (err) {
+      setError(err.message || 'Could not save.')
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  const remove = async () => {
+    if (!window.confirm(`Remove ${team.name}? This can't be undone.`)) return
+    try {
+      await removeTeam(team.id)
+    } catch {
+      setError('Could not remove team.')
+    }
+  }
+
+  return (
+    <tr>
+      <td>
+        <input
+          className="team-roster__input"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </td>
+      {anglers.map((angler, i) => (
+        <td key={i}>
+          <input
+            className="team-roster__input"
+            value={angler}
+            placeholder={`Angler ${i + 1}`}
+            onChange={(e) =>
+              setAnglers((prev) => prev.map((a, idx) => (idx === i ? e.target.value : a)))
+            }
+          />
+        </td>
+      ))}
+      <td className="team-roster__actions">
+        <button type="button" className="btn" disabled={!dirty || busy} onClick={save}>
+          {busy ? 'Saving…' : 'Save'}
+        </button>
+        <button type="button" className="admin-roster__remove" onClick={remove}>
+          Remove
+        </button>
+        {error && <span className="modal__error">{error}</span>}
+      </td>
+    </tr>
+  )
+}
+
+function TeamRosterManager() {
+  const { teams, loading } = useTournamentTeams()
+  const [newTeamName, setNewTeamName] = useState('')
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState('')
+
+  const seed = async () => {
+    setBusy(true)
+    setError('')
+    try {
+      await seedPlaceholderTeams()
+    } catch (err) {
+      setError(err.message || 'Could not seed teams.')
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  const submitNewTeam = async (e) => {
+    e.preventDefault()
+    if (!newTeamName.trim()) return
+    setBusy(true)
+    setError('')
+    try {
+      await addTeam(newTeamName)
+      setNewTeamName('')
+    } catch (err) {
+      setError(err.message || 'Could not add team.')
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  return (
+    <section className="admin-report team-roster card">
+      <h2>Tournament Teams ({teams.length})</h2>
+      <p className="admin-roster__note">
+        Teams and anglers shown here populate the Team and Angler pickers on the Inshore Slam
+        Live Leaderboard. Each team can have up to {MAX_TEAM_ANGLERS} anglers.
+      </p>
+
+      {!loading && teams.length === 0 && (
+        <button type="button" className="btn btn-solid" disabled={busy} onClick={seed}>
+          {busy ? 'Adding…' : 'Add 20 Placeholder Teams'}
+        </button>
+      )}
+
+      <form className="admin-roster__add" onSubmit={submitNewTeam}>
+        <input
+          value={newTeamName}
+          onChange={(e) => setNewTeamName(e.target.value)}
+          placeholder="Add another team (e.g. Reel Deal)"
+        />
+        <button type="submit" className="btn btn-solid" disabled={busy || !newTeamName.trim()}>
+          Add
+        </button>
+      </form>
+
+      {error && <p className="modal__error">{error}</p>}
+
+      {loading ? (
+        <p className="species-page__loading">Loading teams…</p>
+      ) : teams.length === 0 ? (
+        <p className="admin-roster__empty">No teams yet.</p>
+      ) : (
+        <div className="team-roster__scroll">
+          <table className="admin-report__table team-roster__table">
+            <thead>
+              <tr>
+                <th>Team Name</th>
+                <th>Angler 1</th>
+                <th>Angler 2</th>
+                <th>Angler 3</th>
+                <th>Angler 4</th>
+                <th aria-label="Actions"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {teams.map((team) => (
+                <TeamRow key={team.id} team={team} />
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </section>
   )
@@ -416,6 +581,7 @@ function Admin() {
             </button>
           </div>
           <RosterManager />
+          <TeamRosterManager />
           <AdminsManager currentUid={user.uid} />
           <RegistrationReport />
           <CatchReport />
