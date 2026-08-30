@@ -411,12 +411,13 @@ function RulesSection() {
   )
 }
 
-const SLAM_AWARDS = [
-  {
-    name: 'Top Team',
-    description:
-      "Highest combined inches for your team across Snook, Redfish, and Trout — you don't need to catch all three species, just the biggest total.",
-  },
+const TOP_TEAM_AWARD = {
+  name: 'Top Team',
+  description:
+    "Highest combined inches for your team across Snook, Redfish, and Trout — you don't need to catch all three species, just the biggest total.",
+}
+
+const INDIVIDUAL_AWARDS = [
   {
     name: 'Top Junior Angler (Under 16)',
     description:
@@ -440,9 +441,17 @@ const SPECIES_AWARDS = [
   { name: 'Top Trout', description: 'Longest single Trout.' },
 ]
 
-function AwardPhotoPlaceholder() {
+const BONUS_AWARD = {
+  name: '40" Club',
+  description: 'Awarded to any angler who lands a single Snook, Redfish, or Trout measuring 40 inches or longer.',
+}
+
+function AwardPhotoPlaceholder({ featured }) {
   return (
-    <div className="award-photo-placeholder" aria-hidden="true">
+    <div
+      className={`award-photo-placeholder ${featured ? 'award-photo-placeholder--featured' : ''}`}
+      aria-hidden="true"
+    >
       <svg viewBox="0 0 64 64">
         <rect x="8" y="18" width="48" height="34" rx="4" fill="none" stroke="currentColor" strokeWidth="2.5" />
         <path d="M20 18l3.5-5h17l3.5 5" fill="none" stroke="currentColor" strokeWidth="2.5" />
@@ -453,10 +462,10 @@ function AwardPhotoPlaceholder() {
   )
 }
 
-function AwardCard({ award }) {
+function AwardCard({ award, featured }) {
   return (
-    <div className="award-card">
-      <AwardPhotoPlaceholder />
+    <div className={`award-card ${featured ? 'award-card--featured' : ''}`}>
+      <AwardPhotoPlaceholder featured={featured} />
       <div className="award-card__body">
         <h4 className="award-card__title">{award.name}</h4>
         <p className="award-card__desc">{award.description}</p>
@@ -477,9 +486,13 @@ function AwardsSection() {
         Lady Angler.
       </p>
 
-      <h3 className="tournament-awards__group-title">Slam Categories</h3>
+      <div className="award-grid award-grid--featured">
+        <AwardCard award={TOP_TEAM_AWARD} featured />
+      </div>
+
+      <h3 className="tournament-awards__group-title">Individual Categories</h3>
       <div className="award-grid">
-        {SLAM_AWARDS.map((award) => (
+        {INDIVIDUAL_AWARDS.map((award) => (
           <AwardCard key={award.name} award={award} />
         ))}
       </div>
@@ -490,6 +503,11 @@ function AwardsSection() {
           <AwardCard key={award.name} award={award} />
         ))}
       </div>
+
+      <h3 className="tournament-awards__group-title">Bonus Award</h3>
+      <div className="award-grid award-grid--single">
+        <AwardCard award={BONUS_AWARD} />
+      </div>
     </section>
   )
 }
@@ -499,7 +517,7 @@ const EVENT_INFO = [
   { label: 'Captains Meeting', value: '0:00pm 00/2027' },
   { label: 'Lines In', value: '0:00am 00/2027' },
   { label: 'Lines Out', value: '0:00pm 00/2027' },
-  { label: 'Awards', value: '0:00pm 00/2026' },
+  { label: 'Awards', value: '0:00pm 00/2027' },
 ]
 
 function EventInfoRow() {
