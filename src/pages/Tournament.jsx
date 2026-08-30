@@ -734,7 +734,32 @@ function formatCatchTimestamp(submittedAt) {
   })
 }
 
-function CatchCell({ catchData, isAdmin, onVerify, onRemove }) {
+function PhotoLightbox({ catchData, onClose }) {
+  return (
+    <div className="modal-backdrop photo-lightbox" onClick={onClose}>
+      <div className="photo-lightbox__inner" onClick={(e) => e.stopPropagation()}>
+        <button
+          type="button"
+          className="photo-lightbox__close"
+          onClick={onClose}
+          aria-label="Close"
+        >
+          ✕
+        </button>
+        <img
+          className="photo-lightbox__img"
+          src={catchData.photo}
+          alt={`${catchData.species} catch`}
+        />
+        <p className="photo-lightbox__caption">
+          {catchData.species} — {catchData.inches}&quot; — {catchData.angler}
+        </p>
+      </div>
+    </div>
+  )
+}
+
+function CatchCell({ catchData, isAdmin, onVerify, onRemove, onZoom }) {
   if (!catchData) {
     return <div className="catch-cell catch-cell--empty">—</div>
   }
@@ -743,7 +768,14 @@ function CatchCell({ catchData, isAdmin, onVerify, onRemove }) {
 
   return (
     <div className="catch-cell">
-      <img className="catch-cell__photo" src={catchData.photo} alt={`${catchData.species} catch`} />
+      <button
+        type="button"
+        className="catch-cell__photo-btn"
+        onClick={() => onZoom(catchData)}
+        aria-label={`Zoom in on ${catchData.species} catch photo`}
+      >
+        <img className="catch-cell__photo" src={catchData.photo} alt={`${catchData.species} catch`} />
+      </button>
       <span className="catch-cell__inches">
         {catchData.inches}&quot;
         {catchData.verified && (
@@ -773,6 +805,7 @@ function LiveLeaderboardSection() {
   const { catchesByTeam, loading: catchesLoading } = useTournamentCatches()
   const { isAdmin } = useAdminAuth()
   const [showModal, setShowModal] = useState(false)
+  const [zoomCatch, setZoomCatch] = useState(null)
 
   const loading = teamsLoading || catchesLoading
 
@@ -833,18 +866,21 @@ function LiveLeaderboardSection() {
                   isAdmin={isAdmin}
                   onVerify={verify}
                   onRemove={remove}
+                  onZoom={setZoomCatch}
                 />
                 <CatchCell
                   catchData={team.catches.Redfish}
                   isAdmin={isAdmin}
                   onVerify={verify}
                   onRemove={remove}
+                  onZoom={setZoomCatch}
                 />
                 <CatchCell
                   catchData={team.catches.Trout}
                   isAdmin={isAdmin}
                   onVerify={verify}
                   onRemove={remove}
+                  onZoom={setZoomCatch}
                 />
                 <span className="liveboard-table__total">{team.total}&quot;</span>
               </div>
@@ -860,6 +896,8 @@ function LiveLeaderboardSection() {
           onClose={() => setShowModal(false)}
         />
       )}
+
+      {zoomCatch && <PhotoLightbox catchData={zoomCatch} onClose={() => setZoomCatch(null)} />}
     </section>
   )
 }
