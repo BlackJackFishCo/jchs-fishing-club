@@ -361,6 +361,16 @@
   align-items: center;
 }
 
+.catch-cell__photo-btn {
+  display: block;
+  width: 100%;
+  max-width: 90px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: zoom-in;
+}
+
 .catch-cell__photo {
   width: 100%;
   max-width: 90px;
@@ -368,6 +378,53 @@
   object-fit: cover;
   border-radius: 6px;
   border: 1px solid rgba(245, 197, 24, 0.25);
+}
+
+.photo-lightbox__inner {
+  position: relative;
+  width: 100%;
+  max-width: min(90vw, 640px);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.photo-lightbox__img {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: var(--radius);
+  border: 1px solid rgba(245, 197, 24, 0.3);
+  background: var(--color-black-soft);
+}
+
+.photo-lightbox__caption {
+  color: var(--color-white);
+  font-family: var(--font-brand);
+  font-size: 1.05rem;
+  text-align: center;
+  margin: 0;
+}
+
+.photo-lightbox__close {
+  position: absolute;
+  top: -0.9rem;
+  right: -0.9rem;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  color: var(--color-black);
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .catch-cell__inches {
