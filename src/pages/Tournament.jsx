@@ -470,7 +470,7 @@ const INDIVIDUAL_AWARDS = [
   {
     name: 'Top Lady Angler',
     description:
-      "Highest total inches across Snook, Redfish, and Trout — you don't need to catch all three species, just the biggest total.",
+      "Individual Award — Highest combined inches for this Lady Angler's largest Snook, Redfish, and Trout. You do not need to catch all three to qualify for this award.",
   },
 ]
 
