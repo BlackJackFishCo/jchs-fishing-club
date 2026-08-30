@@ -554,7 +554,7 @@ function RegistrationReport() {
           <p className="admin-roster__note">
             Every boat registered for the John Carroll High School Inshore Slam, with
             each angler&apos;s
-            contact info and shirt size.
+            contact info, shirt size, and award-eligibility flags.
           </p>
         </div>
         <button
@@ -587,6 +587,9 @@ function RegistrationReport() {
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Shirt Size</th>
+                    <th>Junior</th>
+                    <th>Club Member</th>
+                    <th>Female</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -598,6 +601,9 @@ function RegistrationReport() {
                       <td>{a.email}</td>
                       <td>{a.phone}</td>
                       <td>{a.shirtSize || '—'}</td>
+                      <td>{a.isJunior ? 'Yes' : 'No'}</td>
+                      <td>{a.isClubMember ? 'Yes' : 'No'}</td>
+                      <td>{a.isFemale ? 'Yes' : 'No'}</td>
                     </tr>
                   ))}
                 </tbody>

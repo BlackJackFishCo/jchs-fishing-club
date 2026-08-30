@@ -860,6 +860,26 @@
   max-width: 200px;
 }
 
+.registration__questions {
+  gap: 0.5rem;
+}
+
+.registration__checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-white);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.registration__checkbox input[type='checkbox'] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--color-gold);
+  cursor: pointer;
+}
+
 .registration-success {
   margin-top: 1.25rem;
   padding: 2.5rem 2rem;
