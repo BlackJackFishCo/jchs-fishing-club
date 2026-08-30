@@ -460,7 +460,7 @@ const INDIVIDUAL_AWARDS = [
   {
     name: 'Top Junior Angler (Under 16)',
     description:
-      'Individual Award — Highest total inches across Snook, Redfish, and Trout for one junior angler.',
+      "Individual Award — Highest combined inches for the Junior Angler's largest Snook, Redfish, and Trout. You do not need to catch all three to qualify for this award.",
   },
   {
     name: 'Top JCHS Fishing Club Member',
