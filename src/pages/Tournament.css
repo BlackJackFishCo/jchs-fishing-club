@@ -819,6 +819,14 @@
   background: linear-gradient(180deg, var(--color-royal-dim), var(--color-black-soft));
 }
 
+.registration__price {
+  font-family: var(--font-brand);
+  font-size: 1.3rem;
+  color: var(--color-gold);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
 .registration__intro {
   color: var(--color-muted);
   margin: 0;
