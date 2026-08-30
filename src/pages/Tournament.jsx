@@ -573,10 +573,22 @@ function LogCatchModal({ teams, catchesByTeam, onClose }) {
   )
 }
 
+function formatCatchTimestamp(submittedAt) {
+  if (!submittedAt?.toDate) return null
+  return submittedAt.toDate().toLocaleString(undefined, {
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+  })
+}
+
 function CatchCell({ catchData, isAdmin, onVerify, onRemove }) {
   if (!catchData) {
     return <div className="catch-cell catch-cell--empty">—</div>
   }
+
+  const timestamp = formatCatchTimestamp(catchData.submittedAt)
 
   return (
     <div className="catch-cell">
@@ -590,6 +602,7 @@ function CatchCell({ catchData, isAdmin, onVerify, onRemove }) {
         )}
       </span>
       <span className="catch-cell__angler">{catchData.angler}</span>
+      {timestamp && <span className="catch-cell__time">{timestamp}</span>}
       {isAdmin && (
         <div className="catch-cell__admin">
           <button type="button" onClick={() => onVerify(catchData.id, !catchData.verified)}>
