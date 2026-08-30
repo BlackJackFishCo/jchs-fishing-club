@@ -221,7 +221,7 @@
   font-family: var(--font-eyebrow);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  font-size: 0.72rem;
+  font-size: 1.4rem;
   color: var(--color-gold-soft);
   padding-bottom: 0.5rem;
   border-bottom: 1px solid rgba(245, 197, 24, 0.25);
