@@ -149,9 +149,10 @@
 }
 
 .award-card--featured {
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  text-align: center;
+  gap: 1rem;
   padding: 1.5rem;
   border-color: rgba(245, 197, 24, 0.4);
 }
@@ -162,12 +163,7 @@
 
 .award-card--featured .award-card__desc {
   font-size: 1rem;
-}
-
-@media (max-width: 640px) {
-  .award-card--featured {
-    flex-direction: column;
-  }
+  max-width: 480px;
 }
 
 .award-photo-placeholder {
@@ -184,14 +180,8 @@
 }
 
 .award-photo-placeholder--featured {
-  width: 260px;
+  width: min(100%, 320px);
   flex-shrink: 0;
-}
-
-@media (max-width: 640px) {
-  .award-photo-placeholder--featured {
-    width: 100%;
-  }
 }
 
 .award-photo-placeholder svg {
