@@ -608,7 +608,7 @@ function CatchCell({ catchData, isAdmin, onVerify, onRemove }) {
           <button type="button" onClick={() => onVerify(catchData.id, !catchData.verified)}>
             {catchData.verified ? 'Unverify' : 'Verify'}
           </button>
-          <button type="button" onClick={() => onRemove(catchData.id, catchData.photoPath)}>
+          <button type="button" onClick={() => onRemove(catchData.id)}>
             Remove
           </button>
         </div>
@@ -637,9 +637,9 @@ function LiveLeaderboardSection() {
     setCatchVerified(id, verified).catch(() => {})
   }
 
-  const remove = (id, photoPath) => {
-    if (window.confirm('Remove this catch?')) {
-      removeCatch(id, photoPath).catch(() => {})
+  const remove = (id) => {
+    if (window.confirm("Remove this catch? You can restore it later from the Admin page.")) {
+      removeCatch(id).catch(() => {})
     }
   }
 

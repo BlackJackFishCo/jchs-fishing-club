@@ -105,7 +105,7 @@ export async function removeTeam(teamId) {
 }
 
 export function useTournamentCatches() {
-  const [catchesByTeam, setCatchesByTeam] = useState({})
+  const [allCatches, setAllCatches] = useState([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -113,13 +113,7 @@ export function useTournamentCatches() {
     const unsub = onSnapshot(
       q,
       (snap) => {
-        const grouped = {}
-        snap.docs.forEach((d) => {
-          const data = { id: d.id, ...d.data() }
-          if (!grouped[data.teamId]) grouped[data.teamId] = {}
-          grouped[data.teamId][data.species] = data
-        })
-        setCatchesByTeam(grouped)
+        setAllCatches(snap.docs.map((d) => ({ id: d.id, ...d.data() })))
         setLoading(false)
       },
       () => setLoading(false),
@@ -127,7 +121,19 @@ export function useTournamentCatches() {
     return () => unsub()
   }, [])
 
-  return { catchesByTeam, loading }
+  const catchesByTeam = {}
+  const deletedCatches = []
+  allCatches.forEach((c) => {
+    if (c.deleted) {
+      deletedCatches.push(c)
+    } else {
+      if (!catchesByTeam[c.teamId]) catchesByTeam[c.teamId] = {}
+      catchesByTeam[c.teamId][c.species] = c
+    }
+  })
+  deletedCatches.sort((a, b) => (b.deletedAt?.toMillis?.() || 0) - (a.deletedAt?.toMillis?.() || 0))
+
+  return { catchesByTeam, deletedCatches, loading }
 }
 
 export async function submitCatch({ teamId, species, angler, inches, file }) {
@@ -145,6 +151,7 @@ export async function submitCatch({ teamId, species, angler, inches, file }) {
     photo,
     photoPath: path,
     verified: false,
+    deleted: false,
     submittedAt: serverTimestamp(),
   })
 }
@@ -153,7 +160,21 @@ export async function setCatchVerified(catchId, verified) {
   await updateDoc(doc(db, 'tournamentCatches', catchId), { verified })
 }
 
-export async function removeCatch(catchId, photoPath) {
+export async function removeCatch(catchId) {
+  await updateDoc(doc(db, 'tournamentCatches', catchId), {
+    deleted: true,
+    deletedAt: serverTimestamp(),
+  })
+}
+
+export async function restoreCatch(catchId) {
+  await updateDoc(doc(db, 'tournamentCatches', catchId), {
+    deleted: false,
+    deletedAt: null,
+  })
+}
+
+export async function permanentlyDeleteCatch(catchId, photoPath) {
   await deleteDoc(doc(db, 'tournamentCatches', catchId))
   if (photoPath) {
     try {

@@ -11,6 +11,9 @@ import {
   updateTeam,
   removeTeam,
   MAX_TEAM_ANGLERS,
+  useTournamentCatches,
+  restoreCatch,
+  permanentlyDeleteCatch,
 } from '../data/tournamentLeaderboard.js'
 import './Admin.css'
 
@@ -376,6 +379,71 @@ function TeamRosterManager() {
   )
 }
 
+function DeletedCatchesManager() {
+  const { teams } = useTournamentTeams()
+  const { deletedCatches, loading } = useTournamentCatches()
+  const [error, setError] = useState('')
+
+  const teamName = (teamId) => teams.find((t) => t.id === teamId)?.name || teamId
+
+  const restore = async (id) => {
+    try {
+      await restoreCatch(id)
+    } catch {
+      setError('Could not restore that catch.')
+    }
+  }
+
+  const purge = async (id, photoPath) => {
+    if (!window.confirm('Permanently delete this catch? This cannot be undone.')) return
+    try {
+      await permanentlyDeleteCatch(id, photoPath)
+    } catch {
+      setError('Could not permanently delete that catch.')
+    }
+  }
+
+  return (
+    <section className="admin-report team-roster card">
+      <h2>Recently Deleted Catches ({deletedCatches.length})</h2>
+      <p className="admin-roster__note">
+        Removing a catch on the Live Leaderboard sends it here instead of erasing it right away.
+        Restore a mistake, or permanently delete once you&apos;re sure.
+      </p>
+
+      {error && <p className="modal__error">{error}</p>}
+
+      {loading ? (
+        <p className="species-page__loading">Loading…</p>
+      ) : deletedCatches.length === 0 ? (
+        <p className="admin-roster__empty">Nothing deleted.</p>
+      ) : (
+        <ul className="admin-roster__list">
+          {deletedCatches.map((c) => (
+            <li key={c.id}>
+              <span>
+                {teamName(c.teamId)} — {c.species} — {c.angler} — {c.inches}&quot;
+              </span>
+              <span className="team-roster__actions">
+                <button type="button" className="btn" onClick={() => restore(c.id)}>
+                  Restore
+                </button>
+                <button
+                  type="button"
+                  className="admin-roster__remove"
+                  onClick={() => purge(c.id, c.photoPath)}
+                >
+                  Delete Forever
+                </button>
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  )
+}
+
 function CatchReport() {
   const { board, loading } = useSpeciesBoard()
   const { roster } = useRoster()
@@ -582,6 +650,7 @@ function Admin() {
           </div>
           <RosterManager />
           <TeamRosterManager />
+          <DeletedCatchesManager />
           <AdminsManager currentUid={user.uid} />
           <RegistrationReport />
           <CatchReport />

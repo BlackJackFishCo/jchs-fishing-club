@@ -63,15 +63,18 @@ service cloud.firestore {
         request.resource.data.photo is string &&
         request.resource.data.photoPath is string &&
         request.resource.data.verified == false &&
+        request.resource.data.deleted == false &&
         exists(/databases/$(database)/documents/tournamentTeams/$(request.resource.data.teamId));
 
       allow update: if
         isAdmin() ||
         (
           resource.data.verified == false &&
+          resource.data.deleted == false &&
           request.resource.data.teamId == resource.data.teamId &&
           request.resource.data.species == resource.data.species &&
           request.resource.data.verified == false &&
+          request.resource.data.deleted == false &&
           request.resource.data.angler is string &&
           request.resource.data.inches is number &&
           request.resource.data.inches > 0 &&
