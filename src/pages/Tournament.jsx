@@ -280,6 +280,137 @@ function HomeSection() {
   )
 }
 
+const RULES_INTRO = [
+  'These rules are subject to the sole interpretation, application, and discretion of the Tournament Director and consultation with the Rules Committee.',
+  'This is a catch-and-release team (1-4 anglers) format tournament and does not require that any fish be killed for a team to accumulate points. Please handle all fish with the upmost care for the best survival upon release.',
+  'Anglers will target Snook, Redfish, and Trout. Each fish will be measured by its Total Length.',
+]
+
+const RULES_EQUIPMENT = [
+  'Smartphone',
+  'A tournament-issued ruler',
+  'Token: Anglers will be instructed at the start of the event by notification through the scoring app on a common household item (Token) to include in each photo submitted for scoring.',
+]
+
+const RULES_SECTIONS = [
+  {
+    title: 'Fishing',
+    items: [
+      'Lines in, and the start of fishing shall begin at 6am on Saturday, September 00, 2027.',
+      'Lines out, there is no lines out time, however all fish must be logged into the JCHS Inshore Slam Tournament Page no later than 4 p.m. on September 00, 2027 to count for tournament. Website will lock at 4pm for submissions.',
+      'North Boundary ¼ Mile North of Sebastian Inlet (00.00.000N)',
+      'South Boundary ¼ Mile South of St. Lucie Inlet (00.00.000N)',
+      'No East or West Boundary',
+      'All anglers must have a valid Florida Fishing License.',
+      'Same angler must hook, fight and bring fish up to point of landing from the boat. No passing the rod. No wade fishing.',
+      'Maximum 4 rods fishing at any time.',
+      'All anglers must abide by all local, State, and Federal Rules and licensing restrictions on fishing for game fish with hook and line.',
+      'Anglers may use live, dead, and artificial bait.',
+      'Live chumming is allowed.',
+      'No fishing is allowed in an active marina.',
+    ],
+  },
+  {
+    title: 'After the Catch',
+    items: [
+      'No slot size is required for photo submission.',
+      'Total Length is defined as the distance from the most forward point of the fish’s head to the hindmost point of the pinched tail.',
+    ],
+    subsections: [
+      {
+        title: 'Measuring Fish',
+        items: [
+          'Each team shall include a Token to be determined at the start of the event in all photos submitted for scoring.',
+          'All measured fish lengths are only accepted on the official tournament ruler with the fish nose to the end and tail pinched to its largest measurement.',
+          'Closest ½ inch increments. (40.5 = 41 inches) (41.4 = 41 inches)',
+        ],
+        callout: 'DO NOT PULL THE TAPE MEASURE OVER THE FISH OR LAY THE TOKEN ON TOP OF THE FISH.',
+      },
+    ],
+  },
+  {
+    title: 'Fish Photos',
+    callout: 'THE ENTIRE FISH MUST BE IN THE PHOTOGRAPH AND THE TOKEN MUST BE VISIBLE.',
+    items: [
+      'Figure 1: Correct Measurement for Fish in Boat (Measuring Device and Token on Boat Deck NOT ON FISH).',
+      'Photographs that do not include the Token and/or that do not allow the Rules Committee to view the tape measure may be excluded at the sole discretion of the Tournament Director and Rules Committee.',
+      'If a fish or measurement is partially obstructed, the Tournament Director and Rules Committee has the sole authority to decide whether to exclude a fish in its entirety or give credit for the visible part of the fish.',
+    ],
+  },
+  {
+    title: 'Leader Board',
+    items: [
+      'Only the top scoring fish will be scored per species.',
+      'No rotten or mutilated fish will be counted.',
+      'Any technical difficulties with digital equipment will be dealt with on a case-by-case basis by the Tournament Director and Rules Committee.',
+      'In the event of a tie, the winner will be the first to log all of their fish. If there is a tie for the largest of a species, the first fish logged wins.',
+      'Cheaters will be disqualified and subjected to public ridiculing and a t-shirt that states "I cheated at a charity fishing tournament."',
+    ],
+  },
+  {
+    title: 'Weather',
+    items: [
+      'It is up to the discretion of the registered angler to determine whether his or her craft is seaworthy for that day’s weather conditions. Participants are encouraged to keep abreast of any marine or weather warnings.',
+      'In the case of tournament cancelation and no fish have been logged due to weather, prizes will turn into raffle format with each team in the raffle one time.',
+      'No refund of entry fees.',
+    ],
+  },
+]
+
+function RulesSubsection({ subsection }) {
+  return (
+    <div className="rules-subsection">
+      <h4 className="rules-subsection__title">{subsection.title}</h4>
+      <ul className="rules-list">
+        {subsection.items.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+      {subsection.callout && <p className="rules-callout">{subsection.callout}</p>}
+    </div>
+  )
+}
+
+function RulesSection() {
+  return (
+    <section className="card tournament-awards tournament-rules">
+      <h2 className="tournament-awards__heading">Rules</h2>
+
+      {RULES_INTRO.map((paragraph) => (
+        <p key={paragraph} className="tournament-awards__rule">
+          {paragraph}
+        </p>
+      ))}
+
+      <div className="rules-equipment">
+        <h3 className="tournament-awards__group-title">Each Team Must Be Equipped With</h3>
+        <ol className="rules-list rules-list--numbered">
+          {RULES_EQUIPMENT.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ol>
+      </div>
+
+      {RULES_SECTIONS.map((section) => (
+        <div key={section.title} className="rules-section">
+          <h3 className="tournament-awards__group-title">{section.title}</h3>
+          {section.callout && <p className="rules-callout">{section.callout}</p>}
+          {section.items && (
+            <ul className="rules-list">
+              {section.items.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          )}
+          {section.subsections?.map((subsection) => (
+            <RulesSubsection key={subsection.title} subsection={subsection} />
+          ))}
+        </div>
+      ))}
+    </section>
+  )
+}
+
 const SLAM_AWARDS = [
   {
     name: 'Top Team',
@@ -754,6 +885,8 @@ function Tournament() {
 
       {active === 'Registration' && <RegistrationSection />}
 
+      {active === 'Rules' && <RulesSection />}
+
       {active === 'Awards' && <AwardsSection />}
 
       {active === 'Inshore Slam Live Leaderboard' && <LiveLeaderboardSection />}
@@ -762,6 +895,7 @@ function Tournament() {
 
       {active !== 'Home' &&
         active !== 'Registration' &&
+        active !== 'Rules' &&
         active !== 'Awards' &&
         active !== 'Inshore Slam Live Leaderboard' &&
         active !== 'Sponsorship' && (
