@@ -465,7 +465,7 @@ const INDIVIDUAL_AWARDS = [
   {
     name: 'Top JCHS Fishing Club Member',
     description:
-      'Individual Award — Highest total inches caught across biggest Snook, Redfish, and Trout for one JCHS Club member.',
+      "Individual Award — Highest combined inches for the JCHS Fishing Club Member's largest Snook, Redfish, and Trout. You do not need to catch all three to qualify for this award.",
   },
   {
     name: 'Top Lady Angler',
