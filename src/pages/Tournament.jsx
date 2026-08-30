@@ -443,7 +443,7 @@ const SPECIES_AWARDS = [
 
 const BONUS_AWARD = {
   name: '40" Club',
-  description: 'Awarded to any angler who lands a single Snook, Redfish, or Trout measuring 40 inches or longer.',
+  description: 'Awarded to each angler who catches a 40" or longer Snook.',
 }
 
 function AwardPhotoPlaceholder({ featured }) {
@@ -580,7 +580,7 @@ function HeroLogos() {
 }
 
 function LogCatchModal({ teams, catchesByTeam, onClose }) {
-  const [species, setSpecies] = useState(CATCH_SPECIES[0])
+  const [species, setSpecies] = useState('')
   const [teamId, setTeamId] = useState('')
   const [angler, setAngler] = useState('')
   const [inches, setInches] = useState('')
@@ -593,7 +593,7 @@ function LogCatchModal({ teams, catchesByTeam, onClose }) {
 
   const submit = async (e) => {
     e.preventDefault()
-    if (!teamId || !angler || !inches || !file || existing?.verified) return
+    if (!species || !teamId || !angler || !inches || !file || existing?.verified) return
     setBusy(true)
     setError('')
     try {
@@ -711,7 +711,9 @@ function LogCatchModal({ teams, catchesByTeam, onClose }) {
             <button
               type="submit"
               className="btn btn-solid"
-              disabled={busy || !teamId || !angler || !inches || !file || existing?.verified}
+              disabled={
+                busy || !species || !teamId || !angler || !inches || !file || existing?.verified
+              }
             >
               {busy ? 'Submitting…' : 'Submit Catch'}
             </button>
