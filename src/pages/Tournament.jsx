@@ -52,10 +52,9 @@ const SPONSOR_TIERS = [
     price: '$2,500',
     perks: [
       '2 Tournament Entries (2 Boats)',
-      'Company Logo on Event Banner',
       '15 Raffle Tickets',
+      'Company Logo on Event Banner and Live Leaderboard',
       'Company Logo and Website Link on JCHS Fishing Club Website',
-      'Company Logo Leader Board during the John Carroll High School Inshore Slam',
       'In Person Activation Space at the Inshore Slam',
       'Ability to Distribute Marketing Materials or Samples in Tournament Team Buckets',
     ],
