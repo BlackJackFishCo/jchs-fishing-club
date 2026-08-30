@@ -83,7 +83,16 @@ const SPONSOR_TIERS = [
   },
 ]
 
-const EMPTY_ANGLER = { firstName: '', lastName: '', email: '', phone: '', shirtSize: '' }
+const EMPTY_ANGLER = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  phone: '',
+  shirtSize: '',
+  isJunior: false,
+  isClubMember: false,
+  isFemale: false,
+}
 
 function RegistrationSection() {
   const [anglers, setAnglers] = useState(
@@ -181,23 +190,53 @@ function RegistrationSection() {
             </label>
           </div>
 
-          <label className="field registration__shirt">
-            <span>Shirt Size{index === 0 ? '*' : ''}</span>
-            <select
-              value={angler.shirtSize}
-              onChange={(e) => updateAngler(index, 'shirtSize', e.target.value)}
-              required={index === 0}
-            >
-              <option value="" disabled>
-                Select size
-              </option>
-              {SHIRT_SIZES.map((size) => (
-                <option key={size} value={size}>
-                  {size}
+          <div className="registration__row">
+            <label className="field registration__shirt">
+              <span>Shirt Size{index === 0 ? '*' : ''}</span>
+              <select
+                value={angler.shirtSize}
+                onChange={(e) => updateAngler(index, 'shirtSize', e.target.value)}
+                required={index === 0}
+              >
+                <option value="" disabled>
+                  Select size
                 </option>
-              ))}
-            </select>
-          </label>
+                {SHIRT_SIZES.map((size) => (
+                  <option key={size} value={size}>
+                    {size}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <div className="field registration__questions">
+              <span>Angler Details</span>
+              <label className="registration__checkbox">
+                <input
+                  type="checkbox"
+                  checked={angler.isJunior}
+                  onChange={(e) => updateAngler(index, 'isJunior', e.target.checked)}
+                />
+                Junior Angler (16 or Under)
+              </label>
+              <label className="registration__checkbox">
+                <input
+                  type="checkbox"
+                  checked={angler.isClubMember}
+                  onChange={(e) => updateAngler(index, 'isClubMember', e.target.checked)}
+                />
+                JCHS Fishing Club Member
+              </label>
+              <label className="registration__checkbox">
+                <input
+                  type="checkbox"
+                  checked={angler.isFemale}
+                  onChange={(e) => updateAngler(index, 'isFemale', e.target.checked)}
+                />
+                Female Angler
+              </label>
+            </div>
+          </div>
         </fieldset>
       ))}
 
