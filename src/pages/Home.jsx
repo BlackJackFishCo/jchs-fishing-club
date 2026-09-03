@@ -116,57 +116,61 @@ function Home() {
         <h1 className="home__title">John Carroll High School Fishing Club</h1>
       </div>
 
-      <div className="hero-logos">
-        <a
-          href="https://www.instagram.com/offthegridjohn/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="John Off The Grid on Instagram"
-        >
-          <img className="hero-logos__sponsor" src={offTheGridLogo} alt='John "Off The Grid" logo' />
-        </a>
+      <div className="home__hero">
+        <div className="home__tiles-col">
+          {[tiles[0], leaderboardTile, tiles[1], calendarTile].map((tile) => renderTile(tile, caught, total))}
+        </div>
 
-        <a
-          href="https://nlbn.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="NLBN - No Live Bait Needed website"
-        >
-          <img className="hero-logos__sponsor" src={nlbnLogo} alt="NLBN - No Live Bait Needed logo" />
-        </a>
+        <div className="home__logo-col">
+          <Link to="/species" className="hero__picture" aria-label="View the Species Catch List">
+            <img src={logo} alt="John Carroll High School Fishing Club crest" />
+          </Link>
 
-        <Link to="/species" className="hero__picture" aria-label="View the Species Catch List">
-          <img src={logo} alt="John Carroll High School Fishing Club crest" />
-        </Link>
+          <div className="hero-logos">
+            <a
+              href="https://www.instagram.com/offthegridjohn/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="John Off The Grid on Instagram"
+            >
+              <img className="hero-logos__sponsor" src={offTheGridLogo} alt='John "Off The Grid" logo' />
+            </a>
 
-        <a
-          href="https://www.dancopliers.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Danco Pliers website"
-        >
-          <img className="hero-logos__sponsor" src={dancoLogo} alt="Danco Pliers logo" />
-        </a>
+            <a
+              href="https://nlbn.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="NLBN - No Live Bait Needed website"
+            >
+              <img className="hero-logos__sponsor" src={nlbnLogo} alt="NLBN - No Live Bait Needed logo" />
+            </a>
 
-        <a
-          href="https://bajiosunglasses.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Bajío Sunglasses website"
-        >
-          <img className="hero-logos__sponsor" src={bajioLogo} alt="Bajío Sunglasses logo" />
-        </a>
+            <a
+              href="https://www.dancopliers.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Danco Pliers website"
+            >
+              <img className="hero-logos__sponsor" src={dancoLogo} alt="Danco Pliers logo" />
+            </a>
+
+            <a
+              href="https://bajiosunglasses.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Bajío Sunglasses website"
+            >
+              <img className="hero-logos__sponsor" src={bajioLogo} alt="Bajío Sunglasses logo" />
+            </a>
+          </div>
+        </div>
       </div>
 
       <section className="tiles-row">
-        {[tiles[0], leaderboardTile, tiles[1]].map((tile) => renderTile(tile, caught, total))}
+        {[tournamentTile].map((tile) => renderTile(tile, caught, total))}
       </section>
 
-      <section className="tiles-row">
-        {[calendarTile, tournamentTile].map((tile) => renderTile(tile, caught, total))}
-      </section>
-
-      <section className="card mission">
+      <section className="mission">
         <p className="eyebrow">Club Mission</p>
         <p className="mission__text">
           The John Carroll Fishing Club was created for students who are interested in
