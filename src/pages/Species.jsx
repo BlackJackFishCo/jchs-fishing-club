@@ -257,8 +257,8 @@ function Species() {
           </p>
         </div>
         <div className="species-page__logos">
-          <img className="species-rules__fwc-logo" src={fwcLogo} alt="Florida Fish and Wildlife Conservation Commission logo" />
           <img className="species-page__logo" src={logo} alt="JCHS Fishing Club crest" />
+          <img className="species-rules__fwc-logo" src={fwcLogo} alt="Florida Fish and Wildlife Conservation Commission logo" />
         </div>
       </div>
 

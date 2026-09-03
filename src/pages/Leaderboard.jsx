@@ -36,8 +36,8 @@ function Leaderboard() {
           </p>
         </div>
         <div className="page-head__logos">
-          <img className="species-rules__fwc-logo" src={fwcLogo} alt="Florida Fish and Wildlife Conservation Commission logo" />
           <img className="page-head__logo" src={logo} alt="JCHS Fishing Club crest" />
+          <img className="species-rules__fwc-logo" src={fwcLogo} alt="Florida Fish and Wildlife Conservation Commission logo" />
         </div>
       </div>
 
