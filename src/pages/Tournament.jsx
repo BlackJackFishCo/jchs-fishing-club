@@ -322,7 +322,7 @@ function HomeSection() {
 
 const RULES_INTRO = [
   'These rules are subject to the sole interpretation, application, and discretion of the Tournament Director.',
-  'This is a catch-and-release team (1 to 4 anglers per team) format tournament and does not require that any fish be killed for a team to accumulate points. Please handle all fish with the upmost care for the best survival upon release.',
+  'This is a catch-and-release team format tournament up to 4 anglers and does not require that any fish be killed for a team to accumulate points. Please handle all fish with the upmost care for the best survival upon release.',
   'Anglers will target Snook, Redfish, and Trout. Each fish will be measured by its Total Length. There is no minimum slot size.',
 ]
 
@@ -927,6 +927,65 @@ function LiveLeaderboardSection() {
   )
 }
 
+function LogCatchCallout() {
+  return (
+    <svg
+      className="tournament-catch-callout"
+      viewBox="0 0 160 150"
+      aria-hidden="true"
+    >
+      <path
+        d="M80 8
+           C 110 6, 148 18, 150 52
+           C 152 82, 122 100, 80 100
+           C 38 100, 8 82, 10 52
+           C 12 18, 50 10, 80 8 Z"
+        fill="#fff"
+        stroke="#111"
+        strokeWidth="5"
+        strokeLinejoin="round"
+      />
+      <text
+        x="80"
+        y="47"
+        textAnchor="middle"
+        fontFamily="'Poppins', sans-serif"
+        fontWeight="800"
+        fontSize="17"
+        fill="#111"
+      >
+        LOG YOUR
+      </text>
+      <text
+        x="80"
+        y="69"
+        textAnchor="middle"
+        fontFamily="'Poppins', sans-serif"
+        fontWeight="800"
+        fontSize="17"
+        fill="#111"
+      >
+        CATCH HERE
+      </text>
+      <path
+        d="M80 104 C 78 118, 78 128, 80 140"
+        fill="none"
+        stroke="#111"
+        strokeWidth="5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M69 130 L 80 145 L 91 130"
+        fill="none"
+        stroke="#111"
+        strokeWidth="5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
 function Tournament() {
   const [active, setActive] = useState(SECTIONS[0])
 
@@ -949,13 +1008,16 @@ function Tournament() {
           ))}
         </div>
 
-        <button
-          type="button"
-          className="btn btn-solid tournament-live-leaderboard"
-          onClick={() => setActive('Inshore Slam Live Leaderboard')}
-        >
-          Inshore Slam Live Leaderboard
-        </button>
+        <div className="tournament-live-leaderboard-wrap">
+          <LogCatchCallout />
+          <button
+            type="button"
+            className="btn btn-solid tournament-live-leaderboard"
+            onClick={() => setActive('Inshore Slam Live Leaderboard')}
+          >
+            Inshore Slam Live Leaderboard
+          </button>
+        </div>
       </div>
 
       {active === 'Home' && (
