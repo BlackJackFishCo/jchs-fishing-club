@@ -329,7 +329,6 @@ const RULES_INTRO = [
 const RULES_EQUIPMENT = [
   'Smartphone',
   'A tournament-issued ruler',
-  'Token: Anglers will be instructed at the start of the event by notification through the scoring app on a common household item (Token) to include in each photo submitted for scoring.',
 ]
 
 const RULES_SECTIONS = [
@@ -347,20 +346,16 @@ const RULES_SECTIONS = [
       'All anglers must abide by all local, State, and Federal Rules and licensing restrictions on fishing for game fish with hook and line.',
       'Anglers may use live, dead, and artificial bait.',
       'Live chumming is allowed.',
-      'No fishing is allowed in an active marina.',
+      'No fishing is allowed in an active marina or boat ramp.',
     ],
   },
   {
     title: 'After the Catch',
-    items: [
-      'No slot size is required for photo submission.',
-      'Total Length is defined as the distance from the most forward point of the fish’s head to the hindmost point of the pinched tail.',
-    ],
+    items: ['No slot size is required for photo submission.'],
     subsections: [
       {
         title: 'Measuring Fish',
         items: [
-          'Each team shall include a Token to be determined at the start of the event in all photos submitted for scoring.',
           'All measured fish lengths are only accepted on the official tournament ruler with the fish nose to the end and tail pinched to its largest measurement.',
           'Closest ½ inch increments. (40.5 = 41 inches) (41.4 = 41 inches)',
         ],
