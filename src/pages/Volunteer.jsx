@@ -75,7 +75,7 @@ function Volunteer() {
 
       <section className="card volunteer-cta">
         <h3>Want to help organize a project?</h3>
-        <p>Talk to your club moderator or officer team to get a project added to this page.</p>
+        <p>Talk to your club officers to get a project added to this page.</p>
       </section>
     </div>
   )
