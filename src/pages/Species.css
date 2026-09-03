@@ -5,6 +5,13 @@
   gap: 1.5rem;
 }
 
+.species-page__logos {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
 .species-page__logo {
   width: min(220px, 42vw);
   height: auto;

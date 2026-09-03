@@ -5,6 +5,13 @@
   gap: 1.5rem;
 }
 
+.page-head__logos {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
 .page-head__logo {
   width: min(220px, 42vw);
   height: auto;

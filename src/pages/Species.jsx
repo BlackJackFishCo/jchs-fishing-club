@@ -256,7 +256,10 @@ function Species() {
             towards the FWC Challenge competition.
           </p>
         </div>
-        <img className="species-page__logo" src={logo} alt="JCHS Fishing Club crest" />
+        <div className="species-page__logos">
+          <img className="species-rules__fwc-logo" src={fwcLogo} alt="Florida Fish and Wildlife Conservation Commission logo" />
+          <img className="species-page__logo" src={logo} alt="JCHS Fishing Club crest" />
+        </div>
       </div>
 
       <div className="ticker card">
