@@ -14,6 +14,7 @@ import {
   useTournamentCatches,
   restoreCatch,
   permanentlyDeleteCatch,
+  useCatchActivityLog,
 } from '../data/tournamentLeaderboard.js'
 import './Admin.css'
 
@@ -379,25 +380,25 @@ function TeamRosterManager() {
   )
 }
 
-function DeletedCatchesManager() {
+function DeletedCatchesManager({ admin }) {
   const { teams } = useTournamentTeams()
   const { deletedCatches, loading } = useTournamentCatches()
   const [error, setError] = useState('')
 
   const teamName = (teamId) => teams.find((t) => t.id === teamId)?.name || teamId
 
-  const restore = async (id) => {
+  const restore = async (catchData) => {
     try {
-      await restoreCatch(id)
+      await restoreCatch(catchData, admin)
     } catch {
       setError('Could not restore that catch.')
     }
   }
 
-  const purge = async (id, photoPath) => {
+  const purge = async (catchData) => {
     if (!window.confirm('Permanently delete this catch? This cannot be undone.')) return
     try {
-      await permanentlyDeleteCatch(id, photoPath)
+      await permanentlyDeleteCatch(catchData, admin)
     } catch {
       setError('Could not permanently delete that catch.')
     }
@@ -425,13 +426,13 @@ function DeletedCatchesManager() {
                 {teamName(c.teamId)} — {c.species} — {c.angler} — {c.inches}&quot;
               </span>
               <span className="team-roster__actions">
-                <button type="button" className="btn" onClick={() => restore(c.id)}>
+                <button type="button" className="btn" onClick={() => restore(c)}>
                   Restore
                 </button>
                 <button
                   type="button"
                   className="admin-roster__remove"
-                  onClick={() => purge(c.id, c.photoPath)}
+                  onClick={() => purge(c)}
                 >
                   Delete Forever
                 </button>
@@ -439,6 +440,89 @@ function DeletedCatchesManager() {
             </li>
           ))}
         </ul>
+      )}
+    </section>
+  )
+}
+
+const ACTIVITY_LOG_LABELS = {
+  verify: 'Verified',
+  unverify: 'Unverified',
+  edit_inches: 'Edited length',
+  remove: 'Removed',
+  restore: 'Restored',
+  purge: 'Permanently deleted',
+}
+
+function formatLogTimestamp(at) {
+  if (!at?.toDate) return 'Just now'
+  return at.toDate().toLocaleString(undefined, {
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    second: '2-digit',
+  })
+}
+
+function formatLogValue(entry, value) {
+  if (value === null || value === undefined) return '—'
+  if (entry.field === 'inches') return `${value}"`
+  if (entry.field === 'verified') return value ? 'Verified' : 'Not verified'
+  if (entry.field === 'deleted') {
+    if (value === 'purged') return 'Purged'
+    return value ? 'Deleted' : 'Active'
+  }
+  return String(value)
+}
+
+function TournamentActivityLog() {
+  const { teams } = useTournamentTeams()
+  const { entries, loading } = useCatchActivityLog()
+
+  const teamName = (teamId) => teams.find((t) => t.id === teamId)?.name || teamId
+
+  return (
+    <section className="admin-report team-roster card">
+      <h2>Catch Activity Log</h2>
+      <p className="admin-roster__note">
+        Every verify, edit, remove, restore, and permanent delete on a logged catch, so you can
+        check what happened during a tournament without opening Firestore.
+      </p>
+
+      {loading ? (
+        <p className="species-page__loading">Loading activity…</p>
+      ) : entries.length === 0 ? (
+        <p className="admin-roster__empty">No admin activity logged yet.</p>
+      ) : (
+        <div className="team-roster__scroll admin-report__activity-scroll">
+          <table className="admin-report__table">
+            <thead>
+              <tr>
+                <th>When</th>
+                <th>Admin</th>
+                <th>Team</th>
+                <th>Species</th>
+                <th>Action</th>
+                <th>Change</th>
+              </tr>
+            </thead>
+            <tbody>
+              {entries.map((entry) => (
+                <tr key={entry.id}>
+                  <td>{formatLogTimestamp(entry.at)}</td>
+                  <td>{entry.adminEmail || 'Unknown'}</td>
+                  <td>{teamName(entry.teamId)}</td>
+                  <td>{entry.species}</td>
+                  <td>{ACTIVITY_LOG_LABELS[entry.action] || entry.action}</td>
+                  <td>
+                    {formatLogValue(entry, entry.oldValue)} → {formatLogValue(entry, entry.newValue)}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </section>
   )
@@ -618,6 +702,7 @@ function RegistrationReport() {
 
 function Admin() {
   const { user, isAdmin, loading } = useAdminAuth()
+  const admin = user ? { uid: user.uid, email: user.email } : null
 
   return (
     <div className="page admin-page">
@@ -656,7 +741,8 @@ function Admin() {
           </div>
           <RosterManager />
           <TeamRosterManager />
-          <DeletedCatchesManager />
+          <DeletedCatchesManager admin={admin} />
+          <TournamentActivityLog />
           <AdminsManager currentUid={user.uid} />
           <RegistrationReport />
           <CatchReport />
