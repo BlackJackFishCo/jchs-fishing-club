@@ -1,4 +1,5 @@
 import logo from '../assets/logo.png'
+import fwcLogo from '../assets/fwc-logo.png'
 import './Volunteer.css'
 import './Calendar.css'
 
@@ -38,7 +39,10 @@ function Calendar() {
             posted here as they&apos;re confirmed.
           </p>
         </div>
-        <img className="page-head__logo" src={logo} alt="JCHS Fishing Club crest" />
+        <div className="page-head__logos">
+          <img className="page-head__logo" src={logo} alt="JCHS Fishing Club crest" />
+          <img className="species-rules__fwc-logo" src={fwcLogo} alt="Florida Fish and Wildlife Conservation Commission logo" />
+        </div>
       </div>
 
       <div className="volunteer-grid calendar-grid">
