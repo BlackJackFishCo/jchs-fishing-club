@@ -51,11 +51,31 @@
 }
 
 .volunteer-card {
+  position: relative;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   background: linear-gradient(180deg, var(--color-royal-dim), var(--color-black-soft));
+}
+
+.volunteer-card__sponsor {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  opacity: 0.9;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.volunteer-card__sponsor:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.volunteer-card__sponsor img {
+  display: block;
+  width: 64px;
+  height: auto;
 }
 
 .volunteer-card__status {

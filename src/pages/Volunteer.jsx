@@ -1,5 +1,6 @@
 import logo from '../assets/logo.png'
 import fwcLogo from '../assets/fwc-logo.png'
+import mangLogo from '../assets/sponsor-mang.png'
 import './Volunteer.css'
 
 const projects = [
@@ -16,6 +17,11 @@ const projects = [
     description:
       'Working with local conservation partners to plant and maintain mangroves, which provide critical nursery habitat for snook, redfish, and juvenile game fish.',
     hours: 'Service hours available',
+    sponsor: {
+      logo: mangLogo,
+      alt: 'MANG logo',
+      href: 'https://www.manggear.com/pages/our-mission',
+    },
   },
   {
     title: 'Youth Fishing Clinic',
@@ -52,6 +58,17 @@ function Volunteer() {
             <h3>{p.title}</h3>
             <p>{p.description}</p>
             <span className="volunteer-card__hours">{p.hours}</span>
+            {p.sponsor && (
+              <a
+                className="volunteer-card__sponsor"
+                href={p.sponsor.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={p.sponsor.alt}
+              >
+                <img src={p.sponsor.logo} alt={p.sponsor.alt} />
+              </a>
+            )}
           </article>
         ))}
       </div>
