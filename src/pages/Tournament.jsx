@@ -927,84 +927,6 @@ function LiveLeaderboardSection() {
   )
 }
 
-function LogCatchCallout() {
-  const arrowStem = 'M100 108 C 112 128, 78 142, 92 168 C 96 176, 100 182, 104 190'
-  const arrowHead = 'M84 176 C 92 184, 98 190, 104 196 C 110 187, 116 180, 124 174'
-
-  return (
-    <svg
-      className="tournament-catch-callout"
-      viewBox="0 0 210 210"
-      aria-hidden="true"
-    >
-      <ellipse
-        cx="105"
-        cy="58"
-        rx="97"
-        ry="46"
-        fill="#fff"
-        stroke="#111"
-        strokeWidth="4.5"
-        transform="rotate(-2 105 58)"
-      />
-      <ellipse
-        cx="105"
-        cy="58"
-        rx="97"
-        ry="46"
-        fill="none"
-        stroke="#111"
-        strokeWidth="1.5"
-        opacity="0.4"
-        transform="rotate(1 106 60)"
-      />
-      <text
-        x="105"
-        y="50"
-        textAnchor="middle"
-        fontFamily="'Caveat', cursive"
-        fontWeight="700"
-        fontSize="34"
-        fill="#111"
-      >
-        Log your
-      </text>
-      <text
-        x="105"
-        y="84"
-        textAnchor="middle"
-        fontFamily="'Caveat', cursive"
-        fontWeight="700"
-        fontSize="34"
-        fill="#111"
-      >
-        catch here
-      </text>
-      <path d={arrowStem} fill="none" stroke="#111" strokeWidth="5" strokeLinecap="round" />
-      <path
-        d={arrowStem}
-        fill="none"
-        stroke="#111"
-        strokeWidth="2"
-        opacity="0.4"
-        strokeLinecap="round"
-        transform="translate(3 2)"
-      />
-      <path d={arrowHead} fill="none" stroke="#111" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
-      <path
-        d={arrowHead}
-        fill="none"
-        stroke="#111"
-        strokeWidth="2"
-        opacity="0.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        transform="translate(3 2)"
-      />
-    </svg>
-  )
-}
-
 function Tournament() {
   const [active, setActive] = useState(SECTIONS[0])
 
@@ -1027,16 +949,13 @@ function Tournament() {
           ))}
         </div>
 
-        <div className="tournament-live-leaderboard-wrap">
-          <LogCatchCallout />
-          <button
-            type="button"
-            className="btn btn-solid tournament-live-leaderboard"
-            onClick={() => setActive('Inshore Slam Live Leaderboard')}
-          >
-            Inshore Slam Live Leaderboard
-          </button>
-        </div>
+        <button
+          type="button"
+          className="btn btn-solid tournament-live-leaderboard"
+          onClick={() => setActive('Inshore Slam Live Leaderboard')}
+        >
+          Inshore Slam Live Leaderboard
+        </button>
       </div>
 
       {active === 'Home' && (
