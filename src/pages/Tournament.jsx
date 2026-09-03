@@ -375,8 +375,8 @@ const RULES_SECTIONS = [
   {
     title: 'Weather',
     items: [
-      'It is up to the discretion of the registered angler to determine whether his or her craft is seaworthy for that day’s weather conditions. Participants are encouraged to keep abreast of any marine or weather warnings.',
-      'In the case of tournament cancelation and no fish have been logged due to weather, prizes will turn into raffle format with each team in the raffle one time.',
+      'It is up to the discretion of the registered anglers to determine whether his or her craft is seaworthy for that day’s weather conditions. Participants are encouraged to keep abreast of any marine or weather warnings.',
+      'In the case of tournament cancelation and no fish have been logged due to weather, prizes will turn into raffle format with each team in the raffle one time. If Fish have been logged. Winners will be determined at 4pm MONTH 00. 2027.',
       'No refund of entry fees.',
     ],
   },
