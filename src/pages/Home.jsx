@@ -118,7 +118,10 @@ function Home() {
 
       <div className="home__hero">
         <div className="home__tiles-col">
-          {[tiles[0], leaderboardTile, tiles[1], calendarTile].map((tile) => renderTile(tile, caught, total))}
+          {[tiles[0], leaderboardTile, tiles[1]].map((tile) => renderTile(tile, caught, total))}
+          <div className="home__tiles-col-row">
+            {[calendarTile, tournamentTile].map((tile) => renderTile(tile, caught, total))}
+          </div>
         </div>
 
         <div className="home__logo-col">
@@ -165,10 +168,6 @@ function Home() {
           </div>
         </div>
       </div>
-
-      <section className="tiles-row">
-        {[tournamentTile].map((tile) => renderTile(tile, caught, total))}
-      </section>
 
       <section className="mission">
         <p className="eyebrow">Club Mission</p>
