@@ -33,7 +33,7 @@
 }
 
 .species-rules__fwc-logo {
-  width: 200px;
+  width: min(160px, 31vw);
   height: auto;
 }
 
