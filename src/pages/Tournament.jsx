@@ -352,16 +352,6 @@ const RULES_SECTIONS = [
   {
     title: 'After the Catch',
     items: ['No slot size is required for photo submission.'],
-    callout: 'DO NOT PULL THE TAPE MEASURE OVER THE FISH. LAY FISH FLAT ON TAPE.',
-  },
-  {
-    title: 'Fish Photos',
-    callout: 'THE ENTIRE FISH MUST BE IN THE PHOTOGRAPH AND TAPE NUMBERS VISIBLE.',
-    items: [
-      'Figure 1: Correct Measurement for Fish in Boat (Measuring Device and Token on Boat Deck NOT ON FISH).',
-      'Photographs that do not include the Token and/or that do not allow the Rules Committee to view the tape measure may be excluded at the sole discretion of the Tournament Director and Rules Committee.',
-      'If a fish or measurement is partially obstructed, the Tournament Director and Rules Committee has the sole authority to decide whether to exclude a fish in its entirety or give credit for the visible part of the fish.',
-    ],
   },
   {
     title: 'Leader Board',
