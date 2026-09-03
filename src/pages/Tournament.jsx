@@ -872,7 +872,8 @@ function LiveLeaderboardSection() {
           <h2 className="tournament-awards__heading">Inshore Slam Live Leaderboard</h2>
           <p className="tournament-awards__rule">
             Each team can log one Snook, one Redfish, and one Trout. A team&apos;s total is the
-            combined inches of all three.
+            combined inches of all three. You can upgrade at anytime but time stamp of upgrade
+            will be used for a tie if needed.
           </p>
         </div>
         <button type="button" className="btn btn-solid" onClick={() => setShowModal(true)}>
