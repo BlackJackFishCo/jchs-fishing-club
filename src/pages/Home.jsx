@@ -15,6 +15,7 @@ import ccaLogo from '../assets/sponsor-cca.png'
 import snookCatch from '../assets/snook-catch.jpg'
 import volunteerCleanup from '../assets/volunteer-cleanup.jpg'
 import leaderboardPhoto from '../assets/leaderboard-photo.jpg'
+import calendarPhoto from '../assets/calendar-photo.jpg'
 import './Home.css'
 
 const tiles = [
@@ -71,6 +72,7 @@ const leaderboardTile = {
 const calendarTile = {
   to: '/calendar',
   label: 'Club Calendar',
+  photo: calendarPhoto,
   icon: (
     <svg viewBox="0 0 64 64" aria-hidden="true">
       <rect x="10" y="14" width="44" height="40" rx="4" fill="none" stroke="currentColor" strokeWidth="2.5" />
