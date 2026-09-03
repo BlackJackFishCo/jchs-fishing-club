@@ -6,6 +6,13 @@ import offTheGridLogo from '../assets/sponsor-off-the-grid.png'
 import dancoLogo from '../assets/sponsor-danco.png'
 import nlbnLogo from '../assets/sponsor-nlbn.png'
 import bajioLogo from '../assets/sponsor-bajio.png'
+import jujuLogo from '../assets/sponsor-juju-cast-nets.png'
+import fishingCenterLogo from '../assets/sponsor-fishing-center.png'
+import blackjackLogo from '../assets/sponsor-blackjack-fish-co.png'
+import bassProLogo from '../assets/sponsor-bass-pro-shops.png'
+import mangLogo from '../assets/sponsor-mang.png'
+import captainsAllianceLogo from '../assets/sponsor-captains-alliance.png'
+import ccaLogo from '../assets/sponsor-cca.png'
 import snookCatch from '../assets/snook-catch.jpg'
 import volunteerCleanup from '../assets/volunteer-cleanup.jpg'
 import leaderboardPhoto from '../assets/leaderboard-photo.jpg'
@@ -165,6 +172,19 @@ function Home() {
             >
               <img className="hero-logos__sponsor" src={bajioLogo} alt="Bajío Sunglasses logo" />
             </a>
+          </div>
+
+          <div className="hero-logos">
+            <img className="hero-logos__sponsor" src={jujuLogo} alt="JuJu Cast Nets logo" />
+            <img className="hero-logos__sponsor" src={fishingCenterLogo} alt="The Fishing Center - Fort Pierce, Florida logo" />
+            <img className="hero-logos__sponsor" src={blackjackLogo} alt="Black Jack Fish Co logo" />
+            <img className="hero-logos__sponsor" src={bassProLogo} alt="Bass Pro Shops logo" />
+          </div>
+
+          <div className="hero-logos">
+            <img className="hero-logos__sponsor" src={mangLogo} alt="MANG logo" />
+            <img className="hero-logos__sponsor" src={captainsAllianceLogo} alt="Captains for Clean Water - Captains Alliance logo" />
+            <img className="hero-logos__sponsor" src={ccaLogo} alt="Join CCA - Coastal Conservation Association logo" />
           </div>
         </div>
       </div>

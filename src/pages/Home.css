@@ -77,7 +77,8 @@
   gap: clamp(0.5rem, 3vw, 2rem);
 }
 
-.hero-logos > a {
+.hero-logos > a,
+.hero-logos > img {
   display: block;
   flex-shrink: 1;
   min-width: 0;
@@ -251,7 +252,8 @@
     padding-top: 0;
   }
 
-  .hero-logos > a {
+  .hero-logos > a,
+  .hero-logos > img {
     width: min(100px, 22vw);
   }
 
