@@ -181,7 +181,14 @@ function Home() {
           </div>
 
           <div className="hero-logos">
-            <img className="hero-logos__sponsor" src={fishingCenterLogo} alt="The Fishing Center - Fort Pierce, Florida logo" />
+            <a
+              href="https://www.thefishingcenterfl.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="The Fishing Center website"
+            >
+              <img className="hero-logos__sponsor" src={fishingCenterLogo} alt="The Fishing Center - Fort Pierce, Florida logo" />
+            </a>
             <a
               href="https://blackjackfishco.com"
               target="_blank"
