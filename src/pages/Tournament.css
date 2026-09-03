@@ -445,6 +445,21 @@
   font-weight: 700;
 }
 
+.catch-cell__inches-input {
+  width: 4.2rem;
+  background: var(--color-black-soft);
+  border: 1px solid rgba(245, 197, 24, 0.35);
+  border-radius: 6px;
+  padding: 0.15rem 0.35rem;
+  color: var(--color-white);
+  font-size: 0.85rem;
+  font-family: inherit;
+}
+
+.catch-cell__inches-input:focus {
+  outline: 2px solid var(--color-gold);
+}
+
 .catch-cell__angler {
   color: var(--color-muted);
   font-size: 0.78rem;

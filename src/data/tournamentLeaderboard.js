@@ -160,6 +160,13 @@ export async function setCatchVerified(catchId, verified) {
   await updateDoc(doc(db, 'tournamentCatches', catchId), { verified })
 }
 
+// Admin correction only — intentionally does not touch submittedAt, since
+// that timestamp is used as the tiebreak order and shouldn't move just
+// because an admin fixed a measurement.
+export async function setCatchInches(catchId, inches) {
+  await updateDoc(doc(db, 'tournamentCatches', catchId), { inches })
+}
+
 export async function removeCatch(catchId) {
   await updateDoc(doc(db, 'tournamentCatches', catchId), {
     deleted: true,
