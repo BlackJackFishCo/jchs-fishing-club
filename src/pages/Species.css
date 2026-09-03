@@ -378,6 +378,11 @@
   outline: 2px solid var(--color-gold);
 }
 
+.field__hint {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+}
+
 .modal__divider {
   font-family: var(--font-eyebrow);
   text-transform: uppercase;

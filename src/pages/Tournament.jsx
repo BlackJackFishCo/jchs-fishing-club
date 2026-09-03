@@ -624,6 +624,10 @@ function LogCatchModal({ teams, catchesByTeam, onClose }) {
   const submit = async (e) => {
     e.preventDefault()
     if (!species || !teamId || !angler || !inches || !file || existing?.verified) return
+    if (Math.round(Number(inches) * 2) !== Number(inches) * 2) {
+      setError('Length must be in half-inch increments (e.g. 20, 20.5, 21).')
+      return
+    }
     setBusy(true)
     setError('')
     try {
@@ -715,11 +719,14 @@ function LogCatchModal({ teams, catchesByTeam, onClose }) {
             <input
               type="number"
               min="1"
-              step="0.1"
+              step="0.5"
               value={inches}
               onChange={(e) => setInches(e.target.value)}
               required
             />
+            <span className="field__hint">
+              Measured to the closest ½ inch — e.g. 20, 20.5, or 30.
+            </span>
           </label>
 
           <label className="field">
