@@ -336,7 +336,8 @@ const RULES_SECTIONS = [
     title: 'Fishing',
     items: [
       'Lines in, and the start of fishing shall begin at 6am on Saturday, MONTH 00, 2027.',
-      'Lines out, there is no lines out time, however all fish must be logged into the JCHS Inshore Slam Tournament Page no later than 4 p.m. on September 00, 2027 to count for tournament. Website will lock at 4pm for submissions.',
+      'Lines out, there is no lines out time, however all fish must be logged into the JCHS Inshore Slam Tournament Page no later than 4 p.m. on MONTH 00, 2027 to count for tournament. Website will lock at 4pm for submissions.',
+      'In the event of tournament site outage it is your teams responsibility to still log your catch on the tournament ruler by picture on your phone followed by a screen shot of the time. All photos must be text to tournament committee by 4pm MONTH 00.2027.',
       'North Boundary ¼ Mile North of Sebastian Inlet (00.00.000N)',
       'South Boundary ¼ Mile South of St. Lucie Inlet (00.00.000N)',
       'No East or West Boundary',
