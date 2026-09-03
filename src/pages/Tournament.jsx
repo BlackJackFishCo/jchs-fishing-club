@@ -351,16 +351,14 @@ const RULES_SECTIONS = [
     ],
   },
   {
-    title: 'After the Catch',
-    items: ['No slot size is required for photo submission.'],
-  },
-  {
     title: 'Fish Photos',
     items: [
+      'No slot size is required for photo submission.',
       'Figure 1: Correct Measurement for Fish in Boat (Measuring Device on Boat Deck NOT ON FISH).',
       'Photographs that do not allow the Tournament Director to view the tape measure or entire fish may be excluded at the sole discretion of the Tournament Director.',
       'If a fish or measurement is partially obstructed, the Tournament Director has the sole authority to decide whether to exclude a fish in its entirety or give credit for the visible part of the fish.',
     ],
+    photoPlaceholders: 2,
   },
   {
     title: 'Leader Board',
@@ -430,6 +428,13 @@ function RulesSection() {
           {section.subsections?.map((subsection) => (
             <RulesSubsection key={subsection.title} subsection={subsection} />
           ))}
+          {section.photoPlaceholders > 0 && (
+            <div className="rules-photo-grid">
+              {Array.from({ length: section.photoPlaceholders }).map((_, i) => (
+                <AwardPhotoPlaceholder key={i} />
+              ))}
+            </div>
+          )}
         </div>
       ))}
     </section>
