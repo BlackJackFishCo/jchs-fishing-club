@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useCaughtCount } from '../data/species.js'
 import logo from '../assets/logo-hero.png'
-import jcSeal from '../assets/jc-school-seal.png'
 import offTheGridLogo from '../assets/sponsor-off-the-grid.png'
 import dancoLogo from '../assets/sponsor-danco.png'
 import nlbnLogo from '../assets/sponsor-nlbn.png'
@@ -123,11 +122,6 @@ function Home() {
 
   return (
     <div className="page home">
-      <div className="home__title-row">
-        <img className="home__title-seal" src={jcSeal} alt="John Carroll High School seal" />
-        <h1 className="home__title">John Carroll High School Fishing Club</h1>
-      </div>
-
       <div className="home__grid">
         {renderTile(tiles[0], caught, total, 'home__area-species')}
         {renderTile(leaderboardTile, caught, total, 'home__area-leaderboard')}
