@@ -97,9 +97,13 @@ const tournamentTile = {
   ),
 }
 
-function renderTile(tile, caught, total) {
+function renderTile(tile, caught, total, areaClass) {
   return (
-    <Link key={tile.to} to={tile.to} className={`tile card ${tile.photo ? 'tile--photo' : ''}`}>
+    <Link
+      key={tile.to}
+      to={tile.to}
+      className={`tile card ${tile.photo ? 'tile--photo' : ''} ${areaClass}`}
+    >
       {tile.photo && <img className="tile__photo" src={tile.photo} alt="" aria-hidden="true" />}
       {!tile.photo && <span className="tile__icon">{tile.icon}</span>}
       {tile.to === '/species' && (
@@ -122,10 +126,12 @@ function Home() {
         <h1 className="home__title">John Carroll High School Fishing Club</h1>
       </div>
 
-      <div className="home__hero">
-        <div className="home__tiles-col">
-          {[tiles[0], leaderboardTile, tiles[1]].map((tile) => renderTile(tile, caught, total))}
-        </div>
+      <div className="home__grid">
+        {renderTile(tiles[0], caught, total, 'home__area-species')}
+        {renderTile(leaderboardTile, caught, total, 'home__area-leaderboard')}
+        {renderTile(tiles[1], caught, total, 'home__area-volunteer')}
+        {renderTile(calendarTile, caught, total, 'home__area-calendar')}
+        {renderTile(tournamentTile, caught, total, 'home__area-inshore')}
 
         <div className="home__logo-col">
           <Link to="/species" className="hero__picture" aria-label="View the Species Catch List">
@@ -180,11 +186,6 @@ function Home() {
             <img className="hero-logos__sponsor" src={ccaLogo} alt="Join CCA - Coastal Conservation Association logo" />
           </div>
         </div>
-      </div>
-
-      <div className="home__second-row">
-        <div className="home__second-row-fixed">{renderTile(calendarTile, caught, total)}</div>
-        <div className="home__second-row-fill">{renderTile(tournamentTile, caught, total)}</div>
       </div>
 
       <section className="mission">
