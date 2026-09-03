@@ -40,10 +40,9 @@ const SPONSOR_TIERS = [
     perks: [
       'Company Name in Official Event Logo as Title Sponsor',
       '4 Tournament Entries (4 Boats)',
-      '25 Raffle Tickets',
+      '20 Raffle Tickets',
       'Company Logo on Event Banners and Live Leaderboard',
       'Company Logo and Website Link on JCHS Fishing Club Website',
-      '2 Social Media Mentions on JCHS Fishing Club Accounts',
       'In Person Activation Space at the Inshore Slam',
       'Ability to Distribute Marketing Materials or Samples in Tournament Team Buckets',
     ],
