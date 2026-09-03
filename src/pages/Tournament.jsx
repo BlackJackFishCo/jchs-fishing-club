@@ -234,7 +234,7 @@ function RegistrationSection() {
                   checked={angler.isFemale}
                   onChange={(e) => updateAngler(index, 'isFemale', e.target.checked)}
                 />
-                Female Angler
+                Lady Angler
               </label>
             </div>
           </div>
