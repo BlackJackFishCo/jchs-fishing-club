@@ -1,6 +1,7 @@
 import { useRoster } from '../data/roster.js'
 import { useSpeciesBoard, TOTAL_SPECIES } from '../data/species.js'
 import logo from '../assets/logo.png'
+import fwcLogo from '../assets/fwc-logo.png'
 import './Leaderboard.css'
 
 function Leaderboard() {
@@ -34,7 +35,10 @@ function Leaderboard() {
             logged on the Species Catch List.
           </p>
         </div>
-        <img className="page-head__logo" src={logo} alt="JCHS Fishing Club crest" />
+        <div className="page-head__logos">
+          <img className="species-rules__fwc-logo" src={fwcLogo} alt="Florida Fish and Wildlife Conservation Commission logo" />
+          <img className="page-head__logo" src={logo} alt="JCHS Fishing Club crest" />
+        </div>
       </div>
 
       {loading ? (
