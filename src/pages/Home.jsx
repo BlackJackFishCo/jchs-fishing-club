@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useCaughtCount } from '../data/species.js'
-import logo from '../assets/logo.png'
+import logo from '../assets/logo-hero.png'
 import jcSeal from '../assets/jc-school-seal.png'
 import offTheGridLogo from '../assets/sponsor-off-the-grid.png'
 import dancoLogo from '../assets/sponsor-danco.png'
@@ -11,7 +11,6 @@ import fishingCenterLogo from '../assets/sponsor-fishing-center.png'
 import blackjackLogo from '../assets/sponsor-blackjack-fish-co.png'
 import bassProLogo from '../assets/sponsor-bass-pro-shops.png'
 import mangLogo from '../assets/sponsor-mang.png'
-import captainsAllianceLogo from '../assets/sponsor-captains-alliance.png'
 import ccaLogo from '../assets/sponsor-cca.png'
 import snookCatch from '../assets/snook-catch.jpg'
 import volunteerCleanup from '../assets/volunteer-cleanup.jpg'
@@ -126,9 +125,6 @@ function Home() {
       <div className="home__hero">
         <div className="home__tiles-col">
           {[tiles[0], leaderboardTile, tiles[1]].map((tile) => renderTile(tile, caught, total))}
-          <div className="home__tiles-col-row">
-            {[calendarTile, tournamentTile].map((tile) => renderTile(tile, caught, total))}
-          </div>
         </div>
 
         <div className="home__logo-col">
@@ -172,21 +168,23 @@ function Home() {
             >
               <img className="hero-logos__sponsor" src={bajioLogo} alt="Bajío Sunglasses logo" />
             </a>
+
+            <img className="hero-logos__sponsor" src={jujuLogo} alt="JuJu Cast Nets logo" />
           </div>
 
           <div className="hero-logos">
-            <img className="hero-logos__sponsor" src={jujuLogo} alt="JuJu Cast Nets logo" />
             <img className="hero-logos__sponsor" src={fishingCenterLogo} alt="The Fishing Center - Fort Pierce, Florida logo" />
             <img className="hero-logos__sponsor" src={blackjackLogo} alt="Black Jack Fish Co logo" />
             <img className="hero-logos__sponsor" src={bassProLogo} alt="Bass Pro Shops logo" />
-          </div>
-
-          <div className="hero-logos">
             <img className="hero-logos__sponsor" src={mangLogo} alt="MANG logo" />
-            <img className="hero-logos__sponsor" src={captainsAllianceLogo} alt="Captains for Clean Water - Captains Alliance logo" />
             <img className="hero-logos__sponsor" src={ccaLogo} alt="Join CCA - Coastal Conservation Association logo" />
           </div>
         </div>
+      </div>
+
+      <div className="home__second-row">
+        <div className="home__second-row-fixed">{renderTile(calendarTile, caught, total)}</div>
+        <div className="home__second-row-fill">{renderTile(tournamentTile, caught, total)}</div>
       </div>
 
       <section className="mission">
