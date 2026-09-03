@@ -321,21 +321,21 @@ function HomeSection() {
 }
 
 const RULES_INTRO = [
-  'These rules are subject to the sole interpretation, application, and discretion of the Tournament Director and consultation with the Rules Committee.',
-  'This is a catch-and-release team (1-4 anglers) format tournament and does not require that any fish be killed for a team to accumulate points. Please handle all fish with the upmost care for the best survival upon release.',
-  'Anglers will target Snook, Redfish, and Trout. Each fish will be measured by its Total Length.',
+  'These rules are subject to the sole interpretation, application, and discretion of the Tournament Director.',
+  'This is a catch-and-release team (1 to 4 anglers per team) format tournament and does not require that any fish be killed for a team to accumulate points. Please handle all fish with the upmost care for the best survival upon release.',
+  'Anglers will target Snook, Redfish, and Trout. Each fish will be measured by its Total Length. There is no minimum slot size.',
 ]
 
 const RULES_EQUIPMENT = [
   'Smartphone',
-  'A tournament-issued ruler',
+  'A tournament-issued ruler at the captains meeting',
 ]
 
 const RULES_SECTIONS = [
   {
     title: 'Fishing',
     items: [
-      'Lines in, and the start of fishing shall begin at 6am on Saturday, September 00, 2027.',
+      'Lines in, and the start of fishing shall begin at 6am on Saturday, MONTH 00, 2027.',
       'Lines out, there is no lines out time, however all fish must be logged into the JCHS Inshore Slam Tournament Page no later than 4 p.m. on September 00, 2027 to count for tournament. Website will lock at 4pm for submissions.',
       'North Boundary ¼ Mile North of Sebastian Inlet (00.00.000N)',
       'South Boundary ¼ Mile South of St. Lucie Inlet (00.00.000N)',
@@ -352,20 +352,11 @@ const RULES_SECTIONS = [
   {
     title: 'After the Catch',
     items: ['No slot size is required for photo submission.'],
-    subsections: [
-      {
-        title: 'Measuring Fish',
-        items: [
-          'All measured fish lengths are only accepted on the official tournament ruler with the fish nose to the end and tail pinched to its largest measurement.',
-          'Closest ½ inch increments. (40.5 = 41 inches) (41.4 = 41 inches)',
-        ],
-        callout: 'DO NOT PULL THE TAPE MEASURE OVER THE FISH OR LAY THE TOKEN ON TOP OF THE FISH.',
-      },
-    ],
+    callout: 'DO NOT PULL THE TAPE MEASURE OVER THE FISH. LAY FISH FLAT ON TAPE.',
   },
   {
     title: 'Fish Photos',
-    callout: 'THE ENTIRE FISH MUST BE IN THE PHOTOGRAPH AND THE TOKEN MUST BE VISIBLE.',
+    callout: 'THE ENTIRE FISH MUST BE IN THE PHOTOGRAPH AND TAPE NUMBERS VISIBLE.',
     items: [
       'Figure 1: Correct Measurement for Fish in Boat (Measuring Device and Token on Boat Deck NOT ON FISH).',
       'Photographs that do not include the Token and/or that do not allow the Rules Committee to view the tape measure may be excluded at the sole discretion of the Tournament Director and Rules Committee.',
