@@ -819,7 +819,7 @@ function CatchCell({ catchData, isAdmin, onVerify, onEditInches, onRemove, onZoo
       window.alert('Length must be a number in half-inch increments (e.g. 20, 20.5, 21).')
       return
     }
-    onEditInches(catchData.id, value)
+    onEditInches(catchData, value)
     setEditing(false)
   }
 
@@ -873,10 +873,10 @@ function CatchCell({ catchData, isAdmin, onVerify, onEditInches, onRemove, onZoo
               <button type="button" onClick={startEdit}>
                 Edit
               </button>
-              <button type="button" onClick={() => onVerify(catchData.id, !catchData.verified)}>
+              <button type="button" onClick={() => onVerify(catchData, !catchData.verified)}>
                 {catchData.verified ? 'Unverify' : 'Verify'}
               </button>
-              <button type="button" onClick={() => onRemove(catchData.id)}>
+              <button type="button" onClick={() => onRemove(catchData)}>
                 Remove
               </button>
             </>
@@ -890,11 +890,12 @@ function CatchCell({ catchData, isAdmin, onVerify, onEditInches, onRemove, onZoo
 function LiveLeaderboardSection() {
   const { teams, loading: teamsLoading } = useTournamentTeams()
   const { catchesByTeam, loading: catchesLoading } = useTournamentCatches()
-  const { isAdmin } = useAdminAuth()
+  const { user, isAdmin } = useAdminAuth()
   const [showModal, setShowModal] = useState(false)
   const [zoomCatch, setZoomCatch] = useState(null)
 
   const loading = teamsLoading || catchesLoading
+  const admin = user ? { uid: user.uid, email: user.email } : null
 
   const ranked = teams
     .map((team) => ({
@@ -904,17 +905,17 @@ function LiveLeaderboardSection() {
     }))
     .sort((a, b) => b.total - a.total)
 
-  const verify = (id, verified) => {
-    setCatchVerified(id, verified).catch(() => {})
+  const verify = (catchData, verified) => {
+    setCatchVerified(catchData, verified, admin).catch(() => {})
   }
 
-  const editInches = (id, inches) => {
-    setCatchInches(id, inches).catch(() => {})
+  const editInches = (catchData, inches) => {
+    setCatchInches(catchData, inches, admin).catch(() => {})
   }
 
-  const remove = (id) => {
+  const remove = (catchData) => {
     if (window.confirm("Remove this catch? You can restore it later from the Admin page.")) {
-      removeCatch(id).catch(() => {})
+      removeCatch(catchData, admin).catch(() => {})
     }
   }
 

@@ -235,6 +235,11 @@
   overflow-x: auto;
 }
 
+.admin-report__activity-scroll {
+  max-height: 420px;
+  overflow-y: auto;
+}
+
 .team-roster__table {
   min-width: 720px;
 }

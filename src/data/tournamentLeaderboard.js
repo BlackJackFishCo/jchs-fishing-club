@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import {
+  addDoc,
   collection,
   deleteDoc,
   doc,
+  limit,
   onSnapshot,
   orderBy,
   query,
@@ -136,6 +138,44 @@ export function useTournamentCatches() {
   return { catchesByTeam, deletedCatches, loading }
 }
 
+// Records one admin action against a catch so it can be reviewed later on
+// the Admin page instead of needing to open the Firestore console.
+function logCatchActivity({ catchData, action, field, oldValue, newValue, admin }) {
+  return addDoc(collection(db, 'tournamentCatchLogs'), {
+    catchId: catchData.id,
+    teamId: catchData.teamId,
+    species: catchData.species,
+    angler: catchData.angler || null,
+    action,
+    field,
+    oldValue: oldValue ?? null,
+    newValue: newValue ?? null,
+    adminUid: admin?.uid || null,
+    adminEmail: admin?.email || null,
+    at: serverTimestamp(),
+  })
+}
+
+export function useCatchActivityLog(entryLimit = 200) {
+  const [entries, setEntries] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const q = query(collection(db, 'tournamentCatchLogs'), orderBy('at', 'desc'), limit(entryLimit))
+    const unsub = onSnapshot(
+      q,
+      (snap) => {
+        setEntries(snap.docs.map((d) => ({ id: d.id, ...d.data() })))
+        setLoading(false)
+      },
+      () => setLoading(false),
+    )
+    return () => unsub()
+  }, [entryLimit])
+
+  return { entries, loading }
+}
+
 export async function submitCatch({ teamId, species, angler, inches, file }) {
   const blob = await resizeToBlob(file)
   const path = `tournament-catches/${teamId}/${species}-${Date.now()}.jpg`
@@ -156,36 +196,76 @@ export async function submitCatch({ teamId, species, angler, inches, file }) {
   })
 }
 
-export async function setCatchVerified(catchId, verified) {
-  await updateDoc(doc(db, 'tournamentCatches', catchId), { verified })
+export async function setCatchVerified(catchData, verified, admin) {
+  await updateDoc(doc(db, 'tournamentCatches', catchData.id), { verified })
+  await logCatchActivity({
+    catchData,
+    action: verified ? 'verify' : 'unverify',
+    field: 'verified',
+    oldValue: catchData.verified,
+    newValue: verified,
+    admin,
+  }).catch(() => {})
 }
 
 // Admin correction only — intentionally does not touch submittedAt, since
 // that timestamp is used as the tiebreak order and shouldn't move just
 // because an admin fixed a measurement.
-export async function setCatchInches(catchId, inches) {
-  await updateDoc(doc(db, 'tournamentCatches', catchId), { inches })
+export async function setCatchInches(catchData, inches, admin) {
+  await updateDoc(doc(db, 'tournamentCatches', catchData.id), { inches })
+  await logCatchActivity({
+    catchData,
+    action: 'edit_inches',
+    field: 'inches',
+    oldValue: catchData.inches,
+    newValue: inches,
+    admin,
+  }).catch(() => {})
 }
 
-export async function removeCatch(catchId) {
-  await updateDoc(doc(db, 'tournamentCatches', catchId), {
+export async function removeCatch(catchData, admin) {
+  await updateDoc(doc(db, 'tournamentCatches', catchData.id), {
     deleted: true,
     deletedAt: serverTimestamp(),
   })
+  await logCatchActivity({
+    catchData,
+    action: 'remove',
+    field: 'deleted',
+    oldValue: false,
+    newValue: true,
+    admin,
+  }).catch(() => {})
 }
 
-export async function restoreCatch(catchId) {
-  await updateDoc(doc(db, 'tournamentCatches', catchId), {
+export async function restoreCatch(catchData, admin) {
+  await updateDoc(doc(db, 'tournamentCatches', catchData.id), {
     deleted: false,
     deletedAt: null,
   })
+  await logCatchActivity({
+    catchData,
+    action: 'restore',
+    field: 'deleted',
+    oldValue: true,
+    newValue: false,
+    admin,
+  }).catch(() => {})
 }
 
-export async function permanentlyDeleteCatch(catchId, photoPath) {
-  await deleteDoc(doc(db, 'tournamentCatches', catchId))
-  if (photoPath) {
+export async function permanentlyDeleteCatch(catchData, admin) {
+  await logCatchActivity({
+    catchData,
+    action: 'purge',
+    field: 'deleted',
+    oldValue: true,
+    newValue: 'purged',
+    admin,
+  }).catch(() => {})
+  await deleteDoc(doc(db, 'tournamentCatches', catchData.id))
+  if (catchData.photoPath) {
     try {
-      await deleteObject(ref(storage, photoPath))
+      await deleteObject(ref(storage, catchData.photoPath))
     } catch {
       // photo may already be gone; not fatal
     }
