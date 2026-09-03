@@ -352,20 +352,11 @@ const RULES_SECTIONS = [
   {
     title: 'After the Catch',
     items: ['No slot size is required for photo submission.'],
-    subsections: [
-      {
-        title: 'Measuring Fish',
-        items: [
-          'All measured fish lengths are only accepted on the official tournament ruler with the fish nose to the end and tail pinched to its largest measurement.',
-          'Closest ½ inch increments. (40.5 = 41 inches) (41.4 = 41 inches)',
-        ],
-        callout: 'DO NOT PULL THE TAPE MEASURE OVER THE FISH OR LAY THE TOKEN ON TOP OF THE FISH.',
-      },
-    ],
+    callout: 'DO NOT PULL THE TAPE MEASURE OVER THE FISH. LAY FISH FLAT ON TAPE.',
   },
   {
     title: 'Fish Photos',
-    callout: 'THE ENTIRE FISH MUST BE IN THE PHOTOGRAPH AND THE TOKEN MUST BE VISIBLE.',
+    callout: 'THE ENTIRE FISH MUST BE IN THE PHOTOGRAPH AND TAPE NUMBERS VISIBLE.',
     items: [
       'Figure 1: Correct Measurement for Fish in Boat (Measuring Device and Token on Boat Deck NOT ON FISH).',
       'Photographs that do not include the Token and/or that do not allow the Rules Committee to view the tape measure may be excluded at the sole discretion of the Tournament Director and Rules Committee.',
