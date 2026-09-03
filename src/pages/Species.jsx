@@ -322,13 +322,6 @@ function Species() {
               </svg>
               <span className="fish-id-box__label">FISH ID</span>
             </a>
-            <a href="https://myfwc.com/" target="_blank" rel="noopener noreferrer">
-              <img
-                className="species-rules__fwc-logo"
-                src={fwcLogo}
-                alt="Florida Fish and Wildlife Conservation Commission logo"
-              />
-            </a>
           </div>
         </div>
       </section>
