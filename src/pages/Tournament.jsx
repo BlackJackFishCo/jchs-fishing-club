@@ -7,6 +7,7 @@ import {
   useTournamentCatches,
   submitCatch,
   setCatchVerified,
+  setCatchInches,
   removeCatch,
   computeTeamTotal,
 } from '../data/tournamentLeaderboard.js'
@@ -797,12 +798,30 @@ function PhotoLightbox({ catchData, onClose }) {
   )
 }
 
-function CatchCell({ catchData, isAdmin, onVerify, onRemove, onZoom }) {
+function CatchCell({ catchData, isAdmin, onVerify, onEditInches, onRemove, onZoom }) {
+  const [editing, setEditing] = useState(false)
+  const [draft, setDraft] = useState('')
+
   if (!catchData) {
     return <div className="catch-cell catch-cell--empty">—</div>
   }
 
   const timestamp = formatCatchTimestamp(catchData.submittedAt)
+
+  const startEdit = () => {
+    setDraft(String(catchData.inches))
+    setEditing(true)
+  }
+
+  const saveEdit = () => {
+    const value = Number(draft)
+    if (!draft || Number.isNaN(value) || value <= 0 || Math.round(value * 2) !== value * 2) {
+      window.alert('Length must be a number in half-inch increments (e.g. 20, 20.5, 21).')
+      return
+    }
+    onEditInches(catchData.id, value)
+    setEditing(false)
+  }
 
   return (
     <div className="catch-cell">
@@ -815,23 +834,53 @@ function CatchCell({ catchData, isAdmin, onVerify, onRemove, onZoom }) {
         <img className="catch-cell__photo" src={catchData.photo} alt={`${catchData.species} catch`} />
       </button>
       <span className="catch-cell__inches">
-        {catchData.inches}&quot;
-        {catchData.verified && (
-          <span className="catch-cell__check" title="Verified by admin">
-            ✓
-          </span>
+        {editing ? (
+          <input
+            type="number"
+            step="0.5"
+            min="1"
+            className="catch-cell__inches-input"
+            value={draft}
+            onChange={(e) => setDraft(e.target.value)}
+            autoFocus
+          />
+        ) : (
+          <>
+            {catchData.inches}&quot;
+            {catchData.verified && (
+              <span className="catch-cell__check" title="Verified by admin">
+                ✓
+              </span>
+            )}
+          </>
         )}
       </span>
       <span className="catch-cell__angler">{catchData.angler}</span>
       {timestamp && <span className="catch-cell__time">{timestamp}</span>}
       {isAdmin && (
         <div className="catch-cell__admin">
-          <button type="button" onClick={() => onVerify(catchData.id, !catchData.verified)}>
-            {catchData.verified ? 'Unverify' : 'Verify'}
-          </button>
-          <button type="button" onClick={() => onRemove(catchData.id)}>
-            Remove
-          </button>
+          {editing ? (
+            <>
+              <button type="button" onClick={saveEdit}>
+                Save
+              </button>
+              <button type="button" onClick={() => setEditing(false)}>
+                Cancel
+              </button>
+            </>
+          ) : (
+            <>
+              <button type="button" onClick={startEdit}>
+                Edit
+              </button>
+              <button type="button" onClick={() => onVerify(catchData.id, !catchData.verified)}>
+                {catchData.verified ? 'Unverify' : 'Verify'}
+              </button>
+              <button type="button" onClick={() => onRemove(catchData.id)}>
+                Remove
+              </button>
+            </>
+          )}
         </div>
       )}
     </div>
@@ -857,6 +906,10 @@ function LiveLeaderboardSection() {
 
   const verify = (id, verified) => {
     setCatchVerified(id, verified).catch(() => {})
+  }
+
+  const editInches = (id, inches) => {
+    setCatchInches(id, inches).catch(() => {})
   }
 
   const remove = (id) => {
@@ -904,6 +957,7 @@ function LiveLeaderboardSection() {
                   catchData={team.catches.Snook}
                   isAdmin={isAdmin}
                   onVerify={verify}
+                  onEditInches={editInches}
                   onRemove={remove}
                   onZoom={setZoomCatch}
                 />
@@ -911,6 +965,7 @@ function LiveLeaderboardSection() {
                   catchData={team.catches.Redfish}
                   isAdmin={isAdmin}
                   onVerify={verify}
+                  onEditInches={editInches}
                   onRemove={remove}
                   onZoom={setZoomCatch}
                 />
@@ -918,6 +973,7 @@ function LiveLeaderboardSection() {
                   catchData={team.catches.Trout}
                   isAdmin={isAdmin}
                   onVerify={verify}
+                  onEditInches={editInches}
                   onRemove={remove}
                   onZoom={setZoomCatch}
                 />
