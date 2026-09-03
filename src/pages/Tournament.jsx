@@ -367,7 +367,7 @@ const RULES_SECTIONS = [
       'No rotten or mutilated fish will be counted.',
       'Any technical difficulties with digital equipment will be dealt with on a case-by-case basis by the Tournament Director and Rules Committee.',
       'In the event of a tie, the winner will be the first to log all of their fish. If there is a tie for the largest of a species, the first fish logged wins.',
-      'Cheaters will be disqualified and subjected to public ridiculing and a t-shirt that states "I cheated at a charity fishing tournament." You and your team will also be banned from all future events. This is a Charity Tournament!',
+      'Cheaters will be disqualified. You and your team will also be banned from all future events. This is a Charity Tournament!',
     ],
   },
   {
