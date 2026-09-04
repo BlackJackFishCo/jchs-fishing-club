@@ -166,6 +166,10 @@
   line-height: 1.3;
 }
 
+.tile__label-line {
+  display: inline;
+}
+
 .tile__meta {
   font-family: var(--font-eyebrow);
   font-size: 0.75rem;
@@ -243,5 +247,13 @@
 
   .hero__picture {
     width: min(300px, 46vw);
+  }
+
+  .home__area-inshore .tile__label {
+    text-align: center;
+  }
+
+  .home__area-inshore .tile__label-line {
+    display: block;
   }
 }
