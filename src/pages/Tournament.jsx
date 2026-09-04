@@ -545,10 +545,10 @@ function AwardsSection() {
 
 const EVENT_INFO = [
   { label: 'Registration Ends', value: '00/2027' },
-  { label: 'Captains Meeting', value: '0:00pm 00/2027' },
-  { label: 'Lines In', value: '0:00am 00/2027' },
-  { label: 'All Photos Submitted', value: '0:00pm 00/2027' },
-  { label: 'Awards', value: '0:00pm 00/2027' },
+  { label: 'Captains Meeting', value: '6:00pm 00/2027' },
+  { label: 'Lines In', value: '6:00am 00/2027' },
+  { label: 'All Photos Submitted', value: '4:00pm 00/2027' },
+  { label: 'Awards', value: '6:00pm 00/2027' },
 ]
 
 function EventInfoRow() {
