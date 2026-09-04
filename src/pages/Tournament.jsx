@@ -797,12 +797,16 @@ function PhotoLightbox({ catchData, onClose }) {
   )
 }
 
-function CatchCell({ catchData, isAdmin, onVerify, onEditInches, onRemove, onZoom }) {
+function CatchCell({ catchData, species, isAdmin, onVerify, onEditInches, onRemove, onZoom }) {
   const [editing, setEditing] = useState(false)
   const [draft, setDraft] = useState('')
 
   if (!catchData) {
-    return <div className="catch-cell catch-cell--empty">—</div>
+    return (
+      <div className="catch-cell catch-cell--empty">
+        <span className="catch-cell__species-label">{species}</span>—
+      </div>
+    )
   }
 
   const timestamp = formatCatchTimestamp(catchData.submittedAt)
@@ -824,6 +828,7 @@ function CatchCell({ catchData, isAdmin, onVerify, onEditInches, onRemove, onZoo
 
   return (
     <div className="catch-cell">
+      <span className="catch-cell__species-label">{species}</span>
       <button
         type="button"
         className="catch-cell__photo-btn"
@@ -951,32 +956,39 @@ function LiveLeaderboardSection() {
             </div>
             {ranked.map((team, i) => (
               <div key={team.id} className="liveboard-table__row">
-                <span className="liveboard-table__rank">{i + 1}</span>
-                <span className="liveboard-table__team">{team.name}</span>
-                <CatchCell
-                  catchData={team.catches.Snook}
-                  isAdmin={isAdmin}
-                  onVerify={verify}
-                  onEditInches={editInches}
-                  onRemove={remove}
-                  onZoom={setZoomCatch}
-                />
-                <CatchCell
-                  catchData={team.catches.Redfish}
-                  isAdmin={isAdmin}
-                  onVerify={verify}
-                  onEditInches={editInches}
-                  onRemove={remove}
-                  onZoom={setZoomCatch}
-                />
-                <CatchCell
-                  catchData={team.catches.Trout}
-                  isAdmin={isAdmin}
-                  onVerify={verify}
-                  onEditInches={editInches}
-                  onRemove={remove}
-                  onZoom={setZoomCatch}
-                />
+                <div className="liveboard-table__row-head">
+                  <span className="liveboard-table__rank">{i + 1}</span>
+                  <span className="liveboard-table__team">{team.name}</span>
+                </div>
+                <div className="liveboard-table__catches">
+                  <CatchCell
+                    catchData={team.catches.Snook}
+                    species="Snook"
+                    isAdmin={isAdmin}
+                    onVerify={verify}
+                    onEditInches={editInches}
+                    onRemove={remove}
+                    onZoom={setZoomCatch}
+                  />
+                  <CatchCell
+                    catchData={team.catches.Redfish}
+                    species="Redfish"
+                    isAdmin={isAdmin}
+                    onVerify={verify}
+                    onEditInches={editInches}
+                    onRemove={remove}
+                    onZoom={setZoomCatch}
+                  />
+                  <CatchCell
+                    catchData={team.catches.Trout}
+                    species="Trout"
+                    isAdmin={isAdmin}
+                    onVerify={verify}
+                    onEditInches={editInches}
+                    onRemove={remove}
+                    onZoom={setZoomCatch}
+                  />
+                </div>
                 <span className="liveboard-table__total">{team.total}&quot;</span>
               </div>
             ))}
