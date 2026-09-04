@@ -934,7 +934,11 @@ function LiveLeaderboardSection() {
             will be used for a tie if needed.
           </p>
         </div>
-        <button type="button" className="btn btn-solid" onClick={() => setShowModal(true)}>
+        <button
+          type="button"
+          className="btn btn-solid tournament-liveboard__log-btn"
+          onClick={() => setShowModal(true)}
+        >
           Log a Catch
         </button>
       </div>

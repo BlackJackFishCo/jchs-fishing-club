@@ -16,6 +16,7 @@
 .tournament-live-leaderboard {
   white-space: nowrap;
   margin-left: auto;
+  text-transform: uppercase;
 }
 
 .tournament-tabs__btn {
@@ -293,6 +294,10 @@
 
 .tournament-liveboard__head .btn {
   white-space: nowrap;
+}
+
+.tournament-liveboard__log-btn {
+  text-transform: uppercase;
 }
 
 .liveboard-scroll {
