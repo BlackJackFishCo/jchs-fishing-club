@@ -170,6 +170,14 @@
   display: inline;
 }
 
+.tile__subtitle {
+  font-family: var(--font-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.75rem;
+  color: var(--color-gold-soft);
+}
+
 .home__area-inshore .tile__label {
   font-size: 1.15rem;
 }
