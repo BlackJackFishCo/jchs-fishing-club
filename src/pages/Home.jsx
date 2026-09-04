@@ -89,6 +89,7 @@ const tournamentTile = {
       <span className="tile__label-line">Inshore Slam</span>
     </>
   ),
+  subtitle: 'Fishing Tournament',
   icon: (
     <svg viewBox="0 0 64 64" aria-hidden="true">
       <path
@@ -118,6 +119,7 @@ function renderTile(tile, caught, total, areaClass) {
         </span>
       )}
       <span className="tile__label">{tile.label}</span>
+      {tile.subtitle && <span className="tile__subtitle">{tile.subtitle}</span>}
     </Link>
   )
 }
