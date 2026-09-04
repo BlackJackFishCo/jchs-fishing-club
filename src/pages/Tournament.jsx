@@ -308,8 +308,8 @@ function HomeSection() {
       <p>
         Join us for the John Carroll High School Inshore Slam, a charity inshore fishing tournament
         battling it out for the biggest Snook, Redfish, and Trout. 100% of proceeds go to
-        supporting the JCHS fishing club — helping the next generation of anglers learn the water,
-        the regulations, and the sport we love.
+        supporting the JCHS fishing club and its volunteer restoration projects — helping the next
+        generation of anglers learn the water, the regulations, and the sport we love.
       </p>
       <p>
         Grab your rods, load the boat, and see if you&apos;ve got what it takes to take home the
