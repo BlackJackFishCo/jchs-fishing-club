@@ -300,7 +300,7 @@ function SponsorshipSection() {
 function HomeSection() {
   return (
     <section className="card tournament-home">
-      <h2 className="tournament-home__heading">JCHS Inshore Slam Fishing Tournament</h2>
+      <h2 className="tournament-home__heading">Fishing Tournament</h2>
       <p>
         Think you&apos;ve got what it takes to boat the biggest inshore SLAM on the Treasure Coast?
       </p>
