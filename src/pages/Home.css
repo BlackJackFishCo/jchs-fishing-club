@@ -13,7 +13,8 @@
     'species logo'
     'leaderboard logo'
     'volunteer logo'
-    'calendar inshore';
+    'calendar inshore'
+    'records mission';
   gap: 1.5rem 2rem;
   text-align: left;
   margin-bottom: 2.5rem;
@@ -40,8 +41,17 @@
   grid-area: calendar;
 }
 
+.home__area-records {
+  grid-area: records;
+}
+
 .home__area-inshore {
   grid-area: inshore;
+}
+
+.home__area-mission {
+  grid-area: mission;
+  text-align: center;
 }
 
 .home__logo-col {
@@ -230,12 +240,15 @@
       'leaderboard'
       'volunteer'
       'calendar'
-      'inshore';
+      'records'
+      'inshore'
+      'mission';
     justify-items: center;
   }
 
   .home__grid > .tile,
-  .home__logo-col {
+  .home__logo-col,
+  .home__area-mission {
     width: 100%;
     max-width: 380px;
   }

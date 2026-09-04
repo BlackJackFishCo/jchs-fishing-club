@@ -81,6 +81,31 @@ const calendarTile = {
   ),
 }
 
+const recordsTile = {
+  to: '/records',
+  label: 'Club Records',
+  photo: leaderboardPhoto,
+  icon: (
+    <svg viewBox="0 0 64 64" aria-hidden="true">
+      <circle cx="32" cy="24" r="14" fill="none" stroke="currentColor" strokeWidth="2.5" />
+      <path
+        d="M32 15l2.6 5.6 6.1.8-4.4 4.3 1 6.1-5.3-2.8-5.3 2.8 1-6.1-4.4-4.3 6.1-.8L32 15Z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M24 36l-6 16 8-3 4 7 6-16M40 36l6 16-8-3-4 7-6-16"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinejoin="round"
+      />
+    </svg>
+  ),
+}
+
 const tournamentTile = {
   to: '/tournament',
   label: (
@@ -132,6 +157,7 @@ function Home() {
         {renderTile(leaderboardTile, caught, total, 'home__area-leaderboard')}
         {renderTile(tiles[1], caught, total, 'home__area-volunteer')}
         {renderTile(calendarTile, caught, total, 'home__area-calendar')}
+        {renderTile(recordsTile, caught, total, 'home__area-records')}
         {renderTile(tournamentTile, caught, total, 'home__area-inshore')}
 
         <div className="home__logo-col">
@@ -222,18 +248,18 @@ function Home() {
             </a>
           </div>
         </div>
-      </div>
 
-      <section className="mission">
-        <p className="eyebrow">Club Mission</p>
-        <p className="mission__text">
-          The John Carroll Fishing Club was created for students who are interested in
-          learning how to become effective, conservation-minded anglers. The goal is to
-          teach students about ethical angling, conservation, Florida&apos;s aquatic
-          habitats, basic fishing gear, and general fishing concepts to help create
-          confident and responsible anglers. Let&apos;s go fishing!
-        </p>
-      </section>
+        <section className="mission home__area-mission">
+          <p className="eyebrow">Club Mission</p>
+          <p className="mission__text">
+            The John Carroll Fishing Club was created for students who are interested in
+            learning how to become effective, conservation-minded anglers. The goal is to
+            teach students about ethical angling, conservation, Florida&apos;s aquatic
+            habitats, basic fishing gear, and general fishing concepts to help create
+            confident and responsible anglers. Let&apos;s go fishing!
+          </p>
+        </section>
+      </div>
 
       <Link to="/admin" className="admin-quiet-link" aria-label="Admin access">
         Admin
