@@ -12,6 +12,7 @@ import {
   computeTeamTotal,
 } from '../data/tournamentLeaderboard.js'
 import logo from '../assets/logo.png'
+import inshoreSlamLogo from '../assets/inshore-slam-logo.png'
 import snookFish from '../assets/sponsor-tier-snook.png'
 import redfishFish from '../assets/sponsor-tier-redfish.png'
 import troutFish from '../assets/sponsor-tier-trout.png'
@@ -300,22 +301,29 @@ function SponsorshipSection() {
 function HomeSection() {
   return (
     <section className="card tournament-home">
-      <h2 className="tournament-home__heading">Fishing Tournament</h2>
-      <p>
-        Think you&apos;ve got what it takes to boat the biggest inshore SLAM on the Treasure Coast?
-      </p>
-      <p className="tournament-home__prove">Prove it.</p>
-      <p>
-        Join us for the John Carroll High School Inshore Slam, a charity inshore fishing tournament
-        battling it out for the biggest Snook, Redfish, and Trout. 100% of proceeds go to
-        supporting the JCHS fishing club and its volunteer restoration projects — helping the next
-        generation of anglers learn the water, the regulations, and the sport we love.
-      </p>
-      <p>
-        Grab your rods, load the boat, and see if you&apos;ve got what it takes to take home the
-        title this year.
-      </p>
-      <p className="tournament-home__proceeds">Let&apos;s go fishing!</p>
+      <div className="tournament-home__body">
+        <div className="tournament-home__text">
+          <h2 className="tournament-home__heading">Fishing Tournament</h2>
+          <p>
+            Think you&apos;ve got what it takes to boat the biggest inshore SLAM on the Treasure
+            Coast?
+          </p>
+          <p className="tournament-home__prove">Prove it.</p>
+          <p>
+            Join us for the John Carroll High School Inshore Slam, a charity inshore fishing
+            tournament battling it out for the biggest Snook, Redfish, and Trout. 100% of proceeds
+            go to supporting the JCHS fishing club and its volunteer restoration projects —
+            helping the next generation of anglers learn the water, the regulations, and the sport
+            we love.
+          </p>
+          <p>
+            Grab your rods, load the boat, and see if you&apos;ve got what it takes to take home
+            the title this year.
+          </p>
+          <p className="tournament-home__proceeds">Let&apos;s go fishing!</p>
+        </div>
+        <img className="tournament-home__logo" src={inshoreSlamLogo} alt="Inshore Slam logo" />
+      </div>
     </section>
   )
 }
