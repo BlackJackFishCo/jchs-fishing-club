@@ -343,9 +343,9 @@ const RULES_SECTIONS = [
   {
     title: 'Fishing',
     items: [
-      'Lines in, and the start of fishing shall begin at 6am on Saturday, MONTH 00, 2027.',
-      'Lines out, there is no lines out time, however all fish must be logged into the JCHS Inshore Slam Tournament Page no later than 4 p.m. on MONTH 00, 2027 to count for tournament. Website will lock at 4pm for submissions.',
-      'In the event of tournament site outage it is your teams responsibility to still log your catch on the tournament ruler by picture on your phone followed by a screen shot of the time. All photos must be text to tournament committee by 4pm MONTH 00.2027.',
+      'Lines in, and the start of fishing shall begin at 6am on Saturday, October 9, 2027.',
+      'Lines out, there is no lines out time, however all fish must be logged into the JCHS Inshore Slam Tournament Page no later than 4 p.m. on October 9, 2027 to count for tournament. Website will lock at 4pm for submissions.',
+      'In the event of tournament site outage it is your teams responsibility to still log your catch on the tournament ruler by picture on your phone followed by a screen shot of the time. All photos must be text to tournament committee by 4pm October 9, 2027.',
       'North Boundary ¼ Mile North of Sebastian Inlet 27°51.850’N',
       'South Boundary ¼ Mile South of St. Lucie Inlet 27°09.720’N',
       'No East or West Boundary',
@@ -383,7 +383,7 @@ const RULES_SECTIONS = [
     title: 'Weather',
     items: [
       'It is up to the discretion of the registered anglers to determine whether his or her craft is seaworthy for that day’s weather conditions. Participants are encouraged to keep abreast of any marine or weather warnings.',
-      'In the case of tournament cancelation and no fish have been logged due to weather, prizes will turn into raffle format with each team in the raffle one time. If Fish have been logged. Winners will be determined at 4pm MONTH 00. 2027.',
+      'In the case of tournament cancelation and no fish have been logged due to weather, prizes will turn into raffle format with each team in the raffle one time. If Fish have been logged. Winners will be determined at 4pm October 9, 2027.',
       'No refund of entry fees.',
     ],
   },
