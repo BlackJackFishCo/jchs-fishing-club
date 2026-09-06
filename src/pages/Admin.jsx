@@ -739,11 +739,11 @@ function Admin() {
               Sign Out
             </button>
           </div>
+          <AdminsManager currentUid={user.uid} />
           <RosterManager />
           <TeamRosterManager />
           <DeletedCatchesManager admin={admin} />
           <TournamentActivityLog />
-          <AdminsManager currentUid={user.uid} />
           <RegistrationReport />
           <CatchReport />
         </>
