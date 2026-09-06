@@ -5,11 +5,24 @@
   gap: 1.5rem;
 }
 
+.species-page__right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
 .species-page__logos {
   display: flex;
   align-items: center;
   gap: 1rem;
   flex-shrink: 0;
+}
+
+.species-filter {
+  align-items: flex-end;
+  min-width: 200px;
 }
 
 .species-page__logo {
@@ -75,6 +88,14 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+  }
+
+  .species-page__right {
+    align-items: center;
+  }
+
+  .species-filter {
+    align-items: center;
   }
 }
 

@@ -238,10 +238,18 @@ function Species() {
   const { roster } = useRoster()
   const { isAdmin } = useAdminAuth()
   const [editingId, setEditingId] = useState(null)
-  const caughtCount = board.filter((r) => r.submissions.length > 0).length
-  const pct = Math.round((caughtCount / TOTAL_SPECIES) * 100)
+  const [viewAnglerId, setViewAnglerId] = useState('')
   const activeRoster = roster.filter((r) => r.active)
   const editing = editingId ? board.find((r) => r.id === editingId) : null
+
+  const displayBoard = viewAnglerId
+    ? board.map((entry) => ({
+        ...entry,
+        submissions: entry.submissions.filter((sub) => sub.anglerId === viewAnglerId),
+      }))
+    : board
+  const caughtCount = displayBoard.filter((r) => r.submissions.length > 0).length
+  const pct = Math.round((caughtCount / TOTAL_SPECIES) * 100)
 
   return (
     <div className="page species-page">
@@ -256,9 +264,22 @@ function Species() {
             towards the FWC Challenge competition.
           </p>
         </div>
-        <div className="species-page__logos">
-          <img className="species-page__logo" src={logo} alt="JCHS Fishing Club crest" />
-          <img className="species-rules__fwc-logo" src={fwcLogo} alt="Florida Fish and Wildlife Conservation Commission logo" />
+        <div className="species-page__right">
+          <label className="field species-filter">
+            <span>Viewing</span>
+            <select value={viewAnglerId} onChange={(e) => setViewAnglerId(e.target.value)}>
+              <option value="">All Participants</option>
+              {activeRoster.map((r) => (
+                <option key={r.id} value={r.id}>
+                  {r.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <div className="species-page__logos">
+            <img className="species-page__logo" src={logo} alt="JCHS Fishing Club crest" />
+            <img className="species-rules__fwc-logo" src={fwcLogo} alt="Florida Fish and Wildlife Conservation Commission logo" />
+          </div>
         </div>
       </div>
 
@@ -333,7 +354,7 @@ function Species() {
           <CategorySection
             key={category}
             category={category}
-            entries={board.filter((r) => r.category === category)}
+            entries={displayBoard.filter((r) => r.category === category)}
             onEdit={(entry) => setEditingId(entry.id)}
           />
         ))
