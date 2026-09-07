@@ -331,7 +331,7 @@ function HomeSection() {
 const RULES_INTRO = [
   'These rules are subject to the sole interpretation, application, and discretion of the Tournament Director.',
   'This is a catch-and-release team format tournament up to 4 anglers and does not require that any fish be killed for a team to accumulate points. Please handle all fish with the upmost care for the best survival upon release.',
-  'Anglers will target Snook, Redfish, and Trout. Each fish will be measured by its Total Length. There is no minimum slot size.',
+  'Anglers will target Snook, Redfish, and Trout. Each fish will be measured by its total length with pinched tail. There is no minimum slot size to submit a catch.',
 ]
 
 const RULES_EQUIPMENT = [
