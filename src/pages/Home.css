@@ -5,53 +5,30 @@
   text-align: center;
 }
 
-.home__grid {
+.home__hero {
   width: 100%;
-  display: grid;
-  grid-template-columns: 340px 1fr;
-  grid-template-areas:
-    'species logo'
-    'leaderboard logo'
-    'volunteer logo'
-    'calendar inshore';
-  gap: 1.5rem 2rem;
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
   margin-bottom: 2.5rem;
 }
 
-.home__grid .tile {
-  width: 100%;
-  min-height: 220px;
-}
-
-.home__area-species {
-  grid-area: species;
-}
-
-.home__area-leaderboard {
-  grid-area: leaderboard;
-}
-
-.home__area-volunteer {
-  grid-area: volunteer;
-}
-
-.home__area-calendar {
-  grid-area: calendar;
-}
-
-.home__area-inshore {
-  grid-area: inshore;
-}
-
 .home__logo-col {
-  grid-area: logo;
   min-width: 0;
+  width: 100%;
+  max-width: 720px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   gap: 1rem;
+}
+
+.home__area-inshore {
+  width: 100%;
+  max-width: 720px;
+  min-height: 220px;
 }
 
 .hero-logos {
@@ -113,42 +90,6 @@
   border-color: var(--color-gold);
 }
 
-.tile--photo {
-  min-height: 220px;
-  justify-content: flex-end;
-  align-items: flex-start;
-  padding: 1.5rem;
-  background: var(--color-black-soft);
-}
-
-.tile__photo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-  transition: transform 0.25s ease;
-}
-
-.tile--photo:hover .tile__photo {
-  transform: scale(1.04);
-}
-
-.tile--photo::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(5, 6, 7, 0.15) 0%, rgba(5, 6, 7, 0.85) 100%);
-  z-index: 1;
-}
-
-.tile--photo .tile__label,
-.tile--photo .tile__meta {
-  position: relative;
-  z-index: 2;
-}
-
 .tile__icon {
   width: 56px;
   height: 56px;
@@ -186,17 +127,6 @@
   .home__area-inshore .tile__label {
     font-size: 1.75rem;
   }
-}
-
-.tile__meta {
-  font-family: var(--font-eyebrow);
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-gold-soft);
-  background: rgba(0, 0, 0, 0.3);
-  padding: 0.2rem 0.6rem;
-  border-radius: 999px;
 }
 
 .mission {
@@ -252,20 +182,8 @@
 }
 
 @media (max-width: 780px) {
-  .home__grid {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      'logo'
-      'species'
-      'leaderboard'
-      'volunteer'
-      'calendar'
-      'inshore';
-    justify-items: center;
-  }
-
-  .home__grid > .tile,
-  .home__logo-col {
+  .home__logo-col,
+  .home__area-inshore {
     width: 100%;
     max-width: 380px;
   }

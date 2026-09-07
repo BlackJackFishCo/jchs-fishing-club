@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { useCaughtCount } from '../data/species.js'
 import logo from '../assets/logo-hero.png'
 import offTheGridLogo from '../assets/sponsor-off-the-grid.png'
 import dancoLogo from '../assets/sponsor-danco.png'
@@ -11,75 +10,7 @@ import blackjackLogo from '../assets/sponsor-blackjack-fish-co.png'
 import bassProLogo from '../assets/sponsor-bass-pro-shops.png'
 import mangLogo from '../assets/sponsor-mang.png'
 import ccaLogo from '../assets/sponsor-cca.png'
-import snookCatch from '../assets/snook-catch.jpg'
-import volunteerCleanup from '../assets/volunteer-cleanup.jpg'
-import leaderboardPhoto from '../assets/leaderboard-photo.jpg'
-import calendarPhoto from '../assets/calendar-photo.jpg'
 import './Home.css'
-
-const tiles = [
-  {
-    to: '/species',
-    label: 'Club Species Catch List',
-    photo: snookCatch,
-    icon: (
-      <svg viewBox="0 0 64 64" aria-hidden="true">
-        <path
-          d="M6 32c8-14 22-20 34-14 6 3 11 8 14 14-3 6-8 11-14 14-12 6-26 0-34-14Z"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-        />
-        <circle cx="20" cy="28" r="2.4" fill="currentColor" />
-        <path d="M46 24c4 2 8 5 12 8-4 3-8 6-12 8" fill="none" stroke="currentColor" strokeWidth="2.5" />
-        <path d="M12 38c3 3 6 5 10 6M12 26c3-3 6-5 10-6" fill="none" stroke="currentColor" strokeWidth="2" />
-      </svg>
-    ),
-  },
-  {
-    to: '/volunteer',
-    label: 'Club Volunteer Events',
-    photo: volunteerCleanup,
-    icon: (
-      <svg viewBox="0 0 64 64" aria-hidden="true">
-        <path
-          d="M32 10c8 8 12 16 12 22a12 12 0 1 1-24 0c0-6 4-14 12-22Z"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-        />
-        <path d="M24 36c1 4 4 7 8 8" fill="none" stroke="currentColor" strokeWidth="2" />
-        <path d="M14 48h36M20 54h24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-      </svg>
-    ),
-  },
-]
-
-const leaderboardTile = {
-  to: '/leaderboard',
-  label: 'Club Leaderboard',
-  photo: leaderboardPhoto,
-  icon: (
-    <svg viewBox="0 0 64 64" aria-hidden="true">
-      <rect x="8" y="34" width="14" height="20" fill="none" stroke="currentColor" strokeWidth="2.5" />
-      <rect x="25" y="20" width="14" height="34" fill="none" stroke="currentColor" strokeWidth="2.5" />
-      <rect x="42" y="28" width="14" height="26" fill="none" stroke="currentColor" strokeWidth="2.5" />
-    </svg>
-  ),
-}
-
-const calendarTile = {
-  to: '/calendar',
-  label: 'Club Calendar',
-  photo: calendarPhoto,
-  icon: (
-    <svg viewBox="0 0 64 64" aria-hidden="true">
-      <rect x="10" y="14" width="44" height="40" rx="4" fill="none" stroke="currentColor" strokeWidth="2.5" />
-      <path d="M10 24h44" fill="none" stroke="currentColor" strokeWidth="2.5" />
-      <path d="M20 10v8M44 10v8" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-    </svg>
-  ),
-}
 
 const tournamentTile = {
   to: '/tournament',
@@ -104,20 +35,10 @@ const tournamentTile = {
   ),
 }
 
-function renderTile(tile, caught, total, areaClass) {
+function renderTile(tile, areaClass) {
   return (
-    <Link
-      key={tile.to}
-      to={tile.to}
-      className={`tile card ${tile.photo ? 'tile--photo' : ''} ${areaClass}`}
-    >
-      {tile.photo && <img className="tile__photo" src={tile.photo} alt="" aria-hidden="true" />}
-      {!tile.photo && <span className="tile__icon">{tile.icon}</span>}
-      {tile.to === '/species' && (
-        <span className="tile__meta">
-          {caught} / {total} caught
-        </span>
-      )}
+    <Link key={tile.to} to={tile.to} className={`tile card ${areaClass}`}>
+      <span className="tile__icon">{tile.icon}</span>
       <span className="tile__label">{tile.label}</span>
       {tile.subtitle && <span className="tile__subtitle">{tile.subtitle}</span>}
     </Link>
@@ -125,17 +46,9 @@ function renderTile(tile, caught, total, areaClass) {
 }
 
 function Home() {
-  const { caught, total } = useCaughtCount()
-
   return (
     <div className="page home">
-      <div className="home__grid">
-        {renderTile(tiles[0], caught, total, 'home__area-species')}
-        {renderTile(leaderboardTile, caught, total, 'home__area-leaderboard')}
-        {renderTile(tiles[1], caught, total, 'home__area-volunteer')}
-        {renderTile(calendarTile, caught, total, 'home__area-calendar')}
-        {renderTile(tournamentTile, caught, total, 'home__area-inshore')}
-
+      <div className="home__hero">
         <div className="home__logo-col">
           <Link to="/species" className="hero__picture" aria-label="View the Species Catch List">
             <img src={logo} alt="John Carroll High School Fishing Club crest" />
@@ -224,6 +137,8 @@ function Home() {
             </a>
           </div>
         </div>
+
+        {renderTile(tournamentTile, 'home__area-inshore')}
       </div>
 
       <section className="mission">
