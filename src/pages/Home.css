@@ -217,6 +217,18 @@
   line-height: 1.5;
 }
 
+.mission__text + .mission__text {
+  margin-top: 0.75rem;
+}
+
+.mission__tagline {
+  margin: 0.75rem 0 0;
+  font-family: var(--font-brand);
+  font-size: 1.1rem;
+  color: var(--color-gold);
+  letter-spacing: 0.02em;
+}
+
 .admin-quiet-link {
   display: block;
   width: fit-content;
