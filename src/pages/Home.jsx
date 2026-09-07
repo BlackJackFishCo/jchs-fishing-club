@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import logo from '../assets/logo-hero.png'
+import tournamentIcon from '../assets/tile-inshore-slam-icon.png'
 import offTheGridLogo from '../assets/sponsor-off-the-grid.png'
 import dancoLogo from '../assets/sponsor-danco.png'
 import nlbnLogo from '../assets/sponsor-nlbn.png'
@@ -14,33 +15,24 @@ import './Home.css'
 
 const tournamentTile = {
   to: '/tournament',
+  image: tournamentIcon,
   label: (
     <>
       <span className="tile__label-line">John Carroll High School</span>{' '}
       <span className="tile__label-line">Inshore Slam</span>
     </>
   ),
-  subtitle: 'Fishing Tournament',
-  icon: (
-    <svg viewBox="0 0 64 64" aria-hidden="true">
-      <path
-        d="M20 12h24v12a12 12 0 0 1-24 0V12Z"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.5"
-      />
-      <path d="M20 16h-6a6 6 0 0 0 6 10M44 16h6a6 6 0 0 1-6 10" fill="none" stroke="currentColor" strokeWidth="2.2" />
-      <path d="M32 36v8M24 52h16M27 52c0-4 1.5-6 5-8 3.5 2 5 4 5 8" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-    </svg>
-  ),
+  subtitle: 'Fishing Tournament — October 2027',
 }
 
 function renderTile(tile, areaClass) {
   return (
     <Link key={tile.to} to={tile.to} className={`tile card ${areaClass}`}>
-      <span className="tile__icon">{tile.icon}</span>
-      <span className="tile__label">{tile.label}</span>
-      {tile.subtitle && <span className="tile__subtitle">{tile.subtitle}</span>}
+      <img className="tile__image" src={tile.image} alt="" aria-hidden="true" />
+      <div className="tile__text">
+        <span className="tile__label">{tile.label}</span>
+        {tile.subtitle && <span className="tile__subtitle">{tile.subtitle}</span>}
+      </div>
     </Link>
   )
 }
