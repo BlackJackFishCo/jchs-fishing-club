@@ -84,6 +84,14 @@
   border-bottom-color: var(--color-royal-light);
 }
 
+.site-header__nav a.site-header__nav-highlight {
+  transition: text-shadow 0.2s ease;
+}
+
+.site-header__nav a.site-header__nav-highlight:hover {
+  text-shadow: 0 0 10px rgba(245, 197, 24, 0.85), 0 0 22px rgba(245, 197, 24, 0.55);
+}
+
 .site-header__toggle {
   grid-column: 3;
   justify-self: end;
