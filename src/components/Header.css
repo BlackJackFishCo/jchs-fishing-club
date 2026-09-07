@@ -78,8 +78,10 @@
 }
 
 .site-header__nav a.site-header__nav-highlight,
-.site-header__nav a.site-header__nav-highlight:hover {
-  color: var(--color-gold);
+.site-header__nav a.site-header__nav-highlight:hover,
+.site-header__nav a.site-header__nav-highlight.is-active {
+  color: var(--color-royal-light);
+  border-bottom-color: var(--color-royal-light);
 }
 
 .site-header__toggle {
