@@ -362,7 +362,7 @@ const RULES_SECTIONS = [
     title: 'Fish Photos',
     items: [
       'No slot size is required for photo submission.',
-      'Figure 1: Correct Measurement for Fish in Boat (Measuring Device on Boat Deck NOT ON FISH).',
+      'Figure 1: Correct measurement for fish in boat (Measuring device on boat deck NOT ON FISH).',
       'Photographs that do not allow the Tournament Director to view the tape measure or entire fish may be excluded at the sole discretion of the Tournament Director.',
       'If a fish or measurement is partially obstructed, the Tournament Director has the sole authority to decide whether to exclude a fish in its entirety or give credit for the visible part of the fish.',
     ],
@@ -374,7 +374,7 @@ const RULES_SECTIONS = [
       'Teams (including individual anglers) can only win one award category. Example: If your team wins Top Team, no one on your team can also win Top Snook or Top Lady Angler.',
       'Only the top scoring fish will be scored per species.',
       'No rotten or mutilated fish will be counted.',
-      'Any technical difficulties with digital equipment will be dealt with on a case-by-case basis by the Tournament Director and Rules Committee.',
+      'Any technical difficulties with digital equipment will be dealt with on a case-by-case basis by the Tournament Director.',
       'In the event of a tie, the winner will be the first to log all of their fish. If there is a tie for the largest of a species, the first fish logged wins.',
       'Cheaters will be disqualified. You and your team will also be banned from all future events. This is a Charity Tournament!',
     ],
@@ -416,11 +416,11 @@ function RulesSection() {
 
       <div className="rules-equipment">
         <h3 className="tournament-awards__group-title">Each Team Must Be Equipped With</h3>
-        <ol className="rules-list rules-list--numbered">
+        <ul className="rules-list">
           {RULES_EQUIPMENT.map((item) => (
             <li key={item}>{item}</li>
           ))}
-        </ol>
+        </ul>
       </div>
 
       {RULES_SECTIONS.map((section) => (
