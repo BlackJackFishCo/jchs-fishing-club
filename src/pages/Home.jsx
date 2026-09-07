@@ -229,12 +229,19 @@ function Home() {
       <section className="mission">
         <p className="eyebrow">Club Mission</p>
         <p className="mission__text">
-          The John Carroll Fishing Club was created for students who are interested in
-          learning how to become effective, conservation-minded anglers. The goal is to
-          teach students about ethical angling, conservation, Florida&apos;s aquatic
-          habitats, basic fishing gear, and general fishing concepts to help create
-          confident and responsible anglers. Let&apos;s go fishing!
+          The John Carroll Fishing Club is a community for students who share a passion for
+          fishing, the outdoors, and Florida&apos;s incredible aquatic environments. Our mission
+          is to help students become confident, skilled, and conservation-minded anglers while
+          building friendships and creating unforgettable experiences on the water.
         </p>
+        <p className="mission__text">
+          Through hands-on experiences and club activities, students will learn about ethical
+          and responsible angling, fish conservation, Florida&apos;s aquatic habitats, fishing
+          equipment and techniques, and the fundamentals of sport fishing. Whether you&apos;re
+          an experienced angler or have never picked up a fishing rod, there&apos;s a place for
+          you in our club!
+        </p>
+        <p className="mission__tagline">Learn. Fish. Conserve. Have Fun.</p>
       </section>
 
       <Link to="/admin" className="admin-quiet-link" aria-label="Admin access">
