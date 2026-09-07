@@ -416,11 +416,11 @@ function RulesSection() {
 
       <div className="rules-equipment">
         <h3 className="tournament-awards__group-title">Each Team Must Be Equipped With</h3>
-        <ol className="rules-list rules-list--numbered">
+        <ul className="rules-list">
           {RULES_EQUIPMENT.map((item) => (
             <li key={item}>{item}</li>
           ))}
-        </ol>
+        </ul>
       </div>
 
       {RULES_SECTIONS.map((section) => (

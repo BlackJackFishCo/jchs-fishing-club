@@ -282,13 +282,6 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-}
-
-.rules-list--numbered {
-  list-style: decimal;
-}
-
-.rules-list:not(.rules-list--numbered) {
   list-style: disc;
 }
 
