@@ -258,6 +258,14 @@
     max-width: 380px;
   }
 
+  .home__logo-col {
+    gap: 0.6rem;
+  }
+
+  .hero-logos {
+    gap: 0.35rem;
+  }
+
   .hero-logos > a,
   .hero-logos > img {
     width: min(90px, 18vw);
