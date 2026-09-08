@@ -453,7 +453,7 @@ function RulesSection() {
 const TOP_TEAM_AWARD = {
   name: 'Top Team',
   description:
-    "Highest combined inches for your team's largest Snook, Redfish, and Trout — you don't need to catch all three species, just have the highest combined inches total.",
+    "Highest combined inches for your team's largest Snook, Redfish, and Trout — you don't need to catch all three to qualify for this award, just have the highest combined inches total.",
 }
 
 const INDIVIDUAL_AWARDS = [
