@@ -11,6 +11,7 @@ import {
   updateTeam,
   removeTeam,
   MAX_TEAM_ANGLERS,
+  ANGLER_FLAGS,
   useTournamentCatches,
   restoreCatch,
   permanentlyDeleteCatch,
@@ -223,18 +224,30 @@ function RosterManager() {
   )
 }
 
+const EMPTY_TEAM_ANGLER = { name: '', isJunior: false, isClubMember: false, isFemale: false }
+
 function TeamRow({ team }) {
   const [name, setName] = useState(team.name)
-  const [anglers, setAnglers] = useState([
-    team.anglers[0] || '',
-    team.anglers[1] || '',
-    team.anglers[2] || '',
-    team.anglers[3] || '',
-  ])
+  const [anglers, setAnglers] = useState(
+    Array.from({ length: MAX_TEAM_ANGLERS }, (_, i) => team.anglers[i] || { ...EMPTY_TEAM_ANGLER }),
+  )
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
 
-  const dirty = name !== team.name || anglers.some((a, i) => a !== (team.anglers[i] || ''))
+  const dirty =
+    name !== team.name ||
+    anglers.some((a, i) => {
+      const orig = team.anglers[i] || EMPTY_TEAM_ANGLER
+      return (
+        a.name !== orig.name ||
+        a.isJunior !== orig.isJunior ||
+        a.isClubMember !== orig.isClubMember ||
+        a.isFemale !== orig.isFemale
+      )
+    })
+
+  const updateAngler = (i, field, value) =>
+    setAnglers((prev) => prev.map((a, idx) => (idx === i ? { ...a, [field]: value } : a)))
 
   const save = async () => {
     setBusy(true)
@@ -270,12 +283,22 @@ function TeamRow({ team }) {
         <td key={i}>
           <input
             className="team-roster__input"
-            value={angler}
+            value={angler.name}
             placeholder={`Angler ${i + 1}`}
-            onChange={(e) =>
-              setAnglers((prev) => prev.map((a, idx) => (idx === i ? e.target.value : a)))
-            }
+            onChange={(e) => updateAngler(i, 'name', e.target.value)}
           />
+          <div className="team-roster__flags">
+            {ANGLER_FLAGS.map((flag) => (
+              <label key={flag.key} className="team-roster__flag" title={flag.label}>
+                <input
+                  type="checkbox"
+                  checked={angler[flag.key]}
+                  onChange={(e) => updateAngler(i, flag.key, e.target.checked)}
+                />
+                {flag.label.split(' ')[0]}
+              </label>
+            ))}
+          </div>
         </td>
       ))}
       <td className="team-roster__actions">
@@ -329,7 +352,8 @@ function TeamRosterManager() {
       <h2>Tournament Teams ({teams.length})</h2>
       <p className="admin-roster__note">
         Teams and anglers shown here populate the Team and Angler pickers on the Inshore Slam
-        Live Leaderboard. Each team can have up to {MAX_TEAM_ANGLERS} anglers.
+        Live Leaderboard. Each team can have up to {MAX_TEAM_ANGLERS} anglers. Check Jr / Club /
+        Lady for anglers who qualify for those individual award leaderboards.
       </p>
 
       {!loading && teams.length === 0 && (

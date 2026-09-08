@@ -10,6 +10,7 @@ import {
   setCatchInches,
   removeCatch,
   computeTeamTotal,
+  computeIndividualBoard,
 } from '../data/tournamentLeaderboard.js'
 import logo from '../assets/logo.png'
 import inshoreSlamLogo from '../assets/inshore-slam-logo.png'
@@ -631,11 +632,14 @@ function LogCatchModal({ teams, catchesByTeam, onClose }) {
   const [error, setError] = useState('')
 
   const team = teams.find((t) => t.id === teamId)
-  const existing = teamId ? catchesByTeam[teamId]?.[species] : null
+  const existingForAngler =
+    teamId && species && angler
+      ? (catchesByTeam[teamId]?.[species] || []).find((c) => c.angler === angler)
+      : null
 
   const submit = async (e) => {
     e.preventDefault()
-    if (!species || !teamId || !angler || !inches || !file || existing?.verified) return
+    if (!species || !teamId || !angler || !inches || !file || existingForAngler?.verified) return
     if (Math.round(Number(inches) * 2) !== Number(inches) * 2) {
       setError('Length must be in half-inch increments (e.g. 20, 20.5, 21).')
       return
@@ -703,26 +707,26 @@ function LogCatchModal({ teams, catchesByTeam, onClose }) {
             ) : (
               <fieldset className="catch-angler-picker">
                 <legend>Angler</legend>
-                {team.anglers.map((name) => (
-                  <label key={name} className="catch-angler-picker__option">
+                {team.anglers.map((a) => (
+                  <label key={a.name} className="catch-angler-picker__option">
                     <input
                       type="radio"
                       name="angler"
-                      value={name}
-                      checked={angler === name}
-                      onChange={() => setAngler(name)}
+                      value={a.name}
+                      checked={angler === a.name}
+                      onChange={() => setAngler(a.name)}
                     />
-                    {name}
+                    {a.name}
                   </label>
                 ))}
               </fieldset>
             ))}
 
-          {existing && (
+          {existingForAngler && (
             <p className="modal__note">
-              {existing.verified
-                ? `Already verified: ${existing.angler} — ${existing.inches}" — this can't be changed.`
-                : `Currently on file: ${existing.angler} — ${existing.inches}". Submitting will replace it.`}
+              {existingForAngler.verified
+                ? `Already verified: ${existingForAngler.angler} — ${existingForAngler.inches}" — this can't be changed.`
+                : `Currently on file for ${existingForAngler.angler}: ${existingForAngler.inches}". Submitting will replace their entry — a teammate's bigger fish for this species is never affected.`}
             </p>
           )}
 
@@ -761,7 +765,13 @@ function LogCatchModal({ teams, catchesByTeam, onClose }) {
               type="submit"
               className="btn btn-solid"
               disabled={
-                busy || !species || !teamId || !angler || !inches || !file || existing?.verified
+                busy ||
+                !species ||
+                !teamId ||
+                !angler ||
+                !inches ||
+                !file ||
+                existingForAngler?.verified
               }
             >
               {busy ? 'Submitting…' : 'Submit Catch'}
@@ -808,7 +818,16 @@ function PhotoLightbox({ catchData, onClose }) {
   )
 }
 
-function CatchCell({ catchData, species, isAdmin, onVerify, onEditInches, onRemove, onZoom }) {
+function CatchCell({
+  catchData,
+  species,
+  isAdmin,
+  onVerify,
+  onEditInches,
+  onRemove,
+  onZoom,
+  notCounted,
+}) {
   const [editing, setEditing] = useState(false)
   const [draft, setDraft] = useState('')
 
@@ -870,7 +889,14 @@ function CatchCell({ catchData, species, isAdmin, onVerify, onEditInches, onRemo
           </>
         )}
       </span>
-      <span className="catch-cell__angler">{catchData.angler}</span>
+      <span className="catch-cell__angler">
+        {catchData.angler}
+        {notCounted && (
+          <span className="catch-cell__not-counted" title="A teammate has a bigger fish for this species">
+            not counted
+          </span>
+        )}
+      </span>
       {timestamp && <span className="catch-cell__time">{timestamp}</span>}
       {isAdmin && (
         <div className="catch-cell__admin">
@@ -902,12 +928,95 @@ function CatchCell({ catchData, species, isAdmin, onVerify, onEditInches, onRemo
   )
 }
 
+// Renders every catch logged for one team+species. The largest is the one
+// that feeds the team's total; any smaller catches from other anglers on
+// the same team are kept — never overwritten — and shown underneath,
+// marked "not counted" for the team score but still fully intact for
+// individual awards.
+function SpeciesCatchStack({ catches, species, isAdmin, onVerify, onEditInches, onRemove, onZoom }) {
+  if (catches.length === 0) {
+    return <CatchCell catchData={null} species={species} onZoom={onZoom} />
+  }
+  const sorted = [...catches].sort((a, b) => b.inches - a.inches)
+
+  return (
+    <div className="catch-stack">
+      {sorted.map((c, i) => (
+        <CatchCell
+          key={c.id}
+          catchData={c}
+          species={species}
+          isAdmin={isAdmin}
+          onVerify={onVerify}
+          onEditInches={onEditInches}
+          onRemove={onRemove}
+          onZoom={onZoom}
+          notCounted={i > 0}
+        />
+      ))}
+    </div>
+  )
+}
+
+const BOARD_VIEWS = [
+  { key: 'teams', label: 'Teams' },
+  { key: 'isJunior', label: 'Junior Anglers' },
+  { key: 'isClubMember', label: 'Club Members' },
+  { key: 'isFemale', label: 'Lady Anglers' },
+]
+
+function IndividualBoardTable({ teams, catchesByTeam, flagKey, emptyLabel }) {
+  const rows = computeIndividualBoard(teams, catchesByTeam, flagKey)
+
+  if (rows.length === 0) {
+    return <p className="admin-roster__empty">{emptyLabel}</p>
+  }
+
+  return (
+    <div className="liveboard-scroll">
+      <div className="liveboard-table">
+        <div className="liveboard-table__row liveboard-table__row--head">
+          <span>Rank</span>
+          <span>Angler</span>
+          <span>Snook</span>
+          <span>Redfish</span>
+          <span>Trout</span>
+          <span>Total</span>
+        </div>
+        {rows.map((r, i) => (
+          <div key={`${r.teamId}-${r.angler}`} className="liveboard-table__row">
+            <div className="liveboard-table__row-head">
+              <span className="liveboard-table__rank">{i + 1}</span>
+              <span className="liveboard-table__team">
+                {r.angler} <span className="individual-board__team-name">({r.teamName})</span>
+              </span>
+            </div>
+            <div className="liveboard-table__catches">
+              {CATCH_SPECIES.map((species) => {
+                const entry = r.speciesCaught.find((s) => s.species === species)
+                return (
+                  <div key={species} className="individual-board__cell">
+                    <span className="catch-cell__species-label">{species}</span>
+                    {entry ? `${entry.inches}"` : '—'}
+                  </div>
+                )
+              })}
+            </div>
+            <span className="liveboard-table__total">{r.total}&quot;</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 function LiveLeaderboardSection() {
   const { teams, loading: teamsLoading } = useTournamentTeams()
   const { catchesByTeam, loading: catchesLoading } = useTournamentCatches()
   const { user, isAdmin } = useAdminAuth()
   const [showModal, setShowModal] = useState(false)
   const [zoomCatch, setZoomCatch] = useState(null)
+  const [boardView, setBoardView] = useState('teams')
 
   const loading = teamsLoading || catchesLoading
   const admin = user ? { uid: user.uid, email: user.email } : null
@@ -940,9 +1049,10 @@ function LiveLeaderboardSection() {
         <div>
           <h2 className="tournament-awards__heading">Inshore Slam Live Leaderboard</h2>
           <p className="tournament-awards__rule">
-            Each team can log one Snook, one Redfish, and one Trout. A team&apos;s total is the
-            combined inches of all three. You can upgrade at anytime but time stamp of upgrade
-            will be used for a tie if needed.
+            Any angler on a team can log a Snook, Redfish, and Trout. A team&apos;s total is the
+            combined inches of the best entry per species — logging a smaller fish never wipes
+            out a teammate&apos;s bigger one. You can upgrade your own catch at any time; time
+            stamp of upgrade will be used for a tie if needed.
           </p>
         </div>
         <button
@@ -954,11 +1064,24 @@ function LiveLeaderboardSection() {
         </button>
       </div>
 
+      <div className="liveboard-view-tabs">
+        {BOARD_VIEWS.map((v) => (
+          <button
+            key={v.key}
+            type="button"
+            className={`liveboard-view-tabs__btn ${boardView === v.key ? 'is-active' : ''}`}
+            onClick={() => setBoardView(v.key)}
+          >
+            {v.label}
+          </button>
+        ))}
+      </div>
+
       {loading ? (
         <p className="species-page__loading">Loading leaderboard…</p>
       ) : teams.length === 0 ? (
         <p className="admin-roster__empty">No teams yet. Check back soon.</p>
-      ) : (
+      ) : boardView === 'teams' ? (
         <div className="liveboard-scroll">
           <div className="liveboard-table">
             <div className="liveboard-table__row liveboard-table__row--head">
@@ -976,8 +1099,8 @@ function LiveLeaderboardSection() {
                   <span className="liveboard-table__team">{team.name}</span>
                 </div>
                 <div className="liveboard-table__catches">
-                  <CatchCell
-                    catchData={team.catches.Snook}
+                  <SpeciesCatchStack
+                    catches={team.catches.Snook || []}
                     species="Snook"
                     isAdmin={isAdmin}
                     onVerify={verify}
@@ -985,8 +1108,8 @@ function LiveLeaderboardSection() {
                     onRemove={remove}
                     onZoom={setZoomCatch}
                   />
-                  <CatchCell
-                    catchData={team.catches.Redfish}
+                  <SpeciesCatchStack
+                    catches={team.catches.Redfish || []}
                     species="Redfish"
                     isAdmin={isAdmin}
                     onVerify={verify}
@@ -994,8 +1117,8 @@ function LiveLeaderboardSection() {
                     onRemove={remove}
                     onZoom={setZoomCatch}
                   />
-                  <CatchCell
-                    catchData={team.catches.Trout}
+                  <SpeciesCatchStack
+                    catches={team.catches.Trout || []}
                     species="Trout"
                     isAdmin={isAdmin}
                     onVerify={verify}
@@ -1009,6 +1132,13 @@ function LiveLeaderboardSection() {
             ))}
           </div>
         </div>
+      ) : (
+        <IndividualBoardTable
+          teams={teams}
+          catchesByTeam={catchesByTeam}
+          flagKey={boardView}
+          emptyLabel={`No ${BOARD_VIEWS.find((v) => v.key === boardView).label.toLowerCase()} on a team roster yet.`}
+        />
       )}
 
       {showModal && (

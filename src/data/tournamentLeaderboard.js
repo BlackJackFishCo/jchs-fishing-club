@@ -20,6 +20,34 @@ export const CATCH_SPECIES = ['Snook', 'Redfish', 'Trout']
 export const MAX_TEAM_ANGLERS = 4
 export const SEED_TEAM_COUNT = 20
 
+// Individual award categories. A single angler can qualify for more than
+// one (e.g. a Junior who is also a Club Member).
+export const ANGLER_FLAGS = [
+  { key: 'isJunior', label: 'Junior Angler' },
+  { key: 'isClubMember', label: 'Club Member' },
+  { key: 'isFemale', label: 'Lady Angler' },
+]
+
+// Older team docs stored anglers as plain name strings. Normalizing here
+// means every consumer of `team.anglers` can assume the object shape
+// without needing its own migration check.
+export function normalizeAngler(a) {
+  if (typeof a === 'string') {
+    return { name: a, isJunior: false, isClubMember: false, isFemale: false }
+  }
+  return {
+    name: a?.name || '',
+    isJunior: !!a?.isJunior,
+    isClubMember: !!a?.isClubMember,
+    isFemale: !!a?.isFemale,
+  }
+}
+
+// Firestore doc IDs can't contain a "/".
+function anglerIdPart(angler) {
+  return angler.replace(/\//g, '-').trim()
+}
+
 function resizeToBlob(file, maxSize = 1000) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader()
@@ -51,7 +79,12 @@ export function useTournamentTeams() {
     const unsub = onSnapshot(
       q,
       (snap) => {
-        setTeams(snap.docs.map((d) => ({ id: d.id, ...d.data() })))
+        setTeams(
+          snap.docs.map((d) => {
+            const data = d.data()
+            return { id: d.id, ...data, anglers: (data.anglers || []).map(normalizeAngler) }
+          }),
+        )
         setLoading(false)
       },
       () => setLoading(false),
@@ -90,7 +123,14 @@ export async function addTeam(name) {
 }
 
 export async function updateTeam(teamId, { name, anglers }) {
-  const cleanedAnglers = anglers.map((a) => a.trim()).filter(Boolean)
+  const cleanedAnglers = anglers
+    .map((a) => ({
+      name: (a.name || '').trim(),
+      isJunior: !!a.isJunior,
+      isClubMember: !!a.isClubMember,
+      isFemale: !!a.isFemale,
+    }))
+    .filter((a) => a.name)
   if (cleanedAnglers.length > MAX_TEAM_ANGLERS) {
     throw new Error(`A team can have at most ${MAX_TEAM_ANGLERS} anglers`)
   }
@@ -123,6 +163,10 @@ export function useTournamentCatches() {
     return () => unsub()
   }, [])
 
+  // Each team+species can now hold one catch per angler (rather than a
+  // single team-wide catch), so only the best of them counts toward the
+  // team's score while every angler's own entry is preserved for
+  // individual awards. See computeTeamTotal / computeIndividualBoard.
   const catchesByTeam = {}
   const deletedCatches = []
   allCatches.forEach((c) => {
@@ -130,7 +174,8 @@ export function useTournamentCatches() {
       deletedCatches.push(c)
     } else {
       if (!catchesByTeam[c.teamId]) catchesByTeam[c.teamId] = {}
-      catchesByTeam[c.teamId][c.species] = c
+      if (!catchesByTeam[c.teamId][c.species]) catchesByTeam[c.teamId][c.species] = []
+      catchesByTeam[c.teamId][c.species].push(c)
     }
   })
   deletedCatches.sort((a, b) => (b.deletedAt?.toMillis?.() || 0) - (a.deletedAt?.toMillis?.() || 0))
@@ -183,7 +228,7 @@ export async function submitCatch({ teamId, species, angler, inches, file }) {
   await uploadBytes(storageRef, blob, { contentType: 'image/jpeg' })
   const photo = await getDownloadURL(storageRef)
 
-  await setDoc(doc(db, 'tournamentCatches', `${teamId}_${species}`), {
+  await setDoc(doc(db, 'tournamentCatches', `${teamId}_${species}_${anglerIdPart(angler)}`), {
     teamId,
     species,
     angler,
@@ -274,5 +319,33 @@ export async function permanentlyDeleteCatch(catchData, admin) {
 
 export function computeTeamTotal(catches) {
   if (!catches) return 0
-  return CATCH_SPECIES.reduce((sum, species) => sum + (catches[species]?.inches || 0), 0)
+  return CATCH_SPECIES.reduce((sum, species) => {
+    const entries = catches[species] || []
+    const best = entries.reduce((max, c) => Math.max(max, c.inches || 0), 0)
+    return sum + best
+  }, 0)
+}
+
+// Builds a ranked leaderboard for one individual-award category (Junior,
+// Club Member, or Lady Angler). Only counts each qualifying angler's own
+// logged catches — a teammate's bigger fish doesn't factor in.
+export function computeIndividualBoard(teams, catchesByTeam, flagKey) {
+  const rows = []
+  teams.forEach((team) => {
+    ;(team.anglers || []).forEach((angler) => {
+      if (!angler.name || !angler[flagKey]) return
+      const teamCatches = catchesByTeam[team.id] || {}
+      let total = 0
+      const speciesCaught = []
+      CATCH_SPECIES.forEach((species) => {
+        const entries = (teamCatches[species] || []).filter((c) => c.angler === angler.name)
+        if (entries.length === 0) return
+        const best = Math.max(...entries.map((c) => c.inches))
+        total += best
+        speciesCaught.push({ species, inches: best })
+      })
+      rows.push({ teamId: team.id, teamName: team.name, angler: angler.name, total, speciesCaught })
+    })
+  })
+  return rows.sort((a, b) => b.total - a.total || a.angler.localeCompare(b.angler))
 }
