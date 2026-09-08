@@ -258,6 +258,23 @@
   outline: 2px solid var(--color-gold);
 }
 
+.team-roster__flags {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.3rem;
+}
+
+.team-roster__flag {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--color-muted);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
 .team-roster__actions {
   display: flex;
   align-items: center;
