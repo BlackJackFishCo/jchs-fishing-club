@@ -1069,63 +1069,65 @@ function LiveLeaderboardSection() {
         ))}
       </div>
 
-      {loading ? (
-        <p className="species-page__loading">Loading leaderboard…</p>
-      ) : teams.length === 0 ? (
-        <p className="admin-roster__empty">No teams yet. Check back soon.</p>
-      ) : boardView === 'teams' ? (
-        <div className="liveboard-scroll">
-          <div className="liveboard-table">
-            <div className="liveboard-table__row liveboard-table__row--head">
-              <span>Rank</span>
-              <span>Team</span>
-              <span>Snook</span>
-              <span>Redfish</span>
-              <span>Trout</span>
-              <span>Total</span>
-            </div>
-            {ranked.map((team, i) => (
-              <div key={team.id} className="liveboard-table__row">
-                <div className="liveboard-table__row-head">
-                  <span className="liveboard-table__rank">{i + 1}</span>
-                  <span className="liveboard-table__team">{team.name}</span>
-                </div>
-                <div className="liveboard-table__catches">
-                  {CATCH_SPECIES.map((species) => {
-                    const counted = topCatch(team.catches[species])
-                    return (
-                      <CatchCell
-                        key={species}
-                        catchData={counted}
-                        species={species}
-                        isAdmin={isAdmin}
-                        onVerify={verify}
-                        onEditInches={editInches}
-                        onRemove={remove}
-                        onZoom={setZoomCatch}
-                        categories={counted ? categoriesForAngler(team.anglers, counted.angler) : []}
-                      />
-                    )
-                  })}
-                </div>
-                <span className="liveboard-table__total">{team.total}&quot;</span>
+      <div className="liveboard-panel">
+        {loading ? (
+          <p className="species-page__loading">Loading leaderboard…</p>
+        ) : teams.length === 0 ? (
+          <p className="admin-roster__empty">No teams yet. Check back soon.</p>
+        ) : boardView === 'teams' ? (
+          <div className="liveboard-scroll">
+            <div className="liveboard-table">
+              <div className="liveboard-table__row liveboard-table__row--head">
+                <span>Rank</span>
+                <span>Team</span>
+                <span>Snook</span>
+                <span>Redfish</span>
+                <span>Trout</span>
+                <span>Total</span>
               </div>
-            ))}
+              {ranked.map((team, i) => (
+                <div key={team.id} className="liveboard-table__row">
+                  <div className="liveboard-table__row-head">
+                    <span className="liveboard-table__rank">{i + 1}</span>
+                    <span className="liveboard-table__team">{team.name}</span>
+                  </div>
+                  <div className="liveboard-table__catches">
+                    {CATCH_SPECIES.map((species) => {
+                      const counted = topCatch(team.catches[species])
+                      return (
+                        <CatchCell
+                          key={species}
+                          catchData={counted}
+                          species={species}
+                          isAdmin={isAdmin}
+                          onVerify={verify}
+                          onEditInches={editInches}
+                          onRemove={remove}
+                          onZoom={setZoomCatch}
+                          categories={counted ? categoriesForAngler(team.anglers, counted.angler) : []}
+                        />
+                      )
+                    })}
+                  </div>
+                  <span className="liveboard-table__total">{team.total}&quot;</span>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      ) : (
-        <IndividualBoardTable
-          teams={teams}
-          catchesByTeam={catchesByTeam}
-          flagKey={boardView}
-          emptyLabel={`No ${BOARD_VIEWS.find((v) => v.key === boardView).label.toLowerCase()} on a team roster yet.`}
-          isAdmin={isAdmin}
-          onVerify={verify}
-          onEditInches={editInches}
-          onRemove={remove}
-          onZoom={setZoomCatch}
-        />
-      )}
+        ) : (
+          <IndividualBoardTable
+            teams={teams}
+            catchesByTeam={catchesByTeam}
+            flagKey={boardView}
+            emptyLabel={`No ${BOARD_VIEWS.find((v) => v.key === boardView).label.toLowerCase()} on a team roster yet.`}
+            isAdmin={isAdmin}
+            onVerify={verify}
+            onEditInches={editInches}
+            onRemove={remove}
+            onZoom={setZoomCatch}
+          />
+        )}
+      </div>
 
       {showModal && (
         <LogCatchModal
