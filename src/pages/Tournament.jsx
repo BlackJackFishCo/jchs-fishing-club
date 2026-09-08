@@ -371,7 +371,7 @@ const RULES_SECTIONS = [
   {
     title: 'Leader Board',
     items: [
-      'Teams (including individual anglers) can only win one award category. Example: If your team wins Top Team, no one on your team can also win Top Snook or Top Lady Angler.',
+      'Teams (including individual anglers) can only win one award category. Example: If your team wins Top Team, no one on your team can also win Top Snook or Top Lady Angler. (Only exception is 40" Club Award)',
       'Only the top scoring fish will be scored per species.',
       'No rotten or mutilated fish will be counted.',
       'Any technical difficulties with digital equipment will be dealt with on a case-by-case basis by the Tournament Director.',
@@ -522,7 +522,7 @@ function AwardsSection() {
       </p>
       <p className="tournament-awards__example">
         Example: If your team wins Top Team, no one on your team can also win Top Snook or Top
-        Lady Angler.
+        Lady Angler. (Only exception is 40&quot; Club Award)
       </p>
 
       <div className="award-grid award-grid--featured">
