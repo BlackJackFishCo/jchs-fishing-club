@@ -533,26 +533,20 @@
   gap: 0.35rem;
 }
 
-.catch-cell__not-counted {
+.catch-cell__categories {
+  display: inline-flex;
+  gap: 0.25rem;
+}
+
+.catch-cell__category-badge {
   font-family: var(--font-eyebrow);
   text-transform: uppercase;
   letter-spacing: 0.03em;
   font-size: 0.6rem;
-  color: var(--color-muted);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--color-gold-soft);
+  border: 1px solid rgba(245, 197, 24, 0.4);
   border-radius: 999px;
   padding: 0.05rem 0.4rem;
-}
-
-.catch-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.catch-stack .catch-cell:not(:first-child) {
-  padding-top: 0.6rem;
-  border-top: 1px dashed rgba(245, 197, 24, 0.15);
 }
 
 .catch-cell__time {

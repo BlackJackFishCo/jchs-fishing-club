@@ -317,18 +317,25 @@ export async function permanentlyDeleteCatch(catchData, admin) {
   }
 }
 
+// The single catch that counts toward a team's score for one species —
+// the largest logged, regardless of which angler caught it. Ties go to
+// whichever was logged first (submittedAt order), matching the tournament's
+// own tiebreak rule.
+export function topCatch(entries) {
+  if (!entries || entries.length === 0) return null
+  return entries.reduce((max, c) => (c.inches > max.inches ? c : max), entries[0])
+}
+
 export function computeTeamTotal(catches) {
   if (!catches) return 0
-  return CATCH_SPECIES.reduce((sum, species) => {
-    const entries = catches[species] || []
-    const best = entries.reduce((max, c) => Math.max(max, c.inches || 0), 0)
-    return sum + best
-  }, 0)
+  return CATCH_SPECIES.reduce((sum, species) => sum + (topCatch(catches[species])?.inches || 0), 0)
 }
 
 // Builds a ranked leaderboard for one individual-award category (Junior,
 // Club Member, or Lady Angler). Only counts each qualifying angler's own
-// logged catches — a teammate's bigger fish doesn't factor in.
+// logged catches — a teammate's bigger fish doesn't factor in. Carries the
+// actual catch record (not just the inches) so its photo can still be
+// shown once it's bumped off the team board by a bigger teammate catch.
 export function computeIndividualBoard(teams, catchesByTeam, flagKey) {
   const rows = []
   teams.forEach((team) => {
@@ -339,10 +346,10 @@ export function computeIndividualBoard(teams, catchesByTeam, flagKey) {
       const speciesCaught = []
       CATCH_SPECIES.forEach((species) => {
         const entries = (teamCatches[species] || []).filter((c) => c.angler === angler.name)
-        if (entries.length === 0) return
-        const best = Math.max(...entries.map((c) => c.inches))
-        total += best
-        speciesCaught.push({ species, inches: best })
+        const best = topCatch(entries)
+        if (!best) return
+        total += best.inches
+        speciesCaught.push({ species, catchData: best })
       })
       rows.push({ teamId: team.id, teamName: team.name, angler: angler.name, total, speciesCaught })
     })

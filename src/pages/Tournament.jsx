@@ -11,6 +11,8 @@ import {
   removeCatch,
   computeTeamTotal,
   computeIndividualBoard,
+  topCatch,
+  ANGLER_FLAGS,
 } from '../data/tournamentLeaderboard.js'
 import logo from '../assets/logo.png'
 import inshoreSlamLogo from '../assets/inshore-slam-logo.png'
@@ -818,16 +820,7 @@ function PhotoLightbox({ catchData, onClose }) {
   )
 }
 
-function CatchCell({
-  catchData,
-  species,
-  isAdmin,
-  onVerify,
-  onEditInches,
-  onRemove,
-  onZoom,
-  notCounted,
-}) {
+function CatchCell({ catchData, species, isAdmin, onVerify, onEditInches, onRemove, onZoom, categories }) {
   const [editing, setEditing] = useState(false)
   const [draft, setDraft] = useState('')
 
@@ -891,9 +884,13 @@ function CatchCell({
       </span>
       <span className="catch-cell__angler">
         {catchData.angler}
-        {notCounted && (
-          <span className="catch-cell__not-counted" title="A teammate has a bigger fish for this species">
-            not counted
+        {categories && categories.length > 0 && (
+          <span className="catch-cell__categories">
+            {categories.map((cat) => (
+              <span key={cat} className="catch-cell__category-badge">
+                {cat}
+              </span>
+            ))}
           </span>
         )}
       </span>
@@ -928,34 +925,12 @@ function CatchCell({
   )
 }
 
-// Renders every catch logged for one team+species. The largest is the one
-// that feeds the team's total; any smaller catches from other anglers on
-// the same team are kept — never overwritten — and shown underneath,
-// marked "not counted" for the team score but still fully intact for
-// individual awards.
-function SpeciesCatchStack({ catches, species, isAdmin, onVerify, onEditInches, onRemove, onZoom }) {
-  if (catches.length === 0) {
-    return <CatchCell catchData={null} species={species} onZoom={onZoom} />
-  }
-  const sorted = [...catches].sort((a, b) => b.inches - a.inches)
-
-  return (
-    <div className="catch-stack">
-      {sorted.map((c, i) => (
-        <CatchCell
-          key={c.id}
-          catchData={c}
-          species={species}
-          isAdmin={isAdmin}
-          onVerify={onVerify}
-          onEditInches={onEditInches}
-          onRemove={onRemove}
-          onZoom={onZoom}
-          notCounted={i > 0}
-        />
-      ))}
-    </div>
-  )
+// Individual award categories (Junior/Club/Lady) a given angler qualifies
+// for, based on the flags set on their team roster slot.
+function categoriesForAngler(anglers, anglerName) {
+  const angler = (anglers || []).find((a) => a.name === anglerName)
+  if (!angler) return []
+  return ANGLER_FLAGS.filter((flag) => angler[flag.key]).map((flag) => flag.label.split(' ')[0])
 }
 
 const BOARD_VIEWS = [
@@ -965,7 +940,17 @@ const BOARD_VIEWS = [
   { key: 'isFemale', label: 'Lady Anglers' },
 ]
 
-function IndividualBoardTable({ teams, catchesByTeam, flagKey, emptyLabel }) {
+function IndividualBoardTable({
+  teams,
+  catchesByTeam,
+  flagKey,
+  emptyLabel,
+  isAdmin,
+  onVerify,
+  onEditInches,
+  onRemove,
+  onZoom,
+}) {
   const rows = computeIndividualBoard(teams, catchesByTeam, flagKey)
 
   if (rows.length === 0) {
@@ -995,10 +980,16 @@ function IndividualBoardTable({ teams, catchesByTeam, flagKey, emptyLabel }) {
               {CATCH_SPECIES.map((species) => {
                 const entry = r.speciesCaught.find((s) => s.species === species)
                 return (
-                  <div key={species} className="individual-board__cell">
-                    <span className="catch-cell__species-label">{species}</span>
-                    {entry ? `${entry.inches}"` : '—'}
-                  </div>
+                  <CatchCell
+                    key={species}
+                    catchData={entry ? entry.catchData : null}
+                    species={species}
+                    isAdmin={isAdmin}
+                    onVerify={onVerify}
+                    onEditInches={onEditInches}
+                    onRemove={onRemove}
+                    onZoom={onZoom}
+                  />
                 )
               })}
             </div>
@@ -1049,9 +1040,10 @@ function LiveLeaderboardSection() {
         <div>
           <h2 className="tournament-awards__heading">Inshore Slam Live Leaderboard</h2>
           <p className="tournament-awards__rule">
-            Any angler on a team can log a Snook, Redfish, and Trout. A team&apos;s total is the
-            combined inches of the best entry per species — logging a smaller fish never wipes
-            out a teammate&apos;s bigger one. You can upgrade your own catch at any time; time
+            Any angler on a team can log a Snook, Redfish, and Trout. Only the team&apos;s biggest
+            entry per species shows here and counts toward the team total — logging a smaller
+            fish never wipes it out, it just moves to that angler&apos;s own Junior/Club
+            Member/Lady Angler board instead. You can upgrade your own catch at any time; time
             stamp of upgrade will be used for a tie if needed.
           </p>
         </div>
@@ -1099,33 +1091,22 @@ function LiveLeaderboardSection() {
                   <span className="liveboard-table__team">{team.name}</span>
                 </div>
                 <div className="liveboard-table__catches">
-                  <SpeciesCatchStack
-                    catches={team.catches.Snook || []}
-                    species="Snook"
-                    isAdmin={isAdmin}
-                    onVerify={verify}
-                    onEditInches={editInches}
-                    onRemove={remove}
-                    onZoom={setZoomCatch}
-                  />
-                  <SpeciesCatchStack
-                    catches={team.catches.Redfish || []}
-                    species="Redfish"
-                    isAdmin={isAdmin}
-                    onVerify={verify}
-                    onEditInches={editInches}
-                    onRemove={remove}
-                    onZoom={setZoomCatch}
-                  />
-                  <SpeciesCatchStack
-                    catches={team.catches.Trout || []}
-                    species="Trout"
-                    isAdmin={isAdmin}
-                    onVerify={verify}
-                    onEditInches={editInches}
-                    onRemove={remove}
-                    onZoom={setZoomCatch}
-                  />
+                  {CATCH_SPECIES.map((species) => {
+                    const counted = topCatch(team.catches[species])
+                    return (
+                      <CatchCell
+                        key={species}
+                        catchData={counted}
+                        species={species}
+                        isAdmin={isAdmin}
+                        onVerify={verify}
+                        onEditInches={editInches}
+                        onRemove={remove}
+                        onZoom={setZoomCatch}
+                        categories={counted ? categoriesForAngler(team.anglers, counted.angler) : []}
+                      />
+                    )
+                  })}
                 </div>
                 <span className="liveboard-table__total">{team.total}&quot;</span>
               </div>
@@ -1138,6 +1119,11 @@ function LiveLeaderboardSection() {
           catchesByTeam={catchesByTeam}
           flagKey={boardView}
           emptyLabel={`No ${BOARD_VIEWS.find((v) => v.key === boardView).label.toLowerCase()} on a team roster yet.`}
+          isAdmin={isAdmin}
+          onVerify={verify}
+          onEditInches={editInches}
+          onRemove={remove}
+          onZoom={setZoomCatch}
         />
       )}
 
