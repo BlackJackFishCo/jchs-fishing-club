@@ -202,13 +202,17 @@
     width: min(300px, 46vw);
   }
 
+  .home__area-inshore {
+    min-height: 0;
+  }
+
   .tile__image {
     width: 76px;
   }
 
   .tile {
     gap: 1rem;
-    padding: 1.35rem 1rem;
+    padding: 1rem;
   }
 
   .home__area-inshore .tile__label {
@@ -223,6 +227,10 @@
 @media (max-width: 340px) {
   .tile__image {
     width: 58px;
+  }
+
+  .tile {
+    padding: 0.85rem;
   }
 
   .home__area-inshore .tile__label {
