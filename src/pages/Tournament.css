@@ -723,6 +723,12 @@
     gap: 0.5rem;
   }
 
+  .catch-cell__photo-btn,
+  .catch-cell__photo {
+    width: 64px;
+    max-width: 64px;
+  }
+
   .liveboard-table__total {
     display: block;
     text-align: right;
