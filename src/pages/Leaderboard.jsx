@@ -32,7 +32,8 @@ function Leaderboard() {
           <h1 className="section-title">Club Leaderboard 2026-2027</h1>
           <p className="volunteer-page__intro">
             Rostered anglers ranked by how many of the {TOTAL_SPECIES} species they&apos;ve
-            logged on the Species Catch List.
+            logged on the Species Catch List. We will have awards for the top three Club
+            members at the end of the year.
           </p>
         </div>
         <div className="page-head__logos">
