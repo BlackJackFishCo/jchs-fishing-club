@@ -109,6 +109,12 @@
   flex: 0 0 auto;
 }
 
+.volunteer-card p.volunteer-card__location {
+  color: var(--color-muted);
+  font-size: 0.8rem;
+  flex: 0 0 auto;
+}
+
 .volunteer-card__agenda {
   list-style: disc;
   margin: 0;

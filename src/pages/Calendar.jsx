@@ -6,6 +6,9 @@ const months = [
   {
     name: 'September',
     title: 'First Official Club Meeting',
+    date: 'September 24',
+    time: '12:30 PM',
+    location: 'Cafeteria',
     agenda: [
       'Registration Paperwork',
       'Club Outline, Goals, and Vision',
@@ -48,11 +51,16 @@ function Calendar() {
 
           return (
             <article key={name} className="volunteer-card card">
-              <span className="volunteer-card__status">Date TBD</span>
+              <span className="volunteer-card__status">
+                {isDetailed && month.date ? month.date : 'Date TBD'}
+              </span>
               <h3>{name}</h3>
               {isDetailed ? (
                 <>
                   <p className="volunteer-card__event">{month.title}</p>
+                  {month.location && (
+                    <p className="volunteer-card__location">{month.location}</p>
+                  )}
                   <ul className="volunteer-card__agenda">
                     {month.agenda.map((item) => (
                       <li key={item}>{item}</li>
@@ -62,7 +70,9 @@ function Calendar() {
               ) : (
                 <p>Events for {name} will be posted here once scheduled.</p>
               )}
-              <span className="volunteer-card__hours">Time TBD</span>
+              <span className="volunteer-card__hours">
+                {isDetailed && month.time ? month.time : 'Time TBD'}
+              </span>
             </article>
           )
         })}
