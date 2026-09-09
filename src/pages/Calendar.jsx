@@ -52,12 +52,14 @@ function Calendar() {
 
           return (
             <article key={name} className="volunteer-card card">
-              <span className="volunteer-card__status">
-                {isDetailed && month.time ? month.time : 'Time TBD'}
-              </span>
-              {isDetailed && month.location && (
-                <p className="volunteer-card__location">{month.location}</p>
-              )}
+              <div className="calendar-card__top-row">
+                <span className="volunteer-card__status">
+                  {isDetailed && month.time ? month.time : 'Time TBD'}
+                </span>
+                {isDetailed && month.location && (
+                  <span className="volunteer-card__location">{month.location}</span>
+                )}
+              </div>
               <h3>
                 {isDetailed && month.date
                   ? `${name} ${month.date}${month.year ? `, ${month.year}` : ''}`
