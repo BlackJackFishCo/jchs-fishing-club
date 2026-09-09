@@ -271,46 +271,49 @@ function TeamRow({ team }) {
   }
 
   return (
-    <tr>
-      <td>
-        <input
-          className="team-roster__input"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </td>
-      {anglers.map((angler, i) => (
-        <td key={i}>
-          <input
-            className="team-roster__input"
-            value={angler.name}
-            placeholder={`Angler ${i + 1}`}
-            onChange={(e) => updateAngler(i, 'name', e.target.value)}
-          />
-          <div className="team-roster__flags">
-            {ANGLER_FLAGS.map((flag) => (
-              <label key={flag.key} className="team-roster__flag" title={flag.label}>
-                <input
-                  type="checkbox"
-                  checked={angler[flag.key]}
-                  onChange={(e) => updateAngler(i, flag.key, e.target.checked)}
-                />
-                {flag.label.split(' ')[0]}
-              </label>
-            ))}
+    <article className="team-roster__card">
+      <input
+        className="team-roster__input team-roster__team-name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+
+      <div className="team-roster__anglers">
+        {anglers.map((angler, i) => (
+          <div key={i} className="team-roster__angler-row">
+            <input
+              className="team-roster__input"
+              value={angler.name}
+              placeholder={`Angler ${i + 1}`}
+              onChange={(e) => updateAngler(i, 'name', e.target.value)}
+            />
+            <div className="team-roster__flags">
+              {ANGLER_FLAGS.map((flag) => (
+                <label key={flag.key} className="team-roster__flag" title={flag.label}>
+                  <input
+                    type="checkbox"
+                    checked={angler[flag.key]}
+                    onChange={(e) => updateAngler(i, flag.key, e.target.checked)}
+                  />
+                  {flag.label.split(' ')[0]}
+                </label>
+              ))}
+            </div>
           </div>
-        </td>
-      ))}
-      <td className="team-roster__actions">
+        ))}
+      </div>
+
+      {error && <p className="modal__error">{error}</p>}
+
+      <div className="team-roster__actions">
         <button type="button" className="btn" disabled={!dirty || busy} onClick={save}>
           {busy ? 'Saving…' : 'Save'}
         </button>
         <button type="button" className="admin-roster__remove" onClick={remove}>
           Remove
         </button>
-        {error && <span className="modal__error">{error}</span>}
-      </td>
-    </tr>
+      </div>
+    </article>
   )
 }
 
@@ -380,24 +383,10 @@ function TeamRosterManager() {
       ) : teams.length === 0 ? (
         <p className="admin-roster__empty">No teams yet.</p>
       ) : (
-        <div className="team-roster__scroll">
-          <table className="admin-report__table team-roster__table">
-            <thead>
-              <tr>
-                <th>Team Name</th>
-                <th>Angler 1</th>
-                <th>Angler 2</th>
-                <th>Angler 3</th>
-                <th>Angler 4</th>
-                <th aria-label="Actions"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {teams.map((team) => (
-                <TeamRow key={team.id} team={team} />
-              ))}
-            </tbody>
-          </table>
+        <div className="team-roster__grid">
+          {teams.map((team) => (
+            <TeamRow key={team.id} team={team} />
+          ))}
         </div>
       )}
     </section>
@@ -764,12 +753,14 @@ function Admin() {
             </button>
           </div>
           <AdminsManager currentUid={user.uid} />
-          <RosterManager />
+          <div className="admin-side-by-side">
+            <RosterManager />
+            <CatchReport />
+          </div>
           <TeamRosterManager />
           <DeletedCatchesManager admin={admin} />
           <TournamentActivityLog />
           <RegistrationReport />
-          <CatchReport />
         </>
       )}
     </div>

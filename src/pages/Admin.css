@@ -1,3 +1,17 @@
+.admin-side-by-side {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.admin-side-by-side > .admin-roster,
+.admin-side-by-side > .admin-report {
+  flex: 1 1 360px;
+  max-width: none;
+  margin-top: 0;
+}
+
 .admin-login {
   max-width: 380px;
   padding: 1.75rem;
@@ -227,10 +241,6 @@
   border-bottom: none;
 }
 
-.team-roster {
-  max-width: 960px;
-}
-
 .team-roster__scroll {
   overflow-x: auto;
 }
@@ -240,8 +250,36 @@
   overflow-y: auto;
 }
 
-.team-roster__table {
-  min-width: 720px;
+.team-roster__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.team-roster__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: var(--color-black-soft);
+  border: 1px solid rgba(245, 197, 24, 0.2);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+
+.team-roster__team-name {
+  font-weight: 700;
+}
+
+.team-roster__anglers {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.team-roster__angler-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
 }
 
 .team-roster__input {
