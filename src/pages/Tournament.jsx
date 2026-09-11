@@ -522,13 +522,6 @@ function AwardsSection() {
   return (
     <section className="card tournament-awards">
       <h2 className="tournament-awards__heading">Awards</h2>
-      <p className="tournament-awards__rule">
-        Teams (including individual anglers) can only win one award category.
-      </p>
-      <p className="tournament-awards__example">
-        Example: If your team wins Top Team, no one on your team can also win Top Snook or Top
-        Lady Angler. (Only exception is 40&quot; Club Award)
-      </p>
 
       <div className="award-grid award-grid--featured">
         <AwardCard award={TOP_TEAM_AWARD} featured />
