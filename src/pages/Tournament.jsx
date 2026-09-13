@@ -356,6 +356,7 @@ const RULES_SECTIONS = [
       'South Boundary ¼ Mile South of St. Lucie Inlet 27°09.720’N',
       'No East or West Boundary',
       'All anglers must have a valid Florida Fishing License.',
+      'No drones allowed during fishing tournament hours.',
       'Same angler must hook, fight and bring fish up to point of landing from the boat. No passing the rod. No wade fishing.',
       'Maximum 4 rods fishing at any time.',
       'All anglers must abide by all local, State, and Federal Rules and licensing restrictions on fishing for game fish with hook and line.',
