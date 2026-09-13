@@ -143,7 +143,7 @@ function RegistrationSection() {
 
   return (
     <form className="registration card" onSubmit={submit}>
-      <p className="registration__price">$250.00 per Boat Registration</p>
+      <p className="registration__price">$300.00 per Boat Registration</p>
 
       <p className="registration__intro">
         Please register your boat&apos;s anglers below. You can register up to {MAX_ANGLERS}{' '}
