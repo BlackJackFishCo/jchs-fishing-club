@@ -54,7 +54,7 @@ const SPONSOR_TIERS = [
   },
   {
     name: 'Snook',
-    price: '$2,500',
+    price: '$3,000',
     perks: [
       '1 Tournament Entry (4 Shirts — 1 Tournament Bucket)',
       '15 Raffle Tickets',
@@ -67,7 +67,7 @@ const SPONSOR_TIERS = [
   },
   {
     name: 'Redfish',
-    price: '$1,000',
+    price: '$2,000',
     perks: [
       '1 Tournament Entry (4 Shirts — 1 Tournament Bucket)',
       '10 Raffle Tickets',
@@ -80,7 +80,7 @@ const SPONSOR_TIERS = [
   },
   {
     name: 'Trout',
-    price: '$500',
+    price: '$1,000',
     perks: [
       '1 Tournament Entry (4 Shirts — 1 Tournament Bucket)',
       '5 Raffle Tickets',
