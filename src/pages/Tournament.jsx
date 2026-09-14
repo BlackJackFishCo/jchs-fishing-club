@@ -229,7 +229,7 @@ function RegistrationSection() {
                   checked={angler.isJunior}
                   onChange={(e) => updateAngler(index, 'isJunior', e.target.checked)}
                 />
-                Junior Angler (16 or Under)
+                Junior Angler (13 or Under)
               </label>
               <label className="registration__checkbox">
                 <input
@@ -480,7 +480,7 @@ const TOP_TEAM_AWARDS = [
 
 const INDIVIDUAL_AWARDS = [
   {
-    name: 'Top Junior Angler (Under 16)',
+    name: 'Top Junior Angler (Under 13)',
     description:
       "Individual Award — Highest combined inches for the Junior Angler's largest Snook, Redfish, and Trout. You do not need to catch all three to qualify for this award.",
   },
