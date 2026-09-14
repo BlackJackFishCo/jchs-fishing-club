@@ -460,11 +460,23 @@ function RulesSection() {
   )
 }
 
-const TOP_TEAM_AWARD = {
-  name: 'Top Team',
-  description:
-    "Highest combined inches for your team's largest Snook, Redfish, and Trout — you don't need to catch all three to qualify for this award, just have the highest combined inches total.",
-}
+const TOP_TEAM_AWARDS = [
+  {
+    name: 'First Place',
+    description:
+      "Highest combined inches for your team's largest Snook, Redfish, and Trout — you don't need to catch all three to qualify for this award, just have the highest combined inches total.",
+  },
+  {
+    name: 'Second Place',
+    description:
+      "Second-highest combined inches for your team's largest Snook, Redfish, and Trout — you don't need to catch all three to qualify for this award, just have the highest combined inches total.",
+  },
+  {
+    name: 'Third Place',
+    description:
+      "Third-highest combined inches for your team's largest Snook, Redfish, and Trout — you don't need to catch all three to qualify for this award, just have the highest combined inches total.",
+  },
+]
 
 const INDIVIDUAL_AWARDS = [
   {
@@ -492,7 +504,7 @@ const SPECIES_AWARDS = [
 
 const BONUS_AWARD = {
   name: '40" Club',
-  description: 'Awarded to each angler who catches a 40" or longer Snook.',
+  description: 'Awarded to the angler who catches the first 40" or longer Snook.',
 }
 
 function AwardPhotoPlaceholder({ featured }) {
@@ -529,7 +541,9 @@ function AwardsSection() {
       <h2 className="tournament-awards__heading">Awards</h2>
 
       <div className="award-grid award-grid--featured">
-        <AwardCard award={TOP_TEAM_AWARD} featured />
+        {TOP_TEAM_AWARDS.map((award) => (
+          <AwardCard key={award.name} award={award} featured />
+        ))}
       </div>
 
       <h3 className="tournament-awards__group-title">Individual Categories</h3>
