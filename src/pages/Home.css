@@ -31,6 +31,17 @@
   min-height: 220px;
 }
 
+.home__log-catch {
+  width: 100%;
+  max-width: 720px;
+  padding: 1rem 1.5rem;
+  font-family: var(--font-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
 .hero-logos {
   width: 100%;
   display: flex;
@@ -180,9 +191,15 @@
 
 @media (max-width: 780px) {
   .home__logo-col,
-  .home__area-inshore {
+  .home__area-inshore,
+  .home__log-catch {
     width: 100%;
     max-width: 380px;
+  }
+
+  .home__log-catch {
+    font-size: 0.95rem;
+    padding: 0.85rem 1rem;
   }
 
   .home__logo-col {
