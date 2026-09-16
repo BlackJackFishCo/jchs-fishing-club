@@ -148,7 +148,7 @@ function Home() {
         <p className="mission__text">
           Through hands-on experiences and club activities, students will learn about ethical
           and responsible angling, fish conservation, Florida&apos;s aquatic habitats, fishing
-          equipment and techniques, and the fundamentals of sport fishing. Whether you&apos;re
+          equipment, techniques, and the fundamentals of sport fishing. Whether you&apos;re
           an experienced angler or have never picked up a fishing rod, there&apos;s a place for
           you in our club!
         </p>
