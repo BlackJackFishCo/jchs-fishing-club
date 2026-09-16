@@ -130,6 +130,10 @@ function Home() {
           </div>
         </div>
 
+        <Link to="/species" className="home__log-catch btn btn-solid">
+          Log Your Club Catch Here
+        </Link>
+
         {renderTile(tournamentTile, 'home__area-inshore')}
       </div>
 
