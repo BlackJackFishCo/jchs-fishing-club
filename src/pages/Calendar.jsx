@@ -17,10 +17,34 @@ const months = [
       'JCHSFC Site to log catches',
     ],
   },
-  'October',
-  'November',
-  'December',
-  'January',
+  {
+    name: 'October',
+    time: '3pm',
+    location: 'The Commons',
+    date: '22',
+    year: '2026',
+  },
+  {
+    name: 'November',
+    time: '12:30pm',
+    location: 'Cafeteria',
+    date: '19',
+    year: '2026',
+  },
+  {
+    name: 'December',
+    time: '12:30pm',
+    location: 'Cafeteria',
+    date: '17',
+    year: '2026',
+  },
+  {
+    name: 'January',
+    time: '3pm',
+    location: 'The Commons',
+    date: '21',
+    year: '2027',
+  },
   'February',
   'March',
   'April',
@@ -65,7 +89,7 @@ function Calendar() {
                   ? `${name} ${month.date}${month.year ? `, ${month.year}` : ''}`
                   : name}
               </h3>
-              {isDetailed ? (
+              {isDetailed && month.title ? (
                 <>
                   <p className="volunteer-card__event">{month.title}</p>
                   <ul className="volunteer-card__agenda">
