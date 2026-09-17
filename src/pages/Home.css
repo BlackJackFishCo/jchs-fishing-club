@@ -34,6 +34,7 @@
 .home__log-catch {
   width: 100%;
   max-width: 720px;
+  margin-top: -1.25rem;
   padding: 1rem 1.5rem;
   font-family: var(--font-eyebrow);
   text-transform: uppercase;
