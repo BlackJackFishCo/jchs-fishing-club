@@ -6,11 +6,6 @@ import dancoLogo from '../assets/sponsor-danco.png'
 import nlbnLogo from '../assets/sponsor-nlbn.png'
 import bajioLogo from '../assets/sponsor-bajio.png'
 import jujuLogo from '../assets/sponsor-juju-cast-nets.png'
-import fishingCenterLogo from '../assets/sponsor-fishing-center.png'
-import blackjackLogo from '../assets/sponsor-blackjack-fish-co.png'
-import bassProLogo from '../assets/sponsor-bass-pro-shops.png'
-import mangLogo from '../assets/sponsor-mang.png'
-import ccaLogo from '../assets/sponsor-cca.png'
 import './Home.css'
 
 const tournamentTile = {
@@ -18,7 +13,7 @@ const tournamentTile = {
   image: tournamentIcon,
   label: (
     <>
-      <span className="tile__label-line">John Carroll High School</span>{' '}
+      <span className="tile__label-line">John Carroll</span>{' '}
       <span className="tile__label-line">Inshore Slam</span>
     </>
   ),
@@ -84,49 +79,6 @@ function Home() {
             </a>
 
             <img className="hero-logos__sponsor" src={jujuLogo} alt="JuJu Cast Nets logo" />
-          </div>
-
-          <div className="hero-logos">
-            <a
-              href="https://www.thefishingcenterfl.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="The Fishing Center website"
-            >
-              <img className="hero-logos__sponsor" src={fishingCenterLogo} alt="The Fishing Center - Fort Pierce, Florida logo" />
-            </a>
-            <a
-              href="https://blackjackfishco.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Black Jack Fish Co website"
-            >
-              <img className="hero-logos__sponsor" src={blackjackLogo} alt="Black Jack Fish Co logo" />
-            </a>
-            <a
-              href="https://www.basspro.com/home"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Bass Pro Shops website"
-            >
-              <img className="hero-logos__sponsor" src={bassProLogo} alt="Bass Pro Shops logo" />
-            </a>
-            <a
-              href="https://www.manggear.com/pages/our-mission"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="MANG website"
-            >
-              <img className="hero-logos__sponsor" src={mangLogo} alt="MANG logo" />
-            </a>
-            <a
-              href="https://www.joincca.org/our-story/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Join CCA - Coastal Conservation Association website"
-            >
-              <img className="hero-logos__sponsor" src={ccaLogo} alt="Join CCA - Coastal Conservation Association logo" />
-            </a>
           </div>
         </div>
 
