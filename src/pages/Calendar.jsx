@@ -19,10 +19,12 @@ const months = [
   },
   {
     name: 'October',
+    title: 'Lure Rigging & Techniques',
     time: '3pm',
     location: 'The Commons',
     date: '22',
     year: '2026',
+    agenda: ['NLBN Pro Staff, Guest Speaker Guide Adam Rizzi from Reel Deal Adventures'],
   },
   {
     name: 'November',
