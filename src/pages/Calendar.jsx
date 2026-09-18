@@ -24,7 +24,7 @@ const months = [
     location: 'The Commons',
     date: '22',
     year: '2026',
-    agenda: ['NLBN Pro Staff, Guest Speaker Guide Adam Rizzi from Reel Deal Adventures'],
+    agenda: ['NLBN Guest Speaker - Brand Ambassador and Reel Deal Adventures Guide Adam Rizzi'],
   },
   {
     name: 'November',
