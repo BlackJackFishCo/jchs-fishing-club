@@ -12,10 +12,9 @@ const months = [
     date: '24',
     year: '2026',
     agenda: [
-      'Registration Paperwork',
-      'FWC Survey',
       'Club Outline and Club Ideas',
-      'JCHSFC Site to log catches',
+      'FWC Survey',
+      'JCHSFC Site & logging catches, Rod Rigging 101',
     ],
   },
   {
