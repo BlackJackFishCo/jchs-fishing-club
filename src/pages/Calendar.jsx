@@ -25,7 +25,9 @@ const months = [
     location: 'The Commons',
     date: '22',
     year: '2026',
-    agenda: ['NLBN Guest Speaker - Brand Ambassador and Reel Deal Adventures Guide Adam Rizzi'],
+    agenda: [
+      'NLBN Guest Speaker - Brand Ambassador and Reel Deal Adventures Guide Adam Rizzi, @reeldealadventures',
+    ],
     sponsorLogo: nlbnLogo,
     sponsorLink: 'https://nlbn.com/',
     sponsorAlt: 'NLBN - No Live Bait Needed logo',
