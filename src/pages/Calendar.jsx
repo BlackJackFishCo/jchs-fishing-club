@@ -1,4 +1,5 @@
 import logo from '../assets/logo.png'
+import nlbnLogo from '../assets/sponsor-nlbn.png'
 import './Volunteer.css'
 import './Calendar.css'
 
@@ -25,6 +26,9 @@ const months = [
     date: '22',
     year: '2026',
     agenda: ['NLBN Guest Speaker - Brand Ambassador and Reel Deal Adventures Guide Adam Rizzi'],
+    sponsorLogo: nlbnLogo,
+    sponsorLink: 'https://nlbn.com/',
+    sponsorAlt: 'NLBN - No Live Bait Needed logo',
   },
   {
     name: 'November',
@@ -102,6 +106,17 @@ function Calendar() {
                 </>
               ) : (
                 <p>Events for {name} will be posted here once scheduled.</p>
+              )}
+              {isDetailed && month.sponsorLogo && (
+                <a
+                  className="calendar-card__sponsor"
+                  href={month.sponsorLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={month.sponsorAlt}
+                >
+                  <img src={month.sponsorLogo} alt={month.sponsorAlt} />
+                </a>
               )}
             </article>
           )

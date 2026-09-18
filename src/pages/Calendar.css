@@ -9,6 +9,19 @@
   flex-wrap: wrap;
 }
 
+.calendar-card__sponsor {
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.calendar-card__sponsor img {
+  width: 96px;
+  height: auto;
+  display: block;
+}
+
 @media (max-width: 900px) {
   .calendar-grid {
     grid-template-columns: repeat(2, 1fr);
