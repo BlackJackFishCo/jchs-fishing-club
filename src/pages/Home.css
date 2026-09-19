@@ -131,8 +131,8 @@ a.home-sponsor-strip__logo:hover {
 }
 
 .home-sponsor-strip__logo img {
-  max-width: 110px;
-  max-height: 46px;
+  max-width: 150px;
+  max-height: 64px;
   width: auto;
   height: auto;
   display: block;
