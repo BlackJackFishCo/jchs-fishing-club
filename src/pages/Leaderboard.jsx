@@ -1,7 +1,5 @@
 import { useRoster } from '../data/roster.js'
 import { useSpeciesBoard, TOTAL_SPECIES } from '../data/species.js'
-import logo from '../assets/logo.png'
-import fwcLogo from '../assets/fwc-logo.png'
 import './Leaderboard.css'
 
 function Leaderboard() {
@@ -35,10 +33,6 @@ function Leaderboard() {
             logged on the Species Catch List. We will have awards for the top three Club
             members at the end of the year.
           </p>
-        </div>
-        <div className="page-head__logos">
-          <img className="page-head__logo" src={logo} alt="JCHS Fishing Club crest" />
-          <img className="species-rules__fwc-logo" src={fwcLogo} alt="Florida Fish and Wildlife Conservation Commission logo" />
         </div>
       </div>
 

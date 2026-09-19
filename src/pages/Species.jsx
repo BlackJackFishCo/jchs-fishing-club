@@ -2,8 +2,6 @@ import { useState } from 'react'
 import { TOTAL_SPECIES, CATEGORIES, useSpeciesBoard, addSubmission, removeSubmission } from '../data/species.js'
 import { useRoster } from '../data/roster.js'
 import { useAdminAuth } from '../data/auth.js'
-import logo from '../assets/logo.png'
-import fwcLogo from '../assets/fwc-logo.png'
 import './Species.css'
 
 const UPLOAD_PASSCODE = '2026'
@@ -276,10 +274,6 @@ function Species() {
               ))}
             </select>
           </label>
-          <div className="species-page__logos">
-            <img className="species-page__logo" src={logo} alt="JCHS Fishing Club crest" />
-            <img className="species-rules__fwc-logo" src={fwcLogo} alt="Florida Fish and Wildlife Conservation Commission logo" />
-          </div>
         </div>
       </div>
 
