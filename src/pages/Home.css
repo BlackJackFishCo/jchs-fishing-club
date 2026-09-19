@@ -22,7 +22,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 1rem;
+  gap: 0.6rem;
 }
 
 .home__area-inshore {
@@ -47,8 +47,7 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: clamp(1.5rem, 8vw, 4rem);
+  justify-content: space-between;
 }
 
 .hero-logos-top .hero-logos__sponsor {
@@ -80,6 +79,7 @@
 
 .hero__picture {
   width: min(440px, 30vw);
+  margin-top: 1rem;
   transition: transform 0.2s ease, filter 0.2s ease;
   filter: drop-shadow(0 0 30px rgba(27, 58, 138, 0.55));
 }
@@ -213,14 +213,6 @@
   .home__log-catch {
     font-size: 0.95rem;
     padding: 0.85rem 1rem;
-  }
-
-  .home__logo-col {
-    gap: 0.6rem;
-  }
-
-  .hero-logos-top {
-    gap: clamp(1rem, 20vw, 2.5rem);
   }
 
   .hero-logos {
