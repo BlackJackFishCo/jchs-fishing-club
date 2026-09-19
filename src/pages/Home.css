@@ -14,17 +14,6 @@
   margin-bottom: 2.5rem;
 }
 
-.home__logo-col {
-  min-width: 0;
-  width: 100%;
-  max-width: 720px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 0.6rem;
-}
-
 .home__area-inshore {
   width: 100%;
   max-width: 720px;
@@ -33,55 +22,126 @@
 
 .home__log-catch {
   width: 100%;
-  max-width: 720px;
-  margin-top: -1.25rem;
+  max-width: 420px;
   padding: 1rem 1.5rem;
   font-family: var(--font-eyebrow);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-size: 1.1rem;
   text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
 }
 
-.hero-logos-top {
-  width: 100%;
+.home-hero-banner {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  margin-top: -2.5rem;
+  margin-bottom: 0;
+  min-height: 720px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.hero-logos-top .hero-logos__sponsor {
-  width: min(110px, 12vw);
-}
-
-.hero-logos {
-  width: 100%;
-  display: flex;
-  flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
-  gap: clamp(0.5rem, 3vw, 2rem);
-}
-
-.hero-logos > a,
-.hero-logos > img {
-  display: block;
-  flex-shrink: 1;
-  min-width: 0;
-  width: min(110px, 12vw);
-}
-
-.hero-logos__sponsor {
-  width: 100%;
-  height: auto;
-  display: block;
+  overflow: hidden;
+  background-image:
+    linear-gradient(180deg, rgba(5, 6, 7, 0.5) 0%, rgba(11, 22, 51, 0.68) 45%, rgba(5, 6, 7, 0.92) 100%),
+    var(--home-hero-photo);
+  background-size: cover;
+  background-position: center 25%;
 }
 
 .hero__picture {
-  width: min(440px, 30vw);
-  margin-top: 1rem;
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 2;
+  width: min(120px, 22vw);
   transition: transform 0.2s ease, filter 0.2s ease;
-  filter: drop-shadow(0 0 30px rgba(27, 58, 138, 0.55));
+  filter: drop-shadow(0 0 18px rgba(27, 58, 138, 0.6));
+}
+
+.home-hero-banner__content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 6rem 1.5rem 4.5rem;
+}
+
+.home-hero-banner__mission {
+  width: 100%;
+}
+
+.home-hero-banner__mission .eyebrow {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.home-hero-banner__mission .mission__text {
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+.home-hero-banner__wave {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  display: block;
+}
+
+.home-white-section {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  background: #ffffff;
+  padding: 1.75rem 1.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-sponsor-strip__row {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.5rem, 5vw, 3rem);
+}
+
+.home-sponsor-strip__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+a.home-sponsor-strip__logo:hover {
+  transform: translateY(-2px);
+  text-decoration: none;
+  opacity: 0.85;
+}
+
+.home-sponsor-strip__logo img {
+  max-width: 110px;
+  max-height: 46px;
+  width: auto;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 0 1px rgba(11, 26, 58, 0.85)) drop-shadow(0 0 1px rgba(11, 26, 58, 0.85))
+    drop-shadow(0 1px 2px rgba(11, 26, 58, 0.4));
+}
+
+.home-sponsor-strip__logo img.home-sponsor-strip__logo--nlbn {
+  filter: invert(1);
 }
 
 .hero__picture:hover {
@@ -150,17 +210,6 @@
   font-size: 1.6rem;
 }
 
-.mission {
-  width: 100%;
-  max-width: 720px;
-  padding: 1rem 0;
-}
-
-.mission .eyebrow {
-  margin: 0;
-  font-size: 1.4rem;
-}
-
 .mission__text {
   margin: 0.15rem 0 0;
   color: var(--color-white);
@@ -203,7 +252,6 @@
 }
 
 @media (max-width: 780px) {
-  .home__logo-col,
   .home__area-inshore,
   .home__log-catch {
     width: 100%;
@@ -215,17 +263,18 @@
     padding: 0.85rem 1rem;
   }
 
-  .hero-logos {
-    gap: 0.35rem;
+  .home-hero-banner {
+    min-height: 640px;
   }
 
-  .hero-logos > a,
-  .hero-logos > img {
-    width: min(90px, 18vw);
+  .home-hero-banner__content {
+    padding: 5rem 1.25rem 3.5rem;
   }
 
   .hero__picture {
-    width: min(300px, 46vw);
+    top: 1rem;
+    left: 1rem;
+    width: min(90px, 24vw);
   }
 
   .home__area-inshore {
