@@ -569,6 +569,7 @@ function AwardsSection() {
 }
 
 const EVENT_INFO = [
+  { label: 'Registration Opens', value: '7/1/2027' },
   { label: 'Registration Ends', value: '9/27/2027' },
   { label: 'Captains Meeting', value: '6:00pm 10/08/2027' },
   { label: 'Lines In', value: '6:00am 10/09/2027' },
