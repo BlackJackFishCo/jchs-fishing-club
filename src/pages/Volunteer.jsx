@@ -1,5 +1,4 @@
 import logo from '../assets/logo.png'
-import fwcLogo from '../assets/fwc-logo.png'
 import mangLogo from '../assets/sponsor-mang.png'
 import './Volunteer.css'
 
@@ -45,10 +44,7 @@ function Volunteer() {
             posted here as dates are confirmed.
           </p>
         </div>
-        <div className="page-head__logos">
-          <img className="page-head__logo" src={logo} alt="JCHS Fishing Club crest" />
-          <img className="species-rules__fwc-logo" src={fwcLogo} alt="Florida Fish and Wildlife Conservation Commission logo" />
-        </div>
+        <img className="page-head__logo" src={logo} alt="JCHS Fishing Club crest" />
       </div>
 
       <div className="volunteer-grid">
