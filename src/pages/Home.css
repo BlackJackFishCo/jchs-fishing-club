@@ -14,6 +14,10 @@
   margin-bottom: 2.5rem;
 }
 
+.home__hero--tile-only {
+  margin-top: 1.75rem;
+}
+
 .home__area-inshore {
   width: 100%;
   max-width: 720px;
@@ -51,6 +55,12 @@
   background-position: center 25%;
 }
 
+@media (min-width: 781px) {
+  .home-hero-banner {
+    background-position: center 72%;
+  }
+}
+
 .hero__picture {
   position: absolute;
   top: 1.5rem;
@@ -61,11 +71,17 @@
   filter: drop-shadow(0 0 18px rgba(27, 58, 138, 0.6));
 }
 
+@media (min-width: 781px) {
+  .hero__picture {
+    width: min(240px, 22vw);
+  }
+}
+
 .home-hero-banner__content {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 640px;
+  max-width: 780px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -79,7 +95,7 @@
 
 .home-hero-banner__mission .eyebrow {
   margin: 0;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
 }
 
 .home-hero-banner__mission .mission__text {
@@ -109,12 +125,20 @@
 
 .home-sponsor-strip__row {
   max-width: 1000px;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: clamp(1.5rem, 5vw, 3rem);
+}
+
+@media (min-width: 900px) {
+  .home-sponsor-strip__row {
+    max-width: 1180px;
+    justify-content: space-between;
+  }
 }
 
 .home-sponsor-strip__logo {
@@ -213,8 +237,8 @@ a.home-sponsor-strip__logo:hover {
 .mission__text {
   margin: 0.15rem 0 0;
   color: var(--color-white);
-  font-size: 1.1rem;
-  line-height: 1.5;
+  font-size: 1.2rem;
+  line-height: 1.55;
 }
 
 .mission__text + .mission__text {
