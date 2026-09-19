@@ -8,6 +8,7 @@ import bajioLogo from '../assets/sponsor-bajio.png'
 import jujuLogo from '../assets/sponsor-juju-cast-nets.png'
 import fwcLogo from '../assets/fwc-logo.png'
 import ccaStarLogo from '../assets/sponsor-cca-star.png'
+import heroBackground from '../assets/home-hero-photo.jpg'
 import './Home.css'
 
 const tournamentTile = {
@@ -37,101 +38,134 @@ function renderTile(tile, areaClass) {
 function Home() {
   return (
     <div className="page home">
-      <div className="home__hero">
-        <div className="home__logo-col">
-          <Link to="/species" className="hero__picture" aria-label="View the Species Catch List">
-            <img src={logo} alt="John Carroll High School Fishing Club crest" />
-          </Link>
-
-          <div className="hero-logos-top">
-            <img
-              className="hero-logos__sponsor"
-              src={fwcLogo}
-              alt="Florida Fish and Wildlife Conservation Commission logo"
-            />
-            <a
-              href="https://ccaflstar.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="CCA Florida STAR Tournament website"
-            >
-              <img
-                className="hero-logos__sponsor"
-                src={ccaStarLogo}
-                alt="CCA Florida STAR presented by Yamaha logo"
-              />
-            </a>
-          </div>
-
-          <div className="hero-logos">
-            <a
-              href="https://www.instagram.com/offthegridjohn/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="John Off The Grid on Instagram"
-            >
-              <img className="hero-logos__sponsor" src={offTheGridLogo} alt='John "Off The Grid" logo' />
-            </a>
-
-            <a
-              href="https://nlbn.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="NLBN - No Live Bait Needed website"
-            >
-              <img className="hero-logos__sponsor" src={nlbnLogo} alt="NLBN - No Live Bait Needed logo" />
-            </a>
-
-            <a
-              href="https://www.dancopliers.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Danco Pliers website"
-            >
-              <img className="hero-logos__sponsor" src={dancoLogo} alt="Danco Pliers logo" />
-            </a>
-
-            <a
-              href="https://bajiosunglasses.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Bajío Sunglasses website"
-            >
-              <img className="hero-logos__sponsor" src={bajioLogo} alt="Bajío Sunglasses logo" />
-            </a>
-
-            <img className="hero-logos__sponsor" src={jujuLogo} alt="JuJu Cast Nets logo" />
-          </div>
-        </div>
-
-        <Link to="/species" className="home__log-catch btn btn-solid">
-          Log Your Club Catch Here
+      <section className="home-hero-banner" style={{ '--home-hero-photo': `url(${heroBackground})` }}>
+        <Link to="/species" className="hero__picture" aria-label="View the Species Catch List">
+          <img src={logo} alt="John Carroll High School Fishing Club crest" />
         </Link>
 
-        {renderTile(tournamentTile, 'home__area-inshore')}
-      </div>
+        <div className="home-hero-banner__content">
+          <div className="home-hero-banner__mission">
+            <p className="eyebrow">Club Mission</p>
+            <p className="mission__text">
+              The John Carroll Fishing Club is a community for students who share a passion for
+              fishing, the outdoors, and Florida&apos;s incredible aquatic environments. Our
+              mission is to help students become confident, skilled, and conservation-minded
+              anglers while building friendships and creating unforgettable experiences on the
+              water.
+            </p>
+            <p className="mission__text">
+              Through hands-on experiences and club activities, students will learn about ethical
+              and responsible angling, fish conservation, Florida&apos;s aquatic habitats,
+              fishing equipment, techniques, and the fundamentals of sport fishing. Whether
+              you&apos;re an experienced angler or have never picked up a fishing rod,
+              there&apos;s a place for you in our club!
+            </p>
+            <p className="mission__tagline">Learn. Fish. Conserve. Have Fun.</p>
+          </div>
 
-      <section className="mission">
-        <p className="eyebrow">Club Mission</p>
-        <p className="mission__text">
-          The John Carroll Fishing Club is a community for students who share a passion for
-          fishing, the outdoors, and Florida&apos;s incredible aquatic environments. Our mission
-          is to help students become confident, skilled, and conservation-minded anglers while
-          building friendships and creating unforgettable experiences on the water.
-        </p>
-        <p className="mission__text">
-          Through hands-on experiences and club activities, students will learn about ethical
-          and responsible angling, fish conservation, Florida&apos;s aquatic habitats, fishing
-          equipment, techniques, and the fundamentals of sport fishing. Whether you&apos;re
-          an experienced angler or have never picked up a fishing rod, there&apos;s a place for
-          you in our club!
-        </p>
-        <p className="mission__tagline">Learn. Fish. Conserve. Have Fun.</p>
+          <Link to="/species" className="home__log-catch btn btn-solid">
+            Log Your Club Catch Here
+          </Link>
+        </div>
+
+        <svg
+          className="home-hero-banner__wave"
+          viewBox="0 0 1440 100"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M0,55 C 220,15 420,90 700,50 C 980,10 1200,85 1440,40 L1440,100 L0,100 Z"
+            fill="#ffffff"
+          />
+          <path
+            d="M0,47 C 220,7 420,82 700,42 C 980,2 1200,77 1440,32"
+            fill="none"
+            stroke="rgba(245, 197, 24, 0.45)"
+            strokeWidth="2.5"
+          />
+          <path
+            d="M0,39 C 220,-1 420,74 700,34 C 980,-6 1200,69 1440,24"
+            fill="none"
+            stroke="rgba(255, 255, 255, 0.4)"
+            strokeWidth="2.5"
+          />
+        </svg>
       </section>
 
-      <Link to="/admin" className="admin-quiet-link" aria-label="Admin access">
-        Admin
-      </Link>
+      <section className="home-white-section">
+        <div className="home-sponsor-strip__row">
+          <span className="home-sponsor-strip__logo">
+            <img src={fwcLogo} alt="Florida Fish and Wildlife Conservation Commission logo" />
+          </span>
+
+          <a
+            href="https://www.instagram.com/offthegridjohn/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="John Off The Grid on Instagram"
+            className="home-sponsor-strip__logo"
+          >
+            <img src={offTheGridLogo} alt='John "Off The Grid" logo' />
+          </a>
+
+          <a
+            href="https://nlbn.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="NLBN - No Live Bait Needed website"
+            className="home-sponsor-strip__logo"
+          >
+            <img
+              className="home-sponsor-strip__logo--nlbn"
+              src={nlbnLogo}
+              alt="NLBN - No Live Bait Needed logo"
+            />
+          </a>
+
+          <a
+            href="https://www.dancopliers.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Danco Pliers website"
+            className="home-sponsor-strip__logo"
+          >
+            <img src={dancoLogo} alt="Danco Pliers logo" />
+          </a>
+
+          <a
+            href="https://bajiosunglasses.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Bajío Sunglasses website"
+            className="home-sponsor-strip__logo"
+          >
+            <img src={bajioLogo} alt="Bajío Sunglasses logo" />
+          </a>
+
+          <span className="home-sponsor-strip__logo">
+            <img src={jujuLogo} alt="JuJu Cast Nets logo" />
+          </span>
+
+          <a
+            href="https://ccaflstar.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="CCA Florida STAR Tournament website"
+            className="home-sponsor-strip__logo"
+          >
+            <img src={ccaStarLogo} alt="CCA Florida STAR presented by Yamaha logo" />
+          </a>
+        </div>
+
+        <div className="home__hero home__hero--tile-only">
+          {renderTile(tournamentTile, 'home__area-inshore')}
+        </div>
+
+        <Link to="/admin" className="admin-quiet-link" aria-label="Admin access">
+          Admin
+        </Link>
+      </section>
     </div>
   )
 }
