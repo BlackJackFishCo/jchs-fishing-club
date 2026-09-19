@@ -8,7 +8,7 @@ import bajioLogo from '../assets/sponsor-bajio.png'
 import jujuLogo from '../assets/sponsor-juju-cast-nets.png'
 import fwcLogo from '../assets/fwc-logo.png'
 import ccaStarLogo from '../assets/sponsor-cca-star.png'
-import heroBackground from '../assets/home-hero-photo.jpg'
+import heroBackground from '../assets/snook-catch.jpg'
 import './Home.css'
 
 const tournamentTile = {
