@@ -125,8 +125,6 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  max-height: 420px;
-  overflow-y: auto;
 }
 
 .admin-roster__list li {
