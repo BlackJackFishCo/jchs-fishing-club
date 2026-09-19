@@ -43,22 +43,35 @@ function Home() {
             <img src={logo} alt="John Carroll High School Fishing Club crest" />
           </Link>
 
-          <div className="hero-logos">
-            <div className="hero-logos__col">
+          <div className="hero-logos-top">
+            <img
+              className="hero-logos__sponsor"
+              src={fwcLogo}
+              alt="Florida Fish and Wildlife Conservation Commission logo"
+            />
+            <a
+              href="https://ccaflstar.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="CCA Florida STAR Tournament website"
+            >
               <img
                 className="hero-logos__sponsor"
-                src={fwcLogo}
-                alt="Florida Fish and Wildlife Conservation Commission logo"
+                src={ccaStarLogo}
+                alt="CCA Florida STAR presented by Yamaha logo"
               />
-              <a
-                href="https://www.instagram.com/offthegridjohn/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="John Off The Grid on Instagram"
-              >
-                <img className="hero-logos__sponsor" src={offTheGridLogo} alt='John "Off The Grid" logo' />
-              </a>
-            </div>
+            </a>
+          </div>
+
+          <div className="hero-logos">
+            <a
+              href="https://www.instagram.com/offthegridjohn/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="John Off The Grid on Instagram"
+            >
+              <img className="hero-logos__sponsor" src={offTheGridLogo} alt='John "Off The Grid" logo' />
+            </a>
 
             <a
               href="https://nlbn.com/"
@@ -87,21 +100,7 @@ function Home() {
               <img className="hero-logos__sponsor" src={bajioLogo} alt="Bajío Sunglasses logo" />
             </a>
 
-            <div className="hero-logos__col">
-              <a
-                href="https://ccaflstar.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="CCA Florida STAR Tournament website"
-              >
-                <img
-                  className="hero-logos__sponsor"
-                  src={ccaStarLogo}
-                  alt="CCA Florida STAR presented by Yamaha logo"
-                />
-              </a>
-              <img className="hero-logos__sponsor" src={jujuLogo} alt="JuJu Cast Nets logo" />
-            </div>
+            <img className="hero-logos__sponsor" src={jujuLogo} alt="JuJu Cast Nets logo" />
           </div>
         </div>
 
