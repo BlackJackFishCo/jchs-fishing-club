@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import logo from '../assets/logo-hero.png'
-import tournamentIcon from '../assets/tile-inshore-slam-icon.png'
 import offTheGridLogo from '../assets/sponsor-off-the-grid.png'
 import dancoLogo from '../assets/sponsor-danco.png'
 import nlbnLogo from '../assets/sponsor-nlbn.png'
@@ -10,30 +9,6 @@ import fwcLogo from '../assets/fwc-logo.png'
 import ccaStarLogo from '../assets/sponsor-cca-star.png'
 import heroBackground from '../assets/snook-catch.jpg'
 import './Home.css'
-
-const tournamentTile = {
-  to: '/tournament',
-  image: tournamentIcon,
-  label: (
-    <>
-      <span className="tile__label-line">John Carroll</span>{' '}
-      <span className="tile__label-line">Inshore Slam</span>
-    </>
-  ),
-  subtitle: 'Fishing Tournament — October 2027',
-}
-
-function renderTile(tile, areaClass) {
-  return (
-    <Link key={tile.to} to={tile.to} className={`tile card ${areaClass}`}>
-      <img className="tile__image" src={tile.image} alt="" aria-hidden="true" />
-      <div className="tile__text">
-        <span className="tile__label">{tile.label}</span>
-        {tile.subtitle && <span className="tile__subtitle">{tile.subtitle}</span>}
-      </div>
-    </Link>
-  )
-}
 
 function Home() {
   return (
@@ -148,10 +123,6 @@ function Home() {
           >
             <img src={ccaStarLogo} alt="CCA Florida STAR presented by Yamaha logo" />
           </a>
-        </div>
-
-        <div className="home__hero home__hero--tile-only">
-          {renderTile(tournamentTile, 'home__area-inshore')}
         </div>
 
         <Link to="/admin" className="admin-quiet-link" aria-label="Admin access">
