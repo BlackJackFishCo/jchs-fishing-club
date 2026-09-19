@@ -63,7 +63,11 @@ function Home() {
       <section className="home-white-section">
         <div className="home-sponsor-strip__row">
           <span className="home-sponsor-strip__logo">
-            <img src={fwcLogo} alt="Florida Fish and Wildlife Conservation Commission logo" />
+            <img
+              className="home-sponsor-strip__logo--fwc"
+              src={fwcLogo}
+              alt="Florida Fish and Wildlife Conservation Commission logo"
+            />
           </span>
 
           <a
