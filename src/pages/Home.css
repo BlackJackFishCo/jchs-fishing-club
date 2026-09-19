@@ -53,11 +53,19 @@
 }
 
 .hero-logos > a,
-.hero-logos > img {
+.hero-logos > img,
+.hero-logos > .hero-logos__col {
   display: block;
   flex-shrink: 1;
   min-width: 0;
   width: min(110px, 12vw);
+}
+
+.hero-logos__col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .hero-logos__sponsor {
@@ -212,7 +220,8 @@
   }
 
   .hero-logos > a,
-  .hero-logos > img {
+  .hero-logos > img,
+  .hero-logos > .hero-logos__col {
     width: min(90px, 18vw);
   }
 

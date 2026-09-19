@@ -6,6 +6,8 @@ import dancoLogo from '../assets/sponsor-danco.png'
 import nlbnLogo from '../assets/sponsor-nlbn.png'
 import bajioLogo from '../assets/sponsor-bajio.png'
 import jujuLogo from '../assets/sponsor-juju-cast-nets.png'
+import fwcLogo from '../assets/fwc-logo.png'
+import ccaStarLogo from '../assets/sponsor-cca-star.png'
 import './Home.css'
 
 const tournamentTile = {
@@ -42,14 +44,21 @@ function Home() {
           </Link>
 
           <div className="hero-logos">
-            <a
-              href="https://www.instagram.com/offthegridjohn/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="John Off The Grid on Instagram"
-            >
-              <img className="hero-logos__sponsor" src={offTheGridLogo} alt='John "Off The Grid" logo' />
-            </a>
+            <div className="hero-logos__col">
+              <img
+                className="hero-logos__sponsor"
+                src={fwcLogo}
+                alt="Florida Fish and Wildlife Conservation Commission logo"
+              />
+              <a
+                href="https://www.instagram.com/offthegridjohn/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="John Off The Grid on Instagram"
+              >
+                <img className="hero-logos__sponsor" src={offTheGridLogo} alt='John "Off The Grid" logo' />
+              </a>
+            </div>
 
             <a
               href="https://nlbn.com/"
@@ -78,7 +87,21 @@ function Home() {
               <img className="hero-logos__sponsor" src={bajioLogo} alt="Bajío Sunglasses logo" />
             </a>
 
-            <img className="hero-logos__sponsor" src={jujuLogo} alt="JuJu Cast Nets logo" />
+            <div className="hero-logos__col">
+              <a
+                href="https://ccaflstar.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="CCA Florida STAR Tournament website"
+              >
+                <img
+                  className="hero-logos__sponsor"
+                  src={ccaStarLogo}
+                  alt="CCA Florida STAR presented by Yamaha logo"
+                />
+              </a>
+              <img className="hero-logos__sponsor" src={jujuLogo} alt="JuJu Cast Nets logo" />
+            </div>
           </div>
         </div>
 
