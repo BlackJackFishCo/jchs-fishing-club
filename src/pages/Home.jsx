@@ -7,13 +7,20 @@ import bajioLogo from '../assets/sponsor-bajio.png'
 import jujuLogo from '../assets/sponsor-juju-cast-nets.png'
 import fwcLogo from '../assets/fwc-logo.png'
 import ccaStarLogo from '../assets/sponsor-cca-star.png'
-import heroBackground from '../assets/snook-catch.jpg'
+import heroBackgroundMobile from '../assets/snook-catch.jpg'
+import heroBackgroundDesktop from '../assets/home-hero-desktop.jpg'
 import './Home.css'
 
 function Home() {
   return (
     <div className="page home">
-      <section className="home-hero-banner" style={{ '--home-hero-photo': `url(${heroBackground})` }}>
+      <section
+        className="home-hero-banner"
+        style={{
+          '--home-hero-photo': `url(${heroBackgroundMobile})`,
+          '--home-hero-photo-desktop': `url(${heroBackgroundDesktop})`,
+        }}
+      >
         <Link to="/species" className="hero__picture" aria-label="View the Species Catch List">
           <img src={logo} alt="John Carroll High School Fishing Club crest" />
         </Link>

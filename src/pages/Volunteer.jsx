@@ -1,4 +1,3 @@
-import logo from '../assets/logo.png'
 import mangLogo from '../assets/sponsor-mang.png'
 import './Volunteer.css'
 
@@ -44,7 +43,6 @@ function Volunteer() {
             posted here as dates are confirmed.
           </p>
         </div>
-        <img className="page-head__logo" src={logo} alt="JCHS Fishing Club crest" />
       </div>
 
       <div className="volunteer-grid">

@@ -1,4 +1,3 @@
-import logo from '../assets/logo.png'
 import nlbnLogo from '../assets/sponsor-nlbn.png'
 import './Volunteer.css'
 import './Calendar.css'
@@ -73,7 +72,6 @@ function Calendar() {
             posted here as they&apos;re confirmed.
           </p>
         </div>
-        <img className="page-head__logo" src={logo} alt="JCHS Fishing Club crest" />
       </div>
 
       <div className="volunteer-grid calendar-grid">
