@@ -21,11 +21,11 @@ function Home() {
           '--home-hero-photo-desktop': `url(${heroBackgroundDesktop})`,
         }}
       >
-        <Link to="/species" className="hero__picture" aria-label="View the Species Catch List">
-          <img src={logo} alt="John Carroll High School Fishing Club crest" />
-        </Link>
-
         <div className="home-hero-banner__content">
+          <Link to="/species" className="hero__picture" aria-label="View the Species Catch List">
+            <img src={logo} alt="John Carroll High School Fishing Club crest" />
+          </Link>
+
           <div className="home-hero-banner__mission">
             <p className="eyebrow">Club Mission</p>
             <p className="mission__text">
