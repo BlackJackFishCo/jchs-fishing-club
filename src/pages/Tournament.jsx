@@ -382,8 +382,8 @@ const RULES_SECTIONS = [
     title: 'Leader Board',
     items: [
       'Only the top scoring fish will be scored per species.',
-      'No rotten or mutilated fish will be counted.',
-      'Any technical difficulties with digital equipment will be dealt with on a case-by-case basis by the Tournament Director.',
+      'No rotten, mutilated, or caged fish will be counted.',
+      'Any technical difficulties with digital equipment will be dealt with on a case-by-case basis by the Tournament Director. It is your responsibility to get time stamped photos to the director.',
       'In the event of a tie, the winner will be the first to log all of their fish. If there is a tie for the largest of a species, the first fish logged wins.',
       'Cheaters will be disqualified. You and your team will also be banned from all future events. This is a Charity Tournament!',
     ],
@@ -392,7 +392,7 @@ const RULES_SECTIONS = [
     title: 'Weather',
     items: [
       'It is up to the discretion of the registered anglers to determine whether his or her craft is seaworthy for that day’s weather conditions. Participants are encouraged to keep abreast of any marine or weather warnings.',
-      'In the case of tournament cancelation and no fish have been logged due to weather, prizes will turn into raffle format with each team in the raffle one time. If Fish have been logged. Winners will be determined at 4pm October 9, 2027.',
+      'In the case of tournament cancelation and no fish have been logged due to weather, prizes will turn into raffle format with each team in the raffle one time. If Fish have been logged. Winners will be determined by normal rules.',
       'No refund of entry fees.',
     ],
   },
