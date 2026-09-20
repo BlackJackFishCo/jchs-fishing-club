@@ -1,4 +1,5 @@
 import nlbnLogo from '../assets/sponsor-nlbn.png'
+import ccaStarLogo from '../assets/sponsor-cca-star.png'
 import './Volunteer.css'
 import './Calendar.css'
 
@@ -74,7 +75,14 @@ const months = [
   'February',
   'March',
   'April',
-  'May',
+  {
+    name: 'May',
+    title: 'Guest Speaker',
+    agenda: ['CCA - STAR Summer Event Registration, ccaflstar.com'],
+    sponsorLogo: ccaStarLogo,
+    sponsorLink: 'https://ccaflstar.com/',
+    sponsorAlt: 'CCA Florida STAR presented by Yamaha logo',
+  },
   'June',
   'July',
   'August',
