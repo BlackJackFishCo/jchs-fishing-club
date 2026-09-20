@@ -77,7 +77,7 @@ const months = [
   'April',
   {
     name: 'May',
-    title: 'Guest Speaker',
+    title: 'Guest Speaker CCA STAR Representative',
     agenda: ['CCA - STAR Summer Event Registration, ccaflstar.com'],
     sponsorLogo: ccaStarLogo,
     sponsorLink: 'https://ccaflstar.com/',
