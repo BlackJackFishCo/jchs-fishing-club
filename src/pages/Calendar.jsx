@@ -2,6 +2,26 @@ import nlbnLogo from '../assets/sponsor-nlbn.png'
 import './Volunteer.css'
 import './Calendar.css'
 
+const MONTH_NUMBERS = {
+  January: 0,
+  February: 1,
+  March: 2,
+  April: 3,
+  May: 4,
+  June: 5,
+  July: 6,
+  August: 7,
+  September: 8,
+  October: 9,
+  November: 10,
+  December: 11,
+}
+
+function getEventDate(month) {
+  if (typeof month === 'string' || !month.date || !month.year) return null
+  return new Date(Number(month.year), MONTH_NUMBERS[month.name], Number(month.date))
+}
+
 const months = [
   {
     name: 'September',
@@ -61,6 +81,15 @@ const months = [
 ]
 
 function Calendar() {
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+
+  const upcomingTimes = months
+    .map(getEventDate)
+    .filter((d) => d && d.getTime() >= today.getTime())
+    .map((d) => d.getTime())
+  const nextEventTime = upcomingTimes.length ? Math.min(...upcomingTimes) : null
+
   return (
     <div className="page volunteer-page">
       <div className="page-head">
@@ -78,9 +107,15 @@ function Calendar() {
         {months.map((month) => {
           const isDetailed = typeof month !== 'string'
           const name = isDetailed ? month.name : month
+          const eventDate = getEventDate(month)
+          const isNextUp = nextEventTime !== null && eventDate?.getTime() === nextEventTime
 
           return (
-            <article key={name} className="volunteer-card card">
+            <article
+              key={name}
+              className={`volunteer-card card${isNextUp ? ' calendar-card--next' : ''}`}
+            >
+              {isNextUp && <span className="calendar-card__next-badge">Next Up</span>}
               <div className="calendar-card__top-row">
                 <span className="volunteer-card__status">
                   {isDetailed && month.time ? month.time : 'Time TBD'}
