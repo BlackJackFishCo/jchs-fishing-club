@@ -25,8 +25,9 @@ export function useRegistrations() {
   return { registrations, loading }
 }
 
-export async function addRegistration(anglers) {
+export async function addRegistration({ teamName, anglers }) {
   await addDoc(collection(db, 'tournamentRegistrations'), {
+    teamName,
     anglers,
     createdAt: serverTimestamp(),
   })

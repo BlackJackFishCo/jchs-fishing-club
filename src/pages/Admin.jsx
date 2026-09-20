@@ -672,7 +672,7 @@ function RegistrationReport() {
           {registrations.map((reg, i) => (
             <div key={reg.id} className="admin-report__angler">
               <div className="admin-report__angler-head">
-                <strong>Team {i + 1}</strong>
+                <strong>{reg.teamName || `Team ${i + 1}`}</strong>
                 <span>
                   {reg.anglers.length} angler{reg.anglers.length === 1 ? '' : 's'}
                 </span>

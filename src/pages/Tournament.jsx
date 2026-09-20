@@ -105,6 +105,7 @@ const EMPTY_ANGLER = {
 }
 
 function RegistrationSection() {
+  const [teamName, setTeamName] = useState('')
   const [anglers, setAnglers] = useState(
     Array.from({ length: MAX_ANGLERS }, () => ({ ...EMPTY_ANGLER })),
   )
@@ -122,7 +123,8 @@ function RegistrationSection() {
     setError('')
     try {
       const filled = anglers.filter((a) => a.firstName.trim())
-      await addRegistration(filled)
+      await addRegistration({ teamName, anglers: filled })
+      setTeamName('')
       setAnglers(Array.from({ length: MAX_ANGLERS }, () => ({ ...EMPTY_ANGLER })))
       setSuccess(true)
     } catch (err) {
@@ -161,6 +163,19 @@ function RegistrationSection() {
       {anglers.map((angler, index) => (
         <fieldset key={index} className="registration__angler">
           <legend>{index === 0 ? 'Angler 1 / Captain' : `Angler ${index + 1}`}</legend>
+
+          {index === 0 && (
+            <div className="registration__row">
+              <label className="field">
+                <span>Team Name*</span>
+                <input
+                  value={teamName}
+                  onChange={(e) => setTeamName(e.target.value)}
+                  required
+                />
+              </label>
+            </div>
+          )}
 
           <div className="registration__row">
             <label className="field">
