@@ -83,9 +83,27 @@ const months = [
     sponsorLink: 'https://ccaflstar.com/',
     sponsorAlt: 'CCA Florida STAR presented by Yamaha logo',
   },
-  'June',
-  'July',
-  'August',
+  {
+    name: 'June',
+    title: 'Participate in CCA STAR Program',
+    sponsorLogo: ccaStarLogo,
+    sponsorLink: 'https://ccaflstar.com/',
+    sponsorAlt: 'CCA Florida STAR presented by Yamaha logo',
+  },
+  {
+    name: 'July',
+    title: 'Participate in CCA STAR Program',
+    sponsorLogo: ccaStarLogo,
+    sponsorLink: 'https://ccaflstar.com/',
+    sponsorAlt: 'CCA Florida STAR presented by Yamaha logo',
+  },
+  {
+    name: 'August',
+    title: 'Participate in CCA STAR Program',
+    sponsorLogo: ccaStarLogo,
+    sponsorLink: 'https://ccaflstar.com/',
+    sponsorAlt: 'CCA Florida STAR presented by Yamaha logo',
+  },
 ]
 
 function Calendar() {
@@ -140,11 +158,13 @@ function Calendar() {
               {isDetailed && month.title ? (
                 <>
                   <p className="volunteer-card__event">{month.title}</p>
-                  <ul className="volunteer-card__agenda">
-                    {month.agenda.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
+                  {month.agenda && (
+                    <ul className="volunteer-card__agenda">
+                      {month.agenda.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  )}
                 </>
               ) : (
                 <p>Events for {name} will be posted here once scheduled.</p>
