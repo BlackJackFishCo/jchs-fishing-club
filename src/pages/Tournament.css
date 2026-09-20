@@ -160,11 +160,6 @@
   margin-bottom: 1.5rem;
 }
 
-.award-grid--single {
-  grid-template-columns: minmax(220px, 340px);
-  justify-content: center;
-}
-
 .award-card {
   display: flex;
   flex-direction: column;

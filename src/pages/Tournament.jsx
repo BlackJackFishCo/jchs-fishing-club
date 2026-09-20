@@ -516,10 +516,17 @@ const SPECIES_AWARDS = [
   { name: 'Top Trout', description: 'Longest single Trout.' },
 ]
 
-const BONUS_AWARD = {
-  name: '40" Club',
-  description: 'Awarded to the angler who catches the first 40" or longer Snook.',
-}
+const BONUS_AWARDS = [
+  {
+    name: '40" Club',
+    description: 'Awarded to the angler who catches the first 40" or longer Snook.',
+  },
+  {
+    name: '50/50 Mystery Fish Calcutta',
+    description:
+      '(Snook, Redfish, or Trout) — species selected at the Captains Meeting.',
+  },
+]
 
 function AwardPhotoPlaceholder({ featured }) {
   return (
@@ -574,9 +581,11 @@ function AwardsSection() {
         ))}
       </div>
 
-      <h3 className="tournament-awards__group-title">Bonus Award</h3>
-      <div className="award-grid award-grid--single">
-        <AwardCard award={BONUS_AWARD} />
+      <h3 className="tournament-awards__group-title">Bonus Awards</h3>
+      <div className="award-grid">
+        {BONUS_AWARDS.map((award) => (
+          <AwardCard key={award.name} award={award} />
+        ))}
       </div>
     </section>
   )
