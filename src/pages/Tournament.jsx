@@ -476,17 +476,17 @@ function RulesSection() {
 
 const TOP_TEAM_AWARDS = [
   {
-    name: 'First Place',
+    name: 'First Place Team',
     description:
       "Highest combined inches for your team's largest Snook, Redfish, and Trout — you don't need to catch all three to qualify for this award, just have the highest combined inches total.",
   },
   {
-    name: 'Second Place',
+    name: 'Second Place Team',
     description:
       "Second-highest combined inches for your team's largest Snook, Redfish, and Trout — you don't need to catch all three to qualify for this award, just have the highest combined inches total.",
   },
   {
-    name: 'Third Place',
+    name: 'Third Place Team',
     description:
       "Third-highest combined inches for your team's largest Snook, Redfish, and Trout — you don't need to catch all three to qualify for this award, just have the highest combined inches total.",
   },
