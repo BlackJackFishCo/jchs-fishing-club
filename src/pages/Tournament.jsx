@@ -157,7 +157,7 @@ function RegistrationSection() {
       </p>
 
       {!REGISTRATION_OPEN && (
-        <p className="registration__notice">Registration is not open yet. Check back soon!</p>
+        <p className="registration__notice">Registration opens July 1, 2027.</p>
       )}
 
       {anglers.map((angler, index) => (
