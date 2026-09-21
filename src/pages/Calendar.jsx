@@ -60,6 +60,7 @@ const months = [
   },
   {
     name: 'November',
+    title: 'Casting Techniques & Contest',
     time: '12:30pm',
     location: 'Cafeteria',
     date: '19',
@@ -81,6 +82,7 @@ const months = [
   },
   {
     name: 'January',
+    title: 'Castnet Techniques for Live Bait',
     time: '3pm',
     location: 'The Commons',
     date: '21',
