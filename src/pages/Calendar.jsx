@@ -1,5 +1,6 @@
 import nlbnLogo from '../assets/sponsor-nlbn.png'
 import ccaStarLogo from '../assets/sponsor-cca-star.png'
+import abenzFishingLogo from '../assets/sponsor-abenz-fishing.png'
 import './Volunteer.css'
 import './Calendar.css'
 
@@ -60,10 +61,17 @@ const months = [
   },
   {
     name: 'December',
+    title: 'Snook Fishing Techniques',
     time: '12:30pm',
     location: 'Cafeteria',
     date: '17',
     year: '2026',
+    agenda: [
+      'Guest Speaker Aaron Benzrihem from Abenz Fishing — content creator on YouTube, Instagram, and Facebook.',
+    ],
+    sponsorLogo: abenzFishingLogo,
+    sponsorLink: 'https://abenzfishing.com/',
+    sponsorAlt: 'Abenz Fishing logo',
   },
   {
     name: 'January',
