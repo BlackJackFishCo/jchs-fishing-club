@@ -47,7 +47,7 @@ const months = [
     date: '22',
     year: '2026',
     agenda: [
-      'NLBN Guest Speaker - Brand Ambassador and Reel Deal Adventures Guide Adam Rizzi, @reeldealadventures',
+      'Guest Speaker - NLBN Brand Ambassador and Reel Deal Adventures Founder Adam Rizzi @reeldealadventures',
     ],
     sponsors: [
       { logo: nlbnLogo, link: 'https://nlbn.com/', alt: 'NLBN - No Live Bait Needed logo' },
