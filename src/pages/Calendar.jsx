@@ -1,6 +1,7 @@
 import nlbnLogo from '../assets/sponsor-nlbn.png'
 import ccaStarLogo from '../assets/sponsor-cca-star.png'
 import abenzFishingLogo from '../assets/sponsor-abenz-fishing.png'
+import reelDealLogo from '../assets/sponsor-reel-deal-adventures.png'
 import './Volunteer.css'
 import './Calendar.css'
 
@@ -48,9 +49,14 @@ const months = [
     agenda: [
       'NLBN Guest Speaker - Brand Ambassador and Reel Deal Adventures Guide Adam Rizzi, @reeldealadventures',
     ],
-    sponsorLogo: nlbnLogo,
-    sponsorLink: 'https://nlbn.com/',
-    sponsorAlt: 'NLBN - No Live Bait Needed logo',
+    sponsors: [
+      { logo: nlbnLogo, link: 'https://nlbn.com/', alt: 'NLBN - No Live Bait Needed logo' },
+      {
+        logo: reelDealLogo,
+        link: 'https://www.instagram.com/reeldealadventures/',
+        alt: 'Reel-Deal Adventures logo',
+      },
+    ],
   },
   {
     name: 'November',
@@ -69,9 +75,9 @@ const months = [
     agenda: [
       'Guest Speaker Aaron Benzrihem from Abenz Fishing — content creator on YouTube, Instagram, and Facebook.',
     ],
-    sponsorLogo: abenzFishingLogo,
-    sponsorLink: 'https://abenzfishing.com/',
-    sponsorAlt: 'Abenz Fishing logo',
+    sponsors: [
+      { logo: abenzFishingLogo, link: 'https://abenzfishing.com/', alt: 'Abenz Fishing logo' },
+    ],
   },
   {
     name: 'January',
@@ -87,30 +93,46 @@ const months = [
     name: 'May',
     title: 'Guest Speaker CCA STAR Representative',
     agenda: ['CCA - STAR Summer Event Registration, ccaflstar.com'],
-    sponsorLogo: ccaStarLogo,
-    sponsorLink: 'https://ccaflstar.com/',
-    sponsorAlt: 'CCA Florida STAR presented by Yamaha logo',
+    sponsors: [
+      {
+        logo: ccaStarLogo,
+        link: 'https://ccaflstar.com/',
+        alt: 'CCA Florida STAR presented by Yamaha logo',
+      },
+    ],
   },
   {
     name: 'June',
     title: 'Participate in CCA STAR Program',
-    sponsorLogo: ccaStarLogo,
-    sponsorLink: 'https://ccaflstar.com/',
-    sponsorAlt: 'CCA Florida STAR presented by Yamaha logo',
+    sponsors: [
+      {
+        logo: ccaStarLogo,
+        link: 'https://ccaflstar.com/',
+        alt: 'CCA Florida STAR presented by Yamaha logo',
+      },
+    ],
   },
   {
     name: 'July',
     title: 'Participate in CCA STAR Program',
-    sponsorLogo: ccaStarLogo,
-    sponsorLink: 'https://ccaflstar.com/',
-    sponsorAlt: 'CCA Florida STAR presented by Yamaha logo',
+    sponsors: [
+      {
+        logo: ccaStarLogo,
+        link: 'https://ccaflstar.com/',
+        alt: 'CCA Florida STAR presented by Yamaha logo',
+      },
+    ],
   },
   {
     name: 'August',
     title: 'Participate in CCA STAR Program',
-    sponsorLogo: ccaStarLogo,
-    sponsorLink: 'https://ccaflstar.com/',
-    sponsorAlt: 'CCA Florida STAR presented by Yamaha logo',
+    sponsors: [
+      {
+        logo: ccaStarLogo,
+        link: 'https://ccaflstar.com/',
+        alt: 'CCA Florida STAR presented by Yamaha logo',
+      },
+    ],
   },
 ]
 
@@ -177,16 +199,21 @@ function Calendar() {
               ) : (
                 <p>Events for {name} will be posted here once scheduled.</p>
               )}
-              {isDetailed && month.sponsorLogo && (
-                <a
-                  className="calendar-card__sponsor"
-                  href={month.sponsorLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={month.sponsorAlt}
-                >
-                  <img src={month.sponsorLogo} alt={month.sponsorAlt} />
-                </a>
+              {isDetailed && month.sponsors && (
+                <div className="calendar-card__sponsors">
+                  {month.sponsors.map((sponsor) => (
+                    <a
+                      key={sponsor.alt}
+                      className="calendar-card__sponsor"
+                      href={sponsor.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={sponsor.alt}
+                    >
+                      <img src={sponsor.logo} alt={sponsor.alt} />
+                    </a>
+                  ))}
+                </div>
               )}
             </article>
           )
