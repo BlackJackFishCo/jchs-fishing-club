@@ -6,6 +6,7 @@ import abenzFishingLogo from '../assets/sponsor-abenz-fishing.png'
 import reelDealLogo from '../assets/sponsor-reel-deal-adventures.png'
 import localLinesLogo from '../assets/sponsor-local-lines.png'
 import seaSafeLogo from '../assets/sponsor-project-seasafe.png'
+import oceanConservancyLogo from '../assets/sponsor-ocean-conservancy.png'
 import './Volunteer.css'
 import './Calendar.css'
 
@@ -175,6 +176,13 @@ const months = [
     year: '2027',
     title: 'ICC Day',
     agenda: ['9/18/2027'],
+    sponsors: [
+      {
+        logo: oceanConservancyLogo,
+        link: 'https://oceanconservancy.org/work/plastics/cleanups-icc/',
+        alt: 'Ocean Conservancy logo',
+      },
+    ],
   },
   {
     name: 'October',
