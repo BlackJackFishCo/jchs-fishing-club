@@ -133,7 +133,7 @@ const months = [
   },
   {
     name: 'June',
-    title: 'Participate in CCA STAR Program',
+    title: 'Participate in CCA STAR Program over the summer',
     sponsors: [
       {
         logo: ccaStarLogo,
@@ -144,7 +144,7 @@ const months = [
   },
   {
     name: 'July',
-    title: 'Participate in CCA STAR Program',
+    title: 'Participate in CCA STAR Program over the summer',
     sponsors: [
       {
         logo: ccaStarLogo,
@@ -155,7 +155,7 @@ const months = [
   },
   {
     name: 'August',
-    title: 'Participate in CCA STAR Program',
+    title: 'Participate in CCA STAR Program over the summer',
     sponsors: [
       {
         logo: ccaStarLogo,
