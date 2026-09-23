@@ -487,6 +487,11 @@
     display: none !important;
   }
 
+  body:not(.print-target-club) .admin-progress,
+  body:not(.print-target-registration) .registration-report {
+    display: none !important;
+  }
+
   .admin-page {
     max-width: none;
     padding: 0;
