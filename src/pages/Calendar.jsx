@@ -4,6 +4,8 @@ import nlbnLogo from '../assets/sponsor-nlbn.png'
 import ccaStarLogo from '../assets/sponsor-cca-star.png'
 import abenzFishingLogo from '../assets/sponsor-abenz-fishing.png'
 import reelDealLogo from '../assets/sponsor-reel-deal-adventures.png'
+import localLinesLogo from '../assets/sponsor-local-lines.png'
+import seaSafeLogo from '../assets/sponsor-project-seasafe.png'
 import './Volunteer.css'
 import './Calendar.css'
 
@@ -105,7 +107,17 @@ const months = [
     ],
     sponsors: [{ logo: mommaBLogo, alt: 'Momma B Sport and Beach Fishing Guide Service logo' }],
   },
-  'March',
+  {
+    name: 'March',
+    title: 'Guest Speaker Captain Alex Gorichky',
+    agenda: [
+      'Local Lines Guide Service and Ambassador of the Star brite Project SeaSafe initiative.',
+    ],
+    sponsors: [
+      { logo: localLinesLogo, link: 'https://locallinescharters.com/', alt: 'Local Lines Guide Service logo' },
+      { logo: seaSafeLogo, link: 'https://www.projectseasafe.com/', alt: 'Star brite Project SeaSafe logo' },
+    ],
+  },
   'April',
   {
     name: 'May',
