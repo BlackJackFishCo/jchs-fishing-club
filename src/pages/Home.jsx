@@ -4,7 +4,6 @@ import offTheGridLogo from '../assets/sponsor-off-the-grid.png'
 import dancoLogo from '../assets/sponsor-danco.png'
 import nlbnLogo from '../assets/sponsor-nlbn.png'
 import bajioLogo from '../assets/sponsor-bajio.png'
-import jujuLogo from '../assets/sponsor-juju-cast-nets.png'
 import fwcLogo from '../assets/fwc-logo.png'
 import ccaStarLogo from '../assets/sponsor-cca-star.png'
 import heroBackgroundMobile from '../assets/snook-catch.jpg'
@@ -120,10 +119,6 @@ function Home() {
           >
             <img src={bajioLogo} alt="Bajío Sunglasses logo" />
           </a>
-
-          <span className="home-sponsor-strip__logo">
-            <img src={jujuLogo} alt="JuJu Cast Nets logo" />
-          </span>
 
           <a
             href="https://ccaflstar.com/"

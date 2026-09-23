@@ -1,3 +1,4 @@
+import jchsfcLogo from '../assets/logo.png'
 import nlbnLogo from '../assets/sponsor-nlbn.png'
 import ccaStarLogo from '../assets/sponsor-cca-star.png'
 import abenzFishingLogo from '../assets/sponsor-abenz-fishing.png'
@@ -36,8 +37,9 @@ const months = [
     agenda: [
       'Club Outline and Club Ideas',
       'FWC Survey',
-      'JCHSFC Site & logging catches, Rod Rigging 101',
+      'JCHSFC Site & logging catches',
     ],
+    sponsors: [{ logo: jchsfcLogo, alt: 'John Carroll High School Fishing Club logo' }],
   },
   {
     name: 'October',
@@ -203,18 +205,24 @@ function Calendar() {
               )}
               {isDetailed && month.sponsors && (
                 <div className="calendar-card__sponsors">
-                  {month.sponsors.map((sponsor) => (
-                    <a
-                      key={sponsor.alt}
-                      className="calendar-card__sponsor"
-                      href={sponsor.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={sponsor.alt}
-                    >
-                      <img src={sponsor.logo} alt={sponsor.alt} />
-                    </a>
-                  ))}
+                  {month.sponsors.map((sponsor) =>
+                    sponsor.link ? (
+                      <a
+                        key={sponsor.alt}
+                        className="calendar-card__sponsor"
+                        href={sponsor.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={sponsor.alt}
+                      >
+                        <img src={sponsor.logo} alt={sponsor.alt} />
+                      </a>
+                    ) : (
+                      <span key={sponsor.alt} className="calendar-card__sponsor">
+                        <img src={sponsor.logo} alt={sponsor.alt} />
+                      </span>
+                    ),
+                  )}
                 </div>
               )}
             </article>

@@ -137,7 +137,7 @@
 @media (min-width: 900px) {
   .home-sponsor-strip__row {
     max-width: 1180px;
-    justify-content: space-between;
+    justify-content: center;
   }
 }
 
