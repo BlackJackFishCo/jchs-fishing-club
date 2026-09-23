@@ -25,7 +25,7 @@ const MONTH_NUMBERS = {
 }
 
 function getEventDate(month) {
-  if (typeof month === 'string' || !month.date || !month.year) return null
+  if (!month.date || !month.year) return null
   return new Date(Number(month.year), MONTH_NUMBERS[month.name], Number(month.date))
 }
 
@@ -102,6 +102,7 @@ const months = [
   },
   {
     name: 'February',
+    year: '2027',
     title: 'Surf Fishing Rigging & Techniques',
     agenda: [
       'Hands on Surf Fishing Outing with Captain Matt Burr of Momma B Charters',
@@ -110,6 +111,7 @@ const months = [
   },
   {
     name: 'March',
+    year: '2027',
     title: 'Guest Speaker Captain Alex Gorichky',
     agenda: [
       'Local Lines Guide Service and Ambassador of the Star brite Project SeaSafe initiative.',
@@ -119,9 +121,10 @@ const months = [
       { logo: seaSafeLogo, link: 'https://www.projectseasafe.com/', alt: 'Star brite Project SeaSafe logo' },
     ],
   },
-  'April',
+  { name: 'April', year: '2027' },
   {
     name: 'May',
+    year: '2027',
     title: 'Guest Speaker CCA STAR Representative',
     agenda: ['CCA - STAR Summer Event Registration, ccaflstar.com'],
     sponsors: [
@@ -134,6 +137,7 @@ const months = [
   },
   {
     name: 'June',
+    year: '2027',
     title: 'Participate in CCA STAR Program over the summer',
     sponsors: [
       {
@@ -145,6 +149,7 @@ const months = [
   },
   {
     name: 'July',
+    year: '2027',
     title: 'Participate in CCA STAR Program over the summer',
     sponsors: [
       {
@@ -156,6 +161,7 @@ const months = [
   },
   {
     name: 'August',
+    year: '2027',
     title: 'Participate in CCA STAR Program over the summer',
     sponsors: [
       {
@@ -165,6 +171,15 @@ const months = [
       },
     ],
   },
+  { name: 'September', year: '2027' },
+  { name: 'October', year: '2027' },
+  { name: 'November', year: '2027' },
+  { name: 'December', year: '2027' },
+  { name: 'January', year: '2028' },
+  { name: 'February', year: '2028' },
+  { name: 'March', year: '2028' },
+  { name: 'April', year: '2028' },
+  { name: 'May', year: '2028' },
 ]
 
 function Calendar() {
@@ -182,7 +197,7 @@ function Calendar() {
       <div className="page-head">
         <div>
           <p className="eyebrow">Plan Ahead</p>
-          <h1 className="section-title">Calendar 2026-2027</h1>
+          <h1 className="section-title">Calendar 2026-2028</h1>
           <p className="volunteer-page__intro">
             Club activities for the school year, month by month. Dates and times will be
             posted here as they&apos;re confirmed.
@@ -192,31 +207,27 @@ function Calendar() {
 
       <div className="volunteer-grid calendar-grid">
         {months.map((month) => {
-          const isDetailed = typeof month !== 'string'
-          const name = isDetailed ? month.name : month
           const eventDate = getEventDate(month)
           const isNextUp = nextEventTime !== null && eventDate?.getTime() === nextEventTime
 
           return (
             <article
-              key={name}
+              key={`${month.name}-${month.year}`}
               className={`volunteer-card card${isNextUp ? ' calendar-card--next' : ''}`}
             >
               {isNextUp && <span className="calendar-card__next-badge">Next Up</span>}
               <div className="calendar-card__top-row">
-                <span className="volunteer-card__status">
-                  {isDetailed && month.time ? month.time : 'Time TBD'}
-                </span>
-                {isDetailed && month.location && (
+                <span className="volunteer-card__status">{month.time || 'Time TBD'}</span>
+                {month.location && (
                   <span className="volunteer-card__location">{month.location}</span>
                 )}
               </div>
               <h3>
-                {isDetailed && month.date
-                  ? `${name} ${month.date}${month.year ? `, ${month.year}` : ''}`
-                  : name}
+                {month.date
+                  ? `${month.name} ${month.date}, ${month.year}`
+                  : `${month.name} ${month.year}`}
               </h3>
-              {isDetailed && month.title ? (
+              {month.title ? (
                 <>
                   <p className="volunteer-card__event">{month.title}</p>
                   {month.agenda && (
@@ -228,9 +239,9 @@ function Calendar() {
                   )}
                 </>
               ) : (
-                <p>Events for {name} will be posted here once scheduled.</p>
+                <p>Events for {month.name} will be posted here once scheduled.</p>
               )}
-              {isDetailed && month.sponsors && (
+              {month.sponsors && (
                 <div className="calendar-card__sponsors">
                   {month.sponsors.map((sponsor) =>
                     sponsor.link ? (
