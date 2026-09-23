@@ -923,11 +923,15 @@ function Admin() {
             </button>
           </div>
           <AdminsManager currentUid={user.uid} />
+
+          <h2 className="admin-section-heading">Club</h2>
           <ClubProgressReport />
           <div className="admin-side-by-side">
             <RosterManager />
             <CatchReport />
           </div>
+
+          <h2 className="admin-section-heading">Tournament</h2>
           <TeamRosterManager />
           <DeletedCatchesManager admin={admin} />
           <TournamentActivityLog />
