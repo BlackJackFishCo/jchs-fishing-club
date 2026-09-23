@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useAdminAuth, signIn, createAccount, signOutAdmin } from '../data/auth.js'
 import { useRoster, addRosterName, removeRosterName } from '../data/roster.js'
 import { useAdmins, addAdmin, removeAdmin } from '../data/admins.js'
-import { useSpeciesBoard, TOTAL_SPECIES } from '../data/species.js'
+import { useSpeciesBoard, TOTAL_SPECIES, CATEGORIES } from '../data/species.js'
 import { useRegistrations } from '../data/registration.js'
 import {
   useTournamentTeams,
@@ -541,6 +541,176 @@ function TournamentActivityLog() {
   )
 }
 
+function formatMonthYear(date) {
+  return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+}
+
+function getCatchDate(sub) {
+  if (sub.date) {
+    const d = new Date(`${sub.date}T00:00:00`)
+    if (!Number.isNaN(d.getTime())) return d
+  }
+  if (sub.createdAt?.toDate) return sub.createdAt.toDate()
+  return null
+}
+
+function ClubProgressReport() {
+  const { board, loading } = useSpeciesBoard()
+
+  const allCatches = board.flatMap((entry) =>
+    entry.submissions.map((sub) => ({ ...sub, species: entry.species, category: entry.category })),
+  )
+  const totalCatches = allCatches.length
+  const caughtSpecies = board.filter((entry) => entry.submissions.length > 0)
+  const remainingSpecies = board.filter((entry) => entry.submissions.length === 0)
+  const caughtCount = caughtSpecies.length
+  const pct = TOTAL_SPECIES ? Math.round((caughtCount / TOTAL_SPECIES) * 100) : 0
+
+  const monthMap = new Map()
+  const undated = []
+  allCatches.forEach((c) => {
+    const d = getCatchDate(c)
+    if (!d) {
+      undated.push(c)
+      return
+    }
+    const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`
+    if (!monthMap.has(key)) monthMap.set(key, { label: formatMonthYear(d), catches: [] })
+    monthMap.get(key).catches.push(c)
+  })
+  const monthGroups = [...monthMap.entries()]
+    .sort((a, b) => b[0].localeCompare(a[0]))
+    .map(([key, group]) => ({
+      key,
+      label: group.label,
+      catches: [...group.catches].sort((a, b) => (a.angler || '').localeCompare(b.angler || '')),
+    }))
+
+  const remainingByCategory = CATEGORIES.map((category) => ({
+    category,
+    species: remainingSpecies.filter((entry) => entry.category === category),
+  })).filter((group) => group.species.length > 0)
+
+  return (
+    <section className="admin-report admin-progress card">
+      <h2>Club Progress Report</h2>
+      <p className="admin-roster__note">
+        Live snapshot pulled from the Species Catch List &mdash; for tracking club progress and
+        recapping new catches each month.
+      </p>
+
+      {loading ? (
+        <p className="species-page__loading">Loading catch data…</p>
+      ) : (
+        <>
+          <div className="admin-progress__stats">
+            <div className="admin-progress__ticker">
+              <div className="admin-progress__ticker-count">
+                {caughtCount} <span>/ {TOTAL_SPECIES}</span>
+              </div>
+              <div className="admin-progress__ticker-bar">
+                <div className="admin-progress__ticker-fill" style={{ width: `${pct}%` }} />
+              </div>
+              <div className="admin-progress__ticker-pct">{pct}% of species &mdash; no duplicates</div>
+            </div>
+            <div className="admin-progress__total">
+              <strong>{totalCatches}</strong>
+              <span>Total catches logged (all anglers, incl. repeat species)</span>
+            </div>
+          </div>
+
+          <h3 className="admin-progress__subhead">New Catches by Month</h3>
+          {monthGroups.length === 0 && undated.length === 0 ? (
+            <p className="admin-report__empty">No catches logged yet.</p>
+          ) : (
+            <div className="admin-report__list">
+              {monthGroups.map((group) => (
+                <div key={group.key} className="admin-report__angler">
+                  <div className="admin-report__angler-head">
+                    <strong>{group.label}</strong>
+                    <span>
+                      {group.catches.length} catch{group.catches.length === 1 ? '' : 'es'}
+                    </span>
+                  </div>
+                  <table className="admin-report__table">
+                    <thead>
+                      <tr>
+                        <th>Angler</th>
+                        <th>Species</th>
+                        <th>Category</th>
+                        <th>Date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {group.catches.map((c) => (
+                        <tr key={c.id}>
+                          <td>{c.angler || 'Unknown'}</td>
+                          <td>{c.species}</td>
+                          <td>{c.category}</td>
+                          <td>{c.date || '—'}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ))}
+
+              {undated.length > 0 && (
+                <div className="admin-report__angler">
+                  <div className="admin-report__angler-head">
+                    <strong>Undated</strong>
+                    <span>
+                      {undated.length} catch{undated.length === 1 ? '' : 'es'}
+                    </span>
+                  </div>
+                  <table className="admin-report__table">
+                    <thead>
+                      <tr>
+                        <th>Angler</th>
+                        <th>Species</th>
+                        <th>Category</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {undated.map((c) => (
+                        <tr key={c.id}>
+                          <td>{c.angler || 'Unknown'}</td>
+                          <td>{c.species}</td>
+                          <td>{c.category}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+          )}
+
+          <h3 className="admin-progress__subhead">
+            Species Still Needed ({remainingSpecies.length})
+          </h3>
+          {remainingSpecies.length === 0 ? (
+            <p className="admin-report__empty">All {TOTAL_SPECIES} species have been caught!</p>
+          ) : (
+            <div className="admin-progress__remaining">
+              {remainingByCategory.map((group) => (
+                <div key={group.category} className="admin-progress__remaining-group">
+                  <strong>{group.category}</strong>
+                  <ul>
+                    {group.species.map((entry) => (
+                      <li key={entry.id}>{entry.species}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          )}
+        </>
+      )}
+    </section>
+  )
+}
+
 function CatchReport() {
   const { board, loading } = useSpeciesBoard()
   const { roster } = useRoster()
@@ -753,6 +923,7 @@ function Admin() {
             </button>
           </div>
           <AdminsManager currentUid={user.uid} />
+          <ClubProgressReport />
           <div className="admin-side-by-side">
             <RosterManager />
             <CatchReport />
