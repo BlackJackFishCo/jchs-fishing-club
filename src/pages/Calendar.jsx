@@ -41,7 +41,6 @@ const months = [
       'Club Outline and Club Ideas',
       'FWC Survey',
       'JCHSFC Site & logging catches',
-      'Note: ICC Day 2027 — 9/18',
     ],
     sponsors: [
       {
@@ -171,7 +170,12 @@ const months = [
       },
     ],
   },
-  { name: 'September', year: '2027' },
+  {
+    name: 'September',
+    year: '2027',
+    title: 'ICC Day',
+    agenda: ['9/18/2027'],
+  },
   { name: 'October', year: '2027' },
   { name: 'November', year: '2027' },
   { name: 'December', year: '2027' },
