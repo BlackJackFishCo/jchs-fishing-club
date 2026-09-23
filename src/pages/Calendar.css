@@ -53,8 +53,8 @@
 }
 
 .calendar-card__sponsor img.calendar-card__sponsor-img--large {
-  height: 90px;
-  max-width: 165px;
+  height: 115px;
+  max-width: 210px;
 }
 
 @media (max-width: 900px) {
