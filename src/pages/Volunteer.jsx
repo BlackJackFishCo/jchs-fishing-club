@@ -1,7 +1,20 @@
 import mangLogo from '../assets/sponsor-mang.png'
+import seaSafeLogo from '../assets/sponsor-project-seasafe.png'
 import './Volunteer.css'
 
 const projects = [
+  {
+    title: 'Project SeaSafe 2027',
+    status: 'April 22-25, 2027',
+    description:
+      'Join Star brite’s Project SeaSafe initiative for a hands-on push to clean and protect our local waterways, shorelines, and wildlife.',
+    hours: 'Service hours available',
+    sponsor: {
+      logo: seaSafeLogo,
+      alt: 'Star brite Project SeaSafe logo',
+      href: 'https://www.projectseasafe.com/',
+    },
+  },
   {
     title: 'Indian River Lagoon Shoreline Cleanup',
     status: 'Date TBD',
