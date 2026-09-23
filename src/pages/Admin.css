@@ -456,7 +456,7 @@
   white-space: nowrap;
 }
 
-.registration-report__head {
+.admin-report__head {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -464,12 +464,12 @@
   margin-bottom: 0.5rem;
 }
 
-.registration-report__head h2 {
+.admin-report__head h2 {
   margin: 0;
 }
 
 @media (max-width: 560px) {
-  .registration-report__head {
+  .admin-report__head {
     flex-direction: column;
   }
 }
@@ -481,9 +481,9 @@
   .admin-login,
   .admin-denied,
   .admin-roster,
-  .admin-report:not(.registration-report),
+  .admin-report:not(.registration-report):not(.admin-progress),
   .admin-section-heading,
-  .registration-report__print {
+  .admin-report__print {
     display: none !important;
   }
 

@@ -593,11 +593,18 @@ function ClubProgressReport() {
 
   return (
     <section className="admin-report admin-progress card">
-      <h2>Club Progress Report</h2>
-      <p className="admin-roster__note">
-        Live snapshot pulled from the Species Catch List &mdash; for tracking club progress and
-        recapping new catches each month.
-      </p>
+      <div className="admin-report__head">
+        <div>
+          <h2>Club Progress Report</h2>
+          <p className="admin-roster__note">
+            Live snapshot pulled from the Species Catch List &mdash; for tracking club progress
+            and recapping new catches each month.
+          </p>
+        </div>
+        <button type="button" className="btn admin-report__print" onClick={() => window.print()}>
+          Print
+        </button>
+      </div>
 
       {loading ? (
         <p className="species-page__loading">Loading catch data…</p>
@@ -815,7 +822,7 @@ function RegistrationReport() {
 
   return (
     <section className="admin-report registration-report card">
-      <div className="registration-report__head">
+      <div className="admin-report__head">
         <div>
           <h2>Tournament Registrations</h2>
           <p className="admin-roster__note">
@@ -826,7 +833,7 @@ function RegistrationReport() {
         </div>
         <button
           type="button"
-          className="btn registration-report__print"
+          className="btn admin-report__print"
           onClick={() => window.print()}
         >
           Print
