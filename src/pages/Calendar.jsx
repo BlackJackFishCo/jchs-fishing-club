@@ -39,7 +39,13 @@ const months = [
       'FWC Survey',
       'JCHSFC Site & logging catches',
     ],
-    sponsors: [{ logo: jchsfcLogo, alt: 'John Carroll High School Fishing Club logo' }],
+    sponsors: [
+      {
+        logo: jchsfcLogo,
+        alt: 'John Carroll High School Fishing Club logo',
+        imgClassName: 'calendar-card__sponsor-img--large',
+      },
+    ],
   },
   {
     name: 'October',
@@ -215,11 +221,11 @@ function Calendar() {
                         rel="noopener noreferrer"
                         aria-label={sponsor.alt}
                       >
-                        <img src={sponsor.logo} alt={sponsor.alt} />
+                        <img src={sponsor.logo} alt={sponsor.alt} className={sponsor.imgClassName} />
                       </a>
                     ) : (
                       <span key={sponsor.alt} className="calendar-card__sponsor">
-                        <img src={sponsor.logo} alt={sponsor.alt} />
+                        <img src={sponsor.logo} alt={sponsor.alt} className={sponsor.imgClassName} />
                       </span>
                     ),
                   )}
