@@ -1,4 +1,5 @@
 import jchsfcLogo from '../assets/logo.png'
+import mommaBLogo from '../assets/sponsor-momma-b.png'
 import nlbnLogo from '../assets/sponsor-nlbn.png'
 import ccaStarLogo from '../assets/sponsor-cca-star.png'
 import abenzFishingLogo from '../assets/sponsor-abenz-fishing.png'
@@ -99,6 +100,10 @@ const months = [
   {
     name: 'February',
     title: 'Surf Fishing Rigging & Techniques',
+    agenda: [
+      'Hands on Surf Fishing Outing with Captain Matt Burr of Momma B Charters',
+    ],
+    sponsors: [{ logo: mommaBLogo, alt: 'Momma B Sport and Beach Fishing Guide Service logo' }],
   },
   'March',
   'April',
