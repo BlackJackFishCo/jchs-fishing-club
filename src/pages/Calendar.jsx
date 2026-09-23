@@ -96,7 +96,10 @@ const months = [
     date: '21',
     year: '2027',
   },
-  'February',
+  {
+    name: 'February',
+    title: 'Surf Fishing Rigging & Techniques',
+  },
   'March',
   'April',
   {
