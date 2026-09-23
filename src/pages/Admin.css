@@ -239,6 +239,124 @@
   border-bottom: none;
 }
 
+.admin-progress {
+  max-width: none;
+}
+
+.admin-progress__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.admin-progress__ticker {
+  flex: 2;
+  min-width: 260px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1rem 1.25rem;
+  background: var(--color-black-soft);
+  border: 1px solid rgba(245, 197, 24, 0.2);
+  border-radius: 8px;
+}
+
+.admin-progress__ticker-count {
+  font-family: Georgia, serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  white-space: nowrap;
+}
+
+.admin-progress__ticker-count span {
+  font-size: 1.05rem;
+  color: var(--color-muted);
+  font-weight: 400;
+}
+
+.admin-progress__ticker-bar {
+  flex: 1;
+  min-width: 140px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  border: 1px solid rgba(245, 197, 24, 0.25);
+}
+
+.admin-progress__ticker-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-royal-light), var(--color-gold));
+  transition: width 0.3s ease;
+}
+
+.admin-progress__ticker-pct {
+  color: var(--color-muted);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.admin-progress__total {
+  flex: 1;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 1rem 1.25rem;
+  background: var(--color-black-soft);
+  border: 1px solid rgba(245, 197, 24, 0.2);
+  border-radius: 8px;
+}
+
+.admin-progress__total strong {
+  font-family: Georgia, serif;
+  font-size: 2rem;
+  color: var(--color-gold);
+}
+
+.admin-progress__total span {
+  color: var(--color-muted);
+  font-size: 0.8rem;
+}
+
+.admin-progress__subhead {
+  color: var(--color-gold);
+  font-size: 1rem;
+  margin: 1.5rem 0 0.75rem;
+}
+
+.admin-progress__remaining {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.admin-progress__remaining-group {
+  flex: 1;
+  min-width: 220px;
+  background: var(--color-black-soft);
+  border: 1px solid rgba(245, 197, 24, 0.2);
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+}
+
+.admin-progress__remaining-group strong {
+  color: var(--color-white);
+  font-size: 0.9rem;
+}
+
+.admin-progress__remaining-group ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
 .team-roster__scroll {
   overflow-x: auto;
 }
