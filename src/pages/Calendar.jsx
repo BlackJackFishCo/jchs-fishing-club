@@ -176,7 +176,12 @@ const months = [
     title: 'ICC Day',
     agenda: ['9/18/2027'],
   },
-  { name: 'October', year: '2027' },
+  {
+    name: 'October',
+    year: '2027',
+    title: 'Save the Date',
+    agenda: ['John Carroll High School Inshore Slam Fishing Tournament'],
+  },
   { name: 'November', year: '2027' },
   { name: 'December', year: '2027' },
   { name: 'January', year: '2028' },
