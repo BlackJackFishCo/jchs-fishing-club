@@ -19,6 +19,16 @@ import {
 } from '../data/tournamentLeaderboard.js'
 import './Admin.css'
 
+function printSection(printTargetClass) {
+  document.body.classList.add(printTargetClass)
+  const cleanup = () => {
+    document.body.classList.remove(printTargetClass)
+    window.removeEventListener('afterprint', cleanup)
+  }
+  window.addEventListener('afterprint', cleanup)
+  window.print()
+}
+
 function LoginForm() {
   const [mode, setMode] = useState('signin')
   const [email, setEmail] = useState('')
@@ -601,7 +611,11 @@ function ClubProgressReport() {
             and recapping new catches each month.
           </p>
         </div>
-        <button type="button" className="btn admin-report__print" onClick={() => window.print()}>
+        <button
+          type="button"
+          className="btn admin-report__print"
+          onClick={() => printSection('print-target-club')}
+        >
           Print
         </button>
       </div>
@@ -834,7 +848,7 @@ function RegistrationReport() {
         <button
           type="button"
           className="btn admin-report__print"
-          onClick={() => window.print()}
+          onClick={() => printSection('print-target-registration')}
         >
           Print
         </button>
