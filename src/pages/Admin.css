@@ -1,3 +1,23 @@
+.admin-section-heading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2.5rem 0 0.5rem;
+  font-family: var(--font-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-gold);
+}
+
+.admin-section-heading::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(245, 197, 24, 0.25);
+}
+
 .admin-side-by-side {
   display: flex;
   align-items: flex-start;
@@ -462,6 +482,7 @@
   .admin-denied,
   .admin-roster,
   .admin-report:not(.registration-report),
+  .admin-section-heading,
   .registration-report__print {
     display: none !important;
   }
