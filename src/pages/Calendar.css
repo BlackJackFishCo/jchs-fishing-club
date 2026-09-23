@@ -52,6 +52,11 @@
   display: block;
 }
 
+.calendar-card__sponsor img.calendar-card__sponsor-img--large {
+  height: 76px;
+  max-width: 140px;
+}
+
 @media (max-width: 900px) {
   .calendar-grid {
     grid-template-columns: repeat(2, 1fr);
