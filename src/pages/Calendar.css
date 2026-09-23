@@ -46,15 +46,15 @@
 }
 
 .calendar-card__sponsor img {
-  height: 50px;
+  height: 62px;
   width: auto;
-  max-width: 96px;
+  max-width: 116px;
   display: block;
 }
 
 .calendar-card__sponsor img.calendar-card__sponsor-img--large {
-  height: 76px;
-  max-width: 140px;
+  height: 90px;
+  max-width: 165px;
 }
 
 @media (max-width: 900px) {
