@@ -157,7 +157,7 @@ function RegistrationSection() {
       </p>
 
       {!REGISTRATION_OPEN && (
-        <p className="registration__notice">Registration opens July 1, 2027.</p>
+        <p className="registration__notice">Registration opens: TBD</p>
       )}
 
       {anglers.map((angler, index) => (
@@ -592,12 +592,12 @@ function AwardsSection() {
 }
 
 const EVENT_INFO = [
-  { label: 'Registration Opens', value: '7/1/2027' },
-  { label: 'Registration Ends', value: '9/27/2027' },
-  { label: 'Captains Meeting', value: '6:00pm 10/08/2027' },
-  { label: 'Lines In', value: '6:00am 10/09/2027' },
-  { label: 'All Photos Submitted', value: '4:00pm 10/09/2027' },
-  { label: 'Awards', value: '6:00pm 10/10/2027' },
+  { label: 'Registration Opens', value: 'TBD' },
+  { label: 'Registration Ends', value: 'TBD' },
+  { label: 'Captains Meeting', value: 'TBD' },
+  { label: 'Lines In', value: 'TBD' },
+  { label: 'All Photos Submitted', value: 'TBD' },
+  { label: 'Awards', value: 'TBD' },
 ]
 
 function EventInfoRow() {
