@@ -8,11 +8,6 @@ const links = [
   { to: '/leaderboard', label: 'Leaderboard' },
   { to: '/volunteer', label: 'Volunteer Events' },
   { to: '/calendar', label: 'Calendar' },
-  {
-    to: '/tournament',
-    label: 'John Carroll High School Inshore Slam',
-    highlight: true,
-  },
 ]
 
 function Header() {
@@ -38,11 +33,7 @@ function Header() {
               key={link.to}
               to={link.to}
               end={link.end}
-              className={({ isActive }) =>
-                [isActive ? 'is-active' : '', link.highlight ? 'site-header__nav-highlight' : '']
-                  .filter(Boolean)
-                  .join(' ')
-              }
+              className={({ isActive }) => (isActive ? 'is-active' : '')}
               onClick={() => setOpen(false)}
             >
               {link.label}

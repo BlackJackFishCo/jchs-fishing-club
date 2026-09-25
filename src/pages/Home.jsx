@@ -131,9 +131,18 @@ function Home() {
           </a>
         </div>
 
-        <Link to="/admin" className="admin-quiet-link" aria-label="Admin access">
-          Admin
-        </Link>
+        <div className="home-quiet-links">
+          <Link
+            to="/tournament"
+            className="admin-quiet-link"
+            aria-label="John Carroll High School Inshore Slam"
+          >
+            SLAM
+          </Link>
+          <Link to="/admin" className="admin-quiet-link" aria-label="Admin access">
+            Admin
+          </Link>
+        </div>
       </section>
     </div>
   )
