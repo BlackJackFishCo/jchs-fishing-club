@@ -34,7 +34,7 @@ const months = [
   {
     name: 'September',
     title: 'First Official Club Meeting',
-    time: '12:30pm',
+    time: '12:15pm',
     location: 'Cafeteria',
     date: '24',
     year: '2026',
@@ -73,7 +73,7 @@ const months = [
   {
     name: 'November',
     title: 'Casting Techniques & Contest',
-    time: '12:30pm',
+    time: '12:15pm',
     location: 'Cafeteria',
     date: '19',
     year: '2026',
@@ -81,7 +81,7 @@ const months = [
   {
     name: 'December',
     title: 'Snook Fishing Techniques',
-    time: '12:30pm',
+    time: '12:15pm',
     location: 'Cafeteria',
     date: '17',
     year: '2026',
