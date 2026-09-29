@@ -24,7 +24,7 @@ const projects = [
   },
   {
     title: 'Mangrove Restoration Days',
-    status: 'Date TBD',
+    status: '8:30am, November 21, 2026',
     description:
       'Working with local conservation partners to plant and maintain mangroves, which provide critical nursery habitat for snook, redfish, and juvenile game fish.',
     hours: 'Service hours available',
