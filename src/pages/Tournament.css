@@ -255,13 +255,6 @@
   margin-top: 0.75rem;
 }
 
-.rules-photo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 210px));
-  gap: 1.25rem;
-  margin-top: 1rem;
-}
-
 .rules-subsection__title {
   font-family: var(--font-brand);
   font-size: 1rem;
