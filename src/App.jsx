@@ -7,6 +7,7 @@ import Volunteer from './pages/Volunteer.jsx'
 import Calendar from './pages/Calendar.jsx'
 import Tournament from './pages/Tournament.jsx'
 import Leaderboard from './pages/Leaderboard.jsx'
+import Clinic from './pages/Clinic.jsx'
 import Admin from './pages/Admin.jsx'
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/tournament" element={<Tournament />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
+        <Route path="/clinic" element={<Clinic />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
       <Footer />

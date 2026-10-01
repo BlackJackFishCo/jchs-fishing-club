@@ -4,6 +4,7 @@ import { useRoster, addRosterName, removeRosterName } from '../data/roster.js'
 import { useAdmins, addAdmin, removeAdmin } from '../data/admins.js'
 import { useSpeciesBoard, TOTAL_SPECIES, CATEGORIES } from '../data/species.js'
 import { useRegistrations } from '../data/registration.js'
+import { useClinicWaivers } from '../data/clinic.js'
 import {
   useTournamentTeams,
   seedPlaceholderTeams,
@@ -904,6 +905,72 @@ function RegistrationReport() {
   )
 }
 
+function ClinicWaiverReport() {
+  const { waivers, loading } = useClinicWaivers()
+
+  return (
+    <section className="admin-report clinic-report card">
+      <div className="admin-report__head">
+        <div>
+          <h2>Clinic Waivers &amp; Registrations</h2>
+          <p className="admin-roster__note">
+            Every waiver and registration submitted on the Clinic page, with parent/guardian and
+            emergency contact info.
+          </p>
+        </div>
+        <button
+          type="button"
+          className="btn admin-report__print"
+          onClick={() => printSection('print-target-clinic')}
+        >
+          Print
+        </button>
+      </div>
+
+      {loading ? (
+        <p className="species-page__loading">Loading waivers…</p>
+      ) : waivers.length === 0 ? (
+        <p className="admin-roster__empty">No clinic waivers submitted yet.</p>
+      ) : (
+        <div className="admin-report__list">
+          {waivers.map((w) => (
+            <div key={w.id} className="admin-report__angler">
+              <div className="admin-report__angler-head">
+                <strong>{w.participantName || 'Unknown participant'}</strong>
+                <span>Age {w.participantAge || '—'}</span>
+              </div>
+              <table className="admin-report__table">
+                <thead>
+                  <tr>
+                    <th>Parent/Guardian</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Emergency Contact</th>
+                    <th>Emergency Phone</th>
+                    <th>Medical Notes</th>
+                    <th>Signature</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{w.parentName}</td>
+                    <td>{w.parentEmail}</td>
+                    <td>{w.parentPhone}</td>
+                    <td>{w.emergencyName}</td>
+                    <td>{w.emergencyPhone}</td>
+                    <td>{w.medicalNotes || '—'}</td>
+                    <td>{w.signature}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          ))}
+        </div>
+      )}
+    </section>
+  )
+}
+
 function Admin() {
   const { user, isAdmin, loading } = useAdminAuth()
   const admin = user ? { uid: user.uid, email: user.email } : null
@@ -957,6 +1024,9 @@ function Admin() {
           <DeletedCatchesManager admin={admin} />
           <TournamentActivityLog />
           <RegistrationReport />
+
+          <h2 className="admin-section-heading">Clinic</h2>
+          <ClinicWaiverReport />
         </>
       )}
     </div>
