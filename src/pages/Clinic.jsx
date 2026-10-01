@@ -243,8 +243,11 @@ function Clinic() {
             confirmed.
           </li>
           <li>
-            <strong>Who:</strong> Open to local youth &mdash; details on age range and group size
-            coming soon.
+            <strong>Who:</strong> Ages 13 and under.
+          </li>
+          <li>
+            <strong>Parent/Guardian:</strong> A parent or guardian must attend and remain at the
+            event with their child the entire time.
           </li>
           <li>
             <strong>Cost:</strong> TBD
