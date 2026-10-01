@@ -121,7 +121,12 @@ const months = [
       { logo: seaSafeLogo, link: 'https://www.projectseasafe.com/', alt: 'Star brite Project SeaSafe logo' },
     ],
   },
-  { name: 'April', year: '2027' },
+  {
+    name: 'April',
+    year: '2027',
+    date: '22',
+    title: 'Earth Day',
+  },
   {
     name: 'May',
     year: '2027',
