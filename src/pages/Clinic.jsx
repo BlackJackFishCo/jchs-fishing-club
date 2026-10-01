@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { addClinicWaiver } from '../data/clinic.js'
+import { addClinicWaiver, CLINIC_CAPACITY, useClinicSpotCount } from '../data/clinic.js'
 import './Volunteer.css'
 import './Clinic.css'
 
@@ -15,7 +15,17 @@ const EMPTY_FORM = {
   signature: '',
 }
 
+function ClinicSpotsBadge({ count, isFull }) {
+  return (
+    <span className={`clinic-spots-badge${isFull ? ' clinic-spots-badge--full' : ''}`}>
+      {isFull ? 'Registration Full' : `${count} of ${CLINIC_CAPACITY} spots available`}
+    </span>
+  )
+}
+
 function ClinicWaiverForm() {
+  const { count, loading: spotsLoading } = useClinicSpotCount()
+  const isFull = count >= CLINIC_CAPACITY
   const [form, setForm] = useState({ ...EMPTY_FORM })
   const [agreed, setAgreed] = useState(false)
   const [busy, setBusy] = useState(false)
@@ -58,9 +68,27 @@ function ClinicWaiverForm() {
     )
   }
 
+  if (!spotsLoading && isFull) {
+    return (
+      <section className="card clinic-form">
+        <div className="clinic-form__head">
+          <h2>Clinic Waiver &amp; Registration</h2>
+          <ClinicSpotsBadge count={count} isFull={isFull} />
+        </div>
+        <p className="clinic-form__intro">
+          This clinic is full. Check back here in case a spot opens up, or contact the club for
+          waitlist information.
+        </p>
+      </section>
+    )
+  }
+
   return (
     <form className="card clinic-form" onSubmit={submit}>
-      <h2>Clinic Waiver &amp; Registration</h2>
+      <div className="clinic-form__head">
+        <h2>Clinic Waiver &amp; Registration</h2>
+        <ClinicSpotsBadge count={count} isFull={isFull} />
+      </div>
       <p className="clinic-form__intro">
         One form per participant. If you&apos;re registering more than one child, please submit
         this form again for each one.

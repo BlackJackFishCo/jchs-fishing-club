@@ -4,7 +4,7 @@ import { useRoster, addRosterName, removeRosterName } from '../data/roster.js'
 import { useAdmins, addAdmin, removeAdmin } from '../data/admins.js'
 import { useSpeciesBoard, TOTAL_SPECIES, CATEGORIES } from '../data/species.js'
 import { useRegistrations } from '../data/registration.js'
-import { useClinicWaivers } from '../data/clinic.js'
+import { useClinicWaivers, CLINIC_CAPACITY } from '../data/clinic.js'
 import {
   useTournamentTeams,
   seedPlaceholderTeams,
@@ -912,7 +912,9 @@ function ClinicWaiverReport() {
     <section className="admin-report clinic-report card">
       <div className="admin-report__head">
         <div>
-          <h2>Clinic Waivers &amp; Registrations</h2>
+          <h2>
+            Clinic Waivers &amp; Registrations ({waivers.length} / {CLINIC_CAPACITY})
+          </h2>
           <p className="admin-roster__note">
             Every waiver and registration submitted on the Clinic page, with parent/guardian and
             emergency contact info.

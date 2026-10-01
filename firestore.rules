@@ -84,5 +84,32 @@ service cloud.firestore {
 
       allow delete: if isAdmin();
     }
+
+    match /clinicWaivers/{id} {
+      allow read: if isAdmin();
+
+      allow create: if
+        request.resource.data.participantName is string &&
+        request.resource.data.parentName is string &&
+        request.resource.data.parentEmail is string &&
+        request.resource.data.parentPhone is string &&
+        request.resource.data.emergencyName is string &&
+        request.resource.data.emergencyPhone is string &&
+        request.resource.data.signature is string &&
+        request.resource.data.agreedToWaiver == true;
+
+      allow update: if false;
+      allow delete: if isAdmin();
+    }
+
+    // Public spot counter for the Clinic waiver form. Keep the "20" cap here
+    // in sync with CLINIC_CAPACITY in src/data/clinic.js.
+    match /clinicMeta/spots {
+      allow read: if true;
+      allow create: if request.resource.data.count == 1;
+      allow update: if
+        request.resource.data.count == resource.data.count + 1 &&
+        resource.data.count < 20;
+    }
   }
 }
