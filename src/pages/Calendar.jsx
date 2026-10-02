@@ -226,7 +226,7 @@ function Calendar() {
       <div className="page-head">
         <div>
           <p className="eyebrow">Plan Ahead</p>
-          <h1 className="section-title">Calendar 2026-2028</h1>
+          <h1 className="section-title">Calendar</h1>
           <p className="volunteer-page__intro">
             Club activities for the school year, month by month. Dates and times will be
             posted here as they&apos;re confirmed.
