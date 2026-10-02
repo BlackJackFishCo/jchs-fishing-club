@@ -4,6 +4,7 @@
 
 .calendar-grid .volunteer-card {
   height: 510px;
+  min-width: 0;
 }
 
 .calendar-card__top-row {
