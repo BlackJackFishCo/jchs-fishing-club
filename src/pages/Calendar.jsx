@@ -72,11 +72,14 @@ const months = [
   },
   {
     name: 'November',
-    title: 'Casting Techniques & Contest',
+    title: 'Lure Rigging & Techniques',
     time: '12:15pm',
     location: 'Cafeteria',
     date: '19',
     year: '2026',
+    agenda: [
+      'Guest Speaker - D.O.A Lures Brand Ambassador Rob Lowe. www.doalures.com @doa_fishing_lures',
+    ],
   },
   {
     name: 'December',
