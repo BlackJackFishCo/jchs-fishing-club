@@ -121,9 +121,11 @@
 
 .clinic-form__waiver-text {
   background: var(--color-black-soft);
-  border: 1px dashed rgba(245, 197, 24, 0.4);
+  border: 1px solid rgba(245, 197, 24, 0.3);
   border-radius: 8px;
-  padding: 1rem;
+  padding: 1rem 1.25rem;
+  max-height: 420px;
+  overflow-y: auto;
   color: var(--color-muted);
   font-size: 0.85rem;
   line-height: 1.6;
@@ -131,6 +133,35 @@
 
 .clinic-form__waiver-text strong {
   color: var(--color-gold);
+}
+
+.clinic-form__waiver-caps {
+  color: var(--color-white);
+  font-size: 0.8rem;
+  letter-spacing: 0.01em;
+}
+
+.clinic-form__waiver-text h3 {
+  color: var(--color-gold);
+  font-size: 0.9rem;
+  margin: 1.25rem 0 0.5rem;
+}
+
+.clinic-form__waiver-text h3:first-of-type {
+  margin-top: 0.5rem;
+}
+
+.clinic-form__waiver-text p {
+  margin: 0 0 0.75rem;
+}
+
+.clinic-form__waiver-text ul {
+  margin: 0 0 0.75rem;
+  padding-left: 1.2rem;
+}
+
+.clinic-form__waiver-text li {
+  margin-bottom: 0.3rem;
 }
 
 .clinic-form__checkbox {

@@ -916,8 +916,8 @@ function ClinicWaiverReport() {
             Clinic Waivers &amp; Registrations ({waivers.length} / {CLINIC_CAPACITY})
           </h2>
           <p className="admin-roster__note">
-            Every waiver and registration submitted on the Clinic page, with parent/guardian and
-            emergency contact info.
+            Every waiver and registration submitted on the Clinic page, with parent/guardian
+            contact info and any medical notes.
           </p>
         </div>
         <button
@@ -947,8 +947,6 @@ function ClinicWaiverReport() {
                     <th>Parent/Guardian</th>
                     <th>Email</th>
                     <th>Phone</th>
-                    <th>Emergency Contact</th>
-                    <th>Emergency Phone</th>
                     <th>Medical Notes</th>
                     <th>Signature</th>
                   </tr>
@@ -958,8 +956,6 @@ function ClinicWaiverReport() {
                     <td>{w.parentName}</td>
                     <td>{w.parentEmail}</td>
                     <td>{w.parentPhone}</td>
-                    <td>{w.emergencyName}</td>
-                    <td>{w.emergencyPhone}</td>
                     <td>{w.medicalNotes || '—'}</td>
                     <td>{w.signature}</td>
                   </tr>

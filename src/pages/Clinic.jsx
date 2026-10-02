@@ -9,8 +9,6 @@ const EMPTY_FORM = {
   parentName: '',
   parentEmail: '',
   parentPhone: '',
-  emergencyName: '',
-  emergencyPhone: '',
   medicalNotes: '',
   signature: '',
 }
@@ -151,26 +149,7 @@ function ClinicWaiverForm() {
       </fieldset>
 
       <fieldset className="clinic-form__fieldset">
-        <legend>Emergency Contact</legend>
-        <div className="clinic-form__row">
-          <label className="field">
-            <span>Emergency Contact Name*</span>
-            <input
-              value={form.emergencyName}
-              onChange={(e) => update('emergencyName', e.target.value)}
-              required
-            />
-          </label>
-          <label className="field">
-            <span>Emergency Contact Phone*</span>
-            <input
-              type="tel"
-              value={form.emergencyPhone}
-              onChange={(e) => update('emergencyPhone', e.target.value)}
-              required
-            />
-          </label>
-        </div>
+        <legend>Medical Information</legend>
         <div className="clinic-form__row">
           <label className="field clinic-form__full-width">
             <span>Medical Conditions / Allergies We Should Know About</span>
@@ -186,18 +165,130 @@ function ClinicWaiverForm() {
       <fieldset className="clinic-form__fieldset">
         <legend>Liability Waiver &amp; Release</legend>
         <div className="clinic-form__waiver-text">
+          <p className="clinic-form__waiver-caps">
+            <strong>NOTICE TO THE MINOR CHILD&apos;S NATURAL GUARDIAN</strong>
+            <br />
+            READ THIS FORM COMPLETELY AND CAREFULLY. YOU ARE AGREEING TO LET YOUR MINOR CHILD
+            ENGAGE IN A POTENTIALLY DANGEROUS ACTIVITY. YOU ARE AGREEING THAT, EVEN IF JOHN
+            CARROLL CATHOLIC HIGH SCHOOL, THE JOHN CARROLL HIGH SCHOOL FISHING CLUB, AND THEIR
+            AFFILIATES, SPONSORS, AND VOLUNTEERS USE REASONABLE CARE IN PROVIDING THIS ACTIVITY,
+            THERE IS A CHANCE YOUR CHILD MAY BE SERIOUSLY INJURED OR KILLED BY PARTICIPATING IN
+            THIS ACTIVITY BECAUSE THERE ARE CERTAIN DANGERS INHERENT IN THE ACTIVITY WHICH CANNOT
+            BE AVOIDED OR ELIMINATED. BY SIGNING THIS FORM YOU ARE GIVING UP YOUR CHILD&apos;S
+            RIGHT AND YOUR RIGHT TO RECOVER FROM JOHN CARROLL CATHOLIC HIGH SCHOOL, THE JOHN
+            CARROLL HIGH SCHOOL FISHING CLUB, AND THEIR AFFILIATES, SPONSORS, AND VOLUNTEERS IN A
+            LAWSUIT FOR ANY PERSONAL INJURY, INCLUDING DEATH, TO YOUR CHILD OR ANY PROPERTY DAMAGE
+            THAT RESULTS FROM THE RISKS THAT ARE A NATURAL PART OF THE ACTIVITY. YOU HAVE THE
+            RIGHT TO REFUSE TO SIGN THIS FORM, AND JOHN CARROLL CATHOLIC HIGH SCHOOL, THE JOHN
+            CARROLL HIGH SCHOOL FISHING CLUB, AND THEIR AFFILIATES, SPONSORS, AND VOLUNTEERS HAVE
+            THE RIGHT TO REFUSE TO LET YOUR CHILD PARTICIPATE IF YOU DO NOT SIGN THIS FORM.
+          </p>
+
+          <h3>Released Parties</h3>
           <p>
-            <strong>[PLACEHOLDER — NOT FINAL LEGAL LANGUAGE]</strong> This section must be
-            replaced with official liability waiver and release language reviewed and approved by
-            John Carroll High School administration, legal counsel, and the school&apos;s
-            insurance carrier before this form is used for an actual clinic. Do not rely on this
-            placeholder text for a real event.
+            In this waiver, &quot;Released Parties&quot; means John Carroll Catholic High School,
+            the John Carroll High School Fishing Club, the Diocese of Palm Beach, and each of
+            their affiliates, officers, directors, administrators, faculty, staff, coaches, club
+            advisors, sponsors, donors, event partners, volunteers, agents, and representatives.
+          </p>
+
+          <h3>1. Voluntary Participation</h3>
+          <p>
+            I am the parent or legal guardian of the participant named above. I voluntarily give
+            permission for my child to take part in the First Annual John Carroll Fishing Clinic
+            and all related activities, including instruction, demonstrations, casting, fishing
+            from shore, docks, piers, jetties, or boats, travel between locations, and any other
+            clinic activities (the &quot;Activity&quot;).
+          </p>
+
+          <h3>2. Inherent Risks of Fishing</h3>
+          <p>
+            I understand that fishing and activities on or near the water always carry inherent
+            risks that cannot be fully eliminated, even when everyone uses reasonable care. These
+            risks include, but are not limited to:
+          </p>
+          <ul>
+            <li>Hooks, lures, knives, gaffs, and other sharp tackle causing cuts, punctures, or eye injuries</li>
+            <li>
+              Injuries from fish, including spines, teeth, fins, and gill plates, and contact with
+              jellyfish, stingrays, or other marine life
+            </li>
+            <li>
+              Slips, trips, and falls on wet, uneven, or slippery surfaces such as docks, piers,
+              rocks, jetties, seawalls, boat decks, and shorelines
+            </li>
+            <li>Falling into the water, strong currents, waves, boat wakes, and drowning</li>
+            <li>Sun exposure, sunburn, heat exhaustion, heat stroke, and dehydration</li>
+            <li>Sudden weather changes, including lightning, storms, wind, and rough water</li>
+            <li>Insect bites and stings, and allergic reactions</li>
+            <li>Boat, vehicle, and foot traffic near fishing areas</li>
+            <li>Errors in casting or handling equipment by my child or other participants</li>
+            <li>Negligent or intentional acts of other participants</li>
+            <li>The distance of some locations from emergency medical services</li>
+          </ul>
+
+          <h3>3. Assumption of Risk</h3>
+          <p>
+            I understand and accept these risks on behalf of my child and myself. I knowingly and
+            voluntarily assume all risks of injury, illness, death, and property damage to my
+            child arising from the Activity, whether those risks are known or unknown.
+          </p>
+
+          <h3>4. Waiver and Release of Liability</h3>
+          <p>
+            To the fullest extent permitted by Florida law, I, on behalf of myself, my child, and
+            our heirs, executors, and assigns, waive, release, and forever discharge the Released
+            Parties from any and all claims, demands, losses, and causes of action for personal
+            injury, including death, illness, or property damage arising from or related to my
+            child&apos;s participation in the Activity, including claims resulting from the
+            inherent risks of the Activity and, to the extent permitted by law, claims resulting
+            from the ordinary negligence of the Released Parties.
+          </p>
+
+          <h3>5. Indemnification</h3>
+          <p>
+            To the fullest extent permitted by law, I agree to indemnify and hold harmless the
+            Released Parties from any claims, costs, or expenses, including attorney&apos;s fees,
+            brought by or on behalf of my child or any other person arising from my child&apos;s
+            participation in the Activity.
+          </p>
+
+          <h3>6. Rules, Supervision, and Safety</h3>
+          <p>
+            I agree that my child will follow all rules and instructions given by clinic staff and
+            volunteers, including wearing a life jacket (PFD) when instructed. I understand that
+            clinic leaders may remove my child from the Activity for unsafe behavior or failure to
+            follow instructions. I confirm that my child is physically able to participate, and I
+            have listed any medical conditions below.
+          </p>
+
+          <h3>7. Medical Treatment Authorization</h3>
+          <p>
+            If my child is injured or becomes ill and I cannot be reached, I authorize the
+            Released Parties to obtain first aid and emergency medical treatment for my child,
+            including transport to a medical facility. I agree to be responsible for all costs of
+            such treatment.
+          </p>
+
+          <h3>8. Photo and Media Release</h3>
+          <p>
+            I grant permission for photos and video of my child taken during the clinic to be used
+            by John Carroll Catholic High School, the Fishing Club, and event sponsors for
+            newsletters, websites, and social media, without compensation. This authorization is a
+            required condition of participating in the clinic.
+          </p>
+
+          <h3>9. General Terms</h3>
+          <p>
+            This waiver is governed by the laws of the State of Florida. If any part of this
+            waiver is found invalid or unenforceable, the remaining parts will stay in full force
+            and effect. This waiver covers the clinic date listed above and any rescheduled date.
           </p>
         </div>
         <label className="clinic-form__checkbox">
           <input type="checkbox" checked={agreed} onChange={(e) => setAgreed(e.target.checked)} />
           I am the parent or legal guardian of the participant named above, and I have read and
-          agree to the waiver terms stated above.*
+          agree to the Waiver and Release of Liability stated above.*
         </label>
         <div className="clinic-form__row">
           <label className="field clinic-form__full-width">
