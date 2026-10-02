@@ -105,7 +105,7 @@ const months = [
     year: '2027',
     title: 'Surf Fishing Rigging & Techniques',
     agenda: [
-      'Hands on Surf Fishing Outing with Captain Matt Burr of Momma B Charters',
+      'Hands on Surf Fishing Outing with Captain Matt Burr of Momma B Charters. $25 per person',
     ],
     sponsors: [{ logo: mommaBLogo, alt: 'Momma B Sport and Beach Fishing Guide Service logo' }],
   },
