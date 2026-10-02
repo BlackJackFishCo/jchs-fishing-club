@@ -4,15 +4,15 @@ import './Volunteer.css'
 
 const projects = [
   {
-    title: 'Project SeaSafe 2027',
-    status: 'April 22-25, 2027',
+    title: 'Mangrove Restoration Days',
+    status: '8:30am, November 21, 2026',
     description:
-      'Join Star brite’s Project SeaSafe initiative for a hands-on push to clean and protect our local waterways, shorelines, and wildlife.',
+      'Working with local conservation partners to plant and maintain mangroves, which provide critical nursery habitat for snook, redfish, and juvenile game fish.',
     hours: 'Service hours available',
     sponsor: {
-      logo: seaSafeLogo,
-      alt: 'Star brite Project SeaSafe logo',
-      href: 'https://www.projectseasafe.com/',
+      logo: mangLogo,
+      alt: 'MANG logo',
+      href: 'https://www.manggear.com/pages/our-mission',
     },
   },
   {
@@ -23,15 +23,15 @@ const projects = [
     hours: 'Service hours available',
   },
   {
-    title: 'Mangrove Restoration Days',
-    status: '8:30am, November 21, 2026',
+    title: 'Project SeaSafe 2027',
+    status: 'April 22-25, 2027',
     description:
-      'Working with local conservation partners to plant and maintain mangroves, which provide critical nursery habitat for snook, redfish, and juvenile game fish.',
+      'Join Star brite’s Project SeaSafe initiative for a hands-on push to clean and protect our local waterways, shorelines, and wildlife.',
     hours: 'Service hours available',
     sponsor: {
-      logo: mangLogo,
-      alt: 'MANG logo',
-      href: 'https://www.manggear.com/pages/our-mission',
+      logo: seaSafeLogo,
+      alt: 'Star brite Project SeaSafe logo',
+      href: 'https://www.projectseasafe.com/',
     },
   },
   {
