@@ -3,7 +3,7 @@
 }
 
 .calendar-grid .volunteer-card {
-  height: 510px;
+  height: 365px;
   min-width: 0;
 }
 
@@ -62,7 +62,7 @@
   max-width: 165px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .calendar-grid {
     grid-template-columns: repeat(2, 1fr);
   }
