@@ -7,6 +7,7 @@ import reelDealLogo from '../assets/sponsor-reel-deal-adventures.png'
 import localLinesLogo from '../assets/sponsor-local-lines.png'
 import seaSafeLogo from '../assets/sponsor-project-seasafe.png'
 import oceanConservancyLogo from '../assets/sponsor-ocean-conservancy.png'
+import doaLuresLogo from '../assets/sponsor-doa-lures.png'
 import './Volunteer.css'
 import './Calendar.css'
 
@@ -79,6 +80,9 @@ const months = [
     year: '2026',
     agenda: [
       'Guest Speaker - D.O.A Lures Brand Ambassador Rob Lowe. www.doalures.com @doa_fishing_lures',
+    ],
+    sponsors: [
+      { logo: doaLuresLogo, link: 'https://www.doalures.com', alt: 'D.O.A. Fishing Lures logo' },
     ],
   },
   {
