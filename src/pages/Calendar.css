@@ -2,6 +2,10 @@
   grid-template-columns: repeat(4, 1fr);
 }
 
+.calendar-grid .volunteer-card {
+  min-height: 390px;
+}
+
 .calendar-card__top-row {
   display: flex;
   align-items: center;
