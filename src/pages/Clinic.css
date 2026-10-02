@@ -98,21 +98,6 @@
   grid-column: 1 / -1;
 }
 
-.clinic-form textarea {
-  background: var(--color-black-soft);
-  border: 1px solid rgba(245, 197, 24, 0.3);
-  border-radius: 8px;
-  padding: 0.55rem 0.7rem;
-  color: var(--color-white);
-  font-size: 0.95rem;
-  font-family: inherit;
-  resize: vertical;
-}
-
-.clinic-form textarea:focus {
-  outline: 2px solid var(--color-gold);
-}
-
 @media (max-width: 560px) {
   .clinic-form__row {
     grid-template-columns: 1fr;

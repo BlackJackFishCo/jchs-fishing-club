@@ -917,7 +917,7 @@ function ClinicWaiverReport() {
           </h2>
           <p className="admin-roster__note">
             Every waiver and registration submitted on the Clinic page, with parent/guardian
-            contact info and any medical notes.
+            contact info.
           </p>
         </div>
         <button
@@ -947,7 +947,6 @@ function ClinicWaiverReport() {
                     <th>Parent/Guardian</th>
                     <th>Email</th>
                     <th>Phone</th>
-                    <th>Medical Notes</th>
                     <th>Signature</th>
                   </tr>
                 </thead>
@@ -956,7 +955,6 @@ function ClinicWaiverReport() {
                     <td>{w.parentName}</td>
                     <td>{w.parentEmail}</td>
                     <td>{w.parentPhone}</td>
-                    <td>{w.medicalNotes || '—'}</td>
                     <td>{w.signature}</td>
                   </tr>
                 </tbody>

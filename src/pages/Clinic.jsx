@@ -9,7 +9,6 @@ const EMPTY_FORM = {
   parentName: '',
   parentEmail: '',
   parentPhone: '',
-  medicalNotes: '',
   signature: '',
 }
 
@@ -149,20 +148,6 @@ function ClinicWaiverForm() {
       </fieldset>
 
       <fieldset className="clinic-form__fieldset">
-        <legend>Medical Information</legend>
-        <div className="clinic-form__row">
-          <label className="field clinic-form__full-width">
-            <span>Medical Conditions / Allergies We Should Know About</span>
-            <textarea
-              value={form.medicalNotes}
-              onChange={(e) => update('medicalNotes', e.target.value)}
-              rows={3}
-            />
-          </label>
-        </div>
-      </fieldset>
-
-      <fieldset className="clinic-form__fieldset">
         <legend>Liability Waiver &amp; Release</legend>
         <div className="clinic-form__waiver-text">
           <p className="clinic-form__waiver-caps">
@@ -258,19 +243,10 @@ function ClinicWaiverForm() {
             I agree that my child will follow all rules and instructions given by clinic staff and
             volunteers, including wearing a life jacket (PFD) when instructed. I understand that
             clinic leaders may remove my child from the Activity for unsafe behavior or failure to
-            follow instructions. I confirm that my child is physically able to participate, and I
-            have listed any medical conditions below.
+            follow instructions. I confirm that my child is physically able to participate.
           </p>
 
-          <h3>7. Medical Treatment Authorization</h3>
-          <p>
-            If my child is injured or becomes ill and I cannot be reached, I authorize the
-            Released Parties to obtain first aid and emergency medical treatment for my child,
-            including transport to a medical facility. I agree to be responsible for all costs of
-            such treatment.
-          </p>
-
-          <h3>8. Photo and Media Release</h3>
+          <h3>7. Photo and Media Release</h3>
           <p>
             I grant permission for photos and video of my child taken during the clinic to be used
             by John Carroll Catholic High School, the Fishing Club, and event sponsors for
@@ -278,7 +254,7 @@ function ClinicWaiverForm() {
             required condition of participating in the clinic.
           </p>
 
-          <h3>9. General Terms</h3>
+          <h3>8. General Terms</h3>
           <p>
             This waiver is governed by the laws of the State of Florida. If any part of this
             waiver is found invalid or unenforceable, the remaining parts will stay in full force
