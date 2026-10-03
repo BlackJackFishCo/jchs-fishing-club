@@ -300,9 +300,9 @@ function Species() {
           <h1 className="section-title">Club Species List 2026 - 2027</h1>
           <p className="species-page__intro">
             Click any card to log a catch — species, angler, date, and a photo. This board
-            tracks progress toward all {TOTAL_SPECIES} species for the club. The club must
-            collectively catch 30 out of {TOTAL_SPECIES} species to be awarded 150 points
-            towards the FWC Challenge competition.
+            tracks progress towards all {TOTAL_SPECIES} species selected by the FWC for the
+            club. The club must collectively catch 30 out of {TOTAL_SPECIES} species to be
+            awarded 150 points towards the FWC Challenge competition.
           </p>
         </div>
         <div className="species-page__right">
