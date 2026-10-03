@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { TOTAL_SPECIES, CATEGORIES, useSpeciesBoard, addSubmission, removeSubmission } from '../data/species.js'
 import { useRoster } from '../data/roster.js'
 import { useAdminAuth } from '../data/auth.js'
@@ -169,6 +169,7 @@ function SpeciesCard({ entry, onEdit }) {
   const submissions = entry.submissions
   const [activeIndex, setActiveIndex] = useState(0)
   const active = submissions[activeIndex] ?? submissions[submissions.length - 1]
+  const scrollRef = useRef(null)
 
   const handleScroll = (e) => {
     const { scrollLeft, clientWidth } = e.currentTarget
@@ -177,6 +178,20 @@ function SpeciesCard({ entry, onEdit }) {
     setActiveIndex(index)
   }
 
+  useEffect(() => {
+    if (submissions.length <= 1) return undefined
+
+    const interval = setInterval(() => {
+      const container = scrollRef.current
+      if (!container) return
+      const nextIndex = (Math.round(container.scrollLeft / container.clientWidth) + 1) % submissions.length
+      container.scrollTo({ left: nextIndex * container.clientWidth, behavior: 'smooth' })
+      setActiveIndex(nextIndex)
+    }, 2500)
+
+    return () => clearInterval(interval)
+  }, [submissions.length])
+
   return (
     <button
       className={`species-card card ${submissions.length > 0 ? 'is-caught' : ''}`}
@@ -184,7 +199,7 @@ function SpeciesCard({ entry, onEdit }) {
     >
       <div className="species-card__thumb">
         {submissions.length > 0 ? (
-          <div className="species-card__scroll" onScroll={handleScroll}>
+          <div className="species-card__scroll" ref={scrollRef} onScroll={handleScroll}>
             {submissions.map((sub) => (
               <img key={sub.id} src={sub.photo} alt={entry.species} />
             ))}
