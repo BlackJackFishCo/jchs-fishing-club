@@ -6,6 +6,34 @@ import './Species.css'
 
 const UPLOAD_PASSCODE = '2026'
 
+function easeInOutQuad(t) {
+  return t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2
+}
+
+function slowScrollTo(container, targetLeft, duration = 1400) {
+  const startLeft = container.scrollLeft
+  const distance = targetLeft - startLeft
+  if (distance === 0) return
+  const startTime = performance.now()
+
+  // Mandatory scroll-snap re-snaps on every programmatic scrollLeft change,
+  // which would cancel the animation — suspend it while we animate.
+  const previousSnap = container.style.scrollSnapType
+  container.style.scrollSnapType = 'none'
+
+  const step = (now) => {
+    const elapsed = Math.min((now - startTime) / duration, 1)
+    container.scrollLeft = startLeft + distance * easeInOutQuad(elapsed)
+    if (elapsed < 1) {
+      requestAnimationFrame(step)
+    } else {
+      container.style.scrollSnapType = previousSnap
+    }
+  }
+
+  requestAnimationFrame(step)
+}
+
 const CHALLENGE_RULES = [
   'All submitted fish must have been caught by a student angler enrolled in the fishing club.',
   'Students must practice proper handling techniques by holding the fish horizontal and broadside.',
@@ -185,7 +213,7 @@ function SpeciesCard({ entry, onEdit }) {
       const container = scrollRef.current
       if (!container) return
       const nextIndex = (Math.round(container.scrollLeft / container.clientWidth) + 1) % submissions.length
-      container.scrollTo({ left: nextIndex * container.clientWidth, behavior: 'smooth' })
+      slowScrollTo(container, nextIndex * container.clientWidth)
       setActiveIndex(nextIndex)
     }, 2500)
 
