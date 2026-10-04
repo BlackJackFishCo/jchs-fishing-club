@@ -6,33 +6,13 @@ import './Species.css'
 
 const UPLOAD_PASSCODE = '2026'
 
-function easeInOutQuad(t) {
-  return t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2
-}
+const PREFERS_REDUCED_MOTION =
+  typeof window !== 'undefined' && window.matchMedia
+    ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    : false
 
-function slowScrollTo(container, targetLeft, duration = 1400) {
-  const startLeft = container.scrollLeft
-  const distance = targetLeft - startLeft
-  if (distance === 0) return
-  const startTime = performance.now()
-
-  // Mandatory scroll-snap re-snaps on every programmatic scrollLeft change,
-  // which would cancel the animation — suspend it while we animate.
-  const previousSnap = container.style.scrollSnapType
-  container.style.scrollSnapType = 'none'
-
-  const step = (now) => {
-    const elapsed = Math.min((now - startTime) / duration, 1)
-    container.scrollLeft = startLeft + distance * easeInOutQuad(elapsed)
-    if (elapsed < 1) {
-      requestAnimationFrame(step)
-    } else {
-      container.style.scrollSnapType = previousSnap
-    }
-  }
-
-  requestAnimationFrame(step)
-}
+// Pixels per millisecond the carousel crawls at — ~2.5s to cross one photo.
+const SCROLL_SPEED = 1 / 2500
 
 const CHALLENGE_RULES = [
   'All submitted fish must have been caught by a student angler enrolled in the fishing club.',
@@ -199,25 +179,29 @@ function SpeciesCard({ entry, onEdit }) {
   const active = submissions[activeIndex] ?? submissions[submissions.length - 1]
   const scrollRef = useRef(null)
 
-  const handleScroll = (e) => {
-    const { scrollLeft, clientWidth } = e.currentTarget
-    if (clientWidth === 0) return
-    const index = Math.round(scrollLeft / clientWidth)
-    setActiveIndex(index)
-  }
-
   useEffect(() => {
-    if (submissions.length <= 1) return undefined
+    if (submissions.length <= 1 || PREFERS_REDUCED_MOTION) return undefined
+    const container = scrollRef.current
+    if (!container) return undefined
 
-    const interval = setInterval(() => {
-      const container = scrollRef.current
-      if (!container) return
-      const nextIndex = (Math.round(container.scrollLeft / container.clientWidth) + 1) % submissions.length
-      slowScrollTo(container, nextIndex * container.clientWidth)
-      setActiveIndex(nextIndex)
-    }, 2500)
+    const loopWidth = container.clientWidth * submissions.length
+    const pxPerMs = container.clientWidth * SCROLL_SPEED
+    let rafId
+    let lastTime = null
 
-    return () => clearInterval(interval)
+    const tick = (now) => {
+      if (lastTime !== null) {
+        let next = container.scrollLeft + pxPerMs * (now - lastTime)
+        if (next >= loopWidth) next -= loopWidth
+        container.scrollLeft = next
+        setActiveIndex(Math.floor(next / container.clientWidth) % submissions.length)
+      }
+      lastTime = now
+      rafId = requestAnimationFrame(tick)
+    }
+
+    rafId = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(rafId)
   }, [submissions.length])
 
   return (
@@ -227,10 +211,12 @@ function SpeciesCard({ entry, onEdit }) {
     >
       <div className="species-card__thumb">
         {submissions.length > 0 ? (
-          <div className="species-card__scroll" ref={scrollRef} onScroll={handleScroll}>
-            {submissions.map((sub) => (
-              <img key={sub.id} src={sub.photo} alt={entry.species} />
-            ))}
+          <div className="species-card__scroll" ref={scrollRef}>
+            {(submissions.length > 1 ? [...submissions, ...submissions] : submissions).map(
+              (sub, i) => (
+                <img key={`${sub.id}-${i}`} src={sub.photo} alt={entry.species} />
+              ),
+            )}
           </div>
         ) : (
           <span className="species-card__placeholder">#{entry.id}</span>
