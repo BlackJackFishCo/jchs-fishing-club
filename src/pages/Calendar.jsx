@@ -215,6 +215,42 @@ const months = [
   { name: 'March', year: '2028' },
   { name: 'April', year: '2028' },
   { name: 'May', year: '2028' },
+  {
+    name: 'June',
+    year: '2028',
+    title: 'Club Members participate in CCA STAR program over the summer',
+    sponsors: [
+      {
+        logo: ccaStarLogo,
+        link: 'https://ccaflstar.com/',
+        alt: 'CCA Florida STAR presented by Yamaha logo',
+      },
+    ],
+  },
+  {
+    name: 'July',
+    year: '2028',
+    title: 'Club Members participate in CCA STAR program over the summer',
+    sponsors: [
+      {
+        logo: ccaStarLogo,
+        link: 'https://ccaflstar.com/',
+        alt: 'CCA Florida STAR presented by Yamaha logo',
+      },
+    ],
+  },
+  {
+    name: 'August',
+    year: '2028',
+    title: 'Club Members participate in CCA STAR program over the summer',
+    sponsors: [
+      {
+        logo: ccaStarLogo,
+        link: 'https://ccaflstar.com/',
+        alt: 'CCA Florida STAR presented by Yamaha logo',
+      },
+    ],
+  },
 ]
 
 function Calendar() {
