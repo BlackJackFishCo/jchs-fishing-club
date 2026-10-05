@@ -203,7 +203,10 @@ const months = [
     name: 'October',
     year: '2027',
     title: 'Save the Date',
-    agenda: ['John Carroll High School Inshore Slam Fishing Tournament'],
+    agenda: [
+      'John Carroll High School Inshore Slam Fishing Tournament',
+      'CCA STAR Summer Event Awards Banquet TBD',
+    ],
   },
   { name: 'November', year: '2027' },
   { name: 'December', year: '2027' },
