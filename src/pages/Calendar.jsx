@@ -109,8 +109,11 @@ const months = [
   },
   {
     name: 'February',
-    year: '2027',
     title: 'Surf Fishing Rigging & Techniques',
+    time: '3pm',
+    location: 'The Commons',
+    date: '18',
+    year: '2027',
     agenda: [
       'Hands on Surf Fishing Outing with Captain Matt Burr of Momma B Charters. $25 per person',
     ],
