@@ -137,7 +137,7 @@ const months = [
   {
     name: 'May',
     year: '2027',
-    title: 'Guest Speaker CCA STAR Representative',
+    title: 'Guest Speaker CCA STAR Director Leiza Fitzgerald',
     agenda: ['CCA - STAR Summer Event Registration, ccaflstar.com'],
     sponsors: [
       {
@@ -150,7 +150,7 @@ const months = [
   {
     name: 'June',
     year: '2027',
-    title: 'Participate in CCA STAR Program over the summer',
+    title: 'Club Members participate in CCA STAR program over the summer',
     sponsors: [
       {
         logo: ccaStarLogo,
@@ -162,7 +162,7 @@ const months = [
   {
     name: 'July',
     year: '2027',
-    title: 'Participate in CCA STAR Program over the summer',
+    title: 'Club Members participate in CCA STAR program over the summer',
     sponsors: [
       {
         logo: ccaStarLogo,
@@ -174,7 +174,7 @@ const months = [
   {
     name: 'August',
     year: '2027',
-    title: 'Participate in CCA STAR Program over the summer',
+    title: 'Club Members participate in CCA STAR program over the summer',
     sponsors: [
       {
         logo: ccaStarLogo,
