@@ -128,7 +128,6 @@ const months = [
     ],
     sponsors: [
       { logo: localLinesLogo, link: 'https://locallinescharters.com/', alt: 'Local Lines Guide Service logo' },
-      { logo: seaSafeLogo, link: 'https://www.projectseasafe.com/', alt: 'Star brite Project SeaSafe logo' },
     ],
   },
   {
@@ -136,6 +135,10 @@ const months = [
     year: '2027',
     date: '22',
     title: 'Earth Day',
+    agenda: ['SeaSafe Event'],
+    sponsors: [
+      { logo: seaSafeLogo, link: 'https://www.projectseasafe.com/', alt: 'Star brite Project SeaSafe logo' },
+    ],
   },
   {
     name: 'May',
