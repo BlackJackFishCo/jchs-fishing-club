@@ -6,6 +6,7 @@ import nlbnLogo from '../assets/sponsor-nlbn.png'
 import fishFloridaLogo from '../assets/sponsor-fish-florida.png'
 import fwcLogo from '../assets/fwc-logo.png'
 import ccaStarLogo from '../assets/sponsor-cca-star.png'
+import doaLuresLogo from '../assets/sponsor-doa-lures.png'
 import heroBackgroundMobile from '../assets/snook-catch.jpg'
 import heroBackgroundDesktop from '../assets/home-hero-desktop.jpg'
 import './Home.css'
@@ -128,6 +129,16 @@ function Home() {
             className="home-sponsor-strip__logo"
           >
             <img src={ccaStarLogo} alt="CCA Florida STAR presented by Yamaha logo" />
+          </a>
+
+          <a
+            href="https://www.doalures.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="D.O.A. Fishing Lures website"
+            className="home-sponsor-strip__logo"
+          >
+            <img src={doaLuresLogo} alt="D.O.A. Fishing Lures logo" />
           </a>
         </div>
 
