@@ -1,5 +1,6 @@
 import mangLogo from '../assets/sponsor-mang.png'
 import seaSafeLogo from '../assets/sponsor-project-seasafe.png'
+import elcLogo from '../assets/sponsor-elc.png'
 import './Volunteer.css'
 
 const projects = [
@@ -16,11 +17,18 @@ const projects = [
     },
   },
   {
-    title: 'Indian River Lagoon Shoreline Cleanup',
-    status: 'Date TBD',
+    title: 'Kids Fishing Clinic',
+    status: 'November 28, 2026',
     description:
-      'Members walk local shorelines and boat ramps around the Fort Pierce Inlet collecting trash, monofilament line, and debris that threaten fish and wildlife.',
+      'Club members partner with the Environmental Learning Center (ELC) and the Wabasso School of Fish to mentor local kids on casting, knot-tying, and basic tackle at a hands-on fishing clinic.',
     hours: 'Service hours available',
+    agenda: [{ text: 'https://www.discoverelc.org/family-fishing-day/', href: 'https://www.discoverelc.org/family-fishing-day/' }],
+    sponsor: {
+      logo: elcLogo,
+      alt: 'Environmental Learning Center logo',
+      href: 'https://www.discoverelc.org/',
+      imgClassName: 'volunteer-card__sponsor-img--small',
+    },
   },
   {
     title: 'Project SeaSafe 2027',
@@ -35,10 +43,10 @@ const projects = [
     },
   },
   {
-    title: 'Youth Fishing Clinic',
+    title: 'Indian River Lagoon Shoreline Cleanup',
     status: 'Date TBD',
     description:
-      'Club members mentor younger students and community kids on casting, knot-tying, and basic tackle at a hands-on fishing clinic.',
+      'Members walk local shorelines and boat ramps around the Fort Pierce Inlet collecting trash, monofilament line, and debris that threaten fish and wildlife.',
     hours: 'Service hours available',
   },
 ]
@@ -64,6 +72,21 @@ function Volunteer() {
             <span className="volunteer-card__status">{p.status}</span>
             <h3>{p.title}</h3>
             <p>{p.description}</p>
+            {p.agenda && (
+              <ul className="volunteer-card__agenda">
+                {p.agenda.map((item) => (
+                  <li key={item.href || item}>
+                    {item.href ? (
+                      <a href={item.href} target="_blank" rel="noopener noreferrer">
+                        {item.text}
+                      </a>
+                    ) : (
+                      item
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
             <span className="volunteer-card__hours">{p.hours}</span>
             {p.sponsor && (
               <a
@@ -73,7 +96,7 @@ function Volunteer() {
                 rel="noopener noreferrer"
                 aria-label={p.sponsor.alt}
               >
-                <img src={p.sponsor.logo} alt={p.sponsor.alt} />
+                <img src={p.sponsor.logo} alt={p.sponsor.alt} className={p.sponsor.imgClassName} />
               </a>
             )}
           </article>
