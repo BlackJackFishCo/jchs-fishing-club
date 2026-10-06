@@ -364,7 +364,7 @@ function Species() {
                   transform="rotate(-35 19 18)"
                 />
               </svg>
-              <span className="fish-id-box__label">FISH ID</span>
+              <span className="fish-id-box__label">FISH ID HELP</span>
             </a>
           </div>
         </div>
