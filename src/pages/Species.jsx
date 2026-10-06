@@ -11,8 +11,8 @@ const PREFERS_REDUCED_MOTION =
     ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
     : false
 
-// Pixels per millisecond the carousel crawls at — ~2.5s to cross one photo.
-const SCROLL_SPEED = 1 / 2500
+// Pixels per millisecond the carousel crawls at — ~5s to cross one photo.
+const SCROLL_SPEED = 1 / 5000
 
 const CHALLENGE_RULES = [
   'All submitted fish must have been caught by a student angler enrolled in the fishing club.',
