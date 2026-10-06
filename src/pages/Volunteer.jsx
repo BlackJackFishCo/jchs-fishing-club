@@ -35,6 +35,7 @@ const projects = [
   {
     title: 'Project SeaSafe 2027',
     status: 'April 22-25, 2027',
+    location: 'Grant, FL',
     description:
       'Join Star brite’s Project SeaSafe initiative for a hands-on push to clean and protect our local waterways, shorelines, and wildlife.',
     hours: 'Service hours available',
