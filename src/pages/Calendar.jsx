@@ -8,6 +8,7 @@ import localLinesLogo from '../assets/sponsor-local-lines.png'
 import seaSafeLogo from '../assets/sponsor-project-seasafe.png'
 import oceanConservancyLogo from '../assets/sponsor-ocean-conservancy.png'
 import doaLuresLogo from '../assets/sponsor-doa-lures.png'
+import ccaFlLogo from '../assets/sponsor-cca-fl.png'
 import './Volunteer.css'
 import './Calendar.css'
 
@@ -101,11 +102,13 @@ const months = [
   },
   {
     name: 'January',
-    title: 'Castnet Techniques for Live Bait',
+    title: 'Guest Speaker CCA Coastal Conservation Association',
     time: '3pm',
     location: 'The Commons',
     date: '21',
     year: '2027',
+    agenda: ['Habitat Restoration Projects, Protecting the Environment'],
+    sponsors: [{ logo: ccaFlLogo, link: 'https://ccaflorida.org/', alt: 'CCA Florida logo' }],
   },
   {
     name: 'February',
