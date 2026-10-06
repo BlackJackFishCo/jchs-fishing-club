@@ -7,6 +7,7 @@ const projects = [
   {
     title: 'Mangrove Restoration Days',
     status: '8:30am, November 21, 2026',
+    location: 'West Palm Beach, FL',
     description:
       'Working with local conservation partners to plant and maintain mangroves, which provide critical nursery habitat for snook, redfish, and juvenile game fish.',
     hours: 'Service hours available',
@@ -19,6 +20,7 @@ const projects = [
   {
     title: 'Kids Fishing Clinic',
     status: 'November 28, 2026',
+    location: 'Vero Beach, FL',
     description:
       'Club members partner with the Environmental Learning Center (ELC) and the Wabasso School of Fish to mentor local kids on casting, knot-tying, and basic tackle at a hands-on fishing clinic.',
     hours: 'Service hours available',
@@ -69,7 +71,10 @@ function Volunteer() {
       <div className="volunteer-grid">
         {projects.map((p) => (
           <article key={p.title} className="volunteer-card card">
-            <span className="volunteer-card__status">{p.status}</span>
+            <div className="calendar-card__top-row">
+              <span className="volunteer-card__status">{p.status}</span>
+              {p.location && <span className="volunteer-card__location">{p.location}</span>}
+            </div>
             <h3>{p.title}</h3>
             <p>{p.description}</p>
             {p.agenda && (
