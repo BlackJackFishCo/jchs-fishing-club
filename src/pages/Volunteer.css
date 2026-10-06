@@ -59,6 +59,10 @@
   height: auto;
 }
 
+.volunteer-card__sponsor img.volunteer-card__sponsor-img--small {
+  width: 70px;
+}
+
 .volunteer-card__status {
   align-self: flex-start;
   background: rgba(245, 197, 24, 0.12);

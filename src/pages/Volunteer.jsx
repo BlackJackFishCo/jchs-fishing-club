@@ -1,5 +1,6 @@
 import mangLogo from '../assets/sponsor-mang.png'
 import seaSafeLogo from '../assets/sponsor-project-seasafe.png'
+import elcLogo from '../assets/sponsor-elc.png'
 import './Volunteer.css'
 
 const projects = [
@@ -22,6 +23,12 @@ const projects = [
       'Club members partner with the Environmental Learning Center (ELC) and the Wabasso School of Fish to mentor local kids on casting, knot-tying, and basic tackle at a hands-on fishing clinic.',
     hours: 'Service hours available',
     agenda: [{ text: 'https://www.discoverelc.org/family-fishing-day/', href: 'https://www.discoverelc.org/family-fishing-day/' }],
+    sponsor: {
+      logo: elcLogo,
+      alt: 'Environmental Learning Center logo',
+      href: 'https://www.discoverelc.org/',
+      imgClassName: 'volunteer-card__sponsor-img--small',
+    },
   },
   {
     title: 'Project SeaSafe 2027',
@@ -89,7 +96,7 @@ function Volunteer() {
                 rel="noopener noreferrer"
                 aria-label={p.sponsor.alt}
               >
-                <img src={p.sponsor.logo} alt={p.sponsor.alt} />
+                <img src={p.sponsor.logo} alt={p.sponsor.alt} className={p.sponsor.imgClassName} />
               </a>
             )}
           </article>
