@@ -254,25 +254,25 @@
 }
 
 .species-card__photo--pulsing {
-  animation: species-pulse 3.4s ease-in-out;
+  animation: species-pulse 5s ease-in-out;
 }
 
 @keyframes species-pulse {
   0% {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.94);
   }
-  18% {
+  30% {
     opacity: 1;
     transform: scale(1);
   }
-  82% {
+  70% {
     opacity: 1;
     transform: scale(1);
   }
   100% {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.94);
   }
 }
 
