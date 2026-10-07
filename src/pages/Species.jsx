@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { TOTAL_SPECIES, CATEGORIES, useSpeciesBoard, addSubmission, removeSubmission } from '../data/species.js'
 import { useRoster } from '../data/roster.js'
 import { useAdminAuth } from '../data/auth.js'
@@ -10,9 +10,6 @@ const PREFERS_REDUCED_MOTION =
   typeof window !== 'undefined' && window.matchMedia
     ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
     : false
-
-// Pixels per millisecond the carousel crawls at — ~5s to cross one photo.
-const SCROLL_SPEED = 1 / 5000
 
 const CHALLENGE_RULES = [
   'All submitted fish must have been caught by a student angler enrolled in the fishing club.',
@@ -177,32 +174,7 @@ function SpeciesCard({ entry, onEdit }) {
   const submissions = entry.submissions
   const [activeIndex, setActiveIndex] = useState(0)
   const active = submissions[activeIndex] ?? submissions[submissions.length - 1]
-  const scrollRef = useRef(null)
-
-  useEffect(() => {
-    if (submissions.length <= 1 || PREFERS_REDUCED_MOTION) return undefined
-    const container = scrollRef.current
-    if (!container) return undefined
-
-    const loopWidth = container.clientWidth * submissions.length
-    const pxPerMs = container.clientWidth * SCROLL_SPEED
-    let rafId
-    let lastTime = null
-
-    const tick = (now) => {
-      if (lastTime !== null) {
-        let next = container.scrollLeft + pxPerMs * (now - lastTime)
-        if (next >= loopWidth) next -= loopWidth
-        container.scrollLeft = next
-        setActiveIndex(Math.floor(next / container.clientWidth) % submissions.length)
-      }
-      lastTime = now
-      rafId = requestAnimationFrame(tick)
-    }
-
-    rafId = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(rafId)
-  }, [submissions.length])
+  const isPulsing = submissions.length > 1 && !PREFERS_REDUCED_MOTION
 
   return (
     <button
@@ -211,13 +183,15 @@ function SpeciesCard({ entry, onEdit }) {
     >
       <div className="species-card__thumb">
         {submissions.length > 0 ? (
-          <div className="species-card__scroll" ref={scrollRef}>
-            {(submissions.length > 1 ? [...submissions, ...submissions] : submissions).map(
-              (sub, i) => (
-                <img key={`${sub.id}-${i}`} src={sub.photo} alt={entry.species} />
-              ),
-            )}
-          </div>
+          <img
+            key={active.id}
+            className={`species-card__photo${isPulsing ? ' species-card__photo--pulsing' : ''}`}
+            src={active.photo}
+            alt={entry.species}
+            onAnimationEnd={
+              isPulsing ? () => setActiveIndex((i) => (i + 1) % submissions.length) : undefined
+            }
+          />
         ) : (
           <span className="species-card__placeholder">#{entry.id}</span>
         )}
