@@ -8,6 +8,7 @@ import localLinesLogo from '../assets/sponsor-local-lines.png'
 import seaSafeLogo from '../assets/sponsor-project-seasafe.png'
 import oceanConservancyLogo from '../assets/sponsor-ocean-conservancy.png'
 import doaLuresLogo from '../assets/sponsor-doa-lures.png'
+import captainsForCleanWaterLogo from '../assets/sponsor-captains-for-clean-water.png'
 import './Volunteer.css'
 import './Calendar.css'
 
@@ -111,6 +112,14 @@ const months = [
       'Captains for Clean Water Projects.',
       'Live bait techniques.',
       'Throwing castnets to catch live bait.',
+    ],
+    sponsors: [
+      {
+        logo: captainsForCleanWaterLogo,
+        link: 'https://captainsforcleanwater.org/',
+        alt: 'Captains for Clean Water logo',
+        imgClassName: 'calendar-card__sponsor-img--small',
+      },
     ],
   },
   {
