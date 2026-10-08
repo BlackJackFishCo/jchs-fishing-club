@@ -117,7 +117,7 @@ const months = [
         logo: captainsForCleanWaterLogo,
         link: 'https://captainsforcleanwater.org/',
         alt: 'Captains for Clean Water logo',
-        imgClassName: 'calendar-card__sponsor-img--small',
+        imgClassName: 'calendar-card__sponsor-img--medium',
       },
     ],
   },
