@@ -110,7 +110,6 @@ const months = [
     year: '2027',
     agenda: [
       'Captains for Clean Water Projects.',
-      'Live bait techniques.',
       'Throwing castnets to catch live bait.',
     ],
     sponsors: [
