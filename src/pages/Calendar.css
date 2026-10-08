@@ -81,4 +81,13 @@
   .calendar-grid {
     grid-template-columns: 1fr;
   }
+
+  .calendar-card__sponsors {
+    margin-top: 1rem;
+    padding-top: 0;
+  }
+
+  .calendar-grid .volunteer-card__agenda {
+    flex: 0 1 auto;
+  }
 }
