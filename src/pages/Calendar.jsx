@@ -206,7 +206,7 @@ const months = [
   {
     name: 'September',
     year: '2027',
-    title: 'ICC Day',
+    title: 'ICC Day - International Coastal Cleanup Day',
     agenda: ['9/18/2027'],
     sponsors: [
       {
@@ -231,7 +231,19 @@ const months = [
   { name: 'February', year: '2028' },
   { name: 'March', year: '2028' },
   { name: 'April', year: '2028' },
-  { name: 'May', year: '2028' },
+  {
+    name: 'May',
+    year: '2028',
+    title: 'Guest Speaker TBD CCA STAR',
+    agenda: ['CCA - STAR Summer Event Registration, ccaflstar.com'],
+    sponsors: [
+      {
+        logo: ccaStarLogo,
+        link: 'https://ccaflstar.com/',
+        alt: 'CCA Florida STAR presented by Yamaha logo',
+      },
+    ],
+  },
   {
     name: 'June',
     year: '2028',
