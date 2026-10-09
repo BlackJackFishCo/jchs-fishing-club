@@ -62,6 +62,7 @@ const months = [
     year: '2026',
     agenda: [
       'Guest Speaker - NLBN Brand Ambassador and Reel Deal Adventures Founder Adam Rizzi @reeldealadventures',
+      'NLBN Giveaways',
     ],
     sponsors: [
       { logo: nlbnLogo, link: 'https://nlbn.com/', alt: 'NLBN - No Live Bait Needed logo' },
@@ -81,6 +82,7 @@ const months = [
     year: '2026',
     agenda: [
       'Guest Speaker - D.O.A Lures Brand Ambassador Rob Lowe. www.doalures.com @doa_fishing_lures',
+      'DOA Giveaways',
     ],
     sponsors: [
       { logo: doaLuresLogo, link: 'https://www.doalures.com', alt: 'D.O.A. Fishing Lures logo' },
