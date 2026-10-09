@@ -19,7 +19,7 @@ const projects = [
   },
   {
     title: 'Kids Fishing Clinic',
-    status: 'November 28, 2026',
+    status: '8am-11am, November 28, 2026',
     location: 'Vero Beach, FL',
     description:
       'Club members partner with the Environmental Learning Center (ELC) and the Wabasso School of Fish to mentor local kids on casting, knot-tying, and basic tackle at a hands-on fishing clinic.',
