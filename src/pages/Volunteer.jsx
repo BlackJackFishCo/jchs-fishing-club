@@ -1,6 +1,7 @@
 import mangLogo from '../assets/sponsor-mang.png'
 import seaSafeLogo from '../assets/sponsor-project-seasafe.png'
 import elcLogo from '../assets/sponsor-elc.png'
+import wabassoLogo from '../assets/sponsor-wabasso-school-of-fish.png'
 import './Volunteer.css'
 
 const projects = [
@@ -11,11 +12,13 @@ const projects = [
     description:
       'Working with local conservation partners to plant and maintain mangroves, which provide critical nursery habitat for snook, redfish, and juvenile game fish.',
     hours: 'Service hours available',
-    sponsor: {
-      logo: mangLogo,
-      alt: 'MANG logo',
-      href: 'https://www.manggear.com/pages/our-mission',
-    },
+    sponsors: [
+      {
+        logo: mangLogo,
+        alt: 'MANG logo',
+        href: 'https://www.manggear.com/pages/our-mission',
+      },
+    ],
   },
   {
     title: 'Kids Fishing Clinic',
@@ -25,12 +28,19 @@ const projects = [
       'Club members partner with the Environmental Learning Center (ELC) and the Wabasso School of Fish to mentor local kids on casting, knot-tying, and basic tackle at a hands-on fishing clinic.',
     hours: 'Service hours available',
     agenda: [{ text: 'https://www.discoverelc.org/family-fishing-day/', href: 'https://www.discoverelc.org/family-fishing-day/' }],
-    sponsor: {
-      logo: elcLogo,
-      alt: 'Environmental Learning Center logo',
-      href: 'https://www.discoverelc.org/',
-      imgClassName: 'volunteer-card__sponsor-img--small',
-    },
+    sponsors: [
+      {
+        logo: elcLogo,
+        alt: 'Environmental Learning Center logo',
+        href: 'https://www.discoverelc.org/',
+        imgClassName: 'volunteer-card__sponsor-img--small',
+      },
+      {
+        logo: wabassoLogo,
+        alt: 'Wabasso School of Fish logo',
+        imgClassName: 'volunteer-card__sponsor-img--small',
+      },
+    ],
   },
   {
     title: 'Project SeaSafe 2027',
@@ -39,11 +49,13 @@ const projects = [
     description:
       'Join Star brite’s Project SeaSafe initiative for a hands-on push to clean and protect our local waterways, shorelines, and wildlife.',
     hours: 'Service hours available',
-    sponsor: {
-      logo: seaSafeLogo,
-      alt: 'Star brite Project SeaSafe logo',
-      href: 'https://www.projectseasafe.com/',
-    },
+    sponsors: [
+      {
+        logo: seaSafeLogo,
+        alt: 'Star brite Project SeaSafe logo',
+        href: 'https://www.projectseasafe.com/',
+      },
+    ],
   },
   {
     title: 'Indian River Lagoon Shoreline Cleanup',
@@ -94,16 +106,27 @@ function Volunteer() {
               </ul>
             )}
             <span className="volunteer-card__hours">{p.hours}</span>
-            {p.sponsor && (
-              <a
-                className="volunteer-card__sponsor"
-                href={p.sponsor.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={p.sponsor.alt}
-              >
-                <img src={p.sponsor.logo} alt={p.sponsor.alt} className={p.sponsor.imgClassName} />
-              </a>
+            {p.sponsors && (
+              <div className="volunteer-card__sponsors">
+                {p.sponsors.map((sponsor) =>
+                  sponsor.href ? (
+                    <a
+                      key={sponsor.alt}
+                      className="volunteer-card__sponsor"
+                      href={sponsor.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={sponsor.alt}
+                    >
+                      <img src={sponsor.logo} alt={sponsor.alt} className={sponsor.imgClassName} />
+                    </a>
+                  ) : (
+                    <span key={sponsor.alt} className="volunteer-card__sponsor">
+                      <img src={sponsor.logo} alt={sponsor.alt} className={sponsor.imgClassName} />
+                    </span>
+                  ),
+                )}
+              </div>
             )}
           </article>
         ))}
