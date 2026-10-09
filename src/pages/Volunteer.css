@@ -47,10 +47,17 @@
   background: linear-gradient(180deg, var(--color-royal-dim), var(--color-black-soft));
 }
 
-.volunteer-card__sponsor {
+.volunteer-card__sponsors {
   position: absolute;
   right: 1rem;
   bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.volunteer-card__sponsor {
+  display: flex;
   opacity: 0.9;
   transition: opacity 0.15s ease, transform 0.15s ease;
 }
@@ -71,7 +78,7 @@
 }
 
 @media (max-width: 620px) {
-  .volunteer-card__sponsor {
+  .volunteer-card__sponsors {
     position: static;
     align-self: center;
     margin-top: 0.75rem;
