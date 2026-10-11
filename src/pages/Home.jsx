@@ -7,7 +7,7 @@ import fishFloridaLogo from '../assets/sponsor-fish-florida.png'
 import fwcLogo from '../assets/fwc-logo.png'
 import ccaStarLogo from '../assets/sponsor-cca-star.png'
 import doaLuresLogo from '../assets/sponsor-doa-lures.png'
-import heroBackgroundMobile from '../assets/snook-catch.jpg'
+import heroBackgroundMobile from '../assets/mangrove-roots.jpg'
 import heroBackgroundDesktop from '../assets/home-hero-desktop.jpg'
 import './Home.css'
 
@@ -69,13 +69,19 @@ function Home() {
 
       <section className="home-white-section">
         <div className="home-sponsor-strip__row">
-          <span className="home-sponsor-strip__logo">
+          <a
+            href="https://myfwc.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Florida Fish and Wildlife Conservation Commission website"
+            className="home-sponsor-strip__logo"
+          >
             <img
               className="home-sponsor-strip__logo--fwc"
               src={fwcLogo}
               alt="Florida Fish and Wildlife Conservation Commission logo"
             />
-          </span>
+          </a>
 
           <a
             href="https://www.instagram.com/offthegridjohn/"
