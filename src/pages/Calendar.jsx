@@ -97,7 +97,7 @@ const months = [
     year: '2026',
     agenda: [
       'Guest Speaker Aaron Benzrihem from Abenz Fishing — content creator on YouTube, Instagram, and Facebook.',
-      'December 31 FWC PreSurveys Due',
+      { text: 'December 31 FWC PreSurveys Due', highlight: true },
     ],
     sponsors: [
       { logo: abenzFishingLogo, link: 'https://abenzfishing.com/', alt: 'Abenz Fishing logo' },
@@ -141,7 +141,7 @@ const months = [
     title: 'Guest Speaker Captain Alex Gorichky',
     agenda: [
       'Local Lines Guide Service and Ambassador of the Star brite Project SeaSafe initiative.',
-      'FWC Paperwork due 3/31',
+      { text: 'FWC Challenge Paperwork due 3/31', highlight: true },
     ],
     sponsors: [
       { logo: localLinesLogo, link: 'https://locallinescharters.com/', alt: 'Local Lines Guide Service logo' },
@@ -335,9 +335,19 @@ function Calendar() {
                   <p className="volunteer-card__event">{month.title}</p>
                   {month.agenda && (
                     <ul className="volunteer-card__agenda">
-                      {month.agenda.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
+                      {month.agenda.map((item) =>
+                        typeof item === 'string' ? (
+                          <li key={item}>{item}</li>
+                        ) : (
+                          <li key={item.text}>
+                            {item.highlight ? (
+                              <span className="volunteer-card__agenda-highlight">{item.text}</span>
+                            ) : (
+                              item.text
+                            )}
+                          </li>
+                        ),
+                      )}
                     </ul>
                   )}
                 </>
