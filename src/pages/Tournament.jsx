@@ -22,7 +22,7 @@ import troutFish from '../assets/sponsor-tier-trout.png'
 import offTheGridLogo from '../assets/sponsor-off-the-grid.png'
 import dancoLogo from '../assets/sponsor-danco.png'
 import nlbnLogo from '../assets/sponsor-nlbn.png'
-import bajioLogo from '../assets/sponsor-bajio.png'
+import sailfishBrewingLogo from '../assets/sponsor-sailfish-brewing.png'
 import './Tournament.css'
 
 const TIER_FISH = {
@@ -639,12 +639,16 @@ function HeroLogos() {
       </a>
 
       <a
-        href="https://bajiosunglasses.com/"
+        href="https://sailfishbrewingco.com/"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Bajío Sunglasses website"
+        aria-label="Sailfish Brewing Company website"
       >
-        <img className="hero-logos__sponsor" src={bajioLogo} alt="Bajío Sunglasses logo" />
+        <img
+          className="hero-logos__sponsor"
+          src={sailfishBrewingLogo}
+          alt="Sailfish Brewing Company logo"
+        />
       </a>
     </div>
   )
