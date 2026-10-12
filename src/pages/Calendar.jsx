@@ -198,6 +198,7 @@ const months = [
     name: 'August',
     year: '2027',
     title: 'Club Members participate in CCA STAR program over the summer',
+    agenda: [{ text: 'FWC FC Program Registration', highlight: true }],
     sponsors: [
       {
         logo: ccaStarLogo,
