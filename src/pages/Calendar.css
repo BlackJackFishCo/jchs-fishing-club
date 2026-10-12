@@ -21,6 +21,18 @@
   box-shadow: 0 0 0 1px rgba(245, 197, 24, 0.4), 0 8px 24px rgba(245, 197, 24, 0.18);
 }
 
+.calendar-card--past {
+  opacity: 0.55;
+  filter: grayscale(0.6);
+  transition: opacity 0.15s ease, filter 0.15s ease;
+}
+
+.calendar-card--past:hover,
+.calendar-card--past:focus-within {
+  opacity: 0.9;
+  filter: grayscale(0.2);
+}
+
 .calendar-card__next-badge {
   position: absolute;
   top: -0.7rem;

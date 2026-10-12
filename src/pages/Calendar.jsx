@@ -32,6 +32,15 @@ function getEventDate(month) {
   return new Date(Number(month.year), MONTH_NUMBERS[month.name], Number(month.date))
 }
 
+// Falls back to the last day of the month when no exact date is set, so
+// month-only cards (e.g. "June 2027") still fade out once that month ends.
+function getPastCutoffDate(month) {
+  if (!month.year) return null
+  const exact = getEventDate(month)
+  if (exact) return exact
+  return new Date(Number(month.year), MONTH_NUMBERS[month.name] + 1, 0)
+}
+
 const months = [
   {
     name: 'September',
@@ -313,11 +322,13 @@ function Calendar() {
         {months.map((month) => {
           const eventDate = getEventDate(month)
           const isNextUp = nextEventTime !== null && eventDate?.getTime() === nextEventTime
+          const cutoffDate = getPastCutoffDate(month)
+          const isPast = cutoffDate !== null && cutoffDate.getTime() < today.getTime()
 
           return (
             <article
               key={`${month.name}-${month.year}`}
-              className={`volunteer-card card${isNextUp ? ' calendar-card--next' : ''}`}
+              className={`volunteer-card card${isNextUp ? ' calendar-card--next' : ''}${isPast ? ' calendar-card--past' : ''}`}
             >
               {isNextUp && <span className="calendar-card__next-badge">Next Up</span>}
               <div className="calendar-card__top-row">
