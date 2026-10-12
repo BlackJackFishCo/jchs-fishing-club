@@ -141,6 +141,7 @@ const months = [
     title: 'Guest Speaker Captain Alex Gorichky',
     agenda: [
       'Local Lines Guide Service and Ambassador of the Star brite Project SeaSafe initiative.',
+      'FWC Paperwork due 3/31',
     ],
     sponsors: [
       { logo: localLinesLogo, link: 'https://locallinescharters.com/', alt: 'Local Lines Guide Service logo' },
