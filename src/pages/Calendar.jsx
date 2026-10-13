@@ -105,7 +105,7 @@ const months = [
     date: '17',
     year: '2026',
     agenda: [
-      'Guest Speaker Aaron Benzrihem from Abenz Fishing — content creator on YouTube, Instagram, and Facebook.',
+      'Guest Speaker Aaron Benzrihem from Abenz Fishing — content creator on abenzfishing.com and @AbenzFishing',
       { text: 'December 31 FWC PreSurveys Due', highlight: true },
     ],
     sponsors: [
@@ -170,7 +170,10 @@ const months = [
     name: 'May',
     year: '2027',
     title: 'Guest Speaker CCA STAR Director Leiza Fitzgerald',
-    agenda: ['CCA - STAR Summer Event Registration, ccaflstar.com'],
+    agenda: [
+      'CCA - STAR Summer Event Registration, ccaflstar.com',
+      { text: 'FWC postSurveys due 5/15', highlight: true },
+    ],
     sponsors: [
       {
         logo: ccaStarLogo,
@@ -183,6 +186,7 @@ const months = [
     name: 'June',
     year: '2027',
     title: 'Club Members participate in CCA STAR program over the summer',
+    agenda: [{ text: 'FWC Club Sponsor Surveys due 6/1', highlight: true }],
     sponsors: [
       {
         logo: ccaStarLogo,
