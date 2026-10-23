@@ -16,6 +16,7 @@ const CHALLENGE_RULES = [
   'Students must practice proper handling techniques by holding the fish horizontal and broadside.',
   'Photos should be taken promptly after being caught.',
   'All fish submitted must be clearly identifiable to be an approved catch.',
+  'The club member must be clearly visible in the photo with the fish.',
   'After documenting the catch all fish submitted must be immediately released alive in the same water system where they were caught.',
   'Length and width measurements are not required.',
   'All submitted fish must be caught during the school year. Fish caught before the start of the Club September 2026 will not be accepted.',
