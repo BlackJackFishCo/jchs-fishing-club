@@ -785,6 +785,7 @@ function CatchReport() {
                       <th>Species</th>
                       <th>Category</th>
                       <th>Date</th>
+                      <th>IP Address</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -793,6 +794,7 @@ function CatchReport() {
                         <td>{c.species}</td>
                         <td>{c.category}</td>
                         <td>{c.date || '—'}</td>
+                        <td>{c.ip || '—'}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -814,6 +816,7 @@ function CatchReport() {
                 <th>Angler</th>
                 <th>Species</th>
                 <th>Date</th>
+                <th>IP Address</th>
               </tr>
             </thead>
             <tbody>
@@ -822,6 +825,7 @@ function CatchReport() {
                   <td>{c.angler}</td>
                   <td>{c.species}</td>
                   <td>{c.date || '—'}</td>
+                  <td>{c.ip || '—'}</td>
                 </tr>
               ))}
             </tbody>
