@@ -129,8 +129,18 @@ export function useCaughtCount() {
   return { caught, total: TOTAL_SPECIES }
 }
 
+async function getClientIp() {
+  try {
+    const res = await fetch('https://api.ipify.org?format=json')
+    const data = await res.json()
+    return data.ip || ''
+  } catch {
+    return ''
+  }
+}
+
 export async function addSubmission(speciesId, { anglerId, angler, date, file }) {
-  const blob = await resizeToBlob(file)
+  const [blob, ip] = await Promise.all([resizeToBlob(file), getClientIp()])
   const path = `catches/${speciesId}/${Date.now()}-${Math.random().toString(36).slice(2)}.jpg`
   const storageRef = ref(storage, path)
   await uploadBytes(storageRef, blob, { contentType: 'image/jpeg' })
@@ -143,6 +153,7 @@ export async function addSubmission(speciesId, { anglerId, angler, date, file })
     date: date || '',
     photo,
     photoPath: path,
+    ip,
     createdAt: serverTimestamp(),
   })
 }
