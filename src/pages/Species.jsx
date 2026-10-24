@@ -19,7 +19,7 @@ const CHALLENGE_RULES = [
   'The club member must be clearly visible in the photo with the fish.',
   'After documenting the catch all fish submitted must be immediately released alive in the same water system where they were caught.',
   'Length and width measurements are not required.',
-  'All submitted fish must be caught during the school year. Fish caught before the start of the Club September 2026 will not be accepted.',
+  'All submitted fish must be caught during the school year. Fish caught before the start of the Club September 24, 2026 will not be accepted.',
   'Fish must be caught in Florida state waters, in federal waters extending directly outward of Florida state line boundaries or landed in Florida.',
   'Any club who submits fish caught by a student not enrolled in the club, uses photos from the internet or generative AI platforms to submit catches as their own will be disqualified.',
 ]
