@@ -6,21 +6,6 @@ import './Volunteer.css'
 
 const projects = [
   {
-    title: 'Mangrove Restoration Days',
-    status: '8:30am, November 21, 2026',
-    location: 'West Palm Beach, FL',
-    description:
-      'Working with local conservation partners to plant and maintain mangroves, which provide critical nursery habitat for snook, redfish, and juvenile game fish.',
-    hours: 'Service hours available',
-    sponsors: [
-      {
-        logo: mangLogo,
-        alt: 'MANG logo',
-        href: 'https://www.manggear.com/pages/our-mission',
-      },
-    ],
-  },
-  {
     title: 'Kids Fishing Clinic',
     status: '8am-11am, November 28, 2026',
     location: 'Vero Beach, FL',
@@ -63,6 +48,21 @@ const projects = [
     description:
       'Members walk local shorelines and boat ramps around the Fort Pierce Inlet collecting trash, monofilament line, and debris that threaten fish and wildlife.',
     hours: 'Service hours available',
+  },
+  {
+    title: 'Mangrove Restoration Days',
+    status: 'Date TBD',
+    location: 'West Palm Beach, FL',
+    description:
+      'Working with local conservation partners to plant and maintain mangroves, which provide critical nursery habitat for snook, redfish, and juvenile game fish.',
+    hours: 'Service hours available',
+    sponsors: [
+      {
+        logo: mangLogo,
+        alt: 'MANG logo',
+        href: 'https://www.manggear.com/pages/our-mission',
+      },
+    ],
   },
 ]
 
