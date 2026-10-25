@@ -259,6 +259,14 @@
   border-bottom: none;
 }
 
+.admin-report__muted {
+  color: var(--color-muted);
+}
+
+.admin-report__mismatch {
+  color: #ff9a9a;
+}
+
 .admin-progress {
   max-width: none;
 }
