@@ -3,7 +3,7 @@ import logo from '../assets/logo-hero.png'
 import offTheGridLogo from '../assets/sponsor-off-the-grid.png'
 import dancoLogo from '../assets/sponsor-danco.png'
 import nlbnLogo from '../assets/sponsor-nlbn.png'
-import fishFloridaLogo from '../assets/sponsor-fish-florida.png'
+import captainsForCleanWaterLogo from '../assets/sponsor-captains-for-clean-water.png'
 import fwcLogo from '../assets/fwc-logo.png'
 import ccaStarLogo from '../assets/sponsor-cca-star.png'
 import doaLuresLogo from '../assets/sponsor-doa-lures.png'
@@ -118,13 +118,13 @@ function Home() {
           </a>
 
           <a
-            href="https://fishfloridatag.org/"
+            href="https://captainsforcleanwater.org/"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Fish Florida website"
+            aria-label="Captains for Clean Water website"
             className="home-sponsor-strip__logo"
           >
-            <img src={fishFloridaLogo} alt="Fish Florida logo" />
+            <img src={captainsForCleanWaterLogo} alt="Captains for Clean Water logo" />
           </a>
 
           <a
