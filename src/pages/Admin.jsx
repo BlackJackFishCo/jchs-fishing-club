@@ -733,6 +733,18 @@ function ClubProgressReport() {
   )
 }
 
+function PhotoTakenCell({ c }) {
+  if (!c.photoTakenAt) return <td className="admin-report__muted">—</td>
+  const photoDay = c.photoTakenAt.slice(0, 10)
+  const mismatch = c.date && photoDay !== c.date
+  return (
+    <td className={mismatch ? 'admin-report__mismatch' : undefined} title={mismatch ? 'Photo’s date differs from the logged catch date' : undefined}>
+      {c.photoTakenAt}
+      {mismatch && ' ⚠'}
+    </td>
+  )
+}
+
 function CatchReport() {
   const { board, loading } = useSpeciesBoard()
   const { roster } = useRoster()
@@ -785,6 +797,7 @@ function CatchReport() {
                       <th>Species</th>
                       <th>Category</th>
                       <th>Date</th>
+                      <th>Photo Taken</th>
                       <th>IP Address</th>
                     </tr>
                   </thead>
@@ -794,6 +807,7 @@ function CatchReport() {
                         <td>{c.species}</td>
                         <td>{c.category}</td>
                         <td>{c.date || '—'}</td>
+                        <PhotoTakenCell c={c} />
                         <td>{c.ip || '—'}</td>
                       </tr>
                     ))}
@@ -816,6 +830,7 @@ function CatchReport() {
                 <th>Angler</th>
                 <th>Species</th>
                 <th>Date</th>
+                <th>Photo Taken</th>
                 <th>IP Address</th>
               </tr>
             </thead>
@@ -825,6 +840,7 @@ function CatchReport() {
                   <td>{c.angler}</td>
                   <td>{c.species}</td>
                   <td>{c.date || '—'}</td>
+                  <PhotoTakenCell c={c} />
                   <td>{c.ip || '—'}</td>
                 </tr>
               ))}
