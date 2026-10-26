@@ -34,6 +34,21 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
+    match /trashLog/{id} {
+      allow read: if true;
+
+      allow create: if
+        request.resource.data.anglerId is string &&
+        request.resource.data.angler is string &&
+        request.resource.data.photo is string &&
+        request.resource.data.photoPath is string &&
+        exists(/databases/$(database)/documents/roster/$(request.resource.data.anglerId)) &&
+        get(/databases/$(database)/documents/roster/$(request.resource.data.anglerId)).data.active == true;
+
+      allow update: if false;
+      allow delete: if isAdmin();
+    }
+
     match /tournamentRegistrations/{id} {
       allow read: if isAdmin();
 
