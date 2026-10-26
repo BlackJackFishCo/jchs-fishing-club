@@ -54,8 +54,6 @@ const projects = [
   {
     title: 'Virtual Waterway Clean-up',
     status: 'Date TBD',
-    description:
-      'Members walk local shorelines and boat ramps around the Fort Pierce Inlet collecting trash, monofilament line, and debris that threaten fish and wildlife.',
     hours: 'Service hours available',
     trashLog: true,
   },
@@ -284,7 +282,7 @@ function Volunteer() {
             </div>
             <h3>{p.title}</h3>
             {p.trashLog && !trashLoading && <TrashPhotoThumb entries={trashEntries} />}
-            <p>{p.description}</p>
+            {p.description && <p>{p.description}</p>}
             {p.agenda && (
               <ul className="volunteer-card__agenda">
                 {p.agenda.map((item) => (
