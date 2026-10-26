@@ -21,7 +21,7 @@ const projects = [
     location: 'Vero Beach, FL',
     description:
       'Club members partner with the Environmental Learning Center (ELC) and the Wabasso School of Fish to mentor local kids on casting, knot-tying, and basic tackle at a hands-on fishing clinic.',
-    hours: 'Service hours available',
+    hours: '3 Service Hours',
     agenda: [{ text: 'https://www.discoverelc.org/family-fishing-day/', href: 'https://www.discoverelc.org/family-fishing-day/' }],
     sponsors: [
       {
@@ -55,7 +55,7 @@ const projects = [
   {
     title: 'Virtual Waterway Clean-up',
     status: 'November 21 – 22, 2026',
-    hours: 'Service hours available',
+    hours: '1 Service Hour',
     trashLog: true,
     flyer: '/jchsfc-waterway-cleanup-flyer.pdf',
     flyerImage: waterwayCleanupFlyer,
