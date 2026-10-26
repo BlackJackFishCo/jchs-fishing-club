@@ -30,6 +30,8 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.25rem;
+  max-width: 720px;
+  margin: 0 auto;
 }
 
 .volunteer-card {
@@ -42,12 +44,12 @@
 }
 
 .volunteer-card__sponsors {
-  position: absolute;
-  right: 1rem;
-  bottom: 1rem;
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .volunteer-card__sponsor {
@@ -69,14 +71,6 @@
 
 .volunteer-card__sponsor img.volunteer-card__sponsor-img--small {
   width: 70px;
-}
-
-@media (max-width: 620px) {
-  .volunteer-card__sponsors {
-    position: static;
-    align-self: center;
-    margin-top: 0.75rem;
-  }
 }
 
 .volunteer-card__status {
@@ -146,22 +140,19 @@
 
 .volunteer-card__media {
   display: flex;
+  align-items: flex-start;
   gap: 0.75rem;
 }
 
 .volunteer-card__media .volunteer-card__thumb {
-  flex: 1 1 0;
-  min-width: 0;
+  flex: 0 0 180px;
+  width: 180px;
 }
 
 @media (max-width: 480px) {
-  .volunteer-card__media {
-    flex-direction: column;
-  }
-
   .volunteer-card__media .volunteer-card__thumb {
-    flex: none;
-    width: 100%;
+    flex: 0 0 140px;
+    width: 140px;
   }
 }
 
@@ -179,7 +170,7 @@
 
 .volunteer-card__thumb {
   position: relative;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 1 / 1;
   border-radius: 10px;
   overflow: hidden;
   background: radial-gradient(circle at 30% 20%, var(--color-royal-light), var(--color-royal-dim));
