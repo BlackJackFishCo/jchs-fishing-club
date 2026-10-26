@@ -8,8 +8,6 @@ import { useAdminAuth } from '../data/auth.js'
 import { useTrashLog, addTrashEntry, removeTrashEntry } from '../data/trashLog.js'
 import './Volunteer.css'
 
-const TRASH_PASSCODE = '2026'
-
 const projects = [
   {
     title: 'Kids Fishing Clinic',
@@ -83,7 +81,6 @@ function TrashLogModal({ onClose }) {
   const [date, setDate] = useState('')
   const [file, setFile] = useState(null)
   const [previewUrl, setPreviewUrl] = useState('')
-  const [passcode, setPasscode] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
 
@@ -97,10 +94,6 @@ function TrashLogModal({ onClose }) {
   const addEntry = async (e) => {
     e.preventDefault()
     if (!file || !anglerId) return
-    if (passcode !== TRASH_PASSCODE) {
-      setError('Incorrect passcode.')
-      return
-    }
     setBusy(true)
     setError('')
     try {
@@ -110,7 +103,6 @@ function TrashLogModal({ onClose }) {
       setDate('')
       setFile(null)
       setPreviewUrl('')
-      setPasscode('')
     } catch (err) {
       setError(err.message || 'Could not log trash. Try again.')
     } finally {
@@ -198,27 +190,13 @@ function TrashLogModal({ onClose }) {
             <img className="modal__preview" src={previewUrl} alt="New trash preview" />
           )}
 
-          <label className="field">
-            <span>Passcode</span>
-            <input
-              type="password"
-              value={passcode}
-              onChange={(e) => setPasscode(e.target.value)}
-              required
-            />
-          </label>
-
           {error && <p className="modal__error">{error}</p>}
 
           <div className="modal__actions">
             <button type="button" className="btn" onClick={onClose}>
               Done
             </button>
-            <button
-              type="submit"
-              className="btn btn-solid"
-              disabled={busy || !file || !anglerId || !passcode}
-            >
+            <button type="submit" className="btn btn-solid" disabled={busy || !file || !anglerId}>
               {busy ? 'Uploading…' : 'Log Trash'}
             </button>
           </div>
