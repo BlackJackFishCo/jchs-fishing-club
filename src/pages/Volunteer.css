@@ -28,10 +28,14 @@
 
 .volunteer-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.25rem;
-  max-width: 720px;
-  margin: 0 auto;
+}
+
+@media (max-width: 620px) {
+  .volunteer-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .volunteer-card {
