@@ -1,3 +1,12 @@
+.calendar-club-photo {
+  display: block;
+  width: 100%;
+  max-height: 340px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-bottom: 1.75rem;
+}
+
 .calendar-grid {
   grid-template-columns: repeat(4, 1fr);
 }
@@ -90,6 +99,12 @@
 }
 
 @media (max-width: 620px) {
+  .calendar-club-photo {
+    max-height: 200px;
+    border-radius: 12px;
+    margin-bottom: 1.25rem;
+  }
+
   .calendar-grid {
     grid-template-columns: 1fr;
   }

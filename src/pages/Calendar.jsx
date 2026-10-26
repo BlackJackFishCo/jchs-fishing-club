@@ -1,4 +1,5 @@
 import jchsfcLogo from '../assets/logo.png'
+import clubPhoto from '../assets/calendar-club-photo.jpg'
 import mommaBLogo from '../assets/sponsor-momma-b.png'
 import nlbnLogo from '../assets/sponsor-nlbn.png'
 import ccaStarLogo from '../assets/sponsor-cca-star.png'
@@ -321,6 +322,12 @@ function Calendar() {
           </p>
         </div>
       </div>
+
+      <img
+        className="calendar-club-photo"
+        src={clubPhoto}
+        alt="JCHS Fishing Club members at a club meeting, holding an NLBN - No Live Bait Needed banner"
+      />
 
       <div className="volunteer-grid calendar-grid">
         {months.map((month) => {
