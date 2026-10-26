@@ -1,8 +1,14 @@
+import { useState } from 'react'
 import mangLogo from '../assets/sponsor-mang.png'
 import seaSafeLogo from '../assets/sponsor-project-seasafe.png'
 import elcLogo from '../assets/sponsor-elc.png'
 import wabassoLogo from '../assets/sponsor-wabasso-school-of-fish.png'
+import { useRoster } from '../data/roster.js'
+import { useAdminAuth } from '../data/auth.js'
+import { useTrashLog, addTrashEntry, removeTrashEntry } from '../data/trashLog.js'
 import './Volunteer.css'
+
+const TRASH_PASSCODE = '2026'
 
 const projects = [
   {
@@ -43,11 +49,12 @@ const projects = [
     ],
   },
   {
-    title: 'Indian River Lagoon Shoreline Cleanup',
+    title: 'Virtual Waterway Clean-up',
     status: 'Date TBD',
     description:
       'Members walk local shorelines and boat ramps around the Fort Pierce Inlet collecting trash, monofilament line, and debris that threaten fish and wildlife.',
     hours: 'Service hours available',
+    trashLog: true,
   },
   {
     title: 'Mangrove Restoration Days',
@@ -66,7 +73,164 @@ const projects = [
   },
 ]
 
+function TrashLogModal({ onClose }) {
+  const { entries, loading } = useTrashLog()
+  const { roster } = useRoster()
+  const { isAdmin } = useAdminAuth()
+  const activeRoster = roster.filter((r) => r.active)
+
+  const [anglerId, setAnglerId] = useState('')
+  const [date, setDate] = useState('')
+  const [file, setFile] = useState(null)
+  const [previewUrl, setPreviewUrl] = useState('')
+  const [passcode, setPasscode] = useState('')
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState('')
+
+  const handlePhoto = (e) => {
+    const f = e.target.files?.[0]
+    if (!f) return
+    setFile(f)
+    setPreviewUrl(URL.createObjectURL(f))
+  }
+
+  const addEntry = async (e) => {
+    e.preventDefault()
+    if (!file || !anglerId) return
+    if (passcode !== TRASH_PASSCODE) {
+      setError('Incorrect passcode.')
+      return
+    }
+    setBusy(true)
+    setError('')
+    try {
+      const anglerName = activeRoster.find((r) => r.id === anglerId)?.name || anglerId
+      await addTrashEntry({ anglerId, angler: anglerName, date, file })
+      setAnglerId('')
+      setDate('')
+      setFile(null)
+      setPreviewUrl('')
+      setPasscode('')
+    } catch (err) {
+      setError(err.message || 'Could not log trash. Try again.')
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  const deleteEntry = async (entryId, photoPath) => {
+    try {
+      await removeTrashEntry(entryId, photoPath)
+    } catch {
+      setError('Could not remove that entry. Try again.')
+    }
+  }
+
+  return (
+    <div className="modal-backdrop" onClick={onClose}>
+      <div className="modal card" onClick={(e) => e.stopPropagation()}>
+        <h3>Virtual Waterway Clean-up</h3>
+
+        <div className="modal__divider">Trash Logged ({entries.length})</div>
+
+        {loading ? (
+          <p className="modal__note">Loading…</p>
+        ) : entries.length > 0 ? (
+          <ul className="modal__catch-list">
+            {entries.map((entry) => (
+              <li key={entry.id} className="modal__catch-row">
+                <img src={entry.photo} alt="Logged trash" />
+                <div className="modal__catch-info">
+                  <strong>{entry.angler || 'Angler not logged'}</strong>
+                  <span>{entry.date || 'No date logged'}</span>
+                </div>
+                {isAdmin && (
+                  <button
+                    type="button"
+                    className="modal__catch-remove"
+                    aria-label="Remove this entry"
+                    onClick={() => deleteEntry(entry.id, entry.photoPath)}
+                  >
+                    ×
+                  </button>
+                )}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="modal__note">No trash logged yet.</p>
+        )}
+
+        <form className="modal__add-form" onSubmit={addEntry}>
+          <div className="modal__divider">Log Trash</div>
+
+          {activeRoster.length === 0 ? (
+            <p className="modal__note">
+              No roster entries yet. Ask a club admin to add anglers before trash can be logged.
+            </p>
+          ) : (
+            <label className="field">
+              <span>Club Member</span>
+              <select value={anglerId} onChange={(e) => setAnglerId(e.target.value)} required>
+                <option value="" disabled>
+                  Select your name
+                </option>
+                {activeRoster.map((r) => (
+                  <option key={r.id} value={r.id}>
+                    {r.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
+
+          <label className="field">
+            <span>Date collected</span>
+            <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+          </label>
+
+          <label className="field">
+            <span>Photo</span>
+            <input type="file" accept="image/*" onChange={handlePhoto} required />
+          </label>
+
+          {previewUrl && (
+            <img className="modal__preview" src={previewUrl} alt="New trash preview" />
+          )}
+
+          <label className="field">
+            <span>Passcode</span>
+            <input
+              type="password"
+              value={passcode}
+              onChange={(e) => setPasscode(e.target.value)}
+              required
+            />
+          </label>
+
+          {error && <p className="modal__error">{error}</p>}
+
+          <div className="modal__actions">
+            <button type="button" className="btn" onClick={onClose}>
+              Done
+            </button>
+            <button
+              type="submit"
+              className="btn btn-solid"
+              disabled={busy || !file || !anglerId || !passcode}
+            >
+              {busy ? 'Uploading…' : 'Log Trash'}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  )
+}
+
 function Volunteer() {
+  const [trashModalOpen, setTrashModalOpen] = useState(false)
+
   return (
     <div className="page volunteer-page">
       <div className="page-head">
@@ -106,6 +270,15 @@ function Volunteer() {
               </ul>
             )}
             <span className="volunteer-card__hours">{p.hours}</span>
+            {p.trashLog && (
+              <button
+                type="button"
+                className="btn btn-solid volunteer-card__log-btn"
+                onClick={() => setTrashModalOpen(true)}
+              >
+                Log Trash
+              </button>
+            )}
             {p.sponsors && (
               <div className="volunteer-card__sponsors">
                 {p.sponsors.map((sponsor) =>
@@ -136,6 +309,8 @@ function Volunteer() {
         <h3>Want to help organize a project?</h3>
         <p>Talk to your club officers to get a project added to this page.</p>
       </section>
+
+      {trashModalOpen && <TrashLogModal onClose={() => setTrashModalOpen(false)} />}
     </div>
   )
 }
