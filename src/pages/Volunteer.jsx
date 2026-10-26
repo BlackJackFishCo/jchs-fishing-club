@@ -53,9 +53,10 @@ const projects = [
   },
   {
     title: 'Virtual Waterway Clean-up',
-    status: 'Date TBD',
+    status: 'November 21 – 22, 2026',
     hours: 'Service hours available',
     trashLog: true,
+    flyer: '/jchsfc-waterway-cleanup-flyer.pdf',
   },
   {
     title: 'Mangrove Restoration Days',
@@ -282,6 +283,17 @@ function Volunteer() {
             </div>
             <h3>{p.title}</h3>
             {p.trashLog && !trashLoading && <TrashPhotoThumb entries={trashEntries} />}
+            {p.flyer && (
+              <a
+                className="volunteer-card__flyer-link"
+                href={p.flyer}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+              >
+                View Cleanup Instructions (PDF)
+              </a>
+            )}
             {p.description && <p>{p.description}</p>}
             {p.agenda && (
               <ul className="volunteer-card__agenda">
