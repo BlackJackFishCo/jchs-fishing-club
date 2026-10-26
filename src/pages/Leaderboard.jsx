@@ -1,5 +1,6 @@
 import { useRoster } from '../data/roster.js'
 import { useSpeciesBoard, TOTAL_SPECIES } from '../data/species.js'
+import snookCutout from '../assets/leaderboard-snook-cutout.png'
 import './Leaderboard.css'
 
 function Leaderboard() {
@@ -34,6 +35,11 @@ function Leaderboard() {
             members at the end of the year.
           </p>
         </div>
+        <img
+          className="leaderboard-page__photo"
+          src={snookCutout}
+          alt="Club member holding a snook catch"
+        />
       </div>
 
       {loading ? (
