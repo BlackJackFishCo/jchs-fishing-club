@@ -7,7 +7,7 @@
 
 @media (max-width: 620px) {
   .leaderboard-page__photo {
-    width: min(220px, 60vw);
+    display: none;
   }
 }
 
