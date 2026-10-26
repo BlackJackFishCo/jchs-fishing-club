@@ -3,6 +3,7 @@ import mangLogo from '../assets/sponsor-mang.png'
 import seaSafeLogo from '../assets/sponsor-project-seasafe.png'
 import elcLogo from '../assets/sponsor-elc.png'
 import wabassoLogo from '../assets/sponsor-wabasso-school-of-fish.png'
+import waterwayCleanupFlyer from '../assets/waterway-cleanup-flyer.jpg'
 import { useRoster } from '../data/roster.js'
 import { useAdminAuth } from '../data/auth.js'
 import { useTrashLog, addTrashEntry, removeTrashEntry } from '../data/trashLog.js'
@@ -57,6 +58,7 @@ const projects = [
     hours: 'Service hours available',
     trashLog: true,
     flyer: '/jchsfc-waterway-cleanup-flyer.pdf',
+    flyerImage: waterwayCleanupFlyer,
   },
   {
     title: 'Mangrove Restoration Days',
@@ -103,6 +105,21 @@ function TrashPhotoThumb({ entries }) {
         </span>
       )}
     </div>
+  )
+}
+
+function FlyerThumb({ image, href }) {
+  return (
+    <a
+      className="volunteer-card__thumb volunteer-card__flyer-thumb"
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <img src={image} alt="Virtual Meetup Waterway Cleanup instructions flyer" />
+      <span className="volunteer-card__thumb-badge">PDF</span>
+    </a>
   )
 }
 
@@ -282,17 +299,11 @@ function Volunteer() {
               {p.location && <span className="volunteer-card__location">{p.location}</span>}
             </div>
             <h3>{p.title}</h3>
-            {p.trashLog && !trashLoading && <TrashPhotoThumb entries={trashEntries} />}
-            {p.flyer && (
-              <a
-                className="volunteer-card__flyer-link"
-                href={p.flyer}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-              >
-                View Cleanup Instructions (PDF)
-              </a>
+            {p.trashLog && !trashLoading && (
+              <div className="volunteer-card__media">
+                <TrashPhotoThumb entries={trashEntries} />
+                {p.flyerImage && <FlyerThumb image={p.flyerImage} href={p.flyer} />}
+              </div>
             )}
             {p.description && <p>{p.description}</p>}
             {p.agenda && (
