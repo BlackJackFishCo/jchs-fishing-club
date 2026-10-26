@@ -301,7 +301,19 @@ function Volunteer() {
             <h3>{p.title}</h3>
             {p.trashLog && !trashLoading && (
               <div className="volunteer-card__media">
-                <TrashPhotoThumb entries={trashEntries} />
+                <div className="volunteer-card__media-trash">
+                  <TrashPhotoThumb entries={trashEntries} />
+                  <button
+                    type="button"
+                    className="btn btn-solid volunteer-card__log-btn"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setTrashModalOpen(true)
+                    }}
+                  >
+                    Log Trash Here
+                  </button>
+                </div>
                 {p.flyerImage && <FlyerThumb image={p.flyerImage} href={p.flyer} />}
               </div>
             )}
