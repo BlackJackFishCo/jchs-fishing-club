@@ -150,11 +150,69 @@
   color: var(--color-gold-soft);
 }
 
-.volunteer-card__log-btn {
-  align-self: flex-start;
-  margin-top: 0.25rem;
-  padding: 0.5rem 1.1rem;
-  font-size: 0.85rem;
+.volunteer-card--clickable {
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.volunteer-card--clickable:hover,
+.volunteer-card--clickable:focus-visible {
+  border-color: rgba(245, 197, 24, 0.4);
+  box-shadow: 0 0 0 1px rgba(245, 197, 24, 0.25);
+  outline: none;
+}
+
+.volunteer-card__thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  overflow: hidden;
+  background: radial-gradient(circle at 30% 20%, var(--color-royal-light), var(--color-royal-dim));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.volunteer-card__thumb-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.volunteer-card__thumb-photo--pulsing {
+  animation: species-pulse 5s ease-in-out;
+}
+
+.volunteer-card__thumb-placeholder {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+.volunteer-card__thumb-badge {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: var(--color-gold);
+  color: var(--color-black);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+}
+
+.volunteer-card__thumb-count {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  background: rgba(5, 6, 7, 0.72);
+  color: var(--color-white);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
 }
 
 .volunteer-cta {
