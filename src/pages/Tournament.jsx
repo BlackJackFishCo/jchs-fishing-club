@@ -1180,7 +1180,6 @@ function Tournament() {
     <div className="page tournament-page">
       <TopoBackground />
       <div className="tournament-page__content">
-        <p className="eyebrow">Compete</p>
         <h1 className="section-title">John Carroll High School Inshore Slam</h1>
 
         <div className="tournament-tabs-row">
