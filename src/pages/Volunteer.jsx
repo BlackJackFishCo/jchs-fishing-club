@@ -4,6 +4,7 @@ import seaSafeLogo from '../assets/sponsor-project-seasafe.png'
 import elcLogo from '../assets/sponsor-elc.png'
 import wabassoLogo from '../assets/sponsor-wabasso-school-of-fish.png'
 import waterwayCleanupFlyer from '../assets/waterway-cleanup-flyer.jpg'
+import wabassoVolunteerForm from '../assets/wabasso-volunteer-form.jpg'
 import { useRoster } from '../data/roster.js'
 import { useAdminAuth } from '../data/auth.js'
 import { useTrashLog, addTrashEntry, removeTrashEntry } from '../data/trashLog.js'
@@ -23,6 +24,9 @@ const projects = [
       'Club members partner with the Environmental Learning Center (ELC) and the Wabasso School of Fish to mentor local kids on casting, knot-tying, and basic tackle at a hands-on fishing clinic.',
     hours: '3 Service Hours',
     agenda: [{ text: 'https://www.discoverelc.org/family-fishing-day/', href: 'https://www.discoverelc.org/family-fishing-day/' }],
+    flyer: '/wabasso-volunteer-form.pdf',
+    flyerImage: wabassoVolunteerForm,
+    flyerAlt: 'Wabasso School of Fish Kids Fishing Day volunteer sign-up and liability waiver form',
     sponsors: [
       {
         logo: elcLogo,
@@ -41,12 +45,14 @@ const projects = [
   {
     title: 'Virtual Waterway Clean-up',
     status: 'December 2026',
+    location: 'Florida',
     description:
       'For the Month of December we will have a Virtual Waterway Clean-up. You can go by yourself or with friends to clean up our waterways. Please look at the tips in the PDF File. When finished log your trash just like a caught fish here.',
     hours: '1 Service Hour',
     trashLog: true,
     flyer: '/jchsfc-waterway-cleanup-flyer.pdf',
     flyerImage: waterwayCleanupFlyer,
+    flyerAlt: 'Virtual Meetup Waterway Cleanup instructions flyer',
   },
   {
     title: 'Project SeaSafe 2027',
@@ -111,7 +117,7 @@ function TrashPhotoThumb({ entries }) {
   )
 }
 
-function FlyerThumb({ image, href }) {
+function FlyerThumb({ image, href, alt }) {
   return (
     <a
       className="volunteer-card__thumb volunteer-card__flyer-thumb"
@@ -120,7 +126,7 @@ function FlyerThumb({ image, href }) {
       rel="noopener noreferrer"
       onClick={(e) => e.stopPropagation()}
     >
-      <img src={image} alt="Virtual Meetup Waterway Cleanup instructions flyer" />
+      <img src={image} alt={alt} />
       <span className="volunteer-card__thumb-badge">PDF</span>
     </a>
   )
@@ -302,22 +308,26 @@ function Volunteer() {
               {p.location && <span className="volunteer-card__location">{p.location}</span>}
             </div>
             <h3>{p.title}</h3>
-            {p.trashLog && !trashLoading && (
+            {(p.trashLog || p.flyerImage) && (
               <div className="volunteer-card__media">
-                <div className="volunteer-card__media-trash">
-                  <TrashPhotoThumb entries={trashEntries} />
-                  <button
-                    type="button"
-                    className="btn btn-solid volunteer-card__log-btn"
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      setTrashModalOpen(true)
-                    }}
-                  >
-                    Log Trash Here
-                  </button>
-                </div>
-                {p.flyerImage && <FlyerThumb image={p.flyerImage} href={p.flyer} />}
+                {p.trashLog && !trashLoading && (
+                  <div className="volunteer-card__media-trash">
+                    <TrashPhotoThumb entries={trashEntries} />
+                    <button
+                      type="button"
+                      className="btn btn-solid volunteer-card__log-btn"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setTrashModalOpen(true)
+                      }}
+                    >
+                      Log Trash Here
+                    </button>
+                  </div>
+                )}
+                {p.flyerImage && (
+                  <FlyerThumb image={p.flyerImage} href={p.flyer} alt={p.flyerAlt} />
+                )}
               </div>
             )}
             {p.description && <p>{p.description}</p>}
