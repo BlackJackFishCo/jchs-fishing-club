@@ -1,3 +1,8 @@
+.tournament-page__content {
+  position: relative;
+  z-index: 1;
+}
+
 .tournament-tabs-row {
   display: flex;
   flex-wrap: wrap;

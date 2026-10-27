@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import TopoBackground from '../components/TopoBackground.jsx'
 import { addRegistration, MAX_ANGLERS, SHIRT_SIZES } from '../data/registration.js'
 import { useAdminAuth } from '../data/auth.js'
 import {
@@ -1177,61 +1178,64 @@ function Tournament() {
 
   return (
     <div className="page tournament-page">
-      <p className="eyebrow">Compete</p>
-      <h1 className="section-title">John Carroll High School Inshore Slam</h1>
+      <TopoBackground />
+      <div className="tournament-page__content">
+        <p className="eyebrow">Compete</p>
+        <h1 className="section-title">John Carroll High School Inshore Slam</h1>
 
-      <div className="tournament-tabs-row">
-        <div className="tournament-tabs">
-          {SECTIONS.map((section) => (
-            <button
-              key={section}
-              type="button"
-              className={`tournament-tabs__btn ${active === section ? 'is-active' : ''}`}
-              onClick={() => setActive(section)}
-            >
-              {section}
-            </button>
-          ))}
+        <div className="tournament-tabs-row">
+          <div className="tournament-tabs">
+            {SECTIONS.map((section) => (
+              <button
+                key={section}
+                type="button"
+                className={`tournament-tabs__btn ${active === section ? 'is-active' : ''}`}
+                onClick={() => setActive(section)}
+              >
+                {section}
+              </button>
+            ))}
+          </div>
+
+          <button
+            type="button"
+            className="btn btn-solid tournament-live-leaderboard"
+            onClick={() => setActive('Inshore Slam Live Leaderboard')}
+          >
+            Inshore Slam Live Leaderboard
+          </button>
         </div>
 
-        <button
-          type="button"
-          className="btn btn-solid tournament-live-leaderboard"
-          onClick={() => setActive('Inshore Slam Live Leaderboard')}
-        >
-          Inshore Slam Live Leaderboard
-        </button>
+        {active === 'Home' && (
+          <>
+            <HomeSection />
+            <EventInfoRow />
+            <HeroLogos />
+          </>
+        )}
+
+        {active === 'Registration' && <RegistrationSection />}
+
+        {active === 'Rules' && <RulesSection />}
+
+        {active === 'Awards' && <AwardsSection />}
+
+        {active === 'Inshore Slam Live Leaderboard' && <LiveLeaderboardSection />}
+
+        {active === 'Sponsorship' && <SponsorshipSection />}
+
+        {active !== 'Home' &&
+          active !== 'Registration' &&
+          active !== 'Rules' &&
+          active !== 'Awards' &&
+          active !== 'Inshore Slam Live Leaderboard' &&
+          active !== 'Sponsorship' && (
+          <section className="card tournament-tbd">
+            <p className="tournament-tbd__label">{active}</p>
+            <p className="tournament-tbd__text">Coming Soon</p>
+          </section>
+        )}
       </div>
-
-      {active === 'Home' && (
-        <>
-          <HomeSection />
-          <EventInfoRow />
-          <HeroLogos />
-        </>
-      )}
-
-      {active === 'Registration' && <RegistrationSection />}
-
-      {active === 'Rules' && <RulesSection />}
-
-      {active === 'Awards' && <AwardsSection />}
-
-      {active === 'Inshore Slam Live Leaderboard' && <LiveLeaderboardSection />}
-
-      {active === 'Sponsorship' && <SponsorshipSection />}
-
-      {active !== 'Home' &&
-        active !== 'Registration' &&
-        active !== 'Rules' &&
-        active !== 'Awards' &&
-        active !== 'Inshore Slam Live Leaderboard' &&
-        active !== 'Sponsorship' && (
-        <section className="card tournament-tbd">
-          <p className="tournament-tbd__label">{active}</p>
-          <p className="tournament-tbd__text">Coming Soon</p>
-        </section>
-      )}
     </div>
   )
 }
