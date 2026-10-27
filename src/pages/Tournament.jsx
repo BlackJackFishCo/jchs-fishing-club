@@ -1072,10 +1072,10 @@ function LiveLeaderboardSection() {
           <h2 className="tournament-awards__heading">Inshore Slam Live Leaderboard</h2>
           <p className="tournament-awards__rule">
             Any angler on a team can log a Snook, Redfish, and Trout. Only the team&apos;s biggest
-            entry per species shows here and counts toward the team total — logging a smaller
-            fish never wipes it out, it just moves to that angler&apos;s own Junior/Club
-            Member/Lady Angler board instead. You can upgrade your own catch at any time; time
-            stamp of upgrade will be used for a tie if needed.
+            entry per species shows here and counts toward the team total - logging a smaller
+            fish never wipes it out, it just moves that fish to a individual angler category -
+            Junior, Club Member, Lady Angler board instead. You can upgrade your own catch at any
+            time; time stamp of upgrade will be used for a tie if needed.
           </p>
         </div>
         <button
