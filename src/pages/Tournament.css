@@ -322,8 +322,16 @@
   white-space: nowrap;
 }
 
+.tournament-liveboard__log-btn-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
 .tournament-liveboard__log-btn {
   text-transform: uppercase;
+  font-size: 1.15rem;
+  padding: 1rem 2.5rem;
 }
 
 .liveboard-view-tabs {
@@ -378,6 +386,7 @@
   color: var(--color-muted);
   font-weight: 400;
   font-size: 0.85em;
+  display: block;
 }
 
 .individual-board__cell {
@@ -441,6 +450,15 @@
 .liveboard-table__team {
   color: var(--color-white);
   font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  line-height: 1.3;
+}
+
+.liveboard-table__angler-name {
+  white-space: nowrap;
 }
 
 .liveboard-table__total {
