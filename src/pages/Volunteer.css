@@ -180,7 +180,7 @@
 
 .volunteer-card__media-sponsors .volunteer-card__sponsor img {
   display: block;
-  width: 150px;
+  width: 120px;
   height: auto;
 }
 
@@ -193,7 +193,7 @@
   }
 
   .volunteer-card__media-sponsors .volunteer-card__sponsor img {
-    width: 115px;
+    width: 95px;
   }
 }
 
