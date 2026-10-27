@@ -370,11 +370,11 @@ const RULES_SECTIONS = [
     items: [
       'Lines in, and the start of fishing shall begin at 6am on Saturday, October 9, 2027.',
       'Lines out, there is no lines out time, however all fish must be logged into the JCHS Inshore Slam Tournament Page no later than 4 p.m. on October 9, 2027 to count for tournament. Website will lock at 4pm for submissions.',
-      'In the event of tournament site outage it is your teams responsibility to still log your catch on the tournament ruler by picture on your phone followed by a screen shot of the time. All photos must be text to tournament committee by 4pm October 9, 2027.',
+      'In the event of tournament site outage it is your teams responsibility to still log your catch on the tournament ruler by picture on your phone. All photos must be text to tournament committee by 4pm October 9, 2027.',
       'North Boundary ¼ Mile North of Sebastian Inlet 27°51.850’N',
       'South Boundary ¼ Mile South of St. Lucie Inlet 27°09.720’N',
       'No East or West Boundary',
-      'All anglers must have a valid Florida Fishing License.',
+      'All anglers must have a valid Florida Fishing License if required by law.',
       'No drones allowed during fishing tournament hours.',
       'Same angler must hook, fight and bring fish up to point of landing from the boat. No passing the rod. No wade fishing.',
       'Maximum 4 rods fishing at any time.',
