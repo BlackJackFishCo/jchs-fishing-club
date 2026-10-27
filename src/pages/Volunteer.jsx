@@ -139,30 +139,32 @@ function TrashLogModal({ entries, loading, onClose }) {
 
   const [anglerId, setAnglerId] = useState('')
   const [date, setDate] = useState('')
-  const [file, setFile] = useState(null)
-  const [previewUrl, setPreviewUrl] = useState('')
+  const [files, setFiles] = useState([])
+  const [previewUrls, setPreviewUrls] = useState([])
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
 
   const handlePhoto = (e) => {
-    const f = e.target.files?.[0]
-    if (!f) return
-    setFile(f)
-    setPreviewUrl(URL.createObjectURL(f))
+    const picked = Array.from(e.target.files || [])
+    if (picked.length === 0) return
+    setFiles(picked)
+    setPreviewUrls(picked.map((f) => URL.createObjectURL(f)))
   }
 
   const addEntry = async (e) => {
     e.preventDefault()
-    if (!file || !anglerId) return
+    if (files.length === 0 || !anglerId) return
     setBusy(true)
     setError('')
     try {
       const anglerName = activeRoster.find((r) => r.id === anglerId)?.name || anglerId
-      await addTrashEntry({ anglerId, angler: anglerName, date, file })
+      await Promise.all(
+        files.map((file) => addTrashEntry({ anglerId, angler: anglerName, date, file })),
+      )
       setAnglerId('')
       setDate('')
-      setFile(null)
-      setPreviewUrl('')
+      setFiles([])
+      setPreviewUrls([])
     } catch (err) {
       setError(err.message || 'Could not log trash. Try again.')
     } finally {
@@ -242,12 +244,16 @@ function TrashLogModal({ entries, loading, onClose }) {
           </label>
 
           <label className="field">
-            <span>Photo</span>
-            <input type="file" accept="image/*" onChange={handlePhoto} required />
+            <span>Photos</span>
+            <input type="file" accept="image/*" multiple onChange={handlePhoto} required />
           </label>
 
-          {previewUrl && (
-            <img className="modal__preview" src={previewUrl} alt="New trash preview" />
+          {previewUrls.length > 0 && (
+            <div className="modal__preview-grid">
+              {previewUrls.map((url) => (
+                <img key={url} className="modal__preview" src={url} alt="New trash preview" />
+              ))}
+            </div>
           )}
 
           {error && <p className="modal__error">{error}</p>}
@@ -256,8 +262,16 @@ function TrashLogModal({ entries, loading, onClose }) {
             <button type="button" className="btn" onClick={onClose}>
               Done
             </button>
-            <button type="submit" className="btn btn-solid" disabled={busy || !file || !anglerId}>
-              {busy ? 'Uploading…' : 'Log Trash'}
+            <button
+              type="submit"
+              className="btn btn-solid"
+              disabled={busy || files.length === 0 || !anglerId}
+            >
+              {busy
+                ? 'Uploading…'
+                : files.length > 1
+                  ? `Log ${files.length} Photos`
+                  : 'Log Trash'}
             </button>
           </div>
         </form>
