@@ -38,6 +38,14 @@ const projects = [
     ],
   },
   {
+    title: 'Virtual Waterway Clean-up',
+    status: 'November 21 – 22, 2026',
+    hours: '1 Service Hour',
+    trashLog: true,
+    flyer: '/jchsfc-waterway-cleanup-flyer.pdf',
+    flyerImage: waterwayCleanupFlyer,
+  },
+  {
     title: 'Project SeaSafe 2027',
     status: 'April 22-25, 2027',
     location: 'Grant, FL',
@@ -51,14 +59,6 @@ const projects = [
         href: 'https://www.projectseasafe.com/',
       },
     ],
-  },
-  {
-    title: 'Virtual Waterway Clean-up',
-    status: 'November 21 – 22, 2026',
-    hours: '1 Service Hour',
-    trashLog: true,
-    flyer: '/jchsfc-waterway-cleanup-flyer.pdf',
-    flyerImage: waterwayCleanupFlyer,
   },
   {
     title: 'Mangrove Restoration Days',
