@@ -1,6 +1,7 @@
 .tournament-page__content {
   position: relative;
   z-index: 1;
+  background: var(--color-black);
 }
 
 .tournament-tabs-row {
