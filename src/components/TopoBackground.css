@@ -6,7 +6,7 @@
   overflow: hidden;
   background:
     radial-gradient(circle at 85% 12%, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 55%),
-    linear-gradient(180deg, #14171f 0%, #0a0c10 50%, #000000 100%);
+    linear-gradient(180deg, #2c52c4 0%, #1b3a8a 50%, #14265c 100%);
 }
 
 .topo-bg__canvas {
