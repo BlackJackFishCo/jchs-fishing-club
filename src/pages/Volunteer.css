@@ -174,20 +174,26 @@
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  flex: 0 0 auto;
+  flex: 0 0 180px;
+  width: 180px;
 }
 
 .volunteer-card__media-sponsors .volunteer-card__sponsor img {
   display: block;
-  width: 56px;
+  width: 150px;
   height: auto;
 }
 
 @media (max-width: 480px) {
   .volunteer-card__media .volunteer-card__thumb,
-  .volunteer-card__media-trash {
+  .volunteer-card__media-trash,
+  .volunteer-card__media-sponsors {
     flex: 0 0 140px;
     width: 140px;
+  }
+
+  .volunteer-card__media-sponsors .volunteer-card__sponsor img {
+    width: 115px;
   }
 }
 
