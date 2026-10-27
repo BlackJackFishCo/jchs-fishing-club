@@ -830,6 +830,12 @@
   color: var(--color-white);
 }
 
+.tournament-info-card__location {
+  font-family: var(--font-eyebrow);
+  font-size: 0.75rem;
+  color: var(--color-muted);
+}
+
 .hero-logos {
   width: 100%;
   display: flex;
