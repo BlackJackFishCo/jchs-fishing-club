@@ -168,6 +168,21 @@
   font-size: 0.8rem;
 }
 
+.volunteer-card__media-sponsors {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  flex: 0 0 auto;
+}
+
+.volunteer-card__media-sponsors .volunteer-card__sponsor img {
+  display: block;
+  width: 56px;
+  height: auto;
+}
+
 @media (max-width: 480px) {
   .volunteer-card__media .volunteer-card__thumb,
   .volunteer-card__media-trash {

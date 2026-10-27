@@ -325,6 +325,23 @@ function Volunteer() {
                     </button>
                   </div>
                 )}
+                {p.flyerImage && p.sponsors && (
+                  <div className="volunteer-card__media-sponsors">
+                    {p.sponsors.map((sponsor) => (
+                      <a
+                        key={sponsor.alt}
+                        className="volunteer-card__sponsor"
+                        href={sponsor.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={sponsor.alt}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <img src={sponsor.logo} alt={sponsor.alt} />
+                      </a>
+                    ))}
+                  </div>
+                )}
                 {p.flyerImage && (
                   <FlyerThumb image={p.flyerImage} href={p.flyer} alt={p.flyerAlt} />
                 )}
@@ -347,7 +364,7 @@ function Volunteer() {
               </ul>
             )}
             <span className="volunteer-card__hours">{p.hours}</span>
-            {p.sponsors && (
+            {p.sponsors && !p.flyerImage && (
               <div className="volunteer-card__sponsors">
                 {p.sponsors.map((sponsor) =>
                   sponsor.href ? (
