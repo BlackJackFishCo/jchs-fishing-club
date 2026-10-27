@@ -33,6 +33,7 @@ const projects = [
       {
         logo: wabassoLogo,
         alt: 'Wabasso School of Fish logo',
+        href: 'https://www.wabassoschooloffish.org/',
         imgClassName: 'volunteer-card__sponsor-img--small',
       },
     ],
