@@ -169,6 +169,16 @@
   margin-bottom: 1.5rem;
 }
 
+.award-grid--three {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 760px) {
+  .award-grid--three {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 340px));
+  }
+}
+
 .award-card {
   display: flex;
   flex-direction: column;
