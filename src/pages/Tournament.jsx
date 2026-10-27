@@ -560,14 +560,14 @@ function AwardsSection() {
       </div>
 
       <h3 className="tournament-awards__group-title">Individual Categories</h3>
-      <div className="award-grid">
+      <div className="award-grid award-grid--three">
         {INDIVIDUAL_AWARDS.map((award) => (
           <AwardCard key={award.name} award={award} />
         ))}
       </div>
 
       <h3 className="tournament-awards__group-title">Species Categories</h3>
-      <div className="award-grid">
+      <div className="award-grid award-grid--three">
         {SPECIES_AWARDS.map((award) => (
           <AwardCard key={award.name} award={award} />
         ))}
