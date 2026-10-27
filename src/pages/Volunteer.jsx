@@ -39,7 +39,9 @@ const projects = [
   },
   {
     title: 'Virtual Waterway Clean-up',
-    status: 'November 21 – 22, 2026',
+    status: 'December 2026',
+    description:
+      'For the Month of December we will have a Virtual Waterway Clean-up. You can go by yourself or with friends to clean up our waterways. Please look at the tips in the PDF File. When finished log your trash just like a caught fish here.',
     hours: '1 Service Hour',
     trashLog: true,
     flyer: '/jchsfc-waterway-cleanup-flyer.pdf',
