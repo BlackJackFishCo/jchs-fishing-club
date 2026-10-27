@@ -747,13 +747,17 @@
 
   .liveboard-table__catches {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.5rem;
+  }
+
+  .catch-cell {
+    min-width: 0;
   }
 
   .catch-cell__photo-btn,
   .catch-cell__photo {
-    width: 64px;
+    width: 100%;
     max-width: 64px;
   }
 
