@@ -1004,7 +1004,8 @@ function IndividualBoardTable({
             <div className="liveboard-table__row-head">
               <span className="liveboard-table__rank">{i + 1}</span>
               <span className="liveboard-table__team">
-                {r.angler} <span className="individual-board__team-name">({r.teamName})</span>
+                <span className="liveboard-table__angler-name">{r.angler}</span>
+                <span className="individual-board__team-name">{r.teamName}</span>
               </span>
             </div>
             <div className="liveboard-table__catches">
@@ -1078,6 +1079,9 @@ function LiveLeaderboardSection() {
             time; time stamp of upgrade will be used for a tie if needed.
           </p>
         </div>
+      </div>
+
+      <div className="tournament-liveboard__log-btn-row">
         <button
           type="button"
           className="btn btn-solid tournament-liveboard__log-btn"
