@@ -156,13 +156,6 @@ function Home() {
           >
             SLAM
           </Link>
-          <Link
-            to="/clinic"
-            className="admin-quiet-link"
-            aria-label="Fishing Clinic information and waiver"
-          >
-            Clinic
-          </Link>
           <Link to="/admin" className="admin-quiet-link" aria-label="Admin access">
             Admin
           </Link>
