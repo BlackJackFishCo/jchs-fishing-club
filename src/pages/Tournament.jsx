@@ -586,10 +586,20 @@ function AwardsSection() {
 const EVENT_INFO = [
   { label: 'Registration Opens', value: 'August 1, 2027' },
   { label: 'Registration Ends', value: 'September 26, 2027' },
-  { label: 'Captains Meeting', value: 'October 8, 2027 • 6:00 PM', location: 'Sailfish Brewery' },
+  {
+    label: 'Captains Meeting',
+    value: 'October 8, 2027 • 6:00 PM',
+    location: 'Sailfish Brewery',
+    locationUrl: 'https://sailfishbrewingco.com/',
+  },
   { label: 'Lines In', value: 'October 9, 2027 • 6:00 AM' },
   { label: 'All Photos Submitted', value: 'October 9, 2027 • 4:00 PM' },
-  { label: 'Awards', value: 'October 10, 2027 • 12:00 PM', location: 'Sailfish Brewery' },
+  {
+    label: 'Awards',
+    value: 'October 10, 2027 • 12:00 PM',
+    location: 'Sailfish Brewery',
+    locationUrl: 'https://sailfishbrewingco.com/',
+  },
 ]
 
 function EventInfoRow() {
@@ -599,8 +609,19 @@ function EventInfoRow() {
         <div key={item.label} className="tournament-info-card">
           <span className="tournament-info-card__label">{item.label}</span>
           <span className="tournament-info-card__value">{item.value}</span>
-          {item.location && (
-            <span className="tournament-info-card__location">{item.location}</span>
+          {item.location && item.locationUrl ? (
+            <a
+              href={item.locationUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="tournament-info-card__location tournament-info-card__location--link"
+            >
+              {item.location}
+            </a>
+          ) : (
+            item.location && (
+              <span className="tournament-info-card__location">{item.location}</span>
+            )
           )}
         </div>
       ))}

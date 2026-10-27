@@ -836,6 +836,16 @@
   color: var(--color-muted);
 }
 
+.tournament-info-card__location--link {
+  color: var(--color-gold-soft);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.tournament-info-card__location--link:hover {
+  color: var(--color-gold);
+}
+
 .hero-logos {
   width: 100%;
   display: flex;
