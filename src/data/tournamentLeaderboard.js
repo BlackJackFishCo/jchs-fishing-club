@@ -4,6 +4,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDoc,
   limit,
   onSnapshot,
   orderBy,
@@ -256,13 +257,31 @@ export function useCatchActivityLog(entryLimit = 200) {
 }
 
 export async function submitCatch({ teamId, species, angler, inches, file }) {
+  const catchRef = doc(db, 'tournamentCatches', `${teamId}_${species}_${anglerIdPart(angler)}`)
+
+  // A smaller fish must never replace a bigger one already on file for this
+  // angler+species — it would silently shrink the team's score. Catch it
+  // here before uploading a photo that would otherwise go to waste.
+  const existing = await getDoc(catchRef)
+  if (existing.exists()) {
+    const data = existing.data()
+    if (data.verified) {
+      throw new Error('That catch has already been verified by an admin and can no longer be changed.')
+    }
+    if (inches < data.inches) {
+      throw new Error(
+        `You already have a ${data.inches}" logged for this species — you can only replace it with a longer fish.`,
+      )
+    }
+  }
+
   const blob = await resizeToBlob(file)
   const path = `tournament-catches/${teamId}/${species}-${Date.now()}.jpg`
   const storageRef = ref(storage, path)
   await uploadBytes(storageRef, blob, { contentType: 'image/jpeg' })
   const photo = await getDownloadURL(storageRef)
 
-  await setDoc(doc(db, 'tournamentCatches', `${teamId}_${species}_${anglerIdPart(angler)}`), {
+  await setDoc(catchRef, {
     teamId,
     species,
     angler,
