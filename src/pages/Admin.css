@@ -530,4 +530,53 @@
     max-width: none;
     padding: 0;
   }
+
+  .registration-report,
+  .registration-report * {
+    color: #000 !important;
+    background: #fff !important;
+    box-shadow: none !important;
+  }
+
+  .registration-report {
+    border: none !important;
+    padding: 0 !important;
+  }
+
+  .registration-report h2 {
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .registration-report .admin-report__list {
+    gap: 0.35rem;
+  }
+
+  .registration-report .admin-report__angler {
+    border: 1px solid #000 !important;
+    border-radius: 4px;
+    padding: 0.35rem 0.5rem;
+    page-break-inside: avoid;
+  }
+
+  .registration-report .admin-report__angler-head {
+    margin-bottom: 0.2rem;
+  }
+
+  .registration-report .admin-report__angler-head strong,
+  .registration-report .admin-report__angler-head span {
+    font-size: 0.78rem;
+  }
+
+  .registration-report .admin-roster__remove {
+    display: none !important;
+  }
+
+  .registration-report table,
+  .registration-report th,
+  .registration-report td {
+    font-size: 0.68rem;
+    padding: 0.1rem 0.3rem;
+    border-color: #000 !important;
+  }
 }
