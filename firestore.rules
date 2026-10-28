@@ -63,7 +63,23 @@ service cloud.firestore {
 
     match /tournamentTeams/{id} {
       allow read: if true;
-      allow write: if isAdmin();
+
+      // Registration (public, unauthenticated) is allowed to create a team,
+      // but only as an unconfirmed placeholder tied to a real registration
+      // it just created — it can never confirm itself or touch an existing
+      // team. Confirming, editing, and deleting stay admin-only.
+      allow create: if
+        isAdmin() ||
+        (
+          request.resource.data.name is string &&
+          request.resource.data.anglers is list &&
+          request.resource.data.anglers.size() <= 4 &&
+          request.resource.data.confirmed == false &&
+          request.resource.data.registrationId is string &&
+          exists(/databases/$(database)/documents/tournamentRegistrations/$(request.resource.data.registrationId))
+        );
+
+      allow update, delete: if isAdmin();
     }
 
     match /tournamentCatches/{id} {

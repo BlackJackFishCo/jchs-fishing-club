@@ -1242,7 +1242,11 @@ function LiveLeaderboardSection() {
   const loading = teamsLoading || catchesLoading
   const admin = user ? { uid: user.uid, email: user.email } : null
 
-  const ranked = teams
+  // Teams auto-created from a registration start out unconfirmed and stay
+  // off the public leaderboard until an admin reviews and confirms them.
+  const confirmedTeams = teams.filter((t) => t.confirmed !== false)
+
+  const ranked = confirmedTeams
     .map((team) => ({
       ...team,
       catches: catchesByTeam[team.id] || {},
@@ -1305,7 +1309,7 @@ function LiveLeaderboardSection() {
       <div className="liveboard-panel">
         {loading ? (
           <p className="species-page__loading">Loading leaderboard…</p>
-        ) : teams.length === 0 ? (
+        ) : confirmedTeams.length === 0 ? (
           <p className="admin-roster__empty">No teams yet. Check back soon.</p>
         ) : boardView === 'teams' ? (
           <div className="liveboard-scroll">
@@ -1349,7 +1353,7 @@ function LiveLeaderboardSection() {
           </div>
         ) : (
           <IndividualBoardTable
-            teams={teams}
+            teams={confirmedTeams}
             catchesByTeam={catchesByTeam}
             flagKey={boardView}
             emptyLabel={`No ${BOARD_VIEWS.find((v) => v.key === boardView).label.toLowerCase()} on a team roster yet.`}
@@ -1364,7 +1368,7 @@ function LiveLeaderboardSection() {
 
       {showModal && (
         <LogCatchModal
-          teams={teams}
+          teams={confirmedTeams}
           catchesByTeam={catchesByTeam}
           onClose={() => setShowModal(false)}
         />

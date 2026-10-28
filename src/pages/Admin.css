@@ -410,6 +410,31 @@
   padding: 1rem;
 }
 
+.team-roster__card--pending {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 1px rgba(245, 197, 24, 0.3);
+}
+
+.team-roster__pending-badge {
+  font-family: var(--font-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: 0.65rem;
+  color: var(--color-black);
+  background: var(--color-gold);
+  border-radius: 999px;
+  padding: 0.25rem 0.6rem;
+  align-self: flex-start;
+}
+
+.team-roster__pending-count {
+  font-family: var(--font-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: 0.8rem;
+  color: var(--color-gold);
+}
+
 .team-roster__team-name {
   font-weight: 700;
 }
@@ -460,6 +485,7 @@
 .team-roster__actions {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.5rem;
   white-space: nowrap;
 }

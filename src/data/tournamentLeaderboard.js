@@ -122,6 +122,40 @@ export async function addTeam(name) {
   return id
 }
 
+// Auto-creates a team from a newly submitted tournament registration. The
+// team starts unconfirmed and stays off the public leaderboard until an
+// admin reviews it in the Team Roster Manager and confirms it — this just
+// saves the admin from re-typing what the registrant already submitted.
+export async function addTeamFromRegistration({ name, anglers, registrationId }) {
+  const trimmedName = (name || '').trim()
+  if (!trimmedName) return null
+
+  const cleanedAnglers = (anglers || [])
+    .map((a) => ({
+      name: `${a.firstName || ''} ${a.lastName || ''}`.trim(),
+      isJunior: !!a.isJunior,
+      isClubMember: !!a.isClubMember,
+      isFemale: !!a.isFemale,
+    }))
+    .filter((a) => a.name)
+    .slice(0, MAX_TEAM_ANGLERS)
+
+  const id = `team-${Date.now()}`
+  await setDoc(doc(db, 'tournamentTeams', id), {
+    name: trimmedName,
+    anglers: cleanedAnglers,
+    order: Date.now(),
+    confirmed: false,
+    registrationId: registrationId || null,
+    createdAt: serverTimestamp(),
+  })
+  return id
+}
+
+export async function confirmTeam(teamId) {
+  await updateDoc(doc(db, 'tournamentTeams', teamId), { confirmed: true })
+}
+
 export async function updateTeam(teamId, { name, anglers }) {
   const cleanedAnglers = anglers
     .map((a) => ({

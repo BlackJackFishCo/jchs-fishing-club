@@ -10,6 +10,7 @@ import {
   addTeam,
   updateTeam,
   removeTeam,
+  confirmTeam,
   MAX_TEAM_ANGLERS,
   ANGLER_FLAGS,
   useTournamentCatches,
@@ -243,6 +244,7 @@ function TeamRow({ team }) {
   )
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
+  const pending = team.confirmed === false
 
   const dirty =
     name !== team.name ||
@@ -280,8 +282,27 @@ function TeamRow({ team }) {
     }
   }
 
+  const confirm = async () => {
+    setBusy(true)
+    setError('')
+    try {
+      if (dirty) await updateTeam(team.id, { name, anglers })
+      await confirmTeam(team.id)
+    } catch (err) {
+      setError(err.message || 'Could not confirm team.')
+    } finally {
+      setBusy(false)
+    }
+  }
+
   return (
-    <article className="team-roster__card">
+    <article className={`team-roster__card ${pending ? 'team-roster__card--pending' : ''}`}>
+      {pending && (
+        <span className="team-roster__pending-badge">
+          Pending — from registration, not on the public leaderboard yet
+        </span>
+      )}
+
       <input
         className="team-roster__input team-roster__team-name"
         value={name}
@@ -316,6 +337,11 @@ function TeamRow({ team }) {
       {error && <p className="modal__error">{error}</p>}
 
       <div className="team-roster__actions">
+        {pending && (
+          <button type="button" className="btn btn-solid" disabled={busy} onClick={confirm}>
+            {busy ? 'Confirming…' : 'Confirm Team'}
+          </button>
+        )}
         <button type="button" className="btn" disabled={!dirty || busy} onClick={save}>
           {busy ? 'Saving…' : 'Save'}
         </button>
@@ -360,13 +386,22 @@ function TeamRosterManager() {
     }
   }
 
+  const pendingCount = teams.filter((t) => t.confirmed === false).length
+
   return (
     <section className="admin-report team-roster card">
-      <h2>Tournament Teams ({teams.length})</h2>
+      <h2>
+        Tournament Teams ({teams.length})
+        {pendingCount > 0 && (
+          <span className="team-roster__pending-count"> — {pendingCount} pending confirmation</span>
+        )}
+      </h2>
       <p className="admin-roster__note">
         Teams and anglers shown here populate the Team and Angler pickers on the Inshore Slam
         Live Leaderboard. Each team can have up to {MAX_TEAM_ANGLERS} anglers. Check Jr / Club /
-        Lady for anglers who qualify for those individual award leaderboards.
+        Lady for anglers who qualify for those individual award leaderboards. Teams submitted
+        through Registration appear automatically but stay off the public leaderboard until
+        confirmed here.
       </p>
 
       {!loading && teams.length === 0 && (
