@@ -92,6 +92,17 @@ const SPONSOR_TIERS = [
       'Ability to Distribute Marketing Materials or Samples in Tournament Team Buckets',
     ],
   },
+  {
+    name: 'Shirt & Media',
+    price: '$500',
+    perks: [
+      'Company Logo on Event Banners and Shirt',
+      'Company Logo on Tournament Website Home Page and JCHS Fishing Club Website',
+      'Company Logo on Tournament Measuring Device',
+      'In Person Activation Space at the Inshore Slam Captains Meeting and Awards',
+      'Ability to Distribute Marketing Materials or Samples in Tournament Team Buckets',
+    ],
+  },
 ]
 
 const EMPTY_ANGLER = {
