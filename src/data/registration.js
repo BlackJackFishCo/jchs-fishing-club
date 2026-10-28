@@ -25,10 +25,12 @@ export function useRegistrations() {
   return { registrations, loading }
 }
 
-export async function addRegistration({ teamName, anglers }) {
+export async function addRegistration({ teamName, anglers, waiverAccepted }) {
   await addDoc(collection(db, 'tournamentRegistrations'), {
     teamName,
     anglers,
+    waiverAccepted: Boolean(waiverAccepted),
+    waiverAcceptedAt: waiverAccepted ? serverTimestamp() : null,
     createdAt: serverTimestamp(),
   })
 }
