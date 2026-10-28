@@ -721,22 +721,6 @@ function LogCatchModal({ teams, catchesByTeam, onClose }) {
         <h3>Log a Catch</h3>
 
         <form className="modal__add-form" onSubmit={submit}>
-          <div className="field">
-            <span>Species</span>
-            <div className="catch-species-toggle">
-              {CATCH_SPECIES.map((s) => (
-                <button
-                  key={s}
-                  type="button"
-                  className={`catch-species-toggle__btn ${species === s ? 'is-active' : ''}`}
-                  onClick={() => setSpecies(s)}
-                >
-                  {s}
-                </button>
-              ))}
-            </div>
-          </div>
-
           <label className="field">
             <span>Team</span>
             <select
@@ -788,6 +772,22 @@ function LogCatchModal({ teams, catchesByTeam, onClose }) {
                 : `Currently on file for ${existingForAngler.angler}: ${existingForAngler.inches}". Submitting will replace their entry — a teammate's bigger fish for this species is never affected.`}
             </p>
           )}
+
+          <div className="field">
+            <span>Species</span>
+            <div className="catch-species-toggle">
+              {CATCH_SPECIES.map((s) => (
+                <button
+                  key={s}
+                  type="button"
+                  className={`catch-species-toggle__btn ${species === s ? 'is-active' : ''}`}
+                  onClick={() => setSpecies(s)}
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          </div>
 
           <label className="field">
             <span>Length (inches)</span>
