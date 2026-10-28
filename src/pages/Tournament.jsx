@@ -231,6 +231,19 @@ function WaiverModal({ onClose }) {
   )
 }
 
+// Formats digits as the user types into (XXX) XXX-XXXX, capped at 10 digits.
+function formatPhoneNumber(value) {
+  const digits = value.replace(/\D/g, '').slice(0, 10)
+  const areaCode = digits.slice(0, 3)
+  const prefix = digits.slice(3, 6)
+  const line = digits.slice(6, 10)
+
+  if (digits.length > 6) return `(${areaCode}) ${prefix}-${line}`
+  if (digits.length > 3) return `(${areaCode}) ${prefix}`
+  if (digits.length > 0) return `(${areaCode}`
+  return ''
+}
+
 function RegistrationSection() {
   const [teamName, setTeamName] = useState('')
   const [anglers, setAnglers] = useState(
@@ -342,7 +355,9 @@ function RegistrationSection() {
               <input
                 type="tel"
                 value={angler.phone}
-                onChange={(e) => updateAngler(index, 'phone', e.target.value)}
+                onChange={(e) => updateAngler(index, 'phone', formatPhoneNumber(e.target.value))}
+                placeholder="(123) 456-7890"
+                maxLength={14}
                 required={index === 0}
               />
             </label>
