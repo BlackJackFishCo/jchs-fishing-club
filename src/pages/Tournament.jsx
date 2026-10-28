@@ -388,6 +388,8 @@ const RULES_SECTIONS = [
     title: 'Fish Photos',
     items: [
       'No slot size is required for photo submission.',
+      "Logging a fish under another boat's/team's name is prohibited and will result in your team's automatic disqualification.",
+      'Any photo that is altered or AI-assisted in any way will result in your team being disqualified.',
       'Photographs that do not allow the Tournament Director to view the tape measure or entire fish may be excluded at the sole discretion of the Tournament Director.',
       'If a fish or measurement is partially obstructed, the Tournament Director has the sole authority to decide whether to exclude a fish in its entirety or give credit for the visible part of the fish.',
     ],
