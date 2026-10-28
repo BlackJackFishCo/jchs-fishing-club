@@ -1095,7 +1095,7 @@ function LiveLeaderboardSection() {
     <section className="card tournament-liveboard">
       <div className="tournament-liveboard__head">
         <div>
-          <h2 className="tournament-awards__heading">Inshore Slam Log a Catch & Live Leaderboard</h2>
+          <h2 className="tournament-awards__heading">Inshore Slam Live Leaderboard</h2>
           <p className="tournament-awards__rule">
             Any angler on a team can log a Snook, Redfish, and Trout. Only the team&apos;s biggest
             entry per species shows here and counts toward the team total - logging a smaller
