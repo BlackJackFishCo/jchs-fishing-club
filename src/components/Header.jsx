@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import './Header.css'
 
 const links = [
@@ -12,6 +12,8 @@ const links = [
 
 function Header() {
   const [open, setOpen] = useState(false)
+  const { pathname } = useLocation()
+  const isTournamentPage = pathname === '/tournament'
 
   return (
     <header className="site-header">
@@ -28,17 +30,23 @@ function Header() {
         </button>
 
         <nav className={`site-header__nav ${open ? 'is-open' : ''}`}>
-          {links.map((link) => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              end={link.end}
-              className={({ isActive }) => (isActive ? 'is-active' : '')}
-              onClick={() => setOpen(false)}
-            >
-              {link.label}
+          {isTournamentPage ? (
+            <NavLink to="/" end onClick={() => setOpen(false)}>
+              Return to JCHS Club Page
             </NavLink>
-          ))}
+          ) : (
+            links.map((link) => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                end={link.end}
+                className={({ isActive }) => (isActive ? 'is-active' : '')}
+                onClick={() => setOpen(false)}
+              >
+                {link.label}
+              </NavLink>
+            ))
+          )}
         </nav>
       </div>
     </header>
