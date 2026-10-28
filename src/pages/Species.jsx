@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { TOTAL_SPECIES, CATEGORIES, useSpeciesBoard, addSubmission, removeSubmission } from '../data/species.js'
 import { useRoster } from '../data/roster.js'
 import { useAdminAuth } from '../data/auth.js'
@@ -10,6 +10,29 @@ const PREFERS_REDUCED_MOTION =
   typeof window !== 'undefined' && window.matchMedia
     ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
     : false
+
+const RULES_MOBILE_BREAKPOINT = 700
+
+// Collapses the FWC rules into a tap-to-open box on mobile only; desktop
+// always shows the full list as a static box, same as before.
+function useIsMobileRules() {
+  const [isMobile, setIsMobile] = useState(
+    () =>
+      typeof window !== 'undefined' &&
+      window.matchMedia &&
+      window.matchMedia(`(max-width: ${RULES_MOBILE_BREAKPOINT}px)`).matches,
+  )
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return undefined
+    const mq = window.matchMedia(`(max-width: ${RULES_MOBILE_BREAKPOINT}px)`)
+    const handleChange = (e) => setIsMobile(e.matches)
+    mq.addEventListener('change', handleChange)
+    return () => mq.removeEventListener('change', handleChange)
+  }, [])
+
+  return isMobile
+}
 
 const CHALLENGE_RULES = [
   'All submitted fish must have been caught by a student angler enrolled in the fishing club.',
@@ -241,6 +264,7 @@ function Species() {
   const { isAdmin } = useAdminAuth()
   const [editingId, setEditingId] = useState(null)
   const [viewAnglerId, setViewAnglerId] = useState('')
+  const isMobileRules = useIsMobileRules()
   const activeRoster = roster.filter((r) => r.active)
   const editing = editingId ? board.find((r) => r.id === editingId) : null
 
@@ -294,12 +318,43 @@ function Species() {
       <section className="species-rules card">
         <div className="species-rules__layout">
           <div className="species-rules__content">
-            <h2>FWC - Fishing Challenge Rules</h2>
-            <ul>
-              {CHALLENGE_RULES.map((rule) => (
-                <li key={rule}>{rule}</li>
-              ))}
-            </ul>
+            {isMobileRules ? (
+              <details className="species-rules__details">
+                <summary className="species-rules__summary">
+                  <h2>FWC - Fishing Challenge Rules</h2>
+                  <svg
+                    className="species-rules__chevron"
+                    viewBox="0 0 24 24"
+                    width="20"
+                    height="20"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M6 9l6 6 6-6"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </summary>
+                <ul>
+                  {CHALLENGE_RULES.map((rule) => (
+                    <li key={rule}>{rule}</li>
+                  ))}
+                </ul>
+              </details>
+            ) : (
+              <>
+                <h2>FWC - Fishing Challenge Rules</h2>
+                <ul>
+                  {CHALLENGE_RULES.map((rule) => (
+                    <li key={rule}>{rule}</li>
+                  ))}
+                </ul>
+              </>
+            )}
           </div>
           <div className="species-rules__side">
             <a
