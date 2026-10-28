@@ -859,11 +859,6 @@ function RegistrationReport() {
       <div className="admin-report__head">
         <div>
           <h2>Tournament Registrations</h2>
-          <p className="admin-roster__note">
-            Every boat registered for the John Carroll High School Inshore Slam, with
-            each angler&apos;s
-            contact info, shirt size, and award-eligibility flags.
-          </p>
         </div>
         <button
           type="button"
@@ -930,9 +925,6 @@ function Admin() {
 
   return (
     <div className="page admin-page">
-      <p className="eyebrow">Club Admin</p>
-      <h1 className="section-title">Admin</h1>
-
       {!user && <LoginForm />}
 
       {user && loading && <p className="species-page__loading">Checking admin access…</p>}
