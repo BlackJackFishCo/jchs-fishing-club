@@ -109,6 +109,7 @@ service cloud.firestore {
           request.resource.data.angler is string &&
           request.resource.data.inches is number &&
           request.resource.data.inches > 0 &&
+          request.resource.data.inches >= resource.data.inches &&
           request.resource.data.photo is string &&
           request.resource.data.photoPath is string
         );

@@ -876,6 +876,12 @@ function LogCatchModal({ teams, catchesByTeam, onClose }) {
       setError('Length must be in half-inch increments (e.g. 20, 20.5, 21).')
       return
     }
+    if (existingForAngler && Number(inches) < existingForAngler.inches) {
+      setError(
+        `You already have a ${existingForAngler.inches}" logged for this species — you can only replace it with a longer fish.`,
+      )
+      return
+    }
     setBusy(true)
     setError('')
     try {
@@ -942,7 +948,7 @@ function LogCatchModal({ teams, catchesByTeam, onClose }) {
             <p className="modal__note">
               {existingForAngler.verified
                 ? `Already verified: ${existingForAngler.angler} — ${existingForAngler.inches}" — this can't be changed.`
-                : `Currently on file for ${existingForAngler.angler}: ${existingForAngler.inches}". Submitting will replace their entry — a teammate's bigger fish for this species is never affected.`}
+                : `Currently on file for ${existingForAngler.angler}: ${existingForAngler.inches}". You can only replace it with a longer fish — a teammate's bigger fish for this species is never affected.`}
             </p>
           )}
 
