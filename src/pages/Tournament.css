@@ -1178,6 +1178,69 @@
   cursor: pointer;
 }
 
+.registration__waiver {
+  align-items: flex-start;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(245, 197, 24, 0.2);
+}
+
+.registration__waiver input[type='checkbox'] {
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+.registration__waiver span {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.registration__waiver-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color-gold-soft);
+  font-size: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.registration__waiver-link:hover {
+  color: var(--color-gold);
+}
+
+.waiver-modal {
+  max-width: 640px;
+  text-align: left;
+}
+
+.waiver-modal__section h4 {
+  color: var(--color-gold-soft);
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+}
+
+.waiver-modal__section p,
+.waiver-modal__section li {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.waiver-modal__section ul {
+  margin: 0.3rem 0;
+  padding-left: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.waiver-modal__section + .waiver-modal__section {
+  margin-top: 1.1rem;
+}
+
 .registration-success {
   margin-top: 1.25rem;
   padding: 2.5rem 2rem;

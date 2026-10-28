@@ -105,6 +105,132 @@ const EMPTY_ANGLER = {
   isFemale: false,
 }
 
+const WAIVER_CHECKBOX_TEXT =
+  'I have read and agree to this Release and Waiver of Liability. I confirm that every Boat ' +
+  'Participant named on my registration has read and agreed to it, and that a parent or legal ' +
+  'guardian has agreed for any Boat Participant under 18. My checkmark serves as my electronic ' +
+  'signature.'
+
+const WAIVER_SECTIONS = [
+  {
+    heading: 'Release and Waiver',
+    body: [
+      'For consideration of participation in the John Carroll High School (JCHS) Inshore Slam Fishing Tournament to be held on October 9, 2027 (the "Fishing Tournament"), by checking the box on registration, I, on behalf of myself and every Boat Participant (defined below), waive and release John Carroll High School, its chapters, directors, officers, administrators, representatives and executors, past and present employees, volunteers, agents, supervisors, participants, all city and state governments, assigns, all sponsors, their representatives and successors (collectively, the "Releasees"), from any and all claims, liabilities, or causes of action arising out of an injury to me or anyone participating on my boat, and from any and all claims, liabilities, or causes of action arising from my or their participation in or attendance at this event.',
+    ],
+  },
+  {
+    heading: 'Boat Captain Agreement on Behalf of All Persons Aboard',
+    body: [
+      'By checking the box on registration, the registering Boat Captain represents and agrees that:',
+      {
+        list: [
+          'The Captain has given a copy of this Release to every person who will be aboard the Captain\'s vessel during the Fishing Tournament, up to four (4) participants including the Captain ("Boat Participants").',
+          'Each Boat Participant age 18 or older has read this Release and agreed to its terms as a condition of participating.',
+          "For each Boat Participant under age 18, the Captain has obtained the agreement of that minor's parent or legal guardian.",
+          'The Captain has listed the full legal name of every Boat Participant on the registration form.',
+          'The Captain will indemnify and hold harmless the Releasees from any claim brought by or on behalf of any Boat Participant arising from the Fishing Tournament, including any claim that a Boat Participant did not agree to this Release.',
+        ],
+      },
+      'No person may board a participating vessel unless they have agreed to this Release. Every reference to "I," "me," or "my" in this Release applies equally to each Boat Participant.',
+    ],
+  },
+  {
+    heading: 'Inherent and Potential Risks',
+    body: [
+      'I understand that the Fishing Tournament involves strenuous physical activity associated with fishing. I understand that physical activity, by its very nature, carries with it certain inherent risks. I assume all risks associated with participating in the Fishing Tournament relating to the risk of strenuous physical activity. I acknowledge that I may incur minor injuries, major injuries, and catastrophic injuries including paralysis and death.',
+      'I assume risks from contact with other participants, negligent or wanton acts of other participants, failure of other participants and non-participants to observe the guidelines of the Fishing Tournament, any defects or conditions of premises (including high or low water levels and rough waters), and the effects of weather including high heat, thunderstorms, lightning, precipitation, cold temperatures, high winds, and/or humidity.',
+      'I agree to dress appropriately to reduce the risk of physical injury, including, but not limited to, wearing shoes appropriate for the strenuous physical activity involved in the Fishing Tournament and dressing for the weather. I agree that the Releasees are not responsible for any personal items or property lost or stolen before, during, or after the Fishing Tournament.',
+    ],
+  },
+  {
+    heading: 'Medical Evaluation',
+    body: [
+      'I attest that I am medically and physically able to participate in the Fishing Tournament. If I have any doubt about my ability to safely participate in and/or complete the Fishing Tournament, I take full responsibility for consulting a physician. I attest that, if I am pregnant, disabled in any way, or have recently suffered an illness, injury, or impairment, I should have or did consult a physician before participating.',
+      'I consent to emergency medical care and transportation to obtain treatment in the event of injury, as medical professionals may deem appropriate. This Release extends to any liability arising out of or in any way connected with the medical treatment and transportation provided in an emergency, including, but not limited to, negligence in emergency rescue operations.',
+    ],
+  },
+  {
+    heading: 'Voluntary Participation',
+    body: [
+      'I am fully aware of the risks connected with participation in the Fishing Tournament, whether specifically listed in this Release or not, and I voluntarily elect to participate knowing that this participation involves these risks. I understand that participation in the Fishing Tournament carries a minimum fundraising obligation for the benefit of JCHS.',
+    ],
+  },
+  {
+    heading: 'Assumption of Risk, Waiver of Liability, Release, and Covenant Not to Sue',
+    body: [
+      'In consideration for being permitted to participate in the Fishing Tournament, I voluntarily agree for myself, my family, heirs, assigns, executors, and administrators to the following:',
+      {
+        list: [
+          'TO ASSUME FULL RESPONSIBILITY FOR ANY RISKS OF LOSS, OR PERSONAL INJURY, INCLUDING DEATH, that may be sustained by me (or my child), or any loss or damage to property owned by me (or my child), as a result of participating in the Fishing Tournament.',
+          'TO RELEASE, WAIVE, HOLD HARMLESS, DISCHARGE, AND COVENANT NOT TO SUE the Releasees from any and all liability, claims, actions, demands, expenses, attorney fees, breach of contract actions, breach of statutory duty or other duty of care, warranty, strict liability actions, and causes of action whatsoever, that I might have or may acquire in the future, arising out of or related to any loss, damage, or injury, including death, that may be sustained by me, or to any property belonging to me, while participating in the Fishing Tournament, including, but not limited to, any claim that the act or omission complained of was in whole or in part caused by the negligence or carelessness of the Releasees.',
+        ],
+      },
+    ],
+  },
+  {
+    heading: 'Acknowledgment and Compliance with Rules',
+    body: [
+      'I agree to observe and obey all rules and safety procedures that accompany the Fishing Tournament and to abide by any decision of an event official relative to my ability to safely compete in the event. I agree to exhibit appropriate behavior at all times and to obey all laws. JCHS and event officials may dismiss me, without refund, should my behavior endanger the safety of or negatively affect an event, person, facility, or property of any kind.',
+      'I understand and agree to stock my vessel with one Coast Guard approved Personal Flotation Device (PFD) per person aboard, including captain and crew, in accordance with Coast Guard regulations. For vessels over sixteen (16) feet long, a throwable PFD (such as a boat cushion or life ring) must be on board.',
+    ],
+  },
+  {
+    heading: 'Severability',
+    body: [
+      'I agree that if any portion of this Release is deemed invalid, the remainder of the Release will still be binding and enforceable.',
+    ],
+  },
+  {
+    heading: 'Photography Release',
+    body: [
+      'I grant full permission to JCHS to use, reuse, reproduce, publish, or republish any photographs, motion pictures, recordings, or any other record of my participation in this event, in any medium now known or hereafter developed, alone or with other material, without restriction as to changes or alterations, and to use my name, voice, likeness, and/or other indicia of identity for editorial, educational, promotional, advertising, and commercial purposes, including without limitation the solicitation of contributions and the furtherance of the corporate objectives of JCHS. I relinquish all rights, title, and interest in any photographs, motion pictures, recordings, or other records of the Fishing Tournament I may take or capture to JCHS.',
+    ],
+  },
+  {
+    heading: 'Acknowledgment',
+    body: [
+      'I acknowledge and represent that I have carefully read and understand all terms of this Release and Waiver of Liability, and, as Boat Captain, that each Boat Participant (or their parent or legal guardian) has done the same.',
+    ],
+  },
+  {
+    heading: 'Electronic Acceptance',
+    body: [
+      'The Boat Participants are the people whose names the Boat Captain entered on the registration form for this boat (up to four, including the Captain).',
+    ],
+  },
+]
+
+function WaiverModal({ onClose }) {
+  return (
+    <div className="modal-backdrop" onClick={onClose}>
+      <div className="modal card waiver-modal" onClick={(e) => e.stopPropagation()}>
+        <h3>JCHS Inshore Slam Release and Waiver of Liability</h3>
+        {WAIVER_SECTIONS.map((section) => (
+          <div key={section.heading} className="waiver-modal__section">
+            <h4>{section.heading}</h4>
+            {section.body.map((item, i) =>
+              typeof item === 'string' ? (
+                <p key={i}>{item}</p>
+              ) : (
+                <ul key={i}>
+                  {item.list.map((entry) => (
+                    <li key={entry}>{entry}</li>
+                  ))}
+                </ul>
+              ),
+            )}
+          </div>
+        ))}
+        <div className="modal__actions">
+          <button type="button" className="btn btn-solid" onClick={onClose}>
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function RegistrationSection() {
   const [teamName, setTeamName] = useState('')
   const [anglers, setAnglers] = useState(
@@ -113,6 +239,8 @@ function RegistrationSection() {
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
+  const [waiverAccepted, setWaiverAccepted] = useState(false)
+  const [showWaiver, setShowWaiver] = useState(false)
 
   const updateAngler = (index, field, value) => {
     setAnglers((prev) => prev.map((a, i) => (i === index ? { ...a, [field]: value } : a)))
@@ -120,13 +248,15 @@ function RegistrationSection() {
 
   const submit = async (e) => {
     e.preventDefault()
+    if (!waiverAccepted) return
     setBusy(true)
     setError('')
     try {
       const filled = anglers.filter((a) => a.firstName.trim())
-      await addRegistration({ teamName, anglers: filled })
+      await addRegistration({ teamName, anglers: filled, waiverAccepted: true })
       setTeamName('')
       setAnglers(Array.from({ length: MAX_ANGLERS }, () => ({ ...EMPTY_ANGLER })))
+      setWaiverAccepted(false)
       setSuccess(true)
     } catch (err) {
       setError(err.message || 'Could not submit registration. Try again.')
@@ -265,14 +395,42 @@ function RegistrationSection() {
               </label>
             </div>
           </div>
+
+          {index === 0 && (
+            <label className="registration__checkbox registration__waiver">
+              <input
+                type="checkbox"
+                checked={waiverAccepted}
+                onChange={(e) => setWaiverAccepted(e.target.checked)}
+                required
+              />
+              <span>
+                {WAIVER_CHECKBOX_TEXT}{' '}
+                <button
+                  type="button"
+                  className="registration__waiver-link"
+                  onClick={() => setShowWaiver(true)}
+                >
+                  Read the full Release and Waiver of Liability
+                </button>
+                .
+              </span>
+            </label>
+          )}
         </fieldset>
       ))}
 
       {error && <p className="modal__error">{error}</p>}
 
-      <button type="submit" className="btn btn-solid" disabled={busy || !REGISTRATION_OPEN}>
+      <button
+        type="submit"
+        className="btn btn-solid"
+        disabled={busy || !REGISTRATION_OPEN || !waiverAccepted}
+      >
         {busy ? 'Submitting…' : REGISTRATION_OPEN ? 'Submit Registration' : 'Registration Not Open Yet'}
       </button>
+
+      {showWaiver && <WaiverModal onClose={() => setShowWaiver(false)} />}
     </form>
   )
 }
