@@ -3,7 +3,7 @@ import { useAdminAuth, signIn, createAccount, signOutAdmin } from '../data/auth.
 import { useRoster, addRosterName, removeRosterName } from '../data/roster.js'
 import { useAdmins, addAdmin, removeAdmin } from '../data/admins.js'
 import { useSpeciesBoard, TOTAL_SPECIES, CATEGORIES } from '../data/species.js'
-import { useRegistrations, removeRegistration } from '../data/registration.js'
+import { useRegistrations, removeRegistration, SHIRT_SIZES } from '../data/registration.js'
 import {
   useTournamentTeams,
   seedPlaceholderTeams,
@@ -890,6 +890,16 @@ function RegistrationReport() {
   const { registrations, loading } = useRegistrations()
   const [error, setError] = useState('')
 
+  const shirtTally = SHIRT_SIZES.reduce((acc, size) => ({ ...acc, [size]: 0 }), {})
+  registrations.forEach((reg) => {
+    reg.anglers.forEach((a) => {
+      if (a.shirtSize && shirtTally[a.shirtSize] !== undefined) {
+        shirtTally[a.shirtSize] += 1
+      }
+    })
+  })
+  const totalShirts = SHIRT_SIZES.reduce((sum, size) => sum + shirtTally[size], 0)
+
   const remove = async (reg, i) => {
     if (!window.confirm(`Remove the registration for ${reg.teamName || `Team ${i + 1}`}? This can't be undone.`)) {
       return
@@ -918,6 +928,20 @@ function RegistrationReport() {
       </div>
 
       {error && <p className="modal__error">{error}</p>}
+
+      {!loading && registrations.length > 0 && (
+        <div className="shirt-tally">
+          <h3>Shirt Sizes to Order ({totalShirts} total)</h3>
+          <div className="shirt-tally__grid">
+            {SHIRT_SIZES.map((size) => (
+              <div key={size} className="shirt-tally__item">
+                <span className="shirt-tally__size">{size}</span>
+                <span className="shirt-tally__count">{shirtTally[size]}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {loading ? (
         <p className="species-page__loading">Loading registrations…</p>
