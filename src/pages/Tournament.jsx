@@ -36,7 +36,7 @@ const TIER_FISH = {
 const SECTIONS = ['Home', 'Registration', 'Rules', 'Awards', 'Sponsorship']
 
 const CONTACT_EMAIL = 'Jstelmacki@gmail.com'
-const REGISTRATION_OPEN = false
+const REGISTRATION_OPEN = true
 
 const SPONSOR_TIERS = [
   {
