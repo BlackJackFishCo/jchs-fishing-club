@@ -489,15 +489,14 @@
   .admin-login,
   .admin-denied,
   .admin-roster,
-  .admin-report:not(.registration-report):not(.admin-progress):not(.clinic-report),
+  .admin-report:not(.registration-report):not(.admin-progress),
   .admin-section-heading,
   .admin-report__print {
     display: none !important;
   }
 
   body:not(.print-target-club) .admin-progress,
-  body:not(.print-target-registration) .registration-report,
-  body:not(.print-target-clinic) .clinic-report {
+  body:not(.print-target-registration) .registration-report {
     display: none !important;
   }
 
