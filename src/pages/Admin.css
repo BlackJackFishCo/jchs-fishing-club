@@ -186,6 +186,52 @@
   margin-bottom: 0.35rem;
 }
 
+.shirt-tally {
+  margin-bottom: 1.25rem;
+  padding: 1rem;
+  background: var(--color-black-soft);
+  border: 1px solid rgba(245, 197, 24, 0.25);
+  border-radius: var(--radius);
+}
+
+.shirt-tally h3 {
+  color: var(--color-gold);
+  font-size: 1rem;
+  margin-bottom: 0.6rem;
+}
+
+.shirt-tally__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.shirt-tally__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  min-width: 60px;
+  padding: 0.5rem 0.75rem;
+  background: var(--color-panel);
+  border: 1px solid rgba(245, 197, 24, 0.2);
+  border-radius: 8px;
+}
+
+.shirt-tally__size {
+  font-family: var(--font-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.72rem;
+  color: var(--color-muted);
+}
+
+.shirt-tally__count {
+  font-family: var(--font-brand);
+  font-size: 1.3rem;
+  color: var(--color-gold);
+}
+
 .admin-report__list {
   display: flex;
   flex-direction: column;
@@ -532,39 +578,75 @@
   }
 
   .registration-report,
-  .registration-report * {
+  .registration-report *,
+  .admin-progress,
+  .admin-progress * {
     color: #000 !important;
     background: #fff !important;
     box-shadow: none !important;
   }
 
-  .registration-report {
+  .registration-report,
+  .admin-progress {
     border: none !important;
     padding: 0 !important;
   }
 
-  .registration-report h2 {
+  .registration-report h2,
+  .admin-progress h2 {
     font-size: 0.95rem;
     margin-bottom: 0.3rem;
   }
 
-  .registration-report .admin-report__list {
+  .admin-progress .admin-roster__note {
+    font-size: 0.72rem;
+    margin: 0.15rem 0 0.5rem;
+  }
+
+  .registration-report .shirt-tally {
+    border: 1px solid #000 !important;
+    padding: 0.5rem;
+    margin-bottom: 0.6rem;
+    page-break-inside: avoid;
+  }
+
+  .registration-report .shirt-tally h3 {
+    font-size: 0.82rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .registration-report .shirt-tally__item {
+    border: 1px solid #000 !important;
+    min-width: 44px;
+    padding: 0.25rem 0.4rem;
+  }
+
+  .registration-report .shirt-tally__count {
+    font-size: 1rem;
+  }
+
+  .registration-report .admin-report__list,
+  .admin-progress .admin-report__list {
     gap: 0.35rem;
   }
 
-  .registration-report .admin-report__angler {
+  .registration-report .admin-report__angler,
+  .admin-progress .admin-report__angler {
     border: 1px solid #000 !important;
     border-radius: 4px;
     padding: 0.35rem 0.5rem;
     page-break-inside: avoid;
   }
 
-  .registration-report .admin-report__angler-head {
+  .registration-report .admin-report__angler-head,
+  .admin-progress .admin-report__angler-head {
     margin-bottom: 0.2rem;
   }
 
   .registration-report .admin-report__angler-head strong,
-  .registration-report .admin-report__angler-head span {
+  .registration-report .admin-report__angler-head span,
+  .admin-progress .admin-report__angler-head strong,
+  .admin-progress .admin-report__angler-head span {
     font-size: 0.78rem;
   }
 
@@ -574,9 +656,53 @@
 
   .registration-report table,
   .registration-report th,
-  .registration-report td {
+  .registration-report td,
+  .admin-progress table,
+  .admin-progress th,
+  .admin-progress td {
     font-size: 0.68rem;
     padding: 0.1rem 0.3rem;
     border-color: #000 !important;
+  }
+
+  .admin-progress__stats {
+    gap: 0.6rem;
+    margin: 0.4rem 0 0.75rem;
+  }
+
+  .admin-progress__ticker,
+  .admin-progress__total {
+    border: 1px solid #000 !important;
+    padding: 0.4rem 0.6rem;
+    page-break-inside: avoid;
+  }
+
+  .admin-progress__ticker-count,
+  .admin-progress__total strong {
+    font-size: 1.3rem;
+  }
+
+  .admin-progress__ticker-bar {
+    display: none;
+  }
+
+  .admin-progress__subhead {
+    font-size: 0.85rem;
+    margin: 0.75rem 0 0.4rem;
+  }
+
+  .admin-progress__remaining {
+    gap: 0.5rem;
+  }
+
+  .admin-progress__remaining-group {
+    border: 1px solid #000 !important;
+    padding: 0.4rem 0.6rem;
+    page-break-inside: avoid;
+  }
+
+  .admin-progress__remaining-group ul {
+    font-size: 0.75rem;
+    line-height: 1.3;
   }
 }
