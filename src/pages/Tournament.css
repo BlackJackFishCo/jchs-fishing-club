@@ -579,12 +579,23 @@
   color: var(--color-muted);
   font-size: 0.78rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.3rem;
+  width: 100%;
+}
+
+.catch-cell__angler-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .catch-cell__categories {
-  display: inline-flex;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 0.25rem;
 }
 
