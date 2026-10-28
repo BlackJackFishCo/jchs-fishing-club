@@ -3,7 +3,7 @@ import { useAdminAuth, signIn, createAccount, signOutAdmin } from '../data/auth.
 import { useRoster, addRosterName, removeRosterName } from '../data/roster.js'
 import { useAdmins, addAdmin, removeAdmin } from '../data/admins.js'
 import { useSpeciesBoard, TOTAL_SPECIES, CATEGORIES } from '../data/species.js'
-import { useRegistrations } from '../data/registration.js'
+import { useRegistrations, removeRegistration } from '../data/registration.js'
 import {
   useTournamentTeams,
   seedPlaceholderTeams,
@@ -888,6 +888,19 @@ function CatchReport() {
 
 function RegistrationReport() {
   const { registrations, loading } = useRegistrations()
+  const [error, setError] = useState('')
+
+  const remove = async (reg, i) => {
+    if (!window.confirm(`Remove the registration for ${reg.teamName || `Team ${i + 1}`}? This can't be undone.`)) {
+      return
+    }
+    setError('')
+    try {
+      await removeRegistration(reg.id)
+    } catch {
+      setError('Could not remove that registration.')
+    }
+  }
 
   return (
     <section className="admin-report registration-report card">
@@ -904,6 +917,8 @@ function RegistrationReport() {
         </button>
       </div>
 
+      {error && <p className="modal__error">{error}</p>}
+
       {loading ? (
         <p className="species-page__loading">Loading registrations…</p>
       ) : registrations.length === 0 ? (
@@ -917,6 +932,13 @@ function RegistrationReport() {
                 <span>
                   {reg.anglers.length} angler{reg.anglers.length === 1 ? '' : 's'}
                 </span>
+                <button
+                  type="button"
+                  className="admin-roster__remove"
+                  onClick={() => remove(reg, i)}
+                >
+                  Remove
+                </button>
               </div>
               <table className="admin-report__table">
                 <thead>

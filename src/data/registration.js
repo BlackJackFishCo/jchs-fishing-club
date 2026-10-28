@@ -1,5 +1,14 @@
 import { useEffect, useState } from 'react'
-import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp } from 'firebase/firestore'
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  orderBy,
+  query,
+  serverTimestamp,
+} from 'firebase/firestore'
 import { db } from '../firebase.js'
 import { addTeamFromRegistration } from './tournamentLeaderboard.js'
 
@@ -43,4 +52,8 @@ export async function addRegistration({ teamName, anglers, waiverAccepted }) {
   } catch (err) {
     console.error('Could not auto-create a pending tournament team from registration', err)
   }
+}
+
+export async function removeRegistration(registrationId) {
+  await deleteDoc(doc(db, 'tournamentRegistrations', registrationId))
 }
