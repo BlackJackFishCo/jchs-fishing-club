@@ -706,6 +706,11 @@
     padding: 0.55rem 0.5rem;
   }
 
+  .tournament-tabs__btn:last-child {
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+
   .tournament-live-leaderboard {
     margin-left: 0;
     width: 100%;
