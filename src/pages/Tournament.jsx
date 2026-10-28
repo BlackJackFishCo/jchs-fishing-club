@@ -939,15 +939,14 @@ function CatchCell({ catchData, species, isAdmin, onVerify, onEditInches, onRemo
       </span>
       <span className="catch-cell__angler">
         <span className="catch-cell__angler-name">{catchData.angler}</span>
-        {categories && categories.length > 0 && (
-          <span className="catch-cell__categories">
-            {categories.map((cat) => (
+        <span className="catch-cell__categories">
+          {categories &&
+            categories.map((cat) => (
               <span key={cat} className="catch-cell__category-badge">
                 {cat}
               </span>
             ))}
-          </span>
-        )}
+        </span>
       </span>
       {timestamp && <span className="catch-cell__time">{timestamp}</span>}
       {isAdmin && (
