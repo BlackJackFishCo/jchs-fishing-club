@@ -36,8 +36,6 @@ function useIsMobileRules() {
 
 const CHALLENGE_RULES = [
   'All submitted fish must have been caught by a student angler enrolled in the fishing club.',
-  'Students must practice proper handling techniques by holding the fish horizontal and broadside.',
-  'Photos should be taken promptly after being caught.',
   'All fish submitted must be clearly identifiable to be an approved catch.',
   'The club member must be clearly visible in the photo with the fish.',
   'After documenting the catch all fish submitted must be immediately released alive in the same water system where they were caught.',
