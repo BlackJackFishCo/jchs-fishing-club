@@ -174,6 +174,7 @@ const months = [
     agenda: [
       'CCA - STAR Summer Event Registration, ccaflstar.com',
       { text: 'FWC postSurveys due 5/15', highlight: true },
+      '5/28 Last Day of School',
     ],
     sponsors: [
       {
