@@ -702,9 +702,8 @@ const INDIVIDUAL_AWARDS = [
       "Individual Award — Highest combined inches for the Junior Angler's largest Snook, Redfish, and Trout. You do not need to catch all three to qualify for this award.",
   },
   {
-    name: 'Top JCHS Fishing Club Member',
-    description:
-      "Individual Award — Highest combined inches for the JCHS Fishing Club Member's largest Snook, Redfish, and Trout. You do not need to catch all three to qualify for this award.",
+    name: '40" Club',
+    description: 'Awarded to the angler who catches the first 40" or longer Snook.',
   },
   {
     name: 'Top Lady Angler',
@@ -719,11 +718,25 @@ const SPECIES_AWARDS = [
   { name: 'Top Trout', description: 'Longest single Trout.' },
 ]
 
-const BONUS_AWARDS = [
+const CLUB_MEMBER_AWARDS = [
   {
-    name: '40" Club',
-    description: 'Awarded to the angler who catches the first 40" or longer Snook.',
+    name: 'First Place JCHS Fishing Club Member',
+    description:
+      "Highest combined inches for a JCHS Fishing Club Member's largest Snook, Redfish, and Trout — you don't need to catch all three to qualify for this award, just have the highest combined inches total.",
   },
+  {
+    name: 'Second Place JCHS Fishing Club Member',
+    description:
+      "Second-highest combined inches for a JCHS Fishing Club Member's largest Snook, Redfish, and Trout — you don't need to catch all three to qualify for this award, just have the highest combined inches total.",
+  },
+  {
+    name: 'Third Place JCHS Fishing Club Member',
+    description:
+      "Third-highest combined inches for a JCHS Fishing Club Member's largest Snook, Redfish, and Trout — you don't need to catch all three to qualify for this award, just have the highest combined inches total.",
+  },
+]
+
+const BONUS_AWARDS = [
   {
     name: '50/50 Mystery Fish Calcutta',
     description:
@@ -773,6 +786,13 @@ function AwardsSection() {
       <h3 className="tournament-awards__group-title">Species Categories</h3>
       <div className="award-grid award-grid--three">
         {SPECIES_AWARDS.map((award) => (
+          <AwardCard key={award.name} award={award} />
+        ))}
+      </div>
+
+      <h3 className="tournament-awards__group-title">JCHS Fishing Club Member</h3>
+      <div className="award-grid award-grid--three">
+        {CLUB_MEMBER_AWARDS.map((award) => (
           <AwardCard key={award.name} award={award} />
         ))}
       </div>
