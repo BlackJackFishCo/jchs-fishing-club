@@ -702,13 +702,13 @@ const INDIVIDUAL_AWARDS = [
       "Individual Award — Highest combined inches for the Junior Angler's largest Snook, Redfish, and Trout. You do not need to catch all three to qualify for this award.",
   },
   {
-    name: '40" Club',
-    description: 'Awarded to the angler who catches the first 40" or longer Snook.',
-  },
-  {
     name: 'Top Lady Angler',
     description:
       "Individual Award — Highest combined inches for this Lady Angler's largest Snook, Redfish, and Trout. You do not need to catch all three to qualify for this award.",
+  },
+  {
+    name: '40" Club',
+    description: 'Awarded to the angler who catches the first 40" or longer Snook.',
   },
 ]
 
