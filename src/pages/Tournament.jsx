@@ -553,20 +553,21 @@ const RULES_SECTIONS = [
     title: 'Fishing',
     items: [
       'Lines in, and the start of fishing shall begin at 6am on Saturday, October 9, 2027.',
-      'Lines out, there is no lines out time, however all fish must be logged into the JCHS Inshore Slam Tournament Page no later than 4 p.m. on October 9, 2027 to count for tournament.',
-      'The website is time stamped. Any catch logged after 4pm will not count, regardless of when the fish was actually caught.',
-      'In the event of tournament site outage it is your teams responsibility to still log your catch on the tournament ruler by picture on your phone. All photos must be text to tournament Director by 4pm October 9, 2027. PH (561-859-7165)',
+      {
+        text: 'Lines out, there is no lines out time, however all fish must be logged into the JCHS Inshore Slam Tournament Page no later than 4 p.m. on October 9, 2027 to count for tournament. ',
+        link: { href: 'https://www.jchsfc.com/slam', label: 'www.jchsfc.com/slam' },
+      },
       'North Boundary ¼ Mile North of Sebastian Inlet 27°51.850’N',
       'South Boundary ¼ Mile South of St. Lucie Inlet 27°09.720’N',
       'No East or West Boundary',
-      'All anglers must have a valid Florida Fishing License if required by law.',
-      'No drones allowed during fishing tournament hours.',
-      'Same angler must hook, fight and bring fish up to point of landing from the boat. No passing the rod. No wade fishing.',
-      'Maximum 4 rods fishing at any time.',
       'All anglers must abide by all local, State, and Federal Rules and licensing restrictions on fishing for game fish with hook and line.',
+      'Same angler must hook, fight and bring fish up to point of landing from the boat. No passing the rod',
+      'No wade fishing',
+      'Maximum 4 rods fishing at any time.',
       'Anglers may use live, dead, and artificial bait.',
       'Live chumming is allowed.',
       'No fishing is allowed in an active marina or boat ramp.',
+      'No drones are allowed during fishing tournament hours.',
     ],
   },
   {
@@ -577,6 +578,8 @@ const RULES_SECTIONS = [
       'Any photo that is altered or AI-assisted in any way will result in your team being disqualified.',
       'Photographs that do not allow the Tournament Director to view the tape measure or entire fish may be excluded at the sole discretion of the Tournament Director.',
       'If a fish or measurement is partially obstructed, the Tournament Director has the sole authority to decide whether to exclude a fish in its entirety or give credit for the visible part of the fish.',
+      'The website is time stamped. Any catch logged after 4pm will not count, regardless of when the fish was actually caught.',
+      'In the event of tournament site outage it is your teams responsibility to still log your catch on the tournament ruler by picture on your phone. All photos must be text to tournament Director by 4pm October 9, 2027. PH (561-859-7165)',
     ],
   },
   {
@@ -584,7 +587,6 @@ const RULES_SECTIONS = [
     items: [
       'Only the top scoring fish will be scored per species.',
       'No rotten, mutilated, or caged fish will be counted.',
-      'Any technical difficulties with digital equipment will be dealt with on a case-by-case basis by the Tournament Director. It is your responsibility to get time stamped photos to the director.',
       'In the event of a tie, the winner will be the first to log all of their fish. If there is a tie for the largest of a species, the first fish logged wins.',
       'Cheaters will be disqualified. You and your team will also be banned from all future events. This is a Charity Tournament!',
     ],
@@ -594,10 +596,28 @@ const RULES_SECTIONS = [
     items: [
       'It is up to the discretion of the registered anglers to determine whether his or her craft is seaworthy for that day’s weather conditions. Participants are encouraged to keep abreast of any marine or weather warnings.',
       'In the case of tournament cancelation and no fish have been logged due to weather, prizes will turn into raffle format with each team in the raffle one time. If Fish have been logged. Winners will be determined by normal rules.',
-      'Entry fees are non refundable.',
+      'Entry fees are non-refundable.',
     ],
   },
 ]
+
+function RuleItem({ item }) {
+  if (typeof item === 'string') return item
+  return (
+    <>
+      {item.text}
+      {item.link && (
+        <a href={item.link.href} target="_blank" rel="noopener noreferrer">
+          {item.link.label}
+        </a>
+      )}
+    </>
+  )
+}
+
+function ruleItemKey(item) {
+  return typeof item === 'string' ? item : item.text
+}
 
 function RulesSubsection({ subsection }) {
   return (
@@ -605,7 +625,9 @@ function RulesSubsection({ subsection }) {
       <h4 className="rules-subsection__title">{subsection.title}</h4>
       <ul className="rules-list">
         {subsection.items.map((item) => (
-          <li key={item}>{item}</li>
+          <li key={ruleItemKey(item)}>
+            <RuleItem item={item} />
+          </li>
         ))}
       </ul>
       {subsection.callout && <p className="rules-callout">{subsection.callout}</p>}
@@ -640,7 +662,9 @@ function RulesSection() {
           {section.items && (
             <ul className="rules-list">
               {section.items.map((item) => (
-                <li key={item}>{item}</li>
+                <li key={ruleItemKey(item)}>
+                  <RuleItem item={item} />
+                </li>
               ))}
             </ul>
           )}
