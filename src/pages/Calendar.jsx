@@ -91,7 +91,7 @@ const months = [
     date: '19',
     year: '2026',
     agenda: [
-      'Guest Speaker - D.O.A Lures Brand Ambassador Rob Lowe. www.doalures.com @doa_fishing_lures',
+      'Guest Speaker - D.O.A Lures Brand Ambassador Roy Lowe. www.doalures.com @doa_fishing_lures',
       'DOA Giveaways',
     ],
     sponsors: [
