@@ -135,24 +135,22 @@ function CatchModal({ entry, isAdmin, roster, onClose }) {
               No roster entries yet. Ask a club admin to add anglers before catches can be logged.
             </p>
           ) : (
-            <label className="field">
-              <span>Angler</span>
-              <select
-                className="field__angler-select"
-                value={anglerId}
-                onChange={(e) => setAnglerId(e.target.value)}
-                required
-              >
-                <option value="" disabled>
-                  Select your name
-                </option>
-                {roster.map((r) => (
-                  <option key={r.id} value={r.id}>
-                    {r.name}
-                  </option>
-                ))}
-              </select>
-            </label>
+            <fieldset className="species-angler-picker">
+              <legend>Angler</legend>
+              {roster.map((r) => (
+                <label key={r.id} className="species-angler-picker__option">
+                  <input
+                    type="radio"
+                    name="angler"
+                    value={r.id}
+                    checked={anglerId === r.id}
+                    onChange={() => setAnglerId(r.id)}
+                    required
+                  />
+                  <span className="species-angler-picker__name">{r.name}</span>
+                </label>
+              ))}
+            </fieldset>
           )}
 
           <label className="field">
