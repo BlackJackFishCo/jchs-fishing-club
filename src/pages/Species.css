@@ -439,6 +439,42 @@
   color: var(--color-muted);
 }
 
+.species-angler-picker {
+  border: 1px solid rgba(245, 197, 24, 0.3);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.species-angler-picker legend {
+  padding: 0 0.4rem;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.species-angler-picker__option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-white);
+  font-size: 0.9rem;
+}
+
+.species-angler-picker__name {
+  display: flex;
+  gap: 0.3rem;
+}
+
+@media (max-width: 480px) {
+  .species-angler-picker__name {
+    flex-direction: column;
+    gap: 0;
+    line-height: 1.2;
+  }
+}
+
 .modal__divider {
   font-family: var(--font-eyebrow);
   text-transform: uppercase;
