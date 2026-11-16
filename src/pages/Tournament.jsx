@@ -985,18 +985,25 @@ function LogCatchModal({ teams, catchesByTeam, onClose }) {
             ) : (
               <fieldset className="catch-angler-picker">
                 <legend>Angler</legend>
-                {team.anglers.map((a) => (
-                  <label key={a.name} className="catch-angler-picker__option">
-                    <input
-                      type="radio"
-                      name="angler"
-                      value={a.name}
-                      checked={angler === a.name}
-                      onChange={() => setAngler(a.name)}
-                    />
-                    {a.name}
-                  </label>
-                ))}
+                {team.anglers.map((a) => {
+                  const [first, ...rest] = a.name.split(' ')
+                  const last = rest.join(' ')
+                  return (
+                    <label key={a.name} className="catch-angler-picker__option">
+                      <input
+                        type="radio"
+                        name="angler"
+                        value={a.name}
+                        checked={angler === a.name}
+                        onChange={() => setAngler(a.name)}
+                      />
+                      <span className="catch-angler-picker__name">
+                        <span className="catch-angler-picker__first">{first}</span>
+                        {last && <span className="catch-angler-picker__last">{last}</span>}
+                      </span>
+                    </label>
+                  )
+                })}
               </fieldset>
             ))}
 
