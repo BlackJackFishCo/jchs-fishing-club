@@ -687,19 +687,6 @@
   font-size: 0.9rem;
 }
 
-.catch-angler-picker__name {
-  display: flex;
-  gap: 0.3rem;
-}
-
-@media (max-width: 480px) {
-  .catch-angler-picker__name {
-    flex-direction: column;
-    gap: 0;
-    line-height: 1.2;
-  }
-}
-
 @media (max-width: 700px) {
   .tournament-liveboard {
     padding: 1.25rem;
