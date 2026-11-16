@@ -439,6 +439,13 @@
   color: var(--color-muted);
 }
 
+@media (max-width: 480px) {
+  .field select.field__angler-select {
+    font-size: 0.8rem;
+    padding: 0.55rem 0.5rem;
+  }
+}
+
 .modal__divider {
   font-family: var(--font-eyebrow);
   text-transform: uppercase;

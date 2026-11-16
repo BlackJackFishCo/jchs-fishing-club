@@ -137,7 +137,12 @@ function CatchModal({ entry, isAdmin, roster, onClose }) {
           ) : (
             <label className="field">
               <span>Angler</span>
-              <select value={anglerId} onChange={(e) => setAnglerId(e.target.value)} required>
+              <select
+                className="field__angler-select"
+                value={anglerId}
+                onChange={(e) => setAnglerId(e.target.value)}
+                required
+              >
                 <option value="" disabled>
                   Select your name
                 </option>
