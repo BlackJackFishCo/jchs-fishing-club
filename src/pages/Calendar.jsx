@@ -91,7 +91,11 @@ const months = [
     date: '19',
     year: '2026',
     agenda: [
-      'Guest Speakers - D.O.A Lures Brand Ambassador Roy Lowe www.doalures.com @doa_fishing_lures and Andrew Mangini from RAG Florida Fishing. https://www.youtube.com/@RAGFloridaFishing @ragfloridafishing',
+      {
+        text: 'Guest Speakers - D.O.A Lures Brand Ambassador Roy Lowe ',
+        link: { href: 'https://www.doalures.com', label: 'www.doalures.com' },
+        after: ' @doa_fishing_lures',
+      },
       'DOA Giveaways',
     ],
     sponsors: [
@@ -300,6 +304,30 @@ const months = [
   },
 ]
 
+function AgendaItem({ item }) {
+  if (typeof item === 'string') return item
+  const content = (
+    <>
+      {item.text}
+      {item.link && (
+        <a href={item.link.href} target="_blank" rel="noopener noreferrer">
+          {item.link.label}
+        </a>
+      )}
+      {item.after}
+    </>
+  )
+  return item.highlight ? (
+    <span className="volunteer-card__agenda-highlight">{content}</span>
+  ) : (
+    content
+  )
+}
+
+function agendaItemKey(item) {
+  return typeof item === 'string' ? item : item.text
+}
+
 function Calendar() {
   const today = new Date()
   today.setHours(0, 0, 0, 0)
@@ -358,19 +386,11 @@ function Calendar() {
                   <p className="volunteer-card__event">{month.title}</p>
                   {month.agenda && (
                     <ul className="volunteer-card__agenda">
-                      {month.agenda.map((item) =>
-                        typeof item === 'string' ? (
-                          <li key={item}>{item}</li>
-                        ) : (
-                          <li key={item.text}>
-                            {item.highlight ? (
-                              <span className="volunteer-card__agenda-highlight">{item.text}</span>
-                            ) : (
-                              item.text
-                            )}
-                          </li>
-                        ),
-                      )}
+                      {month.agenda.map((item) => (
+                        <li key={agendaItemKey(item)}>
+                          <AgendaItem item={item} />
+                        </li>
+                      ))}
                     </ul>
                   )}
                 </>
