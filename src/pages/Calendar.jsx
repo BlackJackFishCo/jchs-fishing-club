@@ -91,7 +91,7 @@ const months = [
     date: '19',
     year: '2026',
     agenda: [
-      'Guest Speaker - D.O.A Lures Brand Ambassador Roy Lowe. www.doalures.com @doa_fishing_lures',
+      'Guest Speakers - D.O.A Lures Brand Ambassador Roy Lowe www.doalures.com @doa_fishing_lures and Andrew Mangini from RAG Florida Fishing. https://www.youtube.com/@RAGFloridaFishing @ragfloridafishing',
       'DOA Giveaways',
     ],
     sponsors: [
