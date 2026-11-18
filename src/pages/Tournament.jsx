@@ -863,15 +863,9 @@ function EventInfoRow() {
   )
 }
 
-// On wide screens, the second row's 4 logos sit in the gaps between the
-// top row's 5 (see .hero-logos-grid), tightly stacked under them. There
-// isn't room for that with 9 real logos at full size without overflowing
-// the page, so this tier uses a slightly reduced size - see the CSS
-// comment for the breakdown. Below that width it falls back to the
-// plain two-row layout at full size.
 function HeroLogos() {
   return (
-    <div className="hero-logos-grid">
+    <div className="hero-logos">
       <a
         href="https://www.instagram.com/offthegridjohn/"
         target="_blank"
@@ -915,7 +909,13 @@ function HeroLogos() {
           alt="Sailfish Brewing Company logo"
         />
       </a>
+    </div>
+  )
+}
 
+function HeroLogosSecondary() {
+  return (
+    <div className="hero-logos-secondary">
       <a
         href="https://www.basspro.com/"
         target="_blank"
@@ -1551,6 +1551,7 @@ function Tournament() {
             <HomeSection />
             <EventInfoRow />
             <HeroLogos />
+            <HeroLogosSecondary />
           </>
         )}
 
