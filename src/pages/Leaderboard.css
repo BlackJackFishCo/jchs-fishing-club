@@ -41,6 +41,7 @@
   min-width: 0;
   color: var(--color-white);
   font-weight: 600;
+  font-size: 1.3rem;
   text-align: left;
   overflow: hidden;
   text-overflow: ellipsis;
