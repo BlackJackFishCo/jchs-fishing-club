@@ -557,7 +557,7 @@ const RULES_SECTIONS = [
     items: [
       'Lines in, and the start of fishing shall begin at 6am on Saturday, October 9, 2027.',
       {
-        text: 'Lines out, there is no lines out time, however all fish must be logged into the JCHS Inshore Slam Tournament Page no later than 4 p.m. on October 9, 2027 to count for tournament. ',
+        text: 'There is no lines out time, however all fish must be logged into the JCHS Inshore Slam Tournament Page no later than 4 p.m. on October 9, 2027 to count for tournament. ',
         link: { href: 'https://www.jchsfc.com/slam', label: 'www.jchsfc.com/slam' },
       },
       'North Boundary ¼ Mile North of Sebastian Inlet 27°51.850’N',
