@@ -468,6 +468,10 @@
   white-space: nowrap;
 }
 
+.liveboard-table__total-label {
+  display: none;
+}
+
 .catch-cell {
   display: flex;
   flex-direction: column;
@@ -754,6 +758,7 @@
   .liveboard-table__row:not(.liveboard-table__row--head) {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
     gap: 0.6rem;
   }
 
@@ -784,6 +789,16 @@
     text-align: right;
     padding-top: 0.5rem;
     border-top: 1px solid rgba(245, 197, 24, 0.15);
+  }
+
+  .liveboard-table__total-label {
+    display: block;
+    font-family: var(--font-eyebrow);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.62rem;
+    color: var(--color-gold-soft);
+    margin-bottom: 0.15rem;
   }
 
   .catch-cell__species-label {
