@@ -62,7 +62,9 @@ function Leaderboard() {
             return (
               <li key={r.id} className="leaderboard-row">
                 <div className="leaderboard-row__top">
-                  <span className="leaderboard-row__rank">{ordinal(i + 1)}</span>
+                  <span className="leaderboard-row__rank">
+                    {r.distinctSpecies > 0 ? ordinal(i + 1) : ''}
+                  </span>
                   <span className="leaderboard-row__name">{r.name}</span>
                   <span className="leaderboard-row__bar">
                     <span className="leaderboard-row__fill" style={{ width: `${pct}%` }} />
