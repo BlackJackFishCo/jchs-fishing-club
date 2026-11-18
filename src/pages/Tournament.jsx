@@ -588,7 +588,7 @@ const RULES_SECTIONS = [
   {
     title: 'Leader Board',
     items: [
-      'Only the top scoring fish will be scored per species.',
+      'Only the top scoring fish will be scored per species for overall placement. Smaller fish may also count towards individual award categories.',
       'No rotten, mutilated, or caged fish will be counted.',
       'In the event of a tie, the winner will be the first to log all of their fish. If there is a tie for the largest of a species, the first fish logged wins.',
       'Cheaters will be disqualified. You and your team will also be banned from all future events. This is a Charity Tournament!',
