@@ -863,9 +863,15 @@ function EventInfoRow() {
   )
 }
 
+// 9 slots across 2 grid rows: the top 5 sponsors sit in the odd columns
+// (1, 3, 5, 7, 9) and the second-row sponsors sit in the even columns
+// (2, 4, 6, 8) between them, so each one lines up neatly in the gap below
+// two of the top-row logos. On narrow screens this collapses to a plain
+// wrapping flex row (see .hero-logos-grid media query) since there isn't
+// room to keep 9 columns readable.
 function HeroLogos() {
   return (
-    <div className="hero-logos">
+    <div className="hero-logos-grid">
       <a
         href="https://www.instagram.com/offthegridjohn/"
         target="_blank"
@@ -909,13 +915,7 @@ function HeroLogos() {
           alt="Sailfish Brewing Company logo"
         />
       </a>
-    </div>
-  )
-}
 
-function HeroLogosSecondary() {
-  return (
-    <div className="hero-logos-secondary">
       <a
         href="https://www.basspro.com/"
         target="_blank"
@@ -1551,7 +1551,6 @@ function Tournament() {
             <HomeSection />
             <EventInfoRow />
             <HeroLogos />
-            <HeroLogosSecondary />
           </>
         )}
 
