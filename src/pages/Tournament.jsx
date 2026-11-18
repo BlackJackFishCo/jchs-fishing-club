@@ -774,7 +774,7 @@ function AwardCard({ award, featured }) {
 function AwardsSection() {
   return (
     <section className="card tournament-awards">
-      <h2 className="tournament-awards__heading">Awards</h2>
+      <h2 className="tournament-awards__heading">Awards - 2027</h2>
 
       <div className="award-grid award-grid--featured">
         {TOP_TEAM_AWARDS.map((award) => (
