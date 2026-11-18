@@ -776,7 +776,7 @@
   .catch-cell__photo-btn,
   .catch-cell__photo {
     width: 100%;
-    max-width: 64px;
+    max-width: none;
   }
 
   .liveboard-table__total {
