@@ -582,7 +582,7 @@ const RULES_SECTIONS = [
       'Photographs that do not allow the Tournament Director to view the tape measure or entire fish may be excluded at the discretion of the Tournament Director.',
       'If a fish or measurement is partially obstructed, the Tournament Director has the authority to decide whether to exclude a fish in its entirety or give credit for the visible part of the fish.',
       'The website is time stamped. Any catch logged after 4pm will not count, regardless of when the fish was actually caught.',
-      'In the event of tournament site outage it is your teams responsibility to still log your catch on the tournament ruler by picture on your phone. All photos must be text to tournament Director by 4pm October 9, 2027. PH (561-859-7165)',
+      'In the event of tournament website outage or other technical difficulties it is your teams responsibility to still log your catch on the tournament ruler by picture on your phone. All photos must be text to tournament Director by 4pm October 9, 2027. PH (561-859-7165)',
     ],
   },
   {
