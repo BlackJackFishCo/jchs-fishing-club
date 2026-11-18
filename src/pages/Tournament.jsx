@@ -1308,7 +1308,10 @@ function LiveLeaderboardSection() {
   // off the public leaderboard until an admin reviews and confirms them.
   const confirmedTeams = teams.filter((t) => t.confirmed !== false)
 
+  // A team with nothing logged yet has no business on the leaderboard —
+  // it only shows up once it has at least one (non-deleted) catch.
   const ranked = confirmedTeams
+    .filter((team) => catchesByTeam[team.id])
     .map((team) => ({
       ...team,
       catches: catchesByTeam[team.id] || {},
@@ -1373,6 +1376,8 @@ function LiveLeaderboardSection() {
           <p className="species-page__loading">Loading leaderboard…</p>
         ) : confirmedTeams.length === 0 ? (
           <p className="admin-roster__empty">No teams yet. Check back soon.</p>
+        ) : boardView === 'teams' && ranked.length === 0 ? (
+          <p className="admin-roster__empty">No catches logged yet. Check back soon.</p>
         ) : boardView === 'teams' ? (
           <div className="liveboard-scroll">
             <div className="liveboard-table">
