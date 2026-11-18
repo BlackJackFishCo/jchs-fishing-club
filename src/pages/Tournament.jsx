@@ -1221,6 +1221,21 @@ function categoriesForAngler(anglers, anglerName) {
   return ANGLER_FLAGS.filter((flag) => angler[flag.key]).map((flag) => flag.label.split(' ')[0])
 }
 
+function ordinal(n) {
+  const mod100 = n % 100
+  if (mod100 >= 11 && mod100 <= 13) return `${n}th`
+  switch (n % 10) {
+    case 1:
+      return `${n}st`
+    case 2:
+      return `${n}nd`
+    case 3:
+      return `${n}rd`
+    default:
+      return `${n}th`
+  }
+}
+
 const BOARD_VIEWS = [
   { key: 'teams', label: 'Teams' },
   { key: 'isJunior', label: 'Junior Anglers' },
@@ -1259,7 +1274,7 @@ function IndividualBoardTable({
         {rows.map((r, i) => (
           <div key={`${r.teamId}-${r.angler}`} className="liveboard-table__row">
             <div className="liveboard-table__row-head">
-              <span className="liveboard-table__rank">{i + 1}</span>
+              <span className="liveboard-table__rank">{ordinal(i + 1)}</span>
               <span className="liveboard-table__team">
                 <span className="liveboard-table__angler-name">{r.angler}</span>
                 <span className="individual-board__team-name">{r.teamName}</span>
@@ -1392,7 +1407,7 @@ function LiveLeaderboardSection() {
               {ranked.map((team, i) => (
                 <div key={team.id} className="liveboard-table__row">
                   <div className="liveboard-table__row-head">
-                    <span className="liveboard-table__rank">{i + 1}</span>
+                    <span className="liveboard-table__rank">{ordinal(i + 1)}</span>
                     <span className="liveboard-table__team">{team.name}</span>
                   </div>
                   <div className="liveboard-table__catches">
