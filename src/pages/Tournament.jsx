@@ -1441,7 +1441,7 @@ function LiveLeaderboardSection() {
             teams={confirmedTeams}
             catchesByTeam={catchesByTeam}
             flagKey={boardView}
-            emptyLabel={`No ${BOARD_VIEWS.find((v) => v.key === boardView).label.toLowerCase()} on a team roster yet.`}
+            emptyLabel={`No catches logged yet for ${BOARD_VIEWS.find((v) => v.key === boardView).label.toLowerCase()}.`}
             isAdmin={isAdmin}
             onVerify={verify}
             onEditInches={editInches}

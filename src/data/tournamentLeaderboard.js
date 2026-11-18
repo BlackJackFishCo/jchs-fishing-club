@@ -404,6 +404,9 @@ export function computeIndividualBoard(teams, catchesByTeam, flagKey) {
         total += best.inches
         speciesCaught.push({ species, catchData: best })
       })
+      // Same rule as the team board - no catches logged yet means no spot
+      // on the board.
+      if (speciesCaught.length === 0) return
       rows.push({ teamId: team.id, teamName: team.name, angler: angler.name, total, speciesCaught })
     })
   })
