@@ -1078,9 +1078,7 @@ function LogCatchModal({ teams, catchesByTeam, onClose }) {
 
 function formatCatchTimestamp(submittedAt) {
   if (!submittedAt?.toDate) return null
-  return submittedAt.toDate().toLocaleString(undefined, {
-    month: 'short',
-    day: 'numeric',
+  return submittedAt.toDate().toLocaleTimeString(undefined, {
     hour: 'numeric',
     minute: '2-digit',
   })
