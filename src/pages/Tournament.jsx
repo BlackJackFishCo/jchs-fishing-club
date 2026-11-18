@@ -501,7 +501,7 @@ function SponsorshipSection() {
                   `John Carroll High School Inshore Slam Sponsorship — ${tier.name}`,
                 )}`}
               >
-                Get in Touch
+                Drop us a line
               </a>
             </div>
           </div>
