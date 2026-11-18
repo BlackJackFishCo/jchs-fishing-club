@@ -24,7 +24,7 @@
 
 .leaderboard-row__rank {
   flex-shrink: 0;
-  width: 2.2rem;
+  width: 2.8rem;
   font-family: var(--font-brand);
   font-size: 1.3rem;
   color: var(--color-gold-soft);
@@ -65,7 +65,7 @@
 .leaderboard-row__count {
   flex-shrink: 0;
   font-family: var(--font-eyebrow);
-  font-size: 0.78rem;
+  font-size: 1.3rem;
   letter-spacing: 0.04em;
   color: var(--color-gold-soft);
   white-space: nowrap;
