@@ -1199,27 +1199,30 @@ function CatchCell({ catchData, species, isAdmin, onVerify, onEditInches, onRemo
       >
         <img className="catch-cell__photo" src={catchData.photo} alt={`${catchData.species} catch`} />
       </button>
-      <span className="catch-cell__inches">
-        {editing ? (
-          <input
-            type="number"
-            step="0.5"
-            min="1"
-            className="catch-cell__inches-input"
-            value={draft}
-            onChange={(e) => setDraft(e.target.value)}
-            autoFocus
-          />
-        ) : (
-          <>
-            {catchData.inches}&quot;
-            {catchData.verified && (
-              <span className="catch-cell__check" title="Verified by admin">
-                ✓
-              </span>
-            )}
-          </>
-        )}
+      <span className="catch-cell__meta">
+        <span className="catch-cell__inches">
+          {editing ? (
+            <input
+              type="number"
+              step="0.5"
+              min="1"
+              className="catch-cell__inches-input"
+              value={draft}
+              onChange={(e) => setDraft(e.target.value)}
+              autoFocus
+            />
+          ) : (
+            <>
+              {catchData.inches}&quot;
+              {catchData.verified && (
+                <span className="catch-cell__check" title="Verified by admin">
+                  ✓
+                </span>
+              )}
+            </>
+          )}
+        </span>
+        {timestamp && <span className="catch-cell__time">{timestamp}</span>}
       </span>
       <span className="catch-cell__angler">
         <span className="catch-cell__angler-name">{catchData.angler}</span>
@@ -1232,7 +1235,6 @@ function CatchCell({ catchData, species, isAdmin, onVerify, onEditInches, onRemo
             ))}
         </span>
       </span>
-      {timestamp && <span className="catch-cell__time">{timestamp}</span>}
       {isAdmin && (
         <div className="catch-cell__admin">
           {editing ? (
