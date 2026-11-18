@@ -58,7 +58,7 @@ const SPONSOR_TIERS = [
     price: '$3,000',
     perks: [
       '1 Tournament Entry (4 Shirts — 1 Tournament Bucket)',
-      '4 Raffle Tickets',
+      '6 Raffle Tickets',
       'Listed as the "Award" Presented By... (Choose Either Individual or Species Category)',
       'Company Logo on Tournament Website Home Page and JCHS Fishing Club Website',
       'Company Logo on Tournament Measuring Device',
@@ -71,7 +71,7 @@ const SPONSOR_TIERS = [
     price: '$2,000',
     perks: [
       '1 Tournament Entry (4 Shirts — 1 Tournament Bucket)',
-      '2 Raffle Tickets',
+      '4 Raffle Tickets',
       'Company Logo on Event Banners and Shirt',
       'Company Logo on Tournament Website Home Page and JCHS Fishing Club Website',
       'Company Logo on Tournament Measuring Device',
@@ -84,7 +84,7 @@ const SPONSOR_TIERS = [
     price: '$1,000',
     perks: [
       '1 Tournament Entry (4 Shirts — 1 Tournament Bucket)',
-      '5 Raffle Tickets',
+      '2 Raffle Tickets',
       'Company Logo on Event Banners and Shirt',
       'Company Logo on Tournament Website Home Page and JCHS Fishing Club Website',
       'Company Logo on Tournament Measuring Device',
