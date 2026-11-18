@@ -825,7 +825,7 @@ const EVENT_INFO = [
   { label: 'Lines In', value: 'October 9, 2027 • 6:00 AM' },
   { label: 'All Photos Submitted', value: 'October 9, 2027 • 4:00 PM' },
   {
-    label: 'Awards',
+    label: 'Awards & Raffles',
     value: 'October 10, 2027 • 12:00 PM',
     location: 'Sailfish Brewery',
     locationUrl: 'https://sailfishbrewingco.com/',
