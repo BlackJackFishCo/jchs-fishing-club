@@ -1282,7 +1282,10 @@ function IndividualBoardTable({
                 )
               })}
             </div>
-            <span className="liveboard-table__total">{r.total}&quot;</span>
+            <span className="liveboard-table__total">
+              <span className="liveboard-table__total-label">Total Inches</span>
+              {r.total}&quot;
+            </span>
           </div>
         ))}
       </div>
@@ -1405,7 +1408,10 @@ function LiveLeaderboardSection() {
                       )
                     })}
                   </div>
-                  <span className="liveboard-table__total">{team.total}&quot;</span>
+                  <span className="liveboard-table__total">
+                    <span className="liveboard-table__total-label">Total Inches</span>
+                    {team.total}&quot;
+                  </span>
                 </div>
               ))}
             </div>
