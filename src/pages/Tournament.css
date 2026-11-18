@@ -934,6 +934,31 @@
   }
 }
 
+.hero-logos-secondary {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.5rem, 3vw, 2rem);
+  margin-top: 1.5rem;
+}
+
+.hero-logos-secondary > a {
+  width: min(120px, 18vw);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 780px) {
+  .hero-logos-secondary > a {
+    width: min(100px, 22vw);
+    height: 52px;
+  }
+}
+
 .tournament-tbd {
   padding: 3rem 2rem;
   margin-top: 1rem;
