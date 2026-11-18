@@ -488,7 +488,7 @@
 .catch-cell__photo-btn {
   display: block;
   width: 100%;
-  max-width: 90px;
+  max-width: 150px;
   padding: 0;
   background: none;
   border: none;
@@ -497,7 +497,7 @@
 
 .catch-cell__photo {
   width: 100%;
-  max-width: 90px;
+  max-width: 150px;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 6px;
@@ -549,6 +549,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.catch-cell__meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.4rem;
 }
 
 .catch-cell__inches {
