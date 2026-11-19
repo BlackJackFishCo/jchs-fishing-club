@@ -47,9 +47,9 @@ const SPONSOR_TIERS = [
     name: 'Title',
     price: '$5,000',
     perks: [
-      'Recognition at the Event and All Media as "JCHS Inshore Slam Presented By..."',
+      'Recognition at the Event and All Media as "JCHS Inshore Slam Presented by..."',
       '2 Tournament Entries (8 Shirts — 2 Tournament Buckets), 6 Raffle Tickets',
-      'Listed as Top Team Award Presented By...',
+      'Listed as Top Team Award Presented by...',
       'Company Logo on Event Banners and Shirts, Live Leaderboard',
       'Company Logo on Tournament Website Home Page, Live Leaderboard, and JCHS Fishing Club Website',
       'Company Logo on Tournament Measuring Device',
@@ -63,7 +63,7 @@ const SPONSOR_TIERS = [
     perks: [
       '1 Tournament Entry (4 Shirts — 1 Tournament Bucket)',
       '6 Raffle Tickets',
-      'Listed as the "Award" Presented By... (Choose Either Individual or Species Category)',
+      'Listed as the "Award" Presented by... (Choose Either Individual or Species Category)',
       'Company Logo on Tournament Website Home Page and JCHS Fishing Club Website',
       'Company Logo on Tournament Measuring Device',
       'In Person Activation Space at the Inshore Slam Captains Meeting and Awards',
