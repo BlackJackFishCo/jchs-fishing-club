@@ -261,6 +261,11 @@
   flex-direction: column;
 }
 
+.tournament-rules__highlight {
+  color: var(--color-gold);
+  font-weight: 700;
+}
+
 .rules-equipment {
   padding-top: 0.5rem;
 }

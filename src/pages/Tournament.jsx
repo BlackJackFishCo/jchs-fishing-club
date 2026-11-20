@@ -555,9 +555,15 @@ const RULES_SECTIONS = [
   {
     title: 'Fishing',
     items: [
-      'Lines in, and the start of fishing shall begin at 6am on Saturday, October 9, 2027.',
       {
-        text: 'There is no lines out time, however all fish must be logged into the JCHS Inshore Slam Tournament Page no later than 4 p.m. on October 9, 2027 to count for tournament. ',
+        text: 'Lines in, and the start of fishing shall begin at 6am on Saturday, ',
+        highlight: 'TBD',
+        after: '.',
+      },
+      {
+        text: 'There is no lines out time, however all fish must be logged into the JCHS Inshore Slam Tournament Page no later than 4 p.m. on ',
+        highlight: 'TBD',
+        after: ' to count for tournament. ',
         link: { href: 'https://www.jchsfc.com/slam', label: 'www.jchsfc.com/slam' },
       },
       'North Boundary ¼ Mile North of Sebastian Inlet 27°51.850’N',
@@ -582,7 +588,11 @@ const RULES_SECTIONS = [
       'Photographs that do not allow the Tournament Director to view the tape measure or entire fish may be excluded at the discretion of the Tournament Director.',
       'If a fish or measurement is partially obstructed, the Tournament Director has the authority to decide whether to exclude a fish in its entirety or give credit for the visible part of the fish.',
       'The website is time stamped. Any catch logged after 4pm will not count, regardless of when the fish was actually caught.',
-      'In the event of tournament website outage or other technical difficulties it is your teams responsibility to still log your catch on the tournament ruler by picture on your phone. All photos must be text to tournament Director by 4pm October 9, 2027. PH (561-859-7165)',
+      {
+        text: 'In the event of tournament website outage or other technical difficulties it is your teams responsibility to still log your catch on the tournament ruler by picture on your phone. All photos must be text to tournament Director by 4pm ',
+        highlight: 'TBD',
+        after: '. PH (561-859-7165)',
+      },
     ],
   },
   {
@@ -609,6 +619,10 @@ function RuleItem({ item }) {
   return (
     <>
       {item.text}
+      {item.highlight && (
+        <span className="tournament-rules__highlight">{item.highlight}</span>
+      )}
+      {item.after}
       {item.link && (
         <a href={item.link.href} target="_blank" rel="noopener noreferrer">
           {item.link.label}
