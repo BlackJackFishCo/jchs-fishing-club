@@ -818,19 +818,19 @@ function AwardsSection() {
 }
 
 const EVENT_INFO = [
-  { label: 'Registration Opens', value: 'August 1, 2027' },
-  { label: 'Registration Ends', value: 'September 26, 2027' },
+  { label: 'Registration Opens', value: 'TBD' },
+  { label: 'Registration Ends', value: 'TBD' },
   {
     label: 'Captains Meeting',
-    value: 'October 8, 2027 • 6:00 PM',
+    value: 'TBD',
     location: 'Sailfish Brewery',
     locationUrl: 'https://sailfishbrewingco.com/',
   },
-  { label: 'Lines In', value: 'October 9, 2027 • 6:00 AM' },
-  { label: 'All Photos Submitted', value: 'October 9, 2027 • 4:00 PM' },
+  { label: 'Lines In', value: 'TBD' },
+  { label: 'All Photos Submitted', value: 'TBD' },
   {
     label: 'Awards & Raffles',
-    value: 'October 10, 2027 • 12:00 PM',
+    value: 'TBD',
     location: 'Sailfish Brewery',
     locationUrl: 'https://sailfishbrewingco.com/',
   },
