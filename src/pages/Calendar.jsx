@@ -111,7 +111,7 @@ const months = [
     year: '2026',
     agenda: [
       'Guest Speaker Aaron Benzrihem from Abenz Fishing — content creator on abenzfishing.com and @AbenzFishing',
-      { text: 'December 31 FWC PreSurveys Due', highlight: true },
+      'December 31 FWC PreSurveys Due',
     ],
     sponsors: [
       { logo: abenzFishingLogo, link: 'https://abenzfishing.com/', alt: 'Abenz Fishing logo' },
