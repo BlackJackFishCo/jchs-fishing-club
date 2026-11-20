@@ -109,6 +109,7 @@ const months = [
     location: 'Cafeteria',
     date: '17',
     year: '2026',
+    postponed: true,
     agenda: [
       'Guest Speaker Aaron Benzrihem from Abenz Fishing — content creator on abenzfishing.com and @AbenzFishing',
       'December 31 FWC PreSurveys Due',
@@ -242,10 +243,7 @@ const months = [
     name: 'October',
     year: '2027',
     title: 'Save the Date',
-    agenda: [
-      'John Carroll High School Inshore Slam Fishing Tournament',
-      'CCA STAR Summer Event Awards Banquet TBD',
-    ],
+    agenda: ['CCA STAR Summer Event Awards Banquet TBD'],
   },
   { name: 'November', year: '2027' },
   { name: 'December', year: '2027' },
@@ -333,6 +331,7 @@ function Calendar() {
   today.setHours(0, 0, 0, 0)
 
   const upcomingTimes = months
+    .filter((m) => !m.postponed)
     .map(getEventDate)
     .filter((d) => d && d.getTime() >= today.getTime())
     .map((d) => d.getTime())
@@ -367,9 +366,12 @@ function Calendar() {
           return (
             <article
               key={`${month.name}-${month.year}`}
-              className={`volunteer-card card${isNextUp ? ' calendar-card--next' : ''}${isPast ? ' calendar-card--past' : ''}`}
+              className={`volunteer-card card${isNextUp ? ' calendar-card--next' : ''}${isPast ? ' calendar-card--past' : ''}${month.postponed ? ' calendar-card--postponed' : ''}`}
             >
               {isNextUp && <span className="calendar-card__next-badge">Next Up</span>}
+              {month.postponed && (
+                <span className="calendar-card__postponed-stamp">Postponed for Finals</span>
+              )}
               <div className="calendar-card__top-row">
                 <span className="volunteer-card__status">{month.time || 'Time TBD'}</span>
                 {month.location && (
