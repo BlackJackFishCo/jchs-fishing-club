@@ -901,7 +901,7 @@
   display: grid;
   grid-template-columns: repeat(5, minmax(0, auto));
   column-gap: clamp(0.5rem, 3vw, 2rem);
-  row-gap: 1rem;
+  row-gap: 0.4rem;
   justify-content: center;
   align-items: center;
   margin-top: 2rem;
