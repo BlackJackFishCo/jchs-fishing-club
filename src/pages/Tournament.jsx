@@ -24,10 +24,6 @@ import offTheGridLogo from '../assets/sponsor-off-the-grid.png'
 import dancoLogo from '../assets/sponsor-danco.png'
 import nlbnLogo from '../assets/sponsor-nlbn.png'
 import sailfishBrewingLogo from '../assets/sponsor-sailfish-brewing.png'
-import bassProShopsLogo from '../assets/sponsor-bass-pro-shops.png'
-import stLucieBatteryTireLogo from '../assets/sponsor-st-lucie-battery-tire.png'
-import turtleboxLogo from '../assets/sponsor-turtlebox.png'
-import doaLuresLogo from '../assets/sponsor-doa-lures.png'
 import './Tournament.css'
 
 const TIER_FISH = {
@@ -877,13 +873,9 @@ function EventInfoRow() {
   )
 }
 
-// 5 columns, matching the top row's 5 slots (4 sponsor logos + the
-// school crest in the middle). The second row's 4 sponsors sit directly
-// under their counterparts in the top row's 4 sponsor columns - the
-// crest's column (3) is left empty in row 2.
 function HeroLogos() {
   return (
-    <div className="hero-logos-grid">
+    <div className="hero-logos">
       <a
         href="https://www.instagram.com/offthegridjohn/"
         target="_blank"
@@ -926,46 +918,6 @@ function HeroLogos() {
           src={sailfishBrewingLogo}
           alt="Sailfish Brewing Company logo"
         />
-      </a>
-
-      <a
-        href="https://www.basspro.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Bass Pro Shops website"
-      >
-        <img className="hero-logos__sponsor" src={bassProShopsLogo} alt="Bass Pro Shops logo" />
-      </a>
-
-      <a
-        href="https://www.stluciebattery.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="St. Lucie Battery & Tire website"
-      >
-        <img
-          className="hero-logos__sponsor"
-          src={stLucieBatteryTireLogo}
-          alt="St. Lucie Battery & Tire logo"
-        />
-      </a>
-
-      <a
-        href="https://www.turtleboxaudio.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Turtlebox website"
-      >
-        <img className="hero-logos__sponsor" src={turtleboxLogo} alt="Turtlebox logo" />
-      </a>
-
-      <a
-        href="https://www.doalures.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="D.O.A. Lures website"
-      >
-        <img className="hero-logos__sponsor" src={doaLuresLogo} alt="D.O.A. Lures logo" />
       </a>
     </div>
   )
