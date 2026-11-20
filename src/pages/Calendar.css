@@ -42,6 +42,32 @@
   filter: grayscale(0.2);
 }
 
+.calendar-card--postponed {
+  position: relative;
+}
+
+.calendar-card__postponed-stamp {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  width: 82%;
+  transform: translate(-50%, -50%) rotate(-10deg);
+  background: rgba(176, 32, 32, 0.94);
+  color: #fff;
+  border: 3px solid #fff;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  font-family: var(--font-eyebrow);
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: center;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+  z-index: 3;
+  pointer-events: none;
+}
+
 .calendar-card__next-badge {
   position: absolute;
   top: -0.7rem;
