@@ -863,9 +863,13 @@ function EventInfoRow() {
   )
 }
 
+// 5 columns, matching the top row's 5 slots (4 sponsor logos + the
+// school crest in the middle). The second row's 4 sponsors sit directly
+// under their counterparts in the top row's 4 sponsor columns - the
+// crest's column (3) is left empty in row 2.
 function HeroLogos() {
   return (
-    <div className="hero-logos">
+    <div className="hero-logos-grid">
       <a
         href="https://www.instagram.com/offthegridjohn/"
         target="_blank"
@@ -909,13 +913,7 @@ function HeroLogos() {
           alt="Sailfish Brewing Company logo"
         />
       </a>
-    </div>
-  )
-}
 
-function HeroLogosSecondary() {
-  return (
-    <div className="hero-logos-secondary">
       <a
         href="https://www.basspro.com/"
         target="_blank"
@@ -1553,7 +1551,6 @@ function Tournament() {
             <HomeSection />
             <EventInfoRow />
             <HeroLogos />
-            <HeroLogosSecondary />
           </>
         )}
 

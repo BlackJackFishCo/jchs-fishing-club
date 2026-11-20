@@ -886,26 +886,65 @@
   color: var(--color-gold);
 }
 
-.hero-logos {
+/* 5 columns, matching the top row's 5 slots (4 sponsors + the crest in
+   the middle). The second row's 4 sponsors sit directly under their
+   counterparts in columns 1, 2, 4, 5 - column 3 (under the crest) is
+   left empty in row 2. Since this reuses the same 5 columns as before
+   (rather than adding new ones), it fits at full, unshrunk size. */
+.hero-logos-grid {
   width: 100%;
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, auto));
+  column-gap: clamp(0.5rem, 3vw, 2rem);
+  row-gap: 1rem;
   justify-content: center;
-  gap: clamp(0.5rem, 3vw, 2rem);
+  align-items: center;
   margin-top: 2rem;
 }
 
-.hero-logos > a,
-.hero-logos > .hero__picture {
-  display: block;
-  flex-shrink: 1;
-  min-width: 0;
+.hero-logos-grid > a:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1;
+}
+.hero-logos-grid > a:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1;
+}
+.hero-logos-grid > .hero__picture {
+  grid-column: 3;
+  grid-row: 1;
+}
+.hero-logos-grid > a:nth-child(4) {
+  grid-column: 4;
+  grid-row: 1;
+}
+.hero-logos-grid > a:nth-child(5) {
+  grid-column: 5;
+  grid-row: 1;
 }
 
-.hero-logos > a {
-  width: min(120px, 18vw);
+.hero-logos-grid > a:nth-child(6) {
+  grid-column: 1;
+  grid-row: 2;
+}
+.hero-logos-grid > a:nth-child(7) {
+  grid-column: 2;
+  grid-row: 2;
+}
+.hero-logos-grid > a:nth-child(8) {
+  grid-column: 4;
+  grid-row: 2;
+}
+.hero-logos-grid > a:nth-child(9) {
+  grid-column: 5;
+  grid-row: 2;
+}
+
+.hero-logos-grid > a {
+  width: 100%;
+  max-width: min(120px, 18vw);
   height: 64px;
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -920,49 +959,26 @@
   display: block;
 }
 
-.hero-logos > .hero__picture {
-  width: min(270px, 40vw);
+.hero-logos-grid > .hero__picture {
+  width: 100%;
+  max-width: min(270px, 40vw);
+  min-width: 0;
   filter: drop-shadow(0 0 30px rgba(27, 58, 138, 0.55));
 }
 
-.hero-logos > .hero__picture img {
+.hero-logos-grid > .hero__picture img {
   width: 100%;
   display: block;
 }
 
 @media (max-width: 780px) {
-  .hero-logos > a {
-    width: min(100px, 22vw);
+  .hero-logos-grid > a {
+    max-width: min(100px, 22vw);
     height: 52px;
   }
 
-  .hero-logos > .hero__picture {
-    width: min(225px, 46vw);
-  }
-}
-
-.hero-logos-secondary {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(0.5rem, 3vw, 2rem);
-  margin-top: 0.5rem;
-}
-
-.hero-logos-secondary > a {
-  width: min(120px, 18vw);
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-@media (max-width: 780px) {
-  .hero-logos-secondary > a {
-    width: min(100px, 22vw);
-    height: 52px;
+  .hero-logos-grid > .hero__picture {
+    max-width: min(225px, 46vw);
   }
 }
 
