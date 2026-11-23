@@ -292,31 +292,17 @@ function Species() {
           </p>
         </div>
         <div className="species-page__right">
-          <fieldset className="species-filter species-filter-picker">
-            <legend>Viewing</legend>
-            <label className="species-filter-picker__option">
-              <input
-                type="radio"
-                name="viewingAngler"
-                value=""
-                checked={viewAnglerId === ''}
-                onChange={() => setViewAnglerId('')}
-              />
-              <span>All Participants</span>
-            </label>
-            {activeRoster.map((r) => (
-              <label key={r.id} className="species-filter-picker__option">
-                <input
-                  type="radio"
-                  name="viewingAngler"
-                  value={r.id}
-                  checked={viewAnglerId === r.id}
-                  onChange={() => setViewAnglerId(r.id)}
-                />
-                <span>{r.name}</span>
-              </label>
-            ))}
-          </fieldset>
+          <label className="field species-filter">
+            <span>Viewing</span>
+            <select value={viewAnglerId} onChange={(e) => setViewAnglerId(e.target.value)}>
+              <option value="">All Participants</option>
+              {activeRoster.map((r) => (
+                <option key={r.id} value={r.id}>
+                  {r.name}
+                </option>
+              ))}
+            </select>
+          </label>
         </div>
       </div>
 
