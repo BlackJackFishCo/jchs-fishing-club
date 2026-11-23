@@ -49,6 +49,10 @@ function Leaderboard() {
             members at the end of the year.
           </p>
         </div>
+        <div className="leaderboard-total-catches">
+          <span className="leaderboard-total-catches__count">{allCatches.length}</span>
+          <span className="leaderboard-total-catches__label">Total Catches</span>
+        </div>
       </div>
 
       {loading ? (
