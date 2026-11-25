@@ -363,7 +363,7 @@ function Calendar() {
           const eventDate = getEventDate(month)
           const isNextUp = nextEventTime !== null && eventDate?.getTime() === nextEventTime
           const cutoffDate = getPastCutoffDate(month)
-          const isPast = cutoffDate !== null && cutoffDate.getTime() < today.getTime()
+          const isPast = (cutoffDate !== null && cutoffDate.getTime() < today.getTime()) || month.postponed
 
           return (
             <article
