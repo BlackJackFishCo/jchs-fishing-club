@@ -1,6 +1,5 @@
 import jchsfcLogo from '../assets/logo.png'
 import clubPhoto from '../assets/calendar-club-photo.jpg'
-import mommaBLogo from '../assets/sponsor-momma-b.png'
 import nlbnLogo from '../assets/sponsor-nlbn.png'
 import ccaStarLogo from '../assets/sponsor-cca-star.png'
 import abenzFishingLogo from '../assets/sponsor-abenz-fishing.png'
@@ -139,15 +138,18 @@ const months = [
   },
   {
     name: 'February',
-    title: 'Surf Fishing Rigging & Techniques',
+    title: 'Snook Fishing Techniques',
     time: '3pm',
     location: 'The Commons',
     date: '18',
     year: '2027',
     agenda: [
-      'Hands on Surf Fishing Outing with Captain Matt Burr of Momma B Charters. $25 per person',
+      'Make-up meeting for the postponed December meeting.',
+      'Guest Speaker Aaron Benzrihem from Abenz Fishing — content creator on abenzfishing.com and @AbenzFishing',
     ],
-    sponsors: [{ logo: mommaBLogo, alt: 'Momma B Sport and Beach Fishing Guide Service logo' }],
+    sponsors: [
+      { logo: abenzFishingLogo, link: 'https://abenzfishing.com/', alt: 'Abenz Fishing logo' },
+    ],
   },
   {
     name: 'March',
@@ -361,7 +363,7 @@ function Calendar() {
           const eventDate = getEventDate(month)
           const isNextUp = nextEventTime !== null && eventDate?.getTime() === nextEventTime
           const cutoffDate = getPastCutoffDate(month)
-          const isPast = cutoffDate !== null && cutoffDate.getTime() < today.getTime()
+          const isPast = (cutoffDate !== null && cutoffDate.getTime() < today.getTime()) || month.postponed
 
           return (
             <article
