@@ -513,6 +513,22 @@
   flex-shrink: 0;
 }
 
+.modal__catch-row__no-photo {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 6px;
+  border: 1px dashed rgba(245, 197, 24, 0.3);
+  color: var(--color-muted);
+  font-size: 0.58rem;
+  line-height: 1.1;
+  padding: 0.1rem;
+}
+
 .modal__catch-info {
   display: flex;
   flex-direction: column;

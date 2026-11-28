@@ -53,6 +53,8 @@ function CatchModal({ entry, isAdmin, roster, onClose }) {
   const [passcode, setPasscode] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
+  const [deletingId, setDeletingId] = useState(null)
+  const [brokenPhotoIds, setBrokenPhotoIds] = useState(() => new Set())
 
   const handlePhoto = (e) => {
     const f = e.target.files?.[0]
@@ -86,10 +88,16 @@ function CatchModal({ entry, isAdmin, roster, onClose }) {
   }
 
   const deleteCatch = async (submissionId, photoPath) => {
+    if (deletingId) return
+    if (!window.confirm('Remove this catch? This cannot be undone.')) return
+    setDeletingId(submissionId)
+    setError('')
     try {
       await removeSubmission(submissionId, photoPath)
-    } catch {
-      setError('Could not remove that catch. Try again.')
+    } catch (err) {
+      setError(err?.message || 'Could not remove that catch. Try again.')
+    } finally {
+      setDeletingId(null)
     }
   }
 
@@ -105,25 +113,40 @@ function CatchModal({ entry, isAdmin, roster, onClose }) {
 
         {entry.submissions.length > 0 && (
           <ul className="modal__catch-list">
-            {entry.submissions.map((sub) => (
-              <li key={sub.id} className="modal__catch-row">
-                <img src={sub.photo} alt={entry.species} />
-                <div className="modal__catch-info">
-                  <strong>{sub.angler || 'Angler not logged'}</strong>
-                  <span>{sub.date || 'No date logged'}</span>
-                </div>
-                {isAdmin && (
-                  <button
-                    type="button"
-                    className="modal__catch-remove"
-                    aria-label="Remove this catch"
-                    onClick={() => deleteCatch(sub.id, sub.photoPath)}
-                  >
-                    ×
-                  </button>
-                )}
-              </li>
-            ))}
+            {entry.submissions.map((sub, i) => {
+              const key = sub.id || `${sub.anglerId || 'unknown'}-${i}`
+              const photoBroken = brokenPhotoIds.has(key)
+              return (
+                <li key={key} className="modal__catch-row">
+                  {sub.photo && !photoBroken ? (
+                    <img
+                      src={sub.photo}
+                      alt={entry.species}
+                      onError={() =>
+                        setBrokenPhotoIds((prev) => new Set(prev).add(key))
+                      }
+                    />
+                  ) : (
+                    <span className="modal__catch-row__no-photo">No photo</span>
+                  )}
+                  <div className="modal__catch-info">
+                    <strong>{sub.angler || 'Angler not logged'}</strong>
+                    <span>{sub.date || 'No date logged'}</span>
+                  </div>
+                  {isAdmin && (
+                    <button
+                      type="button"
+                      className="modal__catch-remove"
+                      aria-label="Remove this catch"
+                      disabled={deletingId === sub.id}
+                      onClick={() => deleteCatch(sub.id, sub.photoPath)}
+                    >
+                      {deletingId === sub.id ? '…' : '×'}
+                    </button>
+                  )}
+                </li>
+              )
+            })}
           </ul>
         )}
 
