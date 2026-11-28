@@ -112,38 +112,90 @@ function CatchModal({ entry, isAdmin, roster, onClose }) {
         <div className="modal__divider">Catches Logged ({entry.submissions.length})</div>
 
         {entry.submissions.length > 0 && (
-          <ul className="modal__catch-list">
+          <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'block' }}>
             {entry.submissions.map((sub, i) => {
               const key = sub.id || `${sub.anglerId || 'unknown'}-${i}`
               const photoBroken = brokenPhotoIds.has(key)
               return (
-                <li key={key} className="modal__catch-row">
-                  {sub.photo && !photoBroken ? (
-                    <img
-                      src={sub.photo}
-                      alt={entry.species}
-                      onError={() =>
-                        setBrokenPhotoIds((prev) => new Set(prev).add(key))
-                      }
-                    />
-                  ) : (
-                    <span className="modal__catch-row__no-photo">No photo</span>
-                  )}
-                  <div className="modal__catch-info">
-                    <strong>{sub.angler || 'Angler not logged'}</strong>
-                    <span>{sub.date || 'No date logged'}</span>
+                <li
+                  key={key}
+                  style={{
+                    display: 'table',
+                    width: '100%',
+                    tableLayout: 'fixed',
+                    background: '#15181d',
+                    border: '1px solid #7a6418',
+                    borderRadius: '8px',
+                    padding: '8px',
+                    marginBottom: '10px',
+                  }}
+                >
+                  <div style={{ display: 'table-row' }}>
+                    <div style={{ display: 'table-cell', width: 52, verticalAlign: 'middle' }}>
+                      {sub.photo && !photoBroken ? (
+                        <img
+                          src={sub.photo}
+                          alt={entry.species}
+                          onError={() =>
+                            setBrokenPhotoIds((prev) => new Set(prev).add(key))
+                          }
+                          style={{
+                            display: 'block',
+                            width: '44px',
+                            height: '44px',
+                            objectFit: 'cover',
+                            borderRadius: '6px',
+                          }}
+                        />
+                      ) : (
+                        <div
+                          style={{
+                            width: '44px',
+                            height: '44px',
+                            border: '1px dashed #7a6418',
+                            borderRadius: '6px',
+                            color: '#999',
+                            fontSize: '9px',
+                            textAlign: 'center',
+                            lineHeight: '44px',
+                          }}
+                        >
+                          No photo
+                        </div>
+                      )}
+                    </div>
+                    <div style={{ display: 'table-cell', verticalAlign: 'middle', padding: '0 10px' }}>
+                      <div style={{ color: '#ffffff', fontSize: '14px', fontWeight: 600 }}>
+                        {sub.angler || 'Angler not logged'}
+                      </div>
+                      <div style={{ color: '#aaaaaa', fontSize: '12px' }}>
+                        {sub.date || 'No date logged'}
+                      </div>
+                    </div>
+                    {isAdmin && (
+                      <div style={{ display: 'table-cell', width: 40, verticalAlign: 'middle', textAlign: 'right' }}>
+                        <button
+                          type="button"
+                          aria-label="Remove this catch"
+                          disabled={deletingId === sub.id}
+                          onClick={() => deleteCatch(sub.id, sub.photoPath)}
+                          style={{
+                            background: '#2a1414',
+                            border: '1px solid #c0392b',
+                            color: '#ff4d4d',
+                            fontSize: '18px',
+                            fontWeight: 700,
+                            lineHeight: 1,
+                            cursor: 'pointer',
+                            padding: '6px 10px',
+                            borderRadius: '6px',
+                          }}
+                        >
+                          {deletingId === sub.id ? '…' : '×'}
+                        </button>
+                      </div>
+                    )}
                   </div>
-                  {isAdmin && (
-                    <button
-                      type="button"
-                      className="modal__catch-remove"
-                      aria-label="Remove this catch"
-                      disabled={deletingId === sub.id}
-                      onClick={() => deleteCatch(sub.id, sub.photoPath)}
-                    >
-                      {deletingId === sub.id ? '…' : '×'}
-                    </button>
-                  )}
                 </li>
               )
             })}
